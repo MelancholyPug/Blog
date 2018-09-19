@@ -9,7 +9,7 @@ oSite.cUrlPath = window.location.pathname;
 (function(){
 	if(window.canRunAds === undefined && oSite.cUrlPath.indexOf("/archive") != -1)
 	{
-    window.location.href = "/_resource/html/adblocker.html?cBlock=" + oSite.cUrlPath;
+    window.location.href = "/_resource/html/adBlocker.html?cBlock=" + oSite.cUrlPath;
 	}
 })();
 
