@@ -1,9 +1,4 @@
-﻿http://slashlook.com/archivesear/search.html
-http://slashlook.com/archivenot_/not_found.html
-http://slashlook.com/archivearti/articles.html
-http://slashlook.com/archiveadBl/adBlocker.html
-http://slashlook.com/archiveabou/aboutNcontact.html
-http://slashlook.com/archive2018/20180914.html
+﻿http://slashlook.com/archive2018/20180914.html
 http://slashlook.com/archive2018/20180903.html
 http://slashlook.com/archive2018/20180829.html
 http://slashlook.com/archive2018/20180807.html
@@ -448,6 +443,3 @@ http://slashlook.com/archive2013/20130704.html
 http://slashlook.com/archive2013/20130703.html
 http://slashlook.com/archive2013/20130702.html
 http://slashlook.com/archive2013/20130701.html
-http://slashlook.com/archive_blo/_bloggerAdsInline2.html
-http://slashlook.com/archive_blo/_bloggerAdsInline1.html
-http://slashlook.com/archive_blo/_bloggerAdsBottom.html

@@ -11,7 +11,7 @@ public class makeJSON : System.Web.IHttpHandler
 
     /* 尋訪目錄下所有的資料夾，是否有出現符合關鍵字檔名，有出現的話就加入到列表中 */
     //根目錄下所有的資料夾
-    foreach (string oFolder in System.IO.Directory.GetDirectories(oContext.Request.MapPath("/"), "*", System.IO.SearchOption.AllDirectories))
+    foreach (string oFolder in System.IO.Directory.GetDirectories(oContext.Request.MapPath("/"), "archive*", System.IO.SearchOption.AllDirectories))
     {
       foreach (var oFile in System.IO.Directory.GetFiles(oFolder, "*.html"))
       { oFileLists.Add(oFile); }
