@@ -46,9 +46,9 @@ pre {
 	background-color: #CCC;
 }
 .navbar-inverse {
-	background-color: #252525;
-	background-image: url("/_img_background_menu.png");
-	background-repeat: repeat-x;
+  background-color: #252525;
+  background-image: url("/_resource/image/_img_background_menu.png");
+  background-repeat: repeat-x;
 }
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
 	background-color: #F0FFC3;
@@ -68,13 +68,13 @@ pre {
 }
 /* Customize Design */
 body {
-	padding-top: 75px;
-	font-family: SlashLookFont;
-	font-size: 16px;
-	color: #222;
-	letter-spacing: 2px;
-	background-image: url("/_img_background_body.png");
-	background-repeat: repeat;
+  padding-top: 75px;
+  font-family: SlashLookFont;
+  font-size: 16px;
+  color: #222;
+  letter-spacing: 2px;
+  background-image: url("/_resource/image/_img_background_body.png");
+  background-repeat: repeat;
 }
 p {
 	margin: 15px 0;
