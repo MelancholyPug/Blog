@@ -115,7 +115,7 @@ function createJson2Table(){
 			}),
 			$("<td></td>").text(item.T),
 			$("<td></td>").html(function(){
-				return "<a class='btn btn-danger btn-sm' href='/articles_" + item.D + ".html'>點擊閱讀</a>";
+        return "<a class='btn btn-danger btn-sm' href='/archive" + item.D.substring(0, 4) + "/" + item.D + ".html'>點擊閱讀</a>";
 			})
 		).appendTo(oTempObj);
 	}
