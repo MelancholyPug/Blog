@@ -7,7 +7,7 @@ oSite.cUrlPath = window.location.pathname;
 
 /* 無論如何，先檢查使用者端是否有把網站廣告擋掉，有的話就踢到勸導頁面 */
 (function(){
-	if(window.canRunAds === undefined && oSite.cUrlPath.indexOf("/articles_") != -1)
+	if(window.canRunAds === undefined && oSite.cUrlPath.indexOf("/archvie") != -1)
 	{
     window.location.href = "/_resource/html/adblocker.html?cBlock=" + oSite.cUrlPath;
 	}
@@ -23,7 +23,7 @@ oSite.bAdsAnnouncement = false;
 oSite.bAdsAdministrator = false;
 
 //是否為「文章主體」文件
-if(oSite.cUrlPath.indexOf("articles_") == -1){
+if(oSite.cUrlPath.indexOf("/archvie") == -1){
 	oSite.bArticles = false;
 }else{
 	oSite.bArticles = true;
@@ -77,7 +77,7 @@ jQueryIsReady(function(){
 		
 		/* Styling: Articles Date */
 		if(oSite.bArticles){
-			var cArticlesDate = oSite.cUrlPath.substring(oSite.cUrlPath.indexOf("_") + 1, oSite.cUrlPath.indexOf(".html"));
+      var cArticlesDate = oSite.cUrlPath.substring(oSite.cUrlPath.indexOf(".html") - 8, oSite.cUrlPath.indexOf(".html"));
 			cArticlesDate = "&nbsp;" + cArticlesDate.substring(0, 4) + "/" + cArticlesDate.substring(4, 6) + "/" + cArticlesDate.substring(6, 8);
 			$("div.title.title-color").after("<div class='date-time'><span class='glyphicon glyphicon-th-large'></span>" + cArticlesDate + "</div>");
 		}
