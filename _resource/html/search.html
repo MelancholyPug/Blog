@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<style>
+	.gsc-control-cse, .gsc-webResult.gsc-result {
+		background:transparent !important;
+		border-color:transparent !important;
+	}
+	.gsc-input-box {
+		height: auto !important;
+	}
+	.gsc-control-cse {
+		padding: 0 !important;
+	}
+	.gsib_a {
+		padding: 0 1em !important;
+		height: 2.5em !important;
+	}
+	input.gsc-search-button-v2 {
+		width: auto !important;
+		height: 3em !important;
+		margin-top: 4px !important;
+	}
+	.gcsc-branding {
+		display: none !important;
+	}
+	table {
+		border-collapse: inherit !important;
+	}
+</style>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12" id="Search">
+			<div class="page-header">
+				<h1>SlashLook site search</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="Search-Result">
+				<gcse:search></gcse:search>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+	pushToExecuteList(function(){
+		//Default Button
+		(function() {
+			var cx = '012770263012443499400:rmtzlvogmcq';
+			var gcse = document.createElement('script');
+			gcse.type = 'text/javascript';
+			gcse.async = true;
+			gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(gcse, s);
+		})();
+	}, 2);	//Priority:2
+</script>
+
+</body>
+</html>
