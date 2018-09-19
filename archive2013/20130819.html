@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Microsoft SQL Server啟用超大實體記憶體與調整</h1>
+
+<p>在老舊且堪用的Windows Server 32Bits上，記憶體一直是一個很大的困擾，在64Bits作業系統橫行的現代，維護著老舊機器又想要讓機器上面的效能全開，一直是網管人員頭痛的問題。</p>
+
+<p>如果你安裝了一台Windows Server 2003 32位元作業系統，在上面又跑SQL Server，這時候你一定會希望資料庫的記憶體最好把Windows Server中所能看到的記憶體全部吃光，但事實上SQL是不會全吃光的，除非你進行下列AWE啟動設定。</p>
+
+<h3>SQL啟用AWE為：</h3>
+<ol>
+	<li>sp_configure 'show advanced options', 1</li>
+	<li>RECONFIGURE</li>
+	<li>GO</li>
+	<li>sp_configure 'awe enabled', 1</li>
+	<li>RECONFIGURE</li>
+	<li>GO</li>
+	<li>Windows Server 重開機（這一步一定要做，請斟酌）</li>
+</ol>
+
+<h3>除了設定記憶體使用之外，也可以用指定特定記憶體數值設定：</h3>
+<ol>
+	<li>sp_configure 'min server memory', 1024（最小可用１Ｇ）</li>
+	<li>RECONFIGURE</li>
+	<li>GO</li>
+	<li>sp_configure 'max server memory', 6144（最大用到６Ｇ）</li>
+	<li>RECONFIGURE</li>
+	<li>GO</li>
+</ol>
+
+<small>Microsoft SQLServer AWE Adjuest Memorys</small>
+
+</body>
+</html>

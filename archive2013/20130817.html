@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Windows網路芳鄰相互連接一直失敗的問題</h1>
+
+<p>在某些時刻，我們會希望自己的Windows WorkStation跟Windows Server進行SMB/CIFS/SAMBA的網路芳鄰或網路分享對接，如果有那種密碼明明都正確，可是怎麼輸入都回應錯誤無法連接的話，請依下列狀況排除：</p>
+
+<p></p>
+
+<h3>一、檢查Server及Client的時間</h3>
+<p>絕大部份的狀況都是時間不同，導致Hash後的字串不一樣（也就是密碼不一樣了），修改雙方機器的時間後應該就可以正確連接動作了。</p>
+
+<h3>二、檢查Server認證級別：</h3>
+<p>由gpedit.msc進入，找到下圖的設定處，進行網路安全性：Lan Manager驗證層級的設定。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/14751820303/"><img src="https://c1.staticflickr.com/3836/14751820303_2b9b187be7_o.png" alt="20130817_01"></a>
+
+<p>三、修改Server發出的認證層級：</p>
+<p>由regedit進入新增修改...</p>
+<pre>
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa]
+"lmcompatibilitylevel"=dword:00000002
+</pre>
+
+<small>Windows Server Client SMB CIFS SAMBA CanNotAuthorization</small>
+
+</body>
+</html>

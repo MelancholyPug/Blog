@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>獨立安裝ASP.NET State Server（不需要透過IIS）</h1>
+
+<p>之前的認知是要運行State Server一定需要裝IIS才能夠跑起來，這是錯的！不需要安裝IIS也可以讓ASP.NET State Service平順的運行無誤！</p>
+
+<p>請切換目錄到 C:\Windows\Microsoft.NET\版本號 (如果是 x64 的使用者不要切錯目錄了喔！)</p>
+
+<pre>
+輸入：
+aspnet_regiis -i
+</pre>
+
+<p>安裝完後去系統服務列表看一下如果有出現「aspnet_state」，那就是這個服務存在啦！好好的設定一下他的服務啟動狀態吧！</p>
+
+<small>ASP.NET StateServer Install Need Without IIS</small>
+
+</body>
+</html>

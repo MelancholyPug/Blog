@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>ASP.NET的簡單檔案上傳及下載程式</h1>
+
+<p>因為某些用途有需要用到這個簡單的小程式，因此特別把它記在這裡，以免日後有用到還要再重新寫一次。特別提醒下列注意事項：</p>
+
+<ol>
+	<li>Response.WriteFile();只是一種簡單的下載解決方案，真正的大型網站在實務上不會使用這種方式來打檔案。</li>
+	<li>Internet Explorer（IE）在檔名是中文字的模式時，會出現亂碼，這個問題有跨瀏覽器的解決方案，但這不是這篇文章的討論目的。</li>
+	<li>寫入目的端之目錄，必須加入「IIS_IUSRS」完全控制權限。</li>
+</ol>
+
+<p>再次強調，這個程式碼只供測試，因為中間有很多初學者不知道的漏洞存在，請勿做正式用途否則後果不堪設想。程式碼如下方所列：</p>
+
+<pre>
+&lt;%@ Page Language=&quot;C#&quot; %&gt;
+&lt;script runat=&quot;server&quot;&gt;
+  String savePath = @&quot;D:\FileTemp&quot;;
+  protected void UploadButton_Click(object sender, EventArgs e)
+  {
+    showFilePath.Text = savePath;    
+    if (FileUpload1.HasFile)
+    {
+      FileUpload1.SaveAs(savePath + @&quot;\&quot; + FileUpload1.FileName);
+      showFileName.Text = FileUpload1.FileName;
+    }
+    else
+    {      
+      showFileName.Text = &quot;error&quot;;
+    }
+  }
+
+  protected void dlFiles(object sender, EventArgs e)
+  {
+    if(showFileName.Text != &quot;&quot; &amp;&amp; showFileName.Text != &quot;error&quot;)
+    {
+      Response.ContentType = &quot;application/octet-stream&quot;;
+      Response.AddHeader(&quot;Content-Disposition&quot;, &quot;attachment;filename=&quot; + showFileName.Text);
+      Response.WriteFile(savePath + @&quot;\&quot; + showFileName.Text);
+    }
+  }
+&lt;/script&gt;
+
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt; 
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; &gt;
+&lt;head runat=&quot;server&quot;&gt;
+    &lt;title&gt;檔案上傳範例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form id=&quot;form1&quot; runat=&quot;server&quot;&gt;
+    &lt;div&gt;
+       &lt;h4&gt;透過網頁上傳檔案&lt;/h4&gt;
+       &lt;asp:FileUpload id=&quot;FileUpload1&quot; runat=&quot;server&quot;/&gt;
+       &lt;asp:Button Text=&quot;上傳檔案&quot; OnClick=&quot;UploadButton_Click&quot; runat=&quot;server&quot;/&gt;
+       &lt;hr /&gt;
+       &lt;p&gt;檔名: &lt;asp:Literal id=&quot;showFileName&quot; runat=&quot;server&quot; /&gt;&lt;/p&gt;
+       &lt;p&gt;路徑: &lt;asp:Literal id=&quot;showFilePath&quot; runat=&quot;server&quot; /&gt;&lt;/p&gt;
+       &lt;p&gt;&lt;asp:button text=&quot;下載檔案&quot; OnClick=&quot;dlFiles&quot; runat=&quot;server&quot;/&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<small>ASP.NET FileUpload Response.WriteFile</small>
+
+</body>
+</html>

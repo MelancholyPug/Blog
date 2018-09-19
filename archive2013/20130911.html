@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>VMware關掉軟碟機（FloppyDisk）的方法</h1>
+
+<p>用VMware灌Windows Server後，在開機時都會啟動一台軟式磁碟機，無論你用怎樣的方法進去系統硬體設定都無法移掉，事實上正確的移除方法只要去BIOS關掉就好了，實在有一種無言的感覺。</p>
+
+<p>To disable the floppy drive in the guest machine:</p>
+<ol>
+	<li>Power off the virtual machine.</li>
+	<li>Right-click the virtual machine and click Edit Settings.</li>
+	<li>Click the Option Tab.</li>
+	<li>Click Boot Options under Advanced.</li>
+	<li>Select the The next time the virtual machine boots, force entry into the BIOS setup screen option.</li>
+	<li>Power on the virtual machine.</li>
+	<li>Using arrow keys, disable Legacy Diskette A:</li>
+	<li>Press F10 to save the changes and exit. The machine reboots and completes the configuration.</li>
+</ol>
+
+<small>VMware Disable Close Floppy Disk Drive</small>
+
+</body>
+</html>

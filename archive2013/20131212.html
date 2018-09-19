@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>IIS虛擬目錄的權限設定</h1>
+
+<p>初學者在設定IIS的虛擬目錄時，常常會有權限上的設定困難，尤其是為了安全性的因素，把所有的目錄權限都設定的很乾淨時（例如特別移除Users群組的存取權），特別會發生下列的字句：</p>
+<pre>
+401 - 未經授權: 因為認證無效而拒絕存取。
+使用您提供的認證，沒有權限檢視此目錄或網頁。
+－－－－－
+403 - 禁止: 拒絕存取。
+使用您提供的認證，沒有權限檢視此目錄或網頁。
+</pre>
+
+<p>出現這種問題的時候千萬不要不求甚解的把萬用身分設定回去，這樣對網站的安全性不是妥的。請跟著下列的圖片做一次就完成與明白了。</p>
+
+<p>1. 打開IIS並移到你的網站下，按右鍵選新增虛擬目錄</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336471714/"><img src="https://c1.staticflickr.com/2824/11336471714_051ae792f9_o.png" alt="20131212_01"></a>
+
+<p>2. 輸入您要的路徑別名（files）與實體路徑（D:\test），然後點選「測試設定」</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336509923/"><img src="https://c1.staticflickr.com/2890/11336509923_06f74458ca_o.png" alt="20131212_02"></a>
+
+<p>3. 這時候你會看到「測試連線」視窗中的驗證是黃色的驚嘆號，表示有問題。別擔心，先關閉它。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336445406/"><img src="https://c1.staticflickr.com/2816/11336445406_f9917120c3_o.png" alt="20131212_03"></a>
+
+<p>4. 先不管一切的按下確定離開對話方框。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336377135/"><img src="https://c1.staticflickr.com/2839/11336377135_29830bc245_o.png" alt="20131212_04"></a>
+
+<p>5. 點選「files」虛擬目錄，然後點選工作區內的「驗證」兩下開啟設定視窗。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336445356/"><img src="https://c1.staticflickr.com/5521/11336445356_3b06d6657c_o.png" alt="20131212_05"></a>
+
+<p>6. 在「匿名驗證」中點選右鍵＞選「編輯」。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336509743/"><img src="https://c1.staticflickr.com/5506/11336509743_fde9397c96_o.png" alt="20131212_06"></a>
+
+<p>7. 在這邊會看到IIS的預設匿名身分叫「IUSR」，也就是說，IIS把匿名瀏覽者都是用這個身分來進行工作。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336376865/"><img src="https://c1.staticflickr.com/7352/11336376865_f29d971a87_o.png" alt="20131212_07"></a>
+
+<p>8. 回到IIS管理介面，點選畫面中的「files」按右鍵選擇「編輯權限」。（或者利用檔案總管到實體目錄下按右鍵編輯權限也可）</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336376845/"><img src="https://c1.staticflickr.com/7362/11336376845_afb8b8d252_o.png" alt="20131212_08"></a>
+
+<p>9. 可以看到這個目錄下，非常乾淨，只有單一個「Administrator」權限在上面，請點選編輯來新增一個身分。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336445056/"><img src="https://c1.staticflickr.com/5527/11336445056_0274206b7b_o.png" alt="20131212_09"></a>
+
+<p>10. 要新增的身分當然是「IUSR」啦！新增完後請自己開一下瀏覽器看一下http://127.0.0.1/files/xxx.xxx就可以看到效果嘍！</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11336376795/"><img src="https://c1.staticflickr.com/2887/11336376795_5f3a8c4910_o.png" alt="20131212_10"></a>
+
+<small>IIS VirtualDirectory Permission</small>
+
+</body>
+</html>

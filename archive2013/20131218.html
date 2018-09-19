@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>在Windows Server中隱藏音量控制圖示以及關機事件追蹤器</h1>
+
+<p>在安裝完Windows Server後，應該顯少有人會去驅動音效卡的晶片，更別提有很多的機架式伺服器，直接移除音效卡等設備。這樣的問題將導致你的Windows Server安裝後，在你的System Tray裡面會出現一個音量控制圖示，並且顯示一個紅色的X圖案，這樣其實也無妨工作啦，只是看了覺得礙眼罷了。</p>
+
+<p>解決的方式是開啟「本機群組原則編輯器」，你可以使用開始＞執行＞gpedit.msc來切入，接著就是跟著下列圖示來操作後，重新開機就可以了。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11435704574/"><img src="https://c1.staticflickr.com/3670/11435704574_85c327683a_o.png" alt="20131218_01"></a>
+
+<p>另外一個問題就是，每一次關機都會彈出視窗詢問關機的原因，這一點在正式的企業運行環境是必要的，因為每一個對於伺服器的操作都有記錄以備稽核的必要，但是在某些環境（或測試用途）或許用不上，這時候就會需要切進來下圖指示「顯示關機事件追蹤器」的地方，進行修改嘍！</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11435669605/"><img src="https://c1.staticflickr.com/3800/11435669605_05d61c859c_o.png" alt="20131218_02"></a>
+
+<small>WindowsServer Remove VolumeIcon SoundIcon Disable ShutdownTracker</small>
+
+</body>
+</html>

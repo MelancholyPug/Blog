@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>.NET開發時期所遇到的Null整理</h1>
+
+<p>在.NET Framework開發環境下，程式碼與資料庫交錯的情況中，常常會出現很多需要辨視Null的情況，同樣的，每次要用到時都會忘記Framework有提供哪些函式讓我們引用，因此就在這裡把它整理下來。</p>
+
+<p></p>
+
+<h3>VB.NET</h3>
+<pre>
+If IsDbNull(xxxxxxxxx) Then …
+If DataTable("FieldName") Is DbNull.Value Then ...
+</pre>
+
+<h3>C#</h3>
+<pre>
+if (DataTable("FieldName") == Null) { … }
+</pre>
+
+<h3>SQL</h3>
+<pre>
+Where FieldName Is Null …
+</pre>
+
+<small>.NETFramework Null DbNull IsDbNull DbNull.Value</small>
+
+</body>
+</html>

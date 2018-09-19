@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Oracle VirtualBox的相關指令</h1>
+
+<p>年紀大常失憶，純備份，日後有遇到相關的知識會累增在此。</p>
+
+<p>一開始先確定的電腦系統環境 Path 變數裡，有被添加這個設定："C:\Program Files\Oracle\VirtualBox\"，這樣一來你才可以在各cmd路徑中立即引用一些VirtualBox的指令。</p>
+
+<p>重新指派 VDI(HDD) UUID</p>
+<pre>VBoxManage.exe internalcommands sethduuid "檔案名稱.vdi"</pre>
+
+<p>擴增 VDI(HDD)</p>
+
+<pre>
+VBoxManage.exe modifyhd "檔案名稱.vdi" --resize 40960
+//其中的40960單位是MB，所以這串數值表示的是40GB。
+</pre>
+
+<p>壓縮 VDI(HDD)</p>
+<p>先到Microsoft technet下載<a href="https://goo.gl/Jm5rRl" target="_blank">SDelete</a>，在Guest OS中下指令：</p>
+<pre>
+SDelete -z
+</pre>
+<p>關掉GuestOS，回到Host OS中下指令：</p>
+<pre>
+VBoxManage.exe modifyhd "硬碟名稱.vdi" compact
+</pre>
+
+<p>有出現設定檔衝突時，特別是光碟機讀取的ISO檔案衝突（例如：VBoxGuestAdditions.iso）</p>
+<pre>
+打開xxx.vbox後，建議直接把你VM裡面所有的ISO都unmount掉，就不會衝到了。
+</pre>
+
+<p>將Toolbar工具置於全螢幕模式的上方</p>
+<ol>
+	<li>Make sure your VM is NOT running.</li>
+	<li>Open the settings for your machine in the VirtualBox.</li>
+	<li>Go to General -> Advanced tab.</li>
+	<li>Check Show at top of screen.</li>
+</ol>
+
+<a href="http://www.flickr.com/photos/105479788@N06/10538503756/"><img src="https://c1.staticflickr.com/2849/10538503756_c379568d22_o.png" alt="20131029_01"></a>
+
+<small>Oracle VirtualBox UUID VDI</small>
+
+</body>
+</html>
