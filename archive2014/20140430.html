@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>讓FireFox切換到全螢幕模式時，不再詢問</h1>
+
+<p>有許多人在使用FireFox瀏覽器時，切到全螢幕（Full screen）的動作後，會出現一個提醒現在是全螢幕模式的視窗，當你勾選「記住，以後不要再提醒」的選項後，日後你再開啟全螢幕模式時，這個煩人的視窗還是會再蹦出來（但也有人就真的記住了，聽說是cookie的問題），今天終於煩到受不了，直接進官方論壇把解法挖出來。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/13887957078/"><img src="https://c1.staticflickr.com/7316/13887957078_71c5b4dc18_o.png" alt="20140430_01"></a>
+
+<p>解決的步驟如下：</p>
+
+<p>
+	<ol>
+		<li>打開FireFox，在網址列輸入「about:config」，進入設定畫面。</li>
+		<li>在搜尋框中打入「full-screen-api.approval-required」，找到該選項。</li>
+		<li>在該選項上面按右鍵，選擇「切換」，確定把值切換成「false」。</li>
+		<li>關掉FireFox重開即可。</li>
+	</ol>
+</p>
+
+<small>FireFox FullScreen Ask Remember Disable Annoying</small>
+
+</body>
+</html>

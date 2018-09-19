@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Application State的可流通性</h1>
+
+<p>在Server Farm的架構下，ASP.NET允許透過State Services/State Server來進行狀態保留，用來存放Session State的相關資料，這樣在某一個W3WP失效時，使用者仍然可以保留工作中的資料。</p>
+
+<p>相對的，是否Application State這種全域性的記憶體共用變數，是否可以被移轉到State Services呢？經過多方的查找，答案是不可能的，請自己用Database溝通。傷心啊！</p>
+
+<p>微軟官方的說明：<a href="http://goo.gl/hYMexp" target="_blank">ASP.NET Application State Overview</a></p>
+
+<pre>
+Scalability
+-----------
+Application state is not shared among multiple servers serving the same application, as in a Web farm, or among multiple worker processes serving the same application on the same server, as in a Web garden. Your application therefore cannot rely on application state containing the same data for application state across different servers or processes. If your application will run in multi-processor or multi-server environments, consider using a more scalable option, such as a database, for data that must preserve fidelity across the application.
+</pre>
+
+<small>ASP.NET IIS StateServices SessionState ApplicationState</small>
+
+</body>
+</html>

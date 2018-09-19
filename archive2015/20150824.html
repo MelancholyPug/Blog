@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>各式瀏覽器於各式平台上的使用者代理字串（User Agent）</h1>
+
+<p>因為Microsoft的Internet Explorer瀏覽器的HTTP標頭，萬年不支援Unicode編碼格式的爛設計下，以至於到了Windows 10時代的Microsoft Edge，後端程式設計師依然要為這個爛設計去進行例外的處理，真的有必要向下相容成這樣嗎？個人覺得都已經拋棄了IE這個名字，就應該沒有什麼好顧忌了才是，唉...</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/20863311515/"><img src="https://c1.staticflickr.com/5742/20863311515_b4efb3fc28_o.jpg" alt="20150824_01"></a>
+
+<p>總而言之，這一篇文章名為討論User Agent，因此我把我實驗出來各平台之各瀏覽器的User Agent數據寫在這裡，有需要的人自行取用。要辨識是否為微軟品牌，大家應該不難挑出規則才是。</p>
+
+<p>值得注意的是，Microsoft Edge的Request.Browser.Browser回傳值竟然是「Chrome」，我的下巴差一點掉下來。</p>
+
+<h3>Lists of User agent of Browsers on Operation Systems</h3>
+
+<table class="table table-striped table-hover" style="font-size:9px">
+	<thead>
+		<tr>
+			<th>Browser Name</th>
+			<th>Version</th>
+			<th>System.Web.HttpContext.Current</th>
+			<th>Windows XP</th>
+			<th>Windows 7</th>
+			<th>Windows 8</th>
+			<th>Windows 8.1</th>
+			<th>Windows 10</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!-- IE6 -->
+		<tr>
+			<td>Internet Explorer</td>
+			<td>6</td>
+			<td>Request.Browser.Browser</td>
+			<td>IE</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<tr>
+			<td>Internet Explorer</td>
+			<td>6</td>
+			<td>Request.UserAgent</td>
+			<td>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<!-- IE7 -->
+		<tr>
+			<td>Internet Explorer</td>
+			<td>7</td>
+			<td>Request.Browser.Browser</td>
+			<td>IE</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<tr>
+			<td>Internet Explorer</td>
+			<td>7</td>
+			<td>Request.UserAgent</td>
+			<td>Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.2; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022)</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<!-- IE8 -->
+		<tr>
+			<td>Internet Explorer</td>
+			<td>8</td>
+			<td>Request.Browser.Browser</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>IE</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Internet Explorer</td>
+			<td>8</td>
+			<td>Request.UserAgent</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729)</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<!-- IE9 -->
+		<tr>
+			<td>Internet Explorer</td>
+			<td>9</td>
+			<td>Request.Browser.Browser</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>IE</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<tr>
+			<td>Internet Explorer</td>
+			<td>9</td>
+			<td>Request.UserAgent</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0)</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<!-- IE10 -->
+		<tr>
+			<td>Internet Explorer</td>
+			<td>10</td>
+			<td>Request.Browser.Browser</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>IE</td>
+			<td>IE</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<tr>
+			<td>Internet Explorer</td>
+			<td>10</td>
+			<td>Request.UserAgent</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)</td>
+			<td>Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+		</tr>
+		<!-- IE11 -->
+		<tr>
+			<td>Internet Explorer</td>
+			<td>11</td>
+			<td>Request.Browser.Browser</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla</td>
+			<td>InternetExplorer</td>
+		</tr>
+		<tr>
+			<td>Internet Explorer</td>
+			<td>11</td>
+			<td>Request.UserAgent</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rev:11.0) like Gecko</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rev:11.0) like Gecko</td>
+			<td>Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko</td>
+		</tr>
+		<!-- Edge -->
+		<tr>
+			<td>Microsoft Edge</td>
+			<td>20</td>
+			<td>Request.Browser.Browser</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Chrome</td>
+		</tr>
+		<tr>
+			<td>Microsoft Edge</td>
+			<td>20</td>
+			<td>Request.UserAgent</td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td><span class="glyphicon glyphicon-remove"></span></td>
+			<td>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240</td>
+		</tr>
+		<!-- FireFox -->
+		<tr>
+			<td>Mozilla FireFox</td>
+			<td>37</td>
+			<td>Request.Browser.Browser</td>
+			<td>Firefox</td>
+			<td>Firefox</td>
+			<td>Firefox</td>
+			<td>Firefox</td>
+			<td>Firefox</td>
+		</tr>
+		<tr>
+			<td>Mozilla FireFox</td>
+			<td>37</td>		
+			<td>Request.UserAgent</td>
+			<td>Mozilla/5.0 (Windows NT 5.2; rv:37.0) Gecko/20100101 FireFox/37.0</td>
+			<td>Mozilla/5.0 (Windows NT 6.0; rv:37.0) Gecko/20100101 FireFox/37.0</td>
+			<td>Mozilla/5.0 (Windows NT 6.2; WOW64; rv:37.0) Gecko/20100101 FireFox/37.0</td>
+			<td>Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 FireFox/37.0</td>
+			<td>Mozilla/5.0 (Windows NT 10.0; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0</td>
+		</tr>
+		<!-- Chrome -->
+		<tr>
+			<td>Google Chrome</td>
+			<td>42</td>
+			<td>Request.Browser.Browser</td>
+			<td>AppleMAC-Safari</td>
+			<td>AppleMAC-Safari</td>
+			<td>AppleMAC-Safari</td>
+			<td>AppleMAC-Safari</td>
+			<td>未測試</td>
+		</tr>
+		<tr>
+			<td>Google Chrome</td>
+			<td>42</td>
+			<td>Request.UserAgent</td>
+			<td>Mozilla/5.0 (Windows NT 5.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36</td>
+			<td>Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36</td>
+			<td>Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36</td>
+			<td>Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36</td>
+			<td>未測試</td>
+		</tr>
+
+		<!-- Opera -->
+		<tr>
+			<td>Opera</td>
+			<td>12.16</td>
+			<td>Request.Browser.Browser</td>
+			<td>Opera</td>
+			<td>Opera</td>
+			<td>Opera</td>
+			<td>Opera</td>
+			<td>未測試</td>
+		</tr>
+		<tr>
+			<td>Opera</td>
+			<td>12.16</td>
+			<td>Request.UserAgent</td>
+			<td>Opera/9.80 (Windows NT 5.2) Presto/2.12.388 Version/12.16</td>
+			<td>Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.16</td>
+			<td>Opera/9.80 (Windows NT 6.2; WOW64) Presto/2.12.388 Version/12.16</td>
+			<td>Opera/9.80 (Windows NT 6.2; WOW64) Presto/2.12.388 Version/12.16</td>
+			<td>未測試</td>
+		</tr>
+	</tbody>
+</table>
+
+<small>.NetFramewrok System.Web.HttpContext.Current.Request.Browser.Browser System.Web.HttpContext.Current.Request.UserAgent</small>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>SQL刪除沒有主鍵（Primary Key）的重複資料</h1>
+
+<p>一個沒有主鍵值（PK；Primary Key）的資料表是非常危險的事情，不僅會形成插入值出現重複的問題，在發現問題要移除重複資料時，往往也是一個工程。這篇文章就是在講述在「不完全刪除某特定重複性資料」的情況下，如何處理這個棘手的問題？</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/26383975768/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4752/26383975768_a9e7097d5e_o.jpg" alt="20180214_01"></a>
+
+<h3>資料庫情境介紹</h3>
+
+<p>有一個會員資料表裡面有兩個欄位，分別為cID以及cName，從圖片中我們可以看到，這張資料表並沒有被指定任何PK。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26383975648/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4696/26383975648_ffedeecf73_o.png" alt="20180214_02"></a>
+
+<p>果然，可能透過匯入或者是天兵式的人為輸入，產生了一大堆重複的人員。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26383975138/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4657/26383975138_4841d7023c_o.png" alt="20180214_03"></a>
+
+<p>我們可以透過SQL的COUNT以及HAVING，求取重複出現的資料列表。</p>
+<pre>
+SELECT cID, COUNT(*) AS iCount
+FROM Member
+GROUP BY cID
+HAVING (COUNT(*) > 1)
+</pre>
+<a href="https://www.flickr.com/photos/105479788@N06/39545220214/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4652/39545220214_a4ffb670e2_o.png" alt="20180214_04"></a>
+
+<p>問題至此大概已經形成，接著是刪除這些重複資料。</p>
+
+<h3>如何快速刪除重複的資料（SQL 2008以上）</h3>
+
+<p>SQL 2008以上可以利用「%%PHYSLOC%%」參數（Pysical Locations），拿到Data Row的儲存位址。因此我們可以透過這個方法，來進行重複資料刪除工作。指令如下：</p>
+
+<pre>
+DELETE Member
+WHERE %%PHYSLOC%% > 
+	(
+		SELECT MIN(%%PHYSLOC%%)
+		FROM Member AS Temp
+		WHERE
+			Temp.cID = Member.cID
+			AND
+			Temp.cID = 'A123' --針對王小明刪除
+	)
+</pre>
+
+<p>值得注意的是，如果你沒有下「Temp.cID = 'A123'」這一行，此時SQL會把整張資料表，所有同一個cID超過一筆以上的資料，全部都移除喔！</p>
+
+<h3>如何快速刪除重複的資料（SQL 2005）</h3>
+
+<p>如果是比較舊的資料庫（SQL 2005），仍然使有機會快速刪除重複資料的。我們可以利用「ROW_NUMBER()」去拿出資料列排序，再利CTE（Common Table Expression）的方式去刪除。指令如下：</p>
+
+<pre>
+WITH Temp AS 
+(
+	SELECT ROW_NUMBER() OVER
+	(
+		PARTITION BY cID
+		ORDER BY GETDATE()
+	) AS iSort
+	FROM Member
+	WHERE cID = 'A123' --針對王小明刪除
+)
+
+DELETE FROM Temp
+WHERE iSort > 1
+</pre>
+
+<p>值得注意的是，如果你沒有下「WHERE cID = 'A123'」這一行，此時SQL會把整張資料表，所有同一個cID超過一筆以上的資料（iSort > 1），全部都移除喔！</p>
+
+<p>以上重複性資料刪除方式，提供給大家參考。</p>
+
+<a href="/archive2013/20130917.html" target="_blank">在SQL中查詢某個主鍵欄位值於資料表中重覆之語法</a>
+
+<small>Microsoft SQLServer non-PrimaryKey DataDuplication Delete Remove KeepFirstRow KeepOneRow</small>
+
+</body>
+</html>

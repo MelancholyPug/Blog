@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>手動切換Windows VPN的通訊閘道</h1>
+
+<p>接上VPN的定義，在企業中與個人應用上，其實有截然不同的需求。對於企業用戶而言，可能是想要透通存取內網的資源。但是對個人用戶來說，絕大部分的應用是要翻牆（透過VPN本身的閘道在通往Internet）。對於Windows上 OS層面來說，作業系統本身並不會知道你目前想要使用的是何種需求，因此我們需要進行手動切換。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/44450536431/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1862/44450536431_40ef0413ce_c.jpg" alt="20180903_01"></a>
+
+<h3>如何切換目前Windows上面的VPN閘道？</h3>
+<p>Step 1. Windows + X，進入「網路連線」，找到自己的VPN連線資訊，對其按右鍵選內容。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/43541582655/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1844/43541582655_7329632e90_o.png" alt="20180903_02"></a>
+
+<p>Step 2. 選擇網路功能頁籤，點選IPV4（或者你用的是IPV6就選擇V6協定），接著點選內容。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/44450536681/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1876/44450536681_d5c5ed9bde_o.png alt="20180903_03"></a>
+
+<p>Step 3. 點選進階設定按鈕。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/44450536581/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1843/44450536581_4fbb58f4bd_o.png" alt="20180903_04"></a>
+
+<p>Step 4. 如果勾選「使用遠端網路的預設閘道」那就表示你要透過VPN出去Internet，反之沒有勾選，就是你只想要存取遠端VPN資源，而上網則繼續用本機的網路閘道出去Internet。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/43733138684/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1857/43733138684_af003dd837_o.png" alt="20180903_05"></a>
+
+<p>祝大家快樂翻牆！</p>
+
+<small>VPN Connected NoInternetAccess GatewaySwitch RemoteAccess DefaultGateway</small>
+
+</body>
+</html>

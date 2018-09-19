@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>在SQL裡面利用指令獲取當前主機系統時間</h1>
+
+<p>SQL裡面有很多與時間相關的函數，今天剛好有用到一些，整理在下列以利日後查閱。</p>
+
+<h3>利用Transact-SQL查詢當前日期</h3>
+
+<p>求取當前日期的指令如下，使用前記得查一下文件，看你的Microsoft SQL Server版本是否可以使用這個指令：</p>
+
+<pre>
+--系統目前日期時間
+SELECT 
+	GetDate() as GetDate,
+	SysDateTime() as SysDateTime,
+	SysDateTimeOffset() as SysDateTimeOffset
+
+SELECT
+	GetUtcDate() as GetUtcDate,
+	SysUtcDateTime() as SysUtcDateTime,
+	Current_TimeStamp as TimeStamp
+
+--系統目前日期
+SELECT 
+	Convert(date, SysDateTime())
+
+--系統目前時間
+SELECT 
+	Convert(time, SysDateTime())
+</pre>
+
+<p>結果長得像下面的畫面所示，請自己比較差異，選擇自己要的函式吧。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/28348079149/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4604/28348079149_bf50c64e71_o.png" alt="20180207_01"></a>
+
+<small>SQL Command Transact-SQL T-SQL GetDateTime UTC</small>
+
+</body>
+</html>

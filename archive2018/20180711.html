@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>拋棄巢狀式寫法，使用更精簡的using語法</h1>
+
+<p>當我們進行一件複雜的操作時，往往會使用許多外部（需要被正確關閉以利釋放）的資源，而這些資源的宣告取用，如果有實作IDisposable的話，我會習慣使用using statement來進行宣告，以防止自己老年癡呆的症狀復發。當然啦，如果你是屬於凡事都自己會記得要釋放資源的人，那就不需要using statement了。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/29464721708/in/dateposted-public/"><img src="https://farm1.staticflickr.com/924/29464721708_b6947b8e3b_c.jpg" alt="20180711_01"></a>
+
+<h3>典型的巢狀式using寫法</h3>
+<p>我們先來看看惱人的巢狀式using寫法：</p>
+<pre>
+using (resourceA)
+{
+  using (resourceB)
+  {
+    using (resourceC)
+    {
+      using (resourceD)
+      {
+        //BraBra...
+      }
+    } 
+  }
+}
+</pre>
+<p>這種寫法的優點，就是你可以透過大擴號很明確的知道所有的區段中止點為何，但是最大的缺點就是你的程式碼內縮得太嚴重了，已經呈現波動拳程式碼化了（難以閱讀）。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/42431014965/in/dateposted-public/"><img src="https://farm1.staticflickr.com/836/42431014965_562c0ea270_o.jpg" alt="20180711_02"></a>
+
+<h3>C#支援更優美的using寫法</h3>
+<p>這個寫法是我在網路上偶然之間看到的寫法，個人稱為堆疊式寫法，在MSDN中並沒有相關的描述或介紹（但是在<a href="https://download.microsoft.com/download/0/B/D/0BDA894F-2CCD-4C2C-B5A7-4EB1171962E5/CSharp%20Language%20Specification.docx" target="_blank">C# Language Specification 5.0</a>裡面有寫明using (expression) statement：has the same three possible expansions.），所以正確的名稱我也不知道要怎麼稱呼。總之，我認為這是一個語法糖，在編譯時期他就會幫你視為巢狀式的寫法嘍。使用方式很簡單，如果你要連續的使用好幾項資源來完成你某種執行流程，那就把這些using省略大括號，在最後一個取用的資源處，簡單的下一個括號區塊就解決了。例如：</p>
+<pre>
+using (var oConn = new System.Data.SqlClient.SqlConnection("YourDbConnString")))
+using (var oCmd = new System.Data.SqlClient.SqlCommand())
+{
+  oCmd.Connection = oConn;
+  oConn.Open();
+  //...
+}
+</pre>
+
+<p>這樣的寫法可以有效的降低階層數（甚至變回一階），對於程式碼的易讀性（Readable）來說，顯然是輕易的勝出了。值得一提的是，這樣的寫法不需要前後引用的資源都是同一種型別（Types），有很多老外（國外的部落格文章）都搞錯了。</p>
+
+<h3>另一種inline的using寫法</h3>
+<p>using還有更精簡的寫法，就是把多行引用的資源都寫同一行內，但是限定要同一種型別（Types）。記住！只有這樣的寫法才有同型別限制喔。</p>
+<p>如果你想要做這樣的事情：</p>
+<pre>
+using (System.IO.MemoryStream oA = new System.IO.MemoryStream())
+using (System.IO.MemoryStream oB = new System.IO.MemoryStream())
+{
+  //...
+}
+</pre>
+
+<p>那麼你可以縮寫成如下，是不是更精簡易讀了呢？</p>
+<pre>
+using (System.IO.MemoryStream oA = new System.IO.MemoryStream(), oB = new System.IO.MemoryStream())
+{
+  //...
+}
+</pre>
+
+<small>C# UsingStatement Braces Necessitating MultiUsing NestedUsing</small>
+
+</body>
+</html>

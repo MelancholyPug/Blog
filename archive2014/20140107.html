@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Alcatel T07A/T07AW硬體撥接與DHCP設定</h1>
+
+<p>前幾天ADSL壞掉了，硬體的紅色Alarm燈號一直閃，本來有發生這種情況時，打去給中華電信的客服部門，他們機房那邊做一下重置（reset）動作就會好了，但這次他們一直說遲遲看不到我的連線訊號過去。因此推測可能是電話線路被接錯或弄斷，要派工程師過來看。</p>
+
+<p>工程師到後直接說，一定是ADSL MODEM燒壞了，最近所有的CASE都一樣，我在想這是怎麼一回事？該不會晶片裡面被塞軟體炸彈吧？如果台灣最炎熱的七八月都沒壞掉，怎麼可能現在最冷的一月份會壞掉？而且還是大家一起壞？真的是蠻扯的，但是竟然就是直接換一台就好了！？我只能說TECOM AR4031B這台機器，你的靭體怪怪的喔！總而言之，現在被換成了Alcatel T07A，所有的設定又要重來一次了，所以乾脆記錄下來。</p>
+
+<p>1. 所有的中華電信ADSL MODEM（小烏龜），帳號都是cht，密碼請見下列：</p>
+<ol>
+	<li>北區：chtnadsl（ADSL） / chtnvdsl（光世代）</li>
+	<li>中區：chtcadsl（ADSL） / chtcvdsl（光世代）</li>
+	<li>南區：chtsadsl（ADSL） / chtsvdsl（光世代）</li>
+</ol>
+
+<p>2. ADSL MODEM預設的IP都是192.168.1.1，所以一開始先把你的網卡指定一個靜態的IP位址，例如192.168.1.200，因為在同一個網段下，才可以存取這台機器！</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816905164/"><img src="https://c1.staticflickr.com/5478/11816905164_56882d66c8_o.png" alt="20140107_01"></a>
+
+<p>3. 用瀏覽器打開http://192.168.1.1進入這台機器。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11817233836/"><img src="https://c1.staticflickr.com/5487/11817233836_cd55b846b4_o.png" alt="20140107_02"></a>
+
+<p>4. 點選「Setup>WAN」，看到畫面中的VPI/VCI中的「0/33」那列，點選「Edit」進入設定。另外的「0/36」是MOD在吃的設定。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816749333/"><img src="https://c1.staticflickr.com/2887/11816749333_0540a519c5_o.png" alt="20140107_03"></a>
+
+<p>5. 這個畫面不用變更任何設定，包括「UBR without PCR」，直接按「Next」。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816904984/"><img src="https://c1.staticflickr.com/7322/11816904984_c6f03bf455_o.png" alt="20140107_04"></a>
+
+<p>6. 這個畫面點選「PPP over Ethernet(PPPoE)」，Encapsulation Mode選「LLC/SNAP-BRIDGING」，按「Next」。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11817233786/"><img src="https://c1.staticflickr.com/2836/11817233786_53526c8a3c_o.png" alt="20140107_05"></a>
+
+<p>7. 拿出你的中華電信ADSL小卡片，把上面的帳號打成「帳號@hinet.net」，密碼自己輸入，按「Next」。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816488265/"><img src="https://c1.staticflickr.com/5497/11816488265_e5723b3b30_o.png" alt="20140107_06"></a>
+
+<p>8. 這個畫面的「Enable WAN Service」一定要勾，不然就白玩了，按「Next」。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11817233626/"><img src="https://c1.staticflickr.com/5496/11817233626_21fc01a1c5_o.png" alt="20140107_07"></a>
+
+<p>9. 最後看一下設定總覽，直接按「Save」。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11817233356/"><img src="https://c1.staticflickr.com/7295/11817233356_979eec2b37_o.png" alt="20140107_08"></a>
+
+<p>10. 接著請到「Setup > LAN」，設定DHCP伺服器，讓你所有的設備一開機不用設定任何的IP，就可以自動被配發IP上網啦！</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816904604/"><img src="https://c1.staticflickr.com/7446/11816904604_e954db0abc_o.png" alt="20140107_09"></a>
+
+<p>理論上到上面的設定為止，已經適用於一般的家庭用途了，但是有一些人可能會需要Virtual Server或者是DMZ功能，但在選單上根本就找不到，這時候就需要呼叫隱藏選單了。</p>
+
+<p>11. 直接在瀏覽器中輸入「http://192.168.1.1/scdmz.html」，就可以調出隱藏的DMZ功能，像這邊我有一台Microsoft XBOX 360要設定接上XBOX Live網路，因為很麻煩，所以我直接將整台機器放入DMZ省的麻煩。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816487965/"><img src="https://c1.staticflickr.com/7327/11816487965_40353ce662_o.png" alt="20140107_10"></a>
+
+<p>12. 事實上你輸入過這個隱藏的網址後，機器上面Web介面的選單就會出現DMZ Host選項了，這種設計還蠻令人無言的。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816748793/"><img src="https://c1.staticflickr.com/3834/11816748793_dbaf9d5c36_o.png" alt="20140107_11"></a>
+
+<p>13. 最後讓我們把選單切到「Summary」，練習看一下MODEM的相關數據。</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11816487895/"><img src="https://c1.staticflickr.com/3799/11816487895_05ef5d3b83_o.png" alt="20140107_12"></a>
+<ol>
+	<li>SNR Margin: 訊噪比；越大越好，建議要在7以上。</li>
+	<li>Attenuation: 衰減值；越小越好，建議要在30以下。</li>
+	<li>Attainable Rate: 這台MODEM可以支援的最高上傳與下載速度。</li>
+	<li>Rate: 你現在的這條ADSL被機房設定的速度。</li>
+</ol>
+
+<p>※ 以下補充一些常見的（隱藏）選單連結：</p>
+<pre>
+NAT -- Virtual Servers Setup
+http://192.168.1.1/scvrtsrv.cmd?action=view
+
+NAT -- DMZ Host
+http://192.168.1.1/scdmz.html
+
+MAC Filtering Setup
+http://192.168.1.1/scmacflt.cmd?action=view
+
+Outgoing IP Filtering Setup
+http://192.168.1.1/scoutflt.cmd?action=view
+
+Incoming IP Filtering Setup
+http://192.168.1.1/scinflt.cmd?action=view
+
+Quality of Service Setup
+http://192.168.1.1/qoscls.cmd?action=view
+
+Routing -- RIP Configuration
+http://192.168.1.1/ripcfg.cmd?action=view
+
+ADSL driver and PHY status
+http://192.168.1.1/adsltongdiag.cmd
+
+Access Control -- Services
+http://192.168.1.1/scsrvcntr.cmd?action=view
+
+SNMP - Configuration
+http://192.168.1.1/snmpconfig.html
+
+DNS Server Configuration
+http://192.168.1.1/dnscfg.html
+
+Tools -- Update Software
+http://192.168.1.1/upload.html"
+</pre>
+
+<p>相關連結：</p>
+<ol>
+	<li><a href="/archive2016/20160907.html" target="_blank">SMC 7904W硬體撥接、DHCP及WiFi開啟設定</a></li>
+</ol>
+
+<small>ADSL MODEM Router Alcatel T07A T07AW PPPoE DHCP</small>
+
+</body>
+</html>

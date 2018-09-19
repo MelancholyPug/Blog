@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>超好用的資料庫對應ORM利器：Dapper</h1>
+
+<p>整個四月份過於忙碌，沒有啥時間寫BLog，今天就稍微把Dapper這支StackExchange/StackOverflow團隊所研發的ORM利器翻出來，稍微濫竽充數一下。:)</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/39828579240/in/dateposted-public/"><img src="https://farm1.staticflickr.com/866/39828579240_86f275e0c8_c.jpg" alt="20180420_01"></a>
+
+<p>在ASP.NET如今的世界中，EF（Entity Framework）大概已經把ADO.NET洗到看不見人影，但本人的心得卻是用EF不僅框架龐大，真實操作或真實編程速度說真的並不會快到哪裡（包含找Bug的時間），因此EF的開發模式並非我的首選。但，拋棄了EF意味著也要拋棄可以節省大量程式碼的Linq語法，這時候ADO.NET轉ORM（Object-Relational Mapping）的利器Dapper就是你的超強好幫手了。有許多網站在介紹Dapper的時候都會強調他的短小精幹，但事實上Dapper版本迭代至今已經慢慢的與輕薄短小扯不上關係了。</p>
+<p>舉例我現在持有的版本1.50.4，它的大小已經來到167 KB，已經稱不上是個小DLL了。</p>
+
+<h3>使用ORM類別（POCO）與資料庫@具名參數</h3>
+<p>Dapper實作了IDbConnection，這意味著你可以用更簡化的ADO.NET寫法，來完成ORM的轉換。以下為範例程式碼：</p>
+
+<pre>
+using (System.Data.SqlClient.SqlConnection oConn = new System.Data.SqlClient.SqlConnection(YourDbConnectionString))
+{
+  oConn.Open();
+
+  string cID = "A123456789";
+
+  var oData = oConn.Query&lt;UserORM&gt;(
+    "SELECT * FROM MyTable WHERE cUserID=@cUserID",
+    new { cUserID = cID }
+  ).FirstOrDefault();
+
+  //噹噹噹，簡直太舒服了
+  string cName = "使用者姓名：" + oData.cName;
+}
+
+public class UserORM
+{
+  public int iIndex { set; get; }
+  public string cID { set; get; }
+  public string cName { set; get; }
+}
+</pre>
+
+<p>相較於傳統，你知道中間那個oData要變成資料物件，有多少程式碼要寫嗎？（回想起以前自己硬幹寫過的轉換物件程式碼（包含型別檢查），只能說是字字血淚）</p>
+
+<h3>使用弱型別，改採dynamic物件方式運作</h3>
+<p>這個寫法更夭壽輕鬆，連宣告ORM都不用了，只是失去了強型別的支援，你調用物件屬性必須要如履薄冰就是了（VisualStudio也沒辦法IntelliSense跟你講屬性名稱）。</p>
+
+<pre>
+using (System.Data.SqlClient.SqlConnection oConn = new System.Data.SqlClient.SqlConnection(YourDbConnectionString))
+{
+  oConn.Open();
+
+  string cID = "A123456789";
+
+  var oData = oConn.Query(
+    "SELECT * FROM MyTable WHERE cUserID=@cUserID",
+    new { cUserID = cID }
+  ).FirstOrDefault();
+
+  //噹噹噹，簡直夭壽舒服
+  string cName = "使用者姓名：" + oData.cName;
+}
+</pre>
+
+<p>以上是Dapper簡單的介紹，日後若有增補的說明會再行另外發文。</p>
+
+<small>Dapper ADO.NET ORM StrongTyping WeakTyping</small>
+
+</body>
+</html>

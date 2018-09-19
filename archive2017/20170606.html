@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>刪除Windows磁碟管理員無法刪除的磁碟分割</h1>
+
+<p>當我們使用Windows下的磁碟管理員時，總會發現有一些磁碟分割是在這種視覺界面下的工具無法刪除的，例如partitions只要出現「EFI系統磁碟分割」、「修復磁碟分割」等字眼，按下右鍵都是不會出現「刪除磁碟區」的指令的，必須透過console模式下的diskpart才有辦法辦到。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/34281836174/in/dateposted-public/"><img src="https://c1.staticflickr.com/5/4210/34281836174_d0fdab7924_c.jpg" alt="20170606_01"></a>
+
+<p>要特別注意的是，這些指令會被微軟拿掉是因為他不想要讓一般用戶觸及這些動作指令，所以如果你不太把握你正在做什麼，或者想要做什麼，那麼你最好把設備拿去給坊間的電腦公司處理會比較好。否則弄到系統全毀開不了機甚至資料消失，那問題就更大條了。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/34281834704/in/dateposted-public/"><img src="https://c1.staticflickr.com/5/4251/34281834704_85dca38398_o.png" alt="20170606_02"></a>
+
+<h3>利用DiskPart刪除磁碟分割（Partitions）</h3>
+
+<p>Step 1. 叫出具備系統管理者身分的cmd命令模式，輸入「DiskPart」。（以下所有操作建議搭配磁碟管理員交叉確認，以保平安）</p>
+
+<p>Step 2. 輸入「List Disk」列舉出現在系統所有抓到的實體磁碟。</p>
+<pre>
+DISKPART> list disk
+
+  磁碟 ###  狀態           大小     可用     Dyn  Gpt
+  --------  -------------  -------  -------  ---  ---
+  磁碟 0    連線             1863 GB  1024 KB        *
+  磁碟 1    連線              931 GB      0 B
+  磁碟 2    連線              465 GB  2048 KB
+</pre>
+
+<p>Step 3. 輸入「Select Disk 2」切換到第三顆硬碟。</p>
+<pre>
+磁碟 2 是所選擇的磁碟。
+</pre>
+
+<p>Step 4. 輸入「List Partition」再次確認要對這顆硬碟下所有的分割配置，是否就是你要清除的那顆硬碟。</p>
+<pre>
+DISKPART> list partition
+
+  磁碟分割  ###  類型              大小     位移
+  -------------  ----------------  -------  -------
+  磁碟分割  1    主要                 464 GB  1024 KB
+  磁碟分割  3    復原                 786 MB   464 GB
+</pre>
+
+<p>Step 5. 輸入「Clean」把這顆硬碟下的磁碟分割都洗掉。</p>
+<pre>
+DISKPART> clean
+DiskPart 成功地清理了磁碟。
+</pre>
+
+<p>Step 6. 輸入「Exit」退出DiskPart程式。</p>
+<pre>
+DISKPART> exit
+正在離開 DiskPart...
+</pre>
+
+<a href="https://www.flickr.com/photos/105479788@N06/34281834554/in/dateposted-public/"><img src="https://c1.staticflickr.com/5/4283/34281834554_c6f9073250_o.png" alt="20170606_03"></a>
+
+<p>修復磁碟分割區小常識：修復磁碟分割區大都落在450MB～1GB以內，是當Windows作業系統整體損毀無法開機時，用來緊急開機修復的小系統，一般都稱呼為WinRE，全名為「Windows Recovery Environment」，如果你真的不是那麼需要磁碟空間，那麼你不應該隨意地刪除它。</p>
+
+<small>KillPartition DeletePartition WindowsRE WindowsRecoveryEnvironment</small>
+
+</body>
+</html>

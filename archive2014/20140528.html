@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>綜合所得稅之股票可扣抵稅額與殖利率計算機</h1>
+
+<p>在綜合所得稅報稅裡面，有一個一般人都不太熟悉的東西，叫做股票股利可扣抵稅額，由於不常用到常常會忘記，且用文字講解太麻煩，也要看好幾次才會懂，乾脆寫一個計算式產生器，把所有的運算過程記錄下來並且利用文字輸出到畫面上，看的人就會完全瞭解了！</p>
+
+<p><strong>扣抵稅額公式：（股息＋股利）＊ 稅額扣抵比率 ＝ 可扣抵稅額。</strong>首先，我需要您去尋找下列基本數據，好讓計算機可以啟動運算！（請一律使用純數字來填入，這不是正式程式因此程序中不作非法字元檢查。）</p>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="iStockPrice" class="col-sm-2 control-label">股票價格：</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="iStockPrice" placeholder="股票價格（單位／元；例如：25）">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="iStockItems" class="col-sm-2 control-label">股票張數：</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="iStockItems" placeholder="持有股票總張數（單位／張；請扣除今年發放的股票股利，傳統口語上的一張股票，請輸入1000。 ）">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="iStockPaper" class="col-sm-2 control-label">股票股利：</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="iStockPaper" placeholder="股票股利（單位／元；例如：0.2）">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="iStockMoney" class="col-sm-2 control-label">現金股利：</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="iStockMoney" placeholder="現金股利（單位／元；例如：0.7）">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fStockPercent" class="col-sm-2 control-label">扣抵稅率：</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="fStockPercent" placeholder="稅額扣抵比率（單位／％）">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-5">
+			<button id="btnCal" class="btn btn-large btn-warning" type="button">送出計算</button>
+    </div>
+  </div>
+</form>
+
+<div id="cContent" class="alert alert-warning"></div>
+
+<script>
+$(document).ready(function(){
+	$("#btnCal").click(function(){
+		var _iStockPrice     = parseInt($("#iStockPrice").val());						//股票價格
+		var _iStockItems     = parseFloat($("#iStockItems").val());					//股票總張數
+		var _iStockPaper     = parseFloat($("#iStockPaper").val());					//股票股利
+		var _iStockMoney     = parseFloat($("#iStockMoney").val());					//現金股利
+		var _fStockPercent   = parseFloat($("#fStockPercent").val()) / 100;	//扣抵稅率
+		
+		var _cTemp;										//輸出字串
+		var _iTaxStandard = 79000;		//標準扣除額
+		var _iTaxPersonal = 85000;		//個人免稅額
+		var _iStockPaperCost = 10;		//台灣標準股票面額
+		
+		var _iStockPaperQuantity;			//(每張股票可得股利張數) * 持有股票數 = 總穫得股票數（股仔子）
+		_iStockPaperQuantity = (_iStockPaper / _iStockPaperCost) * _iStockItems;
+		
+		var _iStockPaperRealCost;			//最終獲得股票股利之價格（換算成這些股仔子的價格）
+		_iStockPaperRealCost = _iStockPaperQuantity * _iStockPaperCost;
+		
+		var _iStockMoneyRealCost;			//最終獲得現金股利之價格
+		_iStockMoneyRealCost = _iStockMoney * _iStockItems;
+		
+		var _iStockTaxMoney;					//扣抵稅額
+		_iStockTaxMoney = parseInt((_iStockMoneyRealCost + _iStockPaperRealCost) * _fStockPercent);
+		
+		var _iStockTaxReal;						//應繳稅額
+		_iStockTaxReal = (_iStockPaperRealCost + _iStockMoneyRealCost + _iStockTaxMoney - (_iTaxStandard + _iTaxPersonal)) * 0.06 - _iStockTaxMoney;
+		
+		var _iRealIncome;							//實賺金額
+		_iRealIncome = _iStockMoneyRealCost - _iStockTaxReal + (_iStockPaperQuantity * _iStockPrice);
+		
+		//組織字串
+		_cTemp  = "<p><strong>計算結果：</strong><p>";
+		
+		_cTemp += "<p>今年可獲得股票股利為 " + _iStockPaperQuantity + " 股，換算稅後計價後的價值為 " + _iStockPaperRealCost + " 元，而現金股利的稅後計價為 " + _iStockMoneyRealCost + "元。</p>";
+		
+		_cTemp += "<p>股票的可扣抵稅額是 (" + _iStockMoneyRealCost + " + " + _iStockPaperRealCost + ") * " + _fStockPercent + " = " + getRound(_iStockTaxMoney, 2) + "。<p>";
+		
+		_cTemp += "<p>假設您只符合國家規定的綜合所得稅之最低標準，以標準扣除額 " + _iTaxStandard + " 以及個人免稅額 " + _iTaxPersonal + " 來計算，那麼您應繳稅額就是 (" + _iStockPaperRealCost + " + " + _iStockMoneyRealCost + " + " + _iStockTaxMoney + " - (" + _iTaxStandard + " + " + _iTaxPersonal + ")) * 6% - " + _iStockTaxMoney + " = " + getRound(_iStockTaxReal, 2) + "。如果這個金額為負數，這表示國稅局要退這些錢給您。<p>";
+		
+		_cTemp += "<p>在假設股票市值完全無波動的情況之下，且在除權息後完成填權動作，一整年間這家公司的股票讓您實賺金額為 " + _iStockMoneyRealCost + " - (" + _iStockTaxReal + ") + (" + _iStockPaperQuantity + " * " + _iStockPrice + ") = " + getRound(_iRealIncome, 2) + "。<p>";
+		
+		_cTemp += "<p>以過去（未含今年發放之股利）之總持有成本 " + (_iStockPrice * _iStockItems) + " 來計算，年化投資報酬率（殖利率）為：" + getRound(parseFloat(_iRealIncome / (_iStockPrice * _iStockItems)) * 100, 2) + "%。</p>"
+		
+		//顯示
+		$("#cContent").html(_cTemp);		
+	});
+});
+
+//N位數四捨五入函式
+function getRound(number, fractionDigits){  
+	with(Math){
+		return round(number*pow(10,fractionDigits)) / pow(10,fractionDigits);
+	}
+} 
+</script>
+
+
+<small>扣抵稅額 扣抵稅率 稅額扣抵率 股票股利 現金股利 年化投資報酬率 殖利率</small>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>取得程式本身執行期的路徑與檔名</h1>
+
+<p>沒技術性，但每次都會用到，每次都要在網路浪費一分鐘，所以記在這裡以後好找。當然啦！絕對還有超多的方法可以存取。不過，你學那麼多種方法幹嗎？</p>
+
+<h3>取得程式本身執行期的路徑</h3>
+<ol>
+	<li>System.Environment.CurrentDirectory<br>（注意！若執行檔有被建立捷徑，則透過捷徑運行程式的當下，有可能會抓到錯誤的路徑，例如C:\Windows\System32）</li>
+	<li>System.AppDomain.CurrentDomain.BaseDirectory</li>
+	<li>System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location)</li>
+</ol>
+
+<h3>取得程式本身執行期的檔名</h3>
+<ol>
+	<li>System.AppDomain.CurrentDomain.FriendlyName</li>
+	<li>System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName)</li>
+	<li>System.Diagnostics.Process.GetCurrentProcess().ProcessName</li>
+</ol>
+
+<p>程式碼都幫你準備好了，自己貼上去試試最靠的住！</p>
+<pre>
+static void Main(string[] args)
+{
+	Console.WriteLine("---取出路徑---");
+	Console.WriteLine(System.Environment.CurrentDirectory);
+	Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
+	Console.WriteLine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location));
+	Console.WriteLine("---取出檔名---");
+	Console.WriteLine(System.AppDomain.CurrentDomain.FriendlyName);
+	Console.WriteLine(System.IO.Path.GetFileName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName));
+	Console.WriteLine(System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+	Console.Read();
+}
+</pre>
+
+<p>※ 有用到Reflection都很耗效能，能不用就不要用。</p>
+
+<h3>取得ASP.NET WebForm目前運行的路徑與檔名</h3>
+<pre>
+System.IO.FileInfo oFI = new System.IO.FileInfo(Request.Url.AbsolutePath);
+string cName = oFI.Name;
+</pre>
+
+<h3>取得ASP.NET Url Routing後，真正運行的路徑與檔名</h3>
+<p>上面講的那個方式，到了ASP.NET MVC時代就沒有用處了，在到處都是routing的狀況下，你只會拿到rewrite過的URL而已。如果要求得真正的執行路徑（Handler），就要改用下列這個方法：</p>
+<pre>
+System.Web.UI.Page oPage = (System.Web.UI.Page)System.Web.HttpContext.Current.CurrentHandler;
+string cName = oPage.AppRelativeVirtualPath;
+</pre>
+
+<small>C# ExeSelfName ExeSelfPath Runtime ASPX ASHX ASP.NET MVC UrlRouting</small>
+
+</body>
+</html>

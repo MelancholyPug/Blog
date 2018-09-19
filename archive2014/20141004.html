@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>關閉Windows Server的密碼複雜性需求／密碼複雜性要求</h1>
+
+<p>若非正式用途，在一般的測試時刻，我們不太會需要Windows Server來要求我們密碼，尤其Windows Server到Server 2008版以後，預設密碼的複雜性更高了，一個字串裡面要包含英文、數字、符號。</p>
+
+<p>若想要在測試用途時關閉密碼複雜性需求（密碼複雜性要求），請跟著下列步驟進行。</p>
+
+<p>Step 1. 按下「Windows鍵＋Ｒ」，然後輸入「gpedit.msc」，叫出本機群組原則編輯器。</p>
+
+<p>Step 2. 找到電腦設定＞Windows設定＞安全性設定＞帳戶原則＞密碼原則，如下圖紅框所示：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/15297638979"><img src="https://c1.staticflickr.com/3945/15297638979_1a13023ec8_o.png" alt="20141004_01"></a>
+
+<p>Step 3. 點擊兩下該選項，將其設定成「已停用」即可。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/15297638989"><img src="https://c1.staticflickr.com/3943/15297638989_0d126db97c_o.png" alt="20141004_02"></a>
+
+<small>WindowsServer WindowsServer2012 密碼要求 停用 關閉</small>
+
+</body>
+</html>

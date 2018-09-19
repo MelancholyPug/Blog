@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>GUID線上產生器 / Online GUID Generator</h1>
+
+<p>
+這個頁面提供純JavaScript版本的GUID產生器，希望對您有幫助。
+</p>
+
+<h2>線上產生GUID（UUID）</h2>
+<p>請點選下方「Generate」按鈕，即可重複不斷產生亂數GUID。</p>
+<pre id="oGUID" style="font-size:1.5em">Press Generate button.</pre>
+<p>
+	<button id="oGenerate" type="button" class="btn btn-success btn-lg">Generate</button>
+</p>
+<script>
+	pushToExecuteList(function(){
+		$("#oGenerate").focus();
+		//Event Binding
+		$("#oGenerate").click(function(){
+			function getGUID() {
+				return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1).toUpperCase();
+			}
+			$("#oGUID").text(getGUID() + getGUID() + '-' + getGUID() + '-' + getGUID() + '-' + getGUID() + '-' + getGUID() + getGUID() + getGUID());
+			$("#oGUID").focus();
+		});
+	}, 2);	//Priority:2
+</script>
+
+<h2>甚麼是GUID，以及為何它是獨特的？</h2>
+<p>GUID（或UUID）是「全局唯一標識符」（或通用唯一標識符）的首字母縮寫。它使用128位元的整數來儲存。微軟技術的開發人員一般用GUID來稱呼，而UUID用於其他地方。</p>
+
+<p>128位元是GUID足夠的展現其獨特之處，如果以每秒10億個GUID，持續重複產生一年，那麼出現重複GUID的機率只有50%。如果地球上的每個人都產生6億個GUID，那麼重複GUID的機率依然只有50%。</p>
+
+<small>GUID UUID Generator Online</small>
+
+</body>
+</html>

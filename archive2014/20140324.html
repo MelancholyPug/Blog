@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>URL Encoder/Decoder Online</h1>
+
+<p>
+這個頁面提供純JavaScript版本的URL線上編碼解碼器，希望對您有幫助。
+</p>
+
+<p>請在下列文字框中輸入您要進行URL Encode（編碼）或URL Decode（解碼）的資訊：</p>
+
+<ol>
+	<li>在文字框輸入要編碼的字串後，按下Enter會自動進行URL Encode。</li>
+	<li>可以隨意的點選藍色、紅色按鈕，多次的編解碼您的URL。</li>
+</ol>
+
+<textarea id="oText" class="form-control" rows="20" placeholder="Paste string to encode or decode here ..."></textarea>
+
+<p>
+	<button id="oEncode" type="button" class="btn btn-primary btn-lg">URL Encode 編碼</button>
+	<button id="oDecode" type="button" class="btn btn-warning btn-lg">URL Decode 解碼</button>
+	<button id="oClear"  type="button" class="btn btn-default btn-lg">Clear 清除</button>
+</p>
+
+<script>
+	pushToExecuteList(function(){
+		$("#oText").focus();
+		//Event Binding
+		$("#oEncode").click(function(){
+			$("#oText").val(encodeURIComponent($("#oText").val()).replace(/'/g,"%27"));
+			$("#oText").focus();
+		});
+		$("#oDecode").click(function(){
+			$("#oText").val(decodeURIComponent($("#oText").val()));
+			$("#oText").focus();
+		});
+		$("#oClear").click(function(){
+			$("#oText").val("");
+			$("#oText").focus();
+		});
+	}, 2);	//Priority:2
+</script>
+
+<small>URL Encode Encoder Decode Decoder 編碼器 解碼器</small>
+
+</body>
+</html>

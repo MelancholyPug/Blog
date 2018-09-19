@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>SQL資料表之JOIN指令圖解介紹</h1>
+
+<p>SQL除了四大指令CRUD（Create, read, update and delete）之外，最讓初學者頭痛的就是JOIN了，兩張資料表的鍵值在那邊交集來聯集去的，頭昏眼花是常有的事，因此寫下這篇文章，利用圖型來簡單表達一下JOIN的概念。</p>
+
+<p>假設有Table_A, Table_B這兩資料表，資料分別如下表所示：（打星號*表示資料是重疊的）</p>
+<pre>
+SELECT [iIndex], [cName] FROM [Table_A]
+---------------------------------------
+iIndex  cName
+1       關羽*
+2       張飛
+3       趙雲*
+4       魏延
+
+SELECT [iIndex], [cName] FROM [Table_B]
+---------------------------------------
+iIndex  cName
+1       劉備
+2       關羽*
+3       曹操
+4       趙雲*
+</pre>
+
+<h3>完整聯集：FULL OUTER JOIN</h3>
+<p>這個部份表示兩張資料表的全部資料都要了！請見下圖圖示：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/14433579260/"><img src="https://c1.staticflickr.com/2895/14433579260_fc89008432_o.png" alt="20140711_01"></a>
+<pre>
+使用指令與結果：
+/*** JOIN TEST 01 ***/
+SELECT *
+FROM Table_A
+FULL OUTER JOIN Table_B
+ON Table_A.cName = Table_B.cName
+</pre>
+<a href="https://www.flickr.com/photos/105479788@N06/14433622978/"><img src="https://c1.staticflickr.com/3910/14433622978_f6c1fe1bae_b.jpg" alt="20140711_02"></a>
+
+<h3>完整交集：INNER JOIN</h3>
+<p>這個部份表示兩張資料表裡面，確定彼此都存在的資料我才要，其它各自只出現在自己的表中的資料全部都不要！請見下圖圖示：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/14617026821/"><img src="https://c1.staticflickr.com/3924/14617026821_1a9a30ab8b_o.png" alt="20140711_03"></a>
+<pre>
+使用指令與結果：
+/*** JOIN TEST 02 ***/
+SELECT *
+FROM Table_A
+INNER JOIN Table_B
+ON Table_A.cName = Table_B.cName
+</pre>
+<a href="https://www.flickr.com/photos/105479788@N06/14620231845/"><img src="https://c1.staticflickr.com/3887/14620231845_2ec41f4de4_b.jpg" alt="20140711_04"></a>
+
+<h3>部份聯集與完整交集：LEFT OUTER JOIN</h3>
+<p>這個部份表示在Table_A的資料我全要，但是在Table_B裡有出現在Table_A的資料我也要！請見下圖圖示：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/14620231745/"><img src="https://c1.staticflickr.com/5593/14620231745_9750f3b8ea_o.png" alt="20140711_05"></a>
+<pre>
+使用指令與結果：
+/*** JOIN TEST 03 ***/
+SELECT *
+FROM Table_A
+LEFT OUTER JOIN Table_B
+ON Table_A.cName = Table_B.cName
+</pre>
+<a href="https://www.flickr.com/photos/105479788@N06/14620231795/"><img src="https://c1.staticflickr.com/5564/14620231795_f59e6e241a_b.jpg" alt="20140711_06"></a>
+
+<h3>部份聯集：LEFT OUTER JOIN - Table_B IS NULL</h3>
+<p>這個部份表示在Table_A的資料我全要，但是在Table_B裡有出現在Table_A的資料在結果中剃除！請見下圖圖示：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/14618152274/"><img src="https://c1.staticflickr.com/3870/14618152274_ed338d53d7_o.png" alt="20140711_07"></a>
+<pre>
+使用指令與結果：
+/*** JOIN TEST 04 ***/
+SELECT *
+FROM Table_A
+LEFT OUTER JOIN Table_B
+ON Table_A.cName = Table_B.cName
+WHERE Table_B.iIndex IS NULL
+</pre>
+<a href="https://www.flickr.com/photos/105479788@N06/14433579390/"><img src="https://c1.staticflickr.com/2933/14433579390_3b33a69c84_b.jpg" alt="20140711_08"></a>
+
+<h3>部份聯集：LEFT OUTER JOIN - Table_A OR Table_B IS NULL</h3>
+<p>這個部份表示在Table_A與Table_B的資料我全要，但是Table_A與Table_B中共同擁有的資料我不要！請見下圖圖示：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/14620232055/"><img src="https://c1.staticflickr.com/5572/14620232055_62c9199260_o.png" alt="20140711_09"></a>
+<pre>
+使用指令與結果：
+/*** JOIN TEST 05 ***/
+SELECT *
+FROM Table_A
+FULL OUTER JOIN Table_B
+ON Table_A.cName = Table_B.cName
+WHERE Table_A.iIndex IS NULL OR Table_B.iIndex IS NULL
+</pre>
+<a href="https://www.flickr.com/photos/105479788@N06/14433841557/"><img src="https://c1.staticflickr.com/3897/14433841557_fae2c6c70b_b.jpg" alt="20140711_10"></a>
+
+<p>以上大概就是JOIN所有可能用到的情況，當然如果你是要取Table_B那一邊的，請自己把FROM Table的前後對調一下就可以了，大家應該可以舉一反三才是。</p>
+
+<small>SQL Command InnerJoin OuterJoin LeftOuterJoin FullOuterJoin</small>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Windows Workstation NTP更新頻率設定</h1>
+
+<p>如果不是Server的用途之下，基本上一般使用者是不會自行架設NTP Server來進行時間同步的，也不會去設定一堆繁雜的指令或下載外部程式來進行時間的同步工作。</p>
+
+<p>Windows Workstation作業系統中，其實已經有內建時間同步的程式（服務）在裡面，並且預設值是每七天與遠端NTP Server一次時間。我們可以透過登錄檔的設定，來輕鬆的完成這部份的工作，請跟隨著下列的步驟做一次即可。</p>
+
+<p>1. 開啟 regedit 登錄編輯程式。</p>
+<p>2. 修改NtpServer機碼去指定遠端的時間伺服器，其中的0x1模式被稱為（SpecialInterval）詳見<a href="/archive2013/20131219.html">這裡</a>：</p>
+<pre>
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time\Parameters
+名稱                 類型       資料
+-------------------- ---------- --------------------
+NtpServer            REG_SZ     clock.stdtime.gov.tw,0x1
+</pre>
+
+<p>3. 修改SpecialPollInterval機碼，指定多久要同步一次（單位為秒），預設值是604800（七天），這邊的範例是改為每一分鐘同步一次：</p>
+<pre>
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\W32Time\TimeProviders\NtpClient
+名稱                 類型       資料
+-------------------- ---------- --------------------
+SpecialPollInterval  REG_DWORD  60（Dec; 十進制）
+</pre>
+
+<p>4. 至服務中設定Windows Time Service為自動啟動，如果你是Windows 7或Windows Server 2008R2之後的作業系統，必須參考<a href="/archive2013/20131219.html">這裡的「※ 補充說明」設定</a>，才能夠讓Windows Time Service正確的被啟動。</p>
+
+<p>5. 要再更精進一點的人，可以去「工作排程器」的「\Microsoft\Windows\Time Synchronization」路徑下把「SynchronizeTime」排程停掉或刪除。位置如下圖所示：</p>
+<a href="http://www.flickr.com/photos/105479788@N06/11722577735/"><img src="https://c1.staticflickr.com/3747/11722577735_2d70512f8b_o.png" alt="20140102_01"></a>
+
+<p>設定好重開機就完成了，特別要注意的地方是，如果你沒有指定0x1 SpecialInterval模式，那麼SpecialPollInterval數值的指定是無意義的。</p>
+
+<small>Windows Client NTP Sync Frequency</small>
+
+</body>
+</html>

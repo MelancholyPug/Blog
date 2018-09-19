@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>如何將Excel中被儲存成「文字格式的數值」，轉回「真正的數值」？</h1>
+
+<p>這篇文章依然是Excel假敖（台語）的系列文，今天要討論的是當Excel的某欄位其實應該被表示成數值，可是不知怎麼了卻被轉換成以「文字格式」來儲存，這會讓所有的函數（公式）計算全部失靈。這篇文章就是在教你怎麼把它轉回來變成「真正的數值」。要識別數值被文字化的方法很簡單，真正的數值是靠右的，但文字格式的數值卻是靠左，而且Excel左上角會出現一個綠色的小三角形來提醒你。慘狀詳見下圖：</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/32500269575/in/dateposted-public/" title="20170124_01"><img src="https://c1.staticflickr.com/1/672/32500269575_421fbe6386_o.png" width="395" height="353" alt="20170124_01"></a>
+
+<p>至於為何會出現數值被以文字的格式來呈現、表現、儲存？很簡單，要保證Excel不去亂動你輸入的數值資料，最佳的方式就是把它文字化（亂改你的手機號碼、生日日期），這點相信身為程式設計師的大家，完全能夠理解啊！（用力的點頭）</p>
+
+<h3>錯誤做法：將Excel文字格式的數值轉回真正的數值</h3>
+
+<p>一般的使用者會直覺地想使用「變更儲存格格式」來將文字化的數值，轉回真正的數值，但是這是無效的，無論你怎麼轉換成數值都沒有用。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/31689000863/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/450/31689000863_9b7f2e9be9_o.png" alt="20170124_02"></a>
+
+<h3>正確做法：將Excel文字格式的數值轉回真正的數值</h3>
+
+<p>Step 1. 框選要轉換的欄位，到頁籤中的「資料」＞點選「資料剖析」。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/32500270745/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/334/32500270745_6cb6177a8e_c.jpg" alt="20170124_03"></a>
+
+<p>Step 2. 分隔符號＞下一步。（基本上接下來都是無腦的點選下一步就可以了）</p>
+<a href="https://www.flickr.com/photos/105479788@N06/32378844201/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/684/32378844201_df456b92a3_o.png" alt="20170124_04"></a>
+
+<p>Step 3. Tab鍵＞下一步。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/32378844111/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/419/32378844111_e8f28375fb_o.png" alt="20170124_05"></a>
+
+<p>Step 4. 一般＞完成。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/32378843991/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/523/32378843991_e5ab271f09_o.png" alt="20170124_06"></a>
+
+<p>經過上面的步驟，就可以將被文字化的Excel數值，轉換成真正的數值型態，詳見下圖，請看函數（公式）也可以動起來了！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/31689001263/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/379/31689001263_3f3d2e6c5a_o.png" alt="20170124_07"></a>
+
+<p>相關連結：</p>
+<p><a href="http://slashlook.com/articles_20160720.html" target="_blank">Excel儲存格式日期轉文字變成數字序號的解法</a></p>
+
+<small>Excel 數字被存成文字格式 數值被存成文字格式 無法使用函數 無法使用公式 無法計算</small>
+
+</body>
+</html>

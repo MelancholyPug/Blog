@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>求取SQL Server當前的連線數與細節（SQL Connection Session）</h1>
+
+<p>有時候我們會需要觀察資料庫現在的總連線數，來評估一些硬體的負載能力問題，這時候我們可以使用下列的T-SQL指令。</p>
+
+<h3>查詢當前的連線細節與總連線數（SQL Connection Session）</h3>
+
+<pre>
+USE master
+
+--查詢Session細節
+SELECT c.session_id, c.connect_time, s.login_time, c.client_net_address, s.login_name, s.status ,s.host_name,s.program_name
+FROM sys.dm_exec_connections c left join sys.dm_exec_sessions s on c.session_id = s.session_id
+ORDER BY s.login_time DESC
+GO
+
+--查詢Session總量
+SELECT cntr_value AS User_Connections FROM sys.sysperfinfo AS sp
+WHERE sp.object_name = 'SQLServer:General Statistics'
+AND sp.counter_name = 'User Connections'
+GO
+</pre>
+
+<h3>強制移除某個Session，將其剔除</h3>
+<p>執行的過程中若還在存取階段，可能會出現失敗的訊息，可以再多執行幾次即可。</p>
+<pre>
+sp_lock
+dbcc inputbuffer(YourSessionID)
+kill YourSessionID
+</pre>
+
+<small>SQL Connection Session Count T-SQL</small>
+
+</body>
+</html>

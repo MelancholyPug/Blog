@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Youtube RSS online converter 線上RSS轉換器</h1>
+
+<p>最近有需要在Feedly RSS reader裡面加上某個Youtube的訂閱，理論上直接貼上Youtube的網址就會自動抓取了，但是某個頻道的訂閱就是怎麼貼也無法自動抓取（應該是說抓到錯誤的RSS頻道）。</p>
+
+<p>於是在網路搜尋一下Youtube的RSS網址公式，製作成下列的線上轉換應用，若您有需要的話，請先把瀏覽器轉到你要訂閱的Youtube頻道首頁，然後將網址複製起來貼到下方文字框，應該就可以使用了。</p>
+
+<form class="form-horizontal" style="margin-top:2em">
+  <fieldset>
+    <legend style="font-size:26px;border-bottom:1px dashed black;padding-bottom:18px;"><strong><span class="glyphicon glyphicon-facetime-video"></span> Youtube Channel RSS online converter</strong></legend>
+    <div class="form-group form-group-lg">
+      <div class="col-md-12">
+        Go Youtube channel / vlogger's 《homepage》. Copy browser URL address, paste below and click Convert button.
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <div class="col-md-10">
+        <input class="form-control" type="text" id="uURL">
+      </div>
+      <div class="col-md-2">
+        <button type="button" id="uConvert" class="btn btn-lg btn-success btn-block">Convert</button>  
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <div class="col-md-12">
+        <div class="alert alert-info text-center" style="margin-bottom:5px" role="alert"><strong><span class="glyphicon glyphicon-link"></span> Youtube RSS convert result</strong></div>
+        <textarea class="form-control" rows="4" id="uRSS"></textarea>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<p>如果程式碼無法識別你貼上的網址，請在你要訂閱的Youtube頻道首頁，按下右鍵選檢視原始碼，然後搜尋關鍵字「rel="canonical"」，就可以找到你要的Youtube頻道的正式URL了。例如下列就是Microsoft Developer頻道裡面所記載的正式網址：</p>
+<pre>
+&lt;link rel="canonical" href="https://www.youtube.com/channel/UCsMica-v34Irf9KVTh6xx-g"&gt;
+</pre>
+
+<small>Youtube RSS Reader Feedly Channel Blogger Vlogger UrlAddress</small>
+
+<script>
+	pushToExecuteList(function(){
+    $("#uConvert").click(function() {
+      var cURL = $("#uURL").val();
+      var cSearch = "/channel/";
+      //每次點擊都先把訊息清空
+      showMsg("");
+      //長度為零或不對，就跳出錯誤訊息
+      if (cURL.trim().length == 0 || cURL.indexOf(cSearch) == -1) {
+        showMsg("Incorrect parsing of youtube channel URL. / 請輸入正確的Youtube網址。\n\nThe URL should be like https://www.youtube.com/channel/{Random Characters}");
+        return;
+      }
+      //把要取出的字串找出來
+      var iStart = cURL.indexOf(cSearch) + cSearch.length;
+      //加上Youtube的RSS預設網址
+      showMsg("https://www.youtube.com/feeds/videos.xml?channel_id=" + cURL.substring(iStart));
+    });
+
+    function showMsg(cTemp){
+      $("#uRSS").val(cTemp);
+    }
+	}, 2);	//Priority:2
+</script>
+
+</body>
+</html>

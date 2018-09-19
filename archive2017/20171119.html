@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>透過修改VS專案檔案內部屬性，使其可參考到UWP相關函式庫</h1>
+
+
+<p>如果你沒有安裝Windows 10 SDK，那麼基本上你很難參考到UWP相關的DLL，例如你可能找不到這些DLL（<a href="https://docs.microsoft.com/en-us/uwp/api/" target="_blank">Windows UWP Namespaces</a>）。如果你的VisualStudio沒有安裝UWP的開發環境，也不想要安裝Windows 10 SDK，又在「C:\Windows\SysWOW64\WinMetadata」或「C:\Windows\System32\WinMetadata」路徑下找不到任何你要的UWP參考類別的話，不妨試試下列這個奇葩的切換方式。</p>
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/38485391152/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4557/38485391152_ce3198269b_c.jpg" alt="20171119_01"></a>
+
+<p>這是我無意中在網路上看到的解法，跟著做一次竟然有效，因此把它紀錄在這個地方。</p>
+
+<h3>修改TargetPlatformVersion屬性，切換開發環境至Windows10</h3>
+
+<p>Step 1. 在你的VisualStudio中，「方案總管」＞「你的專案」＞「右鍵」＞「卸載專案」。</p>
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/26741383719/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4584/26741383719_c65fd3d974_o.png" alt="20171119_02"></a>
+
+<p>Step 2. 在沒有辦法使用的專案上「點選右鍵」＞「編輯XXXXX.csproj專案檔案」。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/38485387992/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4525/38485387992_3e0d744b4b_o.png" alt="20171119_03"></a>
+
+<p>Step 3. 打開後會看到熟悉的XML格式的專案檔，請關注兩個屬性，分別是「Debug|AnyCPU」以及「Release|AnyCPU」，我們要改這兩個大項次裡面的「TargetPlatformVersion」的內容，將其值變更為「10.0」，變更後請儲存檔案。</p>
+
+<pre>
+&lt;TargetPlatformVersion&gt;10.0&lt;/TargetPlatformVersion&gt;
+</pre>
+
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/26741387079/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4537/26741387079_a784b6aeed_o.png" alt="20171119_04"></a>
+
+<p>Step 4. 再度到這個壞掉的專案「點選右鍵」＞「重新載入專案」。
+</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/24644845688/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4556/24644845688_97ec2b8662_o.png" alt="20171119_05"></a>
+
+<p>Step 5. 接下來在方案總管中點選參考，就會看到Windows項目下出現了「核心；Core」。以這個例子來說，我參考了Windows Notifications必須要使用的Windows.UI、Windows.Data這兩個項目。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/38485391462/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4567/38485391462_1ab839041a_o.png" alt="20171119_06"></a>
+
+<p>Step 6. 點選確定後，就可以發現這兩個名稱空間被我參考進來啦！</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/26741386469/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4563/26741386469_d68461e029_o.png" alt="20171119_07"></a>
+
+<p>我認為這是一個超級奇葩的解決方案，如果你有需要使用到，不妨試看看。</p>
+
+<small>WindowsUWPNamespace WindowsUWP WindowCore Windows.UI Windows.Data C# Console Reference</small>
+
+</body>
+</html>

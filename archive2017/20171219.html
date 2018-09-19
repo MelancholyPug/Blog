@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Enum列舉的尋訪、比對並進行變數指派</h1>
+
+<p>Enum列舉的尋訪尋值動作並不常用，每次要用的時候都要重新去翻一次System.Enum.GetValues的用法，因此把他筆記這裡，讓有需要的人可以快速地找到使用範例。</p>
+
+<a  href="https://www.flickr.com/photos/105479788@N06/39147102102/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4738/39147102102_04e2399579_c.jpg" alt="20171219_01"></a>
+
+<h3>已知一整數數值，利用此整數回傳某列舉型別</h3>
+<p>假設有一列舉行別如下：</p>
+<pre>
+enum myFriend
+{
+	NoFriend = 0,
+	John = 1,
+	Marry = 2,
+	Sam = 3,
+	Chris = 4
+}
+</pre>
+
+<p>如果我們從前端、或資料庫端得到一個整數數值，那麼我們可以利用下列程式碼比對myFriend裡面所有的列舉項次，並進而取得可能命中的列舉項次。</p>
+
+<pre>
+public static void Main()
+{
+	int iFriend = 3;
+	myFriend eFind = myFriend.NoFriend;
+	
+	foreach (int iItem in System.Enum.GetValues(typeof (myFriend)))
+	{
+		if (iFriend == iItem) { eFind = (myFriend)iItem; break; }
+	}
+	
+	Console.WriteLine($"{(int)eFind} / {eFind.ToString()}");
+}
+</pre>
+
+<h3>利用Linq來進行列舉的查找篩選</h3>
+
+<p>如果是把System.Linq弄進來，使用他的語法來進行資料搜尋的話，語法變成一行就可以解決了。這樣的寫法還有一個好處，就是因為enum是實值型別（ValueType），所以就算找不到命中FirstOrDefault也不會傳回null，而是會傳回這個enum的預設值，也就是等於0的NoFriend。（如果列舉裡面沒有等於0的項次，則會回傳一個0，你對它.GetType()還是會回傳myFriend。）</p>
+
+<pre>
+myFriend eFind = System.Enum.GetValues(typeof(myFriend)).OfType<myFriend>().Where(x => (int)x == iFriend).FirstOrDefault();
+</pre>
+
+<p>Happy Coding！</p>
+
+<small>System.Enum.GetValues System.Enum.GetNames Foreach Int32 Assignment</small>
+
+</body>
+</html>

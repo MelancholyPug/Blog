@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>資料庫交易紀錄的備份、壓縮與刪除</h1>
+
+<p>這個標題其實有點問題，但懂資料庫的人就知道，交易紀錄會暴增，就是因為主資料庫檔案一直不斷的被存取所致（新增、修改、刪除），資料庫為了保護整個資料的完整性，所以會將這些動作原封不動的逐一記錄下來，這就是交易紀錄的原型了。</p>
+
+<p>因此，交易紀錄基本上是無法被刪除的（除非你透過不正常的手段），或者話應該是說，備份做好了交易紀錄他自然就消失。所以當我們備份好資料庫，接著壓縮交易紀錄檔，交易紀錄自然就縮小到可忽略的程度了。</p>
+
+<h3>資料庫交易紀錄的備份與壓縮</h3>
+<p>首先你要先查詢好你的「資料庫桶子名稱」，以及「你的資料庫桶子之記錄檔名稱」。查詢的方式很簡單，只要在資料庫桶子上面按下右鍵選擇屬性，這樣就可以看到資料庫屬性了。如下圖所示：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/27439391071/"><img src="https://c2.staticflickr.com/8/7564/27439391071_7ce2c75942_o.png" alt="20160607_01"></a>
+
+<p>指令碼如下：</p>
+<pre>
+BACKUP LOG 你的資料庫桶子名稱 WITH TRUNCATE_ONLY
+DBCC SHRINKFILE(你的資料庫桶子之記錄檔名稱)
+</pre>
+
+<p>SHRINKFILE其實後面有延伸參數可以下，坊間都習慣來個DBCC SHRINKFILE(你的資料庫桶子之記錄檔名稱, 2)之類的，我個人認為沒有其必要性，用預設的就好了。</p>
+
+<h3>Update: Microsoft SQL Server 2008之後的作法</h3>
+
+<p>如果你是在Microsoft SQL Server 2008（含）版本以上的資料庫進行上述指令，將會引發下列錯誤訊息：</p>
+<pre>'TRUNCATE_ONLY' 不是可辨識的 BACKUP 選項。</pre>
+
+<p>原因是因為從Microsoft SQL Server 2008開始，在也不支援這樣子拋棄交易紀錄檔的寫法，而是統一改採用將復原模式改為「簡單」的方式來處理。（亦即一旦你設定了這個模式後，就再也無法使用任何依存交易紀錄的功能了，例如資料庫還原！）</p>
+
+<p>這裡介紹如何使用SSMS介面式的管理，來達到這樣的設定。</p>
+
+<ol>
+	<li>在資料庫桶子上，按下右鍵選擇「屬性」。</li>
+	<li>在左邊選取頁面頁籤中，選擇「選項」。</li>
+	<li>看向右邊視窗的「復原模式」選項，將原來設定的「完整」改選取為「簡單」。</li>
+</ol>
+
+<p>亦可以使用T-SQL的方式來進行設定：</p>
+
+<pre>
+--將資料庫切換為「簡單復原模式」，以利停止交易記錄
+ALTER DATABASE 資料庫桶子名稱
+SET RECOVERY SIMPLE
+GO
+</pre>
+
+<small>Microsoft SqlServer TransactionLog Delete Remove Shrink</small>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>SMC 7904W硬體撥接、DHCP及WiFi開啟設定</h1>
+
+<p>之前的Alcatel不知道怎樣壞掉了，中華電信派人直接來換一台具備WiFi功能的SMC 7904W小烏龜，這下所有的家庭網路環境又要重新設定了。由於家中用戶單純，因此這一台機器基本上會被我mount上硬體PPPoE撥接、DHCP服務。值得注意的是，我這台是100年08月第一批機器，韌體版本是1.0.0.0，為了某些便利的因素，要開啟WiFi功能需要進行比較複雜的TFTP程序，無法透過Web介面來管理。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/29520575875/in/dateposted-public/"><img src="https://c4.staticflickr.com/9/8129/29520575875_bb8d06f391_o.jpg" alt="20160907_01"></a>
+
+<p>首先來看這台機器的一些參數，以免誤用而產生硬體等級的崩潰：</p>
+<pre>
+契約案號：SAR000167-1
+批次：第一批
+契約案名：ATU-R設備
+器材名稱（型號）：SMC7904WBRAS-N2
+交貨日期：100年08月
+
+ADSL Info
+Mode:	ADSL_2plus
+
+Device Info
+Board ID: 	96328ang
+Build Timestamp: 	110722_1730
+Software Version: 	1.0.0.0
+Bootloader (CFE) Version: 	1.0.37-106.17
+DSL PHY and Driver Version:	A2pD035b.d23a
+Wireless Driver Version: 	5.60.120.1.cpe4.06L02.2
+</pre>
+
+<h3>硬體撥接設定</h3>
+<p>首先，你必須先把自己放到「192.168.1.X」網段，因為這台ADSL Router LAN段的IP被預設指定為「192.168.1.1」，這個算是common sense，大家應該都知道才對，在此就不多說。</p>
+
+<p>Step 1. 請自己開瀏覽器，輸入192.168.1.1，打入中華電信小烏龜的萬用密碼，例如：cht / chtsadsl，請自己依照北中南區輸入對應的密碼。</p>
+
+<p>Step 2. 先瀏覽一下ATM Interface，看一下atm0介面是否有Enabled，這代表這台機器的預設值是正常的。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520575225/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8852/29520575225_25996acf99_o.png" alt="20160907_02"></a>
+
+<p>Step 3. 點選WAN選單，看到atm0那行，請點選Remove將其移除。請特別注意，在這個步驟有很多網站都寫錯了，叫你直接點選Edit進去改設定，事實上，Edit根本無法按下去、無法點選。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520575015/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8428/29520575015_6c2d189c3d_o.png" alt="20160907_03"></a>
+
+<p>Step 4. 接下來就是點選下方的Add按鈕。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520574885/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8280/29520574885_d4bdbb04d8_o.png" alt="20160907_04"></a>
+
+<p>Step 5. 同樣的，我們選擇介面是atm0 / 0_0_33，點選Next。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520574685/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8156/29520574685_272a6fd2bd_o.png" alt="20160907_05"></a>
+
+<p>Step 6. 點選PPPoE（PPP over Ethernet），準備進行硬播。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520574585/in/dateposted-public/"><img src="https://c2.staticflickr.com/8/7793/29520574585_76b82b8dd7_o.png" alt="20160907_06"></a>
+
+<p>Step 7. 輸入你的Hinet帳密，最下方注意要勾選「Bridge PPPoE Frames Between WAN and Local Ports」。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520574405/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8153/29520574405_671008e621_o.png" alt="20160907_07"></a>
+
+<p>Step 8. Routing - Default Gateway，直接點選Next。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520574235/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8038/29520574235_67bc42457b_o.png" alt="20160907_08"></a>
+
+<p>Step 9. DNS Server Configuration，這邊我是設定Hinet DNS兩大天王168.95.192.1、168.95.1.1，或許你也可以考慮Google的DNS。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520574145/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8475/29520574145_d163a6a63a_o.png" alt="20160907_09"></a>
+
+<p>Step 10. 看一下預覽：PPPoE有開了，NAT、Firewall也幫你開起來了。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520573985/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8229/29520573985_836e97f91b_o.png" alt="20160907_10"></a>
+
+<p>Step 11. 回到一開始，請點選「UP」將這個介面喚醒（Enabled）。</p>
+
+<h3>設定NAT（DHCP範圍）</h3>
+
+<p>Step 12. 請點選左方的LAN選項，設定一下Start IP Address以及End IP Address。基本上如果你不進行WiFi的開啟，所有可以設定的東西就到此為止了，請重新開機吧！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29230679930/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8054/29230679930_c5edf4be4b_o.png" alt="20160907_12"></a>
+
+<h3>開啟隱藏的WiFi選項</h3>
+
+<p>由於這台SMC 7904W的Web介面寫得很陽春，因此這部分要透過TFTP來進行操作（破解？）。請先到<a href="http://tftpd32.jounin.net/" target="_blank">TFtpd 官方網站</a>下載綠色免安裝執行檔案，丟到C磁碟下的TFTP資料夾下，接下來統一用這個路徑當範例。</p>
+
+<p>Step 13. 點選tftpd32.exe，執行起TFTP伺服器起來（讓畫面留在Windows上面，不要關掉），並且挑選Host的IP是192.168.1.X網段，接下來統一用「192.168.1.12」當範例。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520573365/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8256/29520573365_e2117ff5d3_o.png" alt="20160907_13"></a>
+
+<p>Step 14. 在cmd模式下輸入telnet 192.168.1.1連到ADSL Router，並且依照選單進入「9. Management」＞「1. Update Software」，輸入Tftp Server IP address: 192.168.1.12，接著在Update Software File Name後方輸入下列指令，如此一來我們就可以將機器的原始設定檔案先備份一份下來。</p>
+<pre>
+tftp -p -f WirelessDisable
+</pre>
+
+<p>Step 15. 接著用Notepad或Notepad++打開來，發現是純文字格式的XML檔案，讓程式設計師看了好高興啊！找到「WlEnbl」標籤，將裡面的值從0改成1，並令存新檔成為「WirelessEnable」放在「C:\TFTP\」目錄下。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520573155/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8207/29520573155_02860f64d1_o.png" alt="20160907_15"></a>
+
+<p>Step 16. 依照Step 14步驟，輸入下列指令，將「WirelessEnable」設定檔灌回小烏龜內。</p>
+<pre>
+tftp -g -t c -f WirelessEnable
+</pre>
+
+<p>Step 17. 回到Web介面重新登入後，發現久違的Wireless選單冒出頭啦！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/29520572665/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8141/29520572665_49005a6f61_o.png" alt="20160907_16"></a>
+
+<p>WiFi簡單的設定功能說明</p>
+<ol>
+	<li>Enable Wireless：將無線網路功能啟動</li>
+	<li>Hide Access Point：將父SSID關閉，不廣播</li>
+	<li>Wireless Guest/Virtual Access Points：讓你開起多重SSID，同時也允許隱藏SSID不廣播</li>
+	<li>左方選單的Security：可以設定無線網路的密碼，建議至少上WPA2-PSK，WPA加密選AES，相對來的安全。</li>
+</ol>
+
+<p>相關連結：</p>
+<ol>
+	<li><a href="/archive2014/20140107.html" target="_blank">Alcatel T07A/T07AW硬體撥接與DHCP設定</a></li>
+</ol>
+
+<small>中華電信 ADSL VDSL Router 小烏龜 破解 WiFi 無線網路 硬體撥接 硬撥</small>
+
+</body>
+</html>

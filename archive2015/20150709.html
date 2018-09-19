@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>利用匿名型別來化簡JSON ORM讀取時之冗長程式碼</h1>
+
+<p>每次只要寫到JSON的讀取方面程式，心裡就會犯嘀咕，雖然Newtonsoft.Json提供了很方便的類別讓我們可以直接引用、處理，但是每次都要寫一次ORM Class的確很煩，尤其是用在不可能會重覆使用的情境下，就會更有「我寫這個Class幹嘛」的感覺。這些就算了，如果在建立ORM的時候，再遭遇到那種毫無sense的JSON提供者，明明單階就可以傳遞資訊完成，就一定要幫你加個DocumentRoot的根元素，所以你就一定得建立二階ORM來對應，那種感覺只能說是無言。詳見：<a href="/archive2015/20150408.html" target="_blank">Server Side JSON/XML的相關寫法</a></p>
+
+<p>今天突然想到，C# 3.0之後支援的匿名型別（匿名類型），再搭配Newtonsoft.Json提供的DeserializeAnonymousType方法，在讀入後利用C# 4.0的dynamic來創建物件，有可能可以用超精簡的方式來完成JSON的解析與讀入，馬上打開VisualStudio來實作，果然一次完成。</p>
+
+<h3>範例程式碼如下：</h3>
+<pre>
+static void Main(string[] args)
+{
+	//正常的JSON
+	string cTemp1 =
+		@"
+		{
+			""time"": ""03:53:25 AM"",
+			""milliseconds_since_epoch"": 1362196405309,
+			""date"": ""07-09-2015""
+		}
+		";
+	//多了個大腸頭、闌尾的JSON
+	string cTemp2 =
+		@"
+		{
+			""unnecessary"": 
+			{
+				""time"": ""03:53:25 AM"",
+				""milliseconds_since_epoch"": 1362196405309,
+				""date"": ""07-09-2015""
+			}
+		}
+		";
+	//運用匿名型別，一行解回ORM（正常版）
+	var oTemp1 = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(cTemp1, new
+	{
+		date = "",
+		time = "",
+		milliseconds_since_epoch = 0L
+	});
+	//運用匿名型別，一行解回ORM（大腸頭、闌尾版）
+	var oTemp2 = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(cTemp2, new
+	{
+		unnecessary = new
+		{
+			date = "",
+			time = "",
+			milliseconds_since_epoch = 0L
+		}
+	});
+	//輸出
+	Console.WriteLine("－－－正常JSON值解回－－－");
+	Console.WriteLine(oTemp1.date);
+	Console.WriteLine(oTemp1.time);
+	Console.WriteLine(oTemp1.milliseconds_since_epoch);
+	Console.WriteLine("－－－大腸頭、闌尾JSON值解回－－－");
+	Console.WriteLine(oTemp2.unnecessary.date);
+	Console.WriteLine(oTemp2.unnecessary.time);
+	Console.WriteLine(oTemp2.unnecessary.milliseconds_since_epoch);
+	Console.Read();
+}
+</pre>
+
+<h3>輸出的畫面</h3>
+<p>嗯嗯，JSON值很正常的顯示嘍！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/18919816424/in/datetaken/"><img src="https://c1.staticflickr.com/457/18919816424_c3bc70572c_o.png" alt="20150709_01"></a>
+
+<p>終於脫離不需要ORM情境下還要建立ORM的幹意了！程式碼非常的簡潔清爽，如果有更好的寫法，也請您分享一下喔！</p>
+
+<small>匿名類型 匿名型別 AnonymousTypes Newtonsoft.Json ObjectRelationalMapping</small>
+
+</body>
+</html>

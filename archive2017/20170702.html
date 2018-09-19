@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>逐步安裝Windows Server 2016之IIS與ASP.NET</h1>
+
+<p>一開始不免於俗的還是要說一下，Windows Server 2003的時代，安裝IIS與ASP.NET實在是太幸福了，到了Windows Server 2008以後就開始變得很「客製化」了，好處是可以自訂到最精細的等級，用不到的都不需要裝，壞處就是有些地方一閃神沒勾選到，就要回頭再重新設定一遍，真的是很煩。</p>
+
+<p>可能會有些人覺得奇怪，之前我的網站中就有介紹過「<a href="/archive2013/20131205.html" target="_blank">逐步安裝Windows Server 2012之IIS與ASP.NET</a>」，為何Windows Server 2016還要重寫一次，實情絕對不是為了要灌水（我沒那麼閒），實在是因為是：挖勒～微軟又把設定改啦！雖然說大致上一樣，但是還是有許多細微之處明顯不同，只好再分享一次嘍！</p>
+
+<h3>逐步安裝Windows Server 2016之IIS與ASP.NET</h3>
+
+<p>Step 01. 開啟伺服器管理員＞點選右上角「新增角色及功能」。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35238670240/in/dateposted-public/" title="20170702_01"><img src="https://farm5.staticflickr.com/4049/35238670240_4f569ca678_o.png" width="1024" height="768" alt="20170702_01"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 02. 遇到開始前的聲明，直接點選下一步。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35238670220/in/dateposted-public/" title="20170702_02"><img src="https://farm5.staticflickr.com/4092/35238670220_84702c603d_o.png" width="1024" height="768" alt="20170702_02"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 03. 選擇角色型或功能安裝。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35625391605/in/dateposted-public/" title="20170702_03"><img src="https://farm5.staticflickr.com/4092/35625391605_5bd105653a_o.png" width="1024" height="768" alt="20170702_03"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 04. 選取「從伺服器集區選取伺服器」，預設當然只會有我們這台本機伺服器嘍！</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/34784246464/in/dateposted-public/" title="20170702_04"><img src="https://farm5.staticflickr.com/4259/34784246464_ed556feb03_o.png" width="1024" height="768" alt="20170702_04"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 05. 選擇伺服器角色，勾選「網頁伺服器（IIS）」。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35238670590/in/dateposted-public/" title="20170702_05"><img src="https://farm5.staticflickr.com/4130/35238670590_8ed5c6b9c5_o.png" width="1024" height="768" alt="20170702_05"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 06. 精靈會跳出連動動作，請確定包含管理工具有被打勾後，點選「新增功能」。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35457319512/in/dateposted-public/" title="20170702_06"><img src="https://farm5.staticflickr.com/4262/35457319512_7a45c2f83b_o.png" width="1024" height="768" alt="20170702_06"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 07. 返回原來畫面，就可以看到網頁伺服器（IIS）已經有被勾選起來了，請點選「下一步」。PS：從現在開始出現差異，Windows Server 2012必須要加勾選的應用程式伺服器「Application Server」不見了。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35457319452/in/dateposted-public/" title="20170702_07"><img src="https://farm5.staticflickr.com/4020/35457319452_1756b8047a_o.png" width="1024" height="768" alt="20170702_07"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 08. 請勾選畫面中的「ASP.NET 4.6」。這裡的命名也很奇怪，把版本號命名進去，那如果更新到4.7怎麼辦呢？（事實上到ASP.NET 4.7還是可以用的）</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35457319342/in/dateposted-public/" title="20170702_08"><img src="https://farm5.staticflickr.com/4116/35457319342_98ebc6dfca_o.png" width="1024" height="768" alt="20170702_08"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 09. 接下來是網頁伺服器角色（IIS）的設定</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35238670460/in/dateposted-public/" title="20170702_09"><img src="https://farm5.staticflickr.com/4038/35238670460_1e25dd0b07_o.png" width="1024" height="768" alt="20170702_09"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 10. 請依照自己的需求，把不要用到的選項勾選掉，如此一來可以提升伺服器的效能喔！</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35238670390/in/dateposted-public/" title="20170702_10"><img src="https://farm5.staticflickr.com/4068/35238670390_ce9bc8d844_o.png" width="1024" height="768" alt="20170702_10"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 11. 捲到安裝項次的中間，又來了，畫面中的這個「ASP.NET 4.6」記得勾選起來，精靈會提示連動安裝相關的必要項次。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35625391205/in/dateposted-public/" title="20170702_11"><img src="https://farm5.staticflickr.com/4286/35625391205_d52c2ecc0d_o.png" width="1024" height="768" alt="20170702_11"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 12. 大功告成，開始安裝。</p>
+<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/35238670290/in/dateposted-public/" title="20170702_12"><img src="https://farm5.staticflickr.com/4089/35238670290_85d64ed47c_o.png" width="1024" height="768" alt="20170702_12"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+<p>Step 13. 安裝完成後理論上是不用重開機啦，不過建議還是重新開機一下會比較好。</p>
+
+
+<p>最後貼心的附上一個小小的ASP.NET測試程式碼，將其複製到「C:\Interpub\wwwroot\」下，打開瀏覽器如果可以顯示出伺服器當下的時間的話，那就是已經安裝好IIS跟ASP.NET啦！</p>
+
+<pre>
+//Testing IIS &anp; ASP.NET environment
+&lt;script language="c#" runat="server"&gt;
+public void Page_Load(object sender, EventArgs e)
+{
+  uMsg.Text = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+}
+&lt;/script&gt;
+
+&lt;h1&gt;
+  &lt;asp:Literal id="uMsg" runat="server"/&gt;
+&lt;/h1&gt;
+</pre>
+
+<p>
+	相關參考連結：<a href="/archive2013/20131205.html" target="_blank">逐步安裝Windows Server 2012之IIS與ASP.NET</a>
+</p>
+
+<small>WindowsServer2016 IIS Install Setup</small>
+
+</body>
+</html>

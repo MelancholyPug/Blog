@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>亂數產生Unicode中文範圍的中文字元</h1>
+
+<p>今天突然有一個需求需要用到這一方面的程式，大概就是產生一個現在Unicode字碼表內的中文字，然後是用亂數的型態產生的，由於之前對於文字的處理僅止於編碼的轉換（例如Big5轉Unicode），對於Unicode亂數後產生回中文字的功能是連碰都沒碰過，於是上網先搜尋一下必要的知識後，就開始寫個Console的程式來驗證。</p>
+
+<p>Unicode中文字碼的範圍落在0x4E00至0x9FA5（UTF-32），然後0x9FA6至0x9FFF是標點符號等那些字符，因此有了這些知識後，要產生出這樣構想的程式碼自然就不是問題了！程式碼如下：</p>
+
+<pre>
+static void Main(string[] args)
+{
+	//呼叫視窗使用Unicode字串來顯示
+	Console.OutputEncoding = System.Text.Encoding.Unicode;
+	//產生1000字Unicode中文字
+	for (int i = 0; i &lt; 100; i++)
+	{
+		Console.Write(getRandomUnicode().Substring(0, 1));
+	}
+	Console.Read();
+}
+
+//取得一個亂數的Unicode中文字
+private static string getRandomUnicode()
+{
+	//Unicode中文字範圍
+	int iMin = Convert.ToInt32("4E00", 16);
+	int iMax = Convert.ToInt32("9FA5", 16);
+	//隨機一個中文字之整數
+	System.Random oRnd = new System.Random(System.Guid.NewGuid().GetHashCode());
+	int iChar = oRnd.Next(iMin, iMax);
+	//整數轉成Byte[]，再轉成字串
+	return System.Text.Encoding.Unicode.GetString(System.BitConverter.GetBytes(iChar));
+}
+</pre>
+
+<small>Unicode 中文 文字 字元 亂數產生</small>
+
+</body>
+</html>

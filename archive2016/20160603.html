@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>C#函式如何得知是哪一個方法或屬性來呼叫自己本身</h1>
+
+<p>早期在寫沒有IDE環境下寫程式時，最怕的就是偵錯。當你的程式碼越來越長、越來越龐大時，如果有數十個Function去調用某隻Function，然後在這隻Function裡面被Try-Cache到某個錯誤時，你就會發現問題大條了！是誰？是誰來呼叫這隻Function的？失去了單步追蹤，這時候簡直是Debug的夢靨。</p>
+
+<a href="https://www.flickr.com/photos/105479788@N06/26822578964/"><img src="https://c5.staticflickr.com/8/7459/26822578964_147f744421_c.jpg" alt="20160603_01"></a>
+
+<p>然後我們就會開始在每個Function裡面插入印出垃圾資訊的程式碼，諸如print("AAA");print("BBB");之類的。這個惡夢到物件導向的世界裡依然不能解除，一個大型的商用元件要考量、要捕捉的錯誤細緻度是很繁雜的。所以你可能會想要把整個錯誤的拋擲整理在一個統一的私有方法（Private Method）內，這時候你會遇到跟古時候一樣的問題，啊我怎麼知道是誰把Exception拋到這個方法裡面？</p>
+
+<h3>該是System.Runtime.CompilerServices來救你了</h3>
+<p>System.Runtime.CompilerServices裡面有關於Caller Info attributes中文翻譯成「呼叫端資訊」，裡面包含了三個屬性（Attribute），分別是CallerMemberNameAttribute 誰來呼叫你、CallerFilePathAttribute 呼叫你的程式路徑、CallerLineNumberAttribute 呼叫你的程式行號，這三個屬性其實你望文生義就知道答案了。得知有這個抓蟲神器也不要高興得太早，因為CallerMemberNameAttribute要.Net Framework 4.5以後才有。</p>
+
+<p>看一下老中青三代的範例程式碼：</p>
+<pre>
+public static void Main()
+{
+	A();
+	WriteLine("-----");
+	B();
+	Read();
+}
+
+public static void A()
+{
+	whoscall_1("Test1", "Method-A");
+	whoscall_2("Test2", System.Reflection.MethodBase.GetCurrentMethod());
+	whoscall_3("Test3");
+}
+
+public static void B()
+{
+	whoscall_1("Test1", "Method-B");
+	whoscall_2("Test2", System.Reflection.MethodBase.GetCurrentMethod());
+	whoscall_3("Test3");
+}
+
+private static void whoscall_1(string cMsg, string cWhoAmI)
+{
+	WriteLine($"{cMsg}\t{cWhoAmI}");
+}
+
+private static void whoscall_2(string cMsg, System.Reflection.MethodBase oMethod)
+{
+	WriteLine($"{cMsg}\t{oMethod.Name}");
+}
+
+private static void whoscall_3(
+	string cMsg,
+			[System.Runtime.CompilerServices.CallerMemberName] string cName = "",
+			[System.Runtime.CompilerServices.CallerFilePath] string cPath = "",
+			[System.Runtime.CompilerServices.CallerLineNumber] int cNum = 0)
+{
+	WriteLine($"{cMsg}\t{cName}\t{cNum}\t{cPath}");
+}
+</pre>
+
+<p>執行結果如下圖：</p>
+<a href="https://www.flickr.com/photos/105479788@N06/27154876870/in/dateposted-public/"><img src="https://c2.staticflickr.com/8/7283/27154876870_f35a0035b8_o.png" alt="20160603_02"></a>
+
+<p>值得一提的是，System.Runtime.CompilerServices是編譯時期在做的事情，所以遠比執行時期的System.Reflection.MethodBase.GetCurrentMethod()（反射、映射）來的高速！（純個人以既有知識推論，未證實！）</p>
+
+<p>相關連結請參考MSDN：<a href="https://goo.gl/IumZf8" target="_blank">System.Runtime.CompilerServices Namespace / CallerMemberNameAttribute Class</a></p>
+
+<small>C# Debug WhoCallMe WhoRunMe Function Method</small>
+
+</body>
+</html>

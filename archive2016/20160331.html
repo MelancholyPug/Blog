@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>Visual Studio Team Foundation 版本控制：創建與設定</h1>
+
+<p>Visual Studio Team Foundation Version Control（集中式版本控制）打從Visual SourceSafe時期我就開始關注了，到Team Foundation Server，中間摸索的過程大概就是架設完成後摸一摸就放棄了，會採用放棄的考量點很多，不外乎機器（備援）、管理（人力）、時間等資源問題，然後又想著哪天機器掛了、爛掉了，有可能要超級勞心勞力，且有可能整個大型專案毀於一旦（那個時代也沒有所謂的這麼方便的虛擬主機可以架設），因此最後都是放棄收場。</p>
+
+<p>直到Visual Studio Online的出現，一整個就是大大的驚喜啊！馬上開始把專案一個個往上丟，不知道要怪我懶還是介面寫的好，丟的過程中雖然有些小卡頓，但總是亂設定一下就草草上線了，用到現在已經數個年頭了倒也相安無事，因此這一塊一直也沒有多去仔細摸索相關的細節、學問。今天剛好有些時間，所以開虛擬機把這一塊摸一摸之後，當作是以後遇到類似設定的ＫＭ吧！這一篇文章主題是創建一個TFVC中央版控機制，以及利用VisualStudio 2015來進行初次的專案創建（建置）與提交（Commit）。</p>
+
+<p>至於有人會問說在2016的現代為何不要採用分散式版控（Git、GitHub）的方案？我只能說，沒人沒錢沒時間的考量下，因地制宜者方為真英雄也。</p>
+
+<h3>創建VisualStudio.com裡面你的專屬網址</h3>
+<p>這一步驟我並不想仔細說明，稍微有點網路常識的人應該都可以勝任才是。申請的方式很簡單，首先你要先有一個Mirosoft Account，然後到http://www.visualstudio.com/去Create一個屬於你自己獨一無二的網址，例如：http://BraBra.visualstudio.com/。（BraBra就是你自己命名的字串）</p>
+
+<h3>開設一個Team Project</h3>
+<p>這邊也是我之前一直搞不懂的階層觀念，一直到今天我才了解他的階層規則。首先應該要先將這個階層觀念記起來：</p>
+<pre>
+BraBra.visualstudio.com
+|-- DefaultCollection（免費版的只能有這個Collection）
+  |-- TeamProject（免費版這一層可以開無限個）
+    |-- Solution（地位如同VS的方案）
+      |-- Project1（地位如同VS的專案）
+      |-- Project2 ...
+</pre>
+
+<p>Step 1. 在visualstudio.com網頁中，創建一個Team Project，並將其取名為Code（之後我們統一會用Code這個名字當範例），在這邊開發方法論我們選Scrum，版控種類選擇Team Foundation Version Control。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25550766253/"><img src="https://c1.staticflickr.com/1579/25550766253_8b5bc2c918_o.png" alt="20160331_01"></a>
+
+<p>Step 2. 接下來你會看到$/Code被建立啦！這個代表你已經在DefaultCollection下創建了一個名為Code的Team Project了。理論上你應該為這個Team Project添加數名開發成員並賦予給他們權限，不過這個範例只有我一個人在使用，因此就跳過這個步驟啦！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26060951652"><img src="https://c1.staticflickr.com/1571/26060951652_027300953c_o.png" alt="20160331_02"></a>
+
+<h3>回到Visual Studio 2015開始進行Team Explorer操作</h3>
+<p>Step 3. 脫離了visualstudio.com瀏覽器等級的操作，讓我們回到Windows的VS介面吧！首先到工具列的小組＞管理連接，VS會打開一個叫做Team Explorer的面板，這個面板中已經囊擴所有的TFS端的操作功能。接著讓我們點選紅框中的「連接」小字眼。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26060951632"><img src="https://c1.staticflickr.com/1492/26060951632_1ec6c6ec60_c.jpg" alt="20160331_03"></a>
+
+<p>Step 4. 這個工具就是要讓你指定要連接到哪個TFS伺服器，你可以連到自己架設的TFS伺服器，當然也可以連線到免費的visualstudio.com啦！別忘了，一個VS裡面可以連接多個visualstudio.com的Domain喔！請點選「伺服器」按鈕，將你之前命名好的BraBra.visualstudio.com加入吧！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25550766163"><img src="https://c1.staticflickr.com/1582/25550766163_d86847c6e7_c.jpg" alt="20160331_04"></a>
+
+<p>Step 5. 接下來系統會導引你去設定工作區。工作區的觀念就是一個本地端的資料夾，而這個資料夾中會映射你對遠端TFS的資料夾，也就是如果你今天創建了一個新的專案，那麼應該放在這個工作區的目錄下才是。一般來說是建議用這樣的觀點來設定啦，但這也不是絕對，也就是說提交到遠端TFS的專案資料夾，也可以超出你工作區的預設資料夾之外，一旦有這樣的情況發生，VS會自動在你的工作區內幫你補記上一筆對應的資料夾路徑。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25548646414"><img src="https://c1.staticflickr.com/1619/25548646414_2b78ebc706_c.jpg" alt="20160331_05"></a>
+
+<p>Step 6. 在這個例子中，我在C磁碟中開創了一個叫做TFVC的資料夾，這個資料夾其實就是對應到TFS的「$/」。所以當然「TFVC/Code」資料夾，也就是對應到TFS的「$/Code」嘍。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26060951572"><img src="https://c1.staticflickr.com/1549/26060951572_de7b9d5822_c.jpg" alt="20160331_06"></a>
+
+<p>Step 7. 設定好之後，VS會貼心的問你說，你要不要把現在遠端TFS中所有的檔案，先抄寫一份最新的版本到你的工作區？這當然好啊！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26060951522"><img src="https://c1.staticflickr.com/1456/26060951522_f982d88a2a_c.jpg" alt="20160331_07"></a>
+
+<p>Step 8. 接下來我們去新增一個全新的方案（專案），名為「ConsoleTest」，儲存的位置記得選好在Code下面，並且記得勾選「加入至原始檔控制」。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26060951502"><img src="https://c1.staticflickr.com/1532/26060951502_682fa83fe6_c.jpg" alt="20160331_08"></a>
+
+<p>Step 9. 接著我們馬上到方案上面，再補上一個叫做「ConsoleTest2」的專案，</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26087079391"><img src="https://c1.staticflickr.com/1708/26087079391_6903091fc1_c.jpg" alt="20160331_09"></a>
+<a href="https://www.flickr.com/photos/105479788@N06/26087079411"><img src="https://c1.staticflickr.com/1496/26087079411_757356bb34_c.jpg" alt="20160331_10"></a>
+
+<p>如此一來，這個叫「ConsoleTest」的方案下，總共有兩個專案，各自名為「ConsoleTest」、「ConsoleTest2」。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25550765903"><img src="https://c1.staticflickr.com/1593/25550765903_84de84ae00_c.jpg" alt="20160331_11"></a>
+
+<p>Step 10. 我們打開本地端對應的工作區資料夾來看，其對應關係其實很清楚。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25550765913"><img src="https://c1.staticflickr.com/1673/25550765913_06d2051ebe_c.jpg" alt="20160331_12"></a>
+
+<p>Step 11. 打開「原始檔控制總管」，我們也可以輕易的對應本地端（右邊）與TFS端（左邊）的目錄結構關係。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26127466116"><img src="https://c1.staticflickr.com/1674/26127466116_fe4bc4b4a2_c.jpg" alt="20160331_13"></a>
+
+<p>Step 12. 回到Team Explorer的首頁，我們點下「暫止的變更」，這個台灣微軟翻譯的其實不是很好理解，他的意思是指「自從你從TFS下載過最新的版本後，到此刻你所有對工作區監控範圍內的資料變更，包含新增修改刪除檔案、資料夾」。在這個範例中你可以看到所有的資料夾或檔案都有+的圖示，這表示你新增了這些檔案並且要將他們加入TFS版控。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25550765733"><img src="https://c1.staticflickr.com/1470/25550765733_6903091fc1_c.jpg" alt="20160331_14"></a>
+
+<p>Step 13. 好小孩應該在每一次的簽入（commit、提交）前，把所有的變更紀錄好好的以文字描述好，以增強日後的可讀性。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25880527250"><img src="https://c1.staticflickr.com/1501/25880527250_7d8a87c0d9_c.jpg" alt="20160331_15"></a>
+
+<p>Step 14. 貼心的VS會警告你，讓你再確認最後的檔案總量資訊。這邊要提醒大家一點的是，不知是否有人看出圖中的箭頭處ICON是一樣的，這代表按下左上角的小按鈕一樣可以快速的切換到提交功能喔！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/25548645864"><img src="https://c1.staticflickr.com/1661/25548645864_952dde46b8_c.jpg" alt="20160331_16"></a>
+
+<p>Step 15. 貼心的VS會警告你，Solution方案檔要被改寫成遠端TFS的版本了，是否確定？答案當然是ＹＥＳ！</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26127465986"><img src="https://c1.staticflickr.com/1657/26127465986_30e07744b2_c.jpg" alt="20160331_17"></a>
+
+<p>Step 16. 大功告成，如果你的檔案或資料夾有簽入成功，則會顯示成一個鎖頭的樣子。在多人開發的使用環境下，你會慢慢的熟悉這些小圖示的代表意義，例如你自己正在取出修改，那麼會變成紅色的打勾。又例如有別的開發人員取出編輯，則你這邊會變成一個藍紫色的小人頭。</p>
+<a href="https://www.flickr.com/photos/105479788@N06/26127465926"><img src="https://c1.staticflickr.com/1629/26127465926_70a168f1b9_c.jpg" alt="20160331_18"></a>
+
+<small>VisualStudioTeamFoundationVersionControl VisualStudioOnline VSTFVC TFVC</small>
+
+</body>
+</html>
