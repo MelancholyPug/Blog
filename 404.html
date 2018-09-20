@@ -31,7 +31,7 @@
             var cDateHtml = cUrlPath.substring(cUrlPath.indexOf(cKey) + cKey.length);
             var cRightUrl = "/archive" + cDateHtml.substring(0, 4) + "/" + cDateHtml;
             $("#uRedirectText").html("因應網站架構更改，請移至下列網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
-            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + 'aaa' + "'> Redirect to new URL &raquo;</a>");
+            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "'> Redirect to new URL &raquo;</a>");
           }
         });
       }, 2);	//Priority:2
