@@ -103,11 +103,12 @@ public void page_load(Object sender, EventArgs e)
 
 <pre>
 private static object ThisLock = new object();
----
+foo = GetCache();
 if (foo == null) //1st check
 {
   lock (ThisLock)
   {
+    foo = GetCache();
     if (foo == null) //2nd (double) check
     {
       //Your work...
