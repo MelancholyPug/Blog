@@ -12,6 +12,7 @@
             <h1>404 - Page Not Found</h1>
             <p>:( &nbsp; The requested page was not found on this web site.</p>
             <p>找不到這個網頁，請重新檢查您的網址是否輸入正確。</p>
+            <p id="uRedirectText"></p>
             <p id="uButtonArea">
               <a class="btn btn-primary btn-lg" href="/_resource/html/articles.html">Go article lists &raquo;</a>
             </p>
@@ -22,6 +23,8 @@
     <script>
       pushToExecuteList(function() {
         $(document).ready(function () {
+          $("#uRedirectText").html("因應網站架構更改，請移至下列網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
+          $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + 'aaa' + "'> Redirect to new URL &raquo;</a>");
           /* 解決早期網站目錄架構轉換問題（Client端轉址）
            * http://slashlook.com/articles_20170301.html
            */
