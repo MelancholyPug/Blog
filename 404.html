@@ -12,10 +12,18 @@
 						<h1>404 - Page Not Found</h1>
 						<p>:( &nbsp; The requested page was not found on this web site.</p>
 						<p>找不到這個網頁，請重新檢查您的網址是否輸入正確。</p>
-						<p><a class="btn btn-success btn-lg" href="/articles.html">Go articles &raquo;</a></p>
+            <p>
+              <a class="btn btn-success btn-lg" href="/_resource/html/articles.html">Redirect to new URL &raquo;</a>
+              <a class="btn btn-primary btn-lg" href="/_resource/html/articles.html">Go article lists &raquo;</a>
+            </p>
 					</div>
 				</div>
 			</div>
 		</div>
+    <script>
+      var oSite = new Object();
+      oSite.cUrlPath = window.location.pathname;
+      alert(cUrlPath);
+    </script>
   </body>
 </html>
