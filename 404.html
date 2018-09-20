@@ -25,7 +25,7 @@
            * e.g. http://slashlook.com/articles_20170301.html */
           var cUrlPath = window.location.pathname;
           var cKey = "/articles_";
-          if (cUrlPath.indexOf(cKey) == -1) {
+          if (cUrlPath.indexOf(cKey) !== -1) {
             var iRedirectSec = 100;
             //Compute Url
             var cDateHtml = cUrlPath.substring(cUrlPath.indexOf(cKey) + cKey.length);
