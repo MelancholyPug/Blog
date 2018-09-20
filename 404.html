@@ -23,8 +23,6 @@
     <script>
       pushToExecuteList(function() {
         $(document).ready(function () {
-          $("#uRedirectText").html("因應網站架構更改，請移至下列網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
-          $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + 'aaa' + "'> Redirect to new URL &raquo;</a>");
           /* 解決早期網站目錄架構轉換問題（Client端轉址）
            * http://slashlook.com/articles_20170301.html
            */
@@ -33,7 +31,8 @@
           if (cUrlPath.indexOf(cKey) !== -1) {
             var cDateHtml = cUrlPath.substring(cUrlPath.indexOf(cKey) + cKey.length);
             var cRightUrl = "/archive" + cDateHtml.substring(0, 4) + "/" + cDateHtml;
-            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "'> Redirect to new URL &raquo;</a>");
+            $("#uRedirectText").html("因應網站架構更改，請移至下列網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
+            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + 'aaa' + "'> Redirect to new URL &raquo;</a>");
           }
         });
       }, 2);	//Priority:2
