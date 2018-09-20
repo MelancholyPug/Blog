@@ -30,7 +30,7 @@
           if (cUrlPath.indexOf(cKey) !== -1) {
             var cDateHtml = cUrlPath.substring(cUrlPath.indexOf(cKey) + cKey.length);
             var cRightUrl = "/archive" + cDateHtml.substring(0, 4) + "/" + cDateHtml;
-            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "> Redirect to new URL &raquo;</a>");
+            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "'> Redirect to new URL &raquo;</a>");
           }
         });
       }, 2);	//Priority:2
