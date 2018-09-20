@@ -6,17 +6,15 @@
 	</head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="jumbotron">
-            <h1>404 - Page Not Found</h1>
-            <p>:( &nbsp; The requested page was not found on this web site.</p>
-            <p>找不到這個網頁，請重新檢查您的網址是否輸入正確。</p>
-            <p id="uRedirectText"></p>
-            <p id="uButtonArea">
-              <a class="btn btn-primary btn-lg" href="/_resource/html/articles.html">Go article lists &raquo;</a>
-            </p>
-          </div>
+      <div class="col-md-12">
+        <div class="jumbotron" style="padding:30px">
+          <h1>Page Not Found :(</h1>
+          <hr />
+          <p>The requested page was not found on this web site.</p>
+          <p id="uRedirectText">找不到這個網頁，請重新檢查您的網址是否輸入正確。</p>
+          <p id="uButtonArea">
+            <a class="btn btn-primary btn-lg" href="/_resource/html/articles.html">Go article lists &raquo;</a>
+          </p>
         </div>
       </div>
     </div>
@@ -24,14 +22,26 @@
       pushToExecuteList(function() {
         $(document).ready(function () {
           /* 解決早期網站目錄架構轉換問題（Client端轉址）
-           * http://slashlook.com/articles_20170301.html */
+           * e.g. http://slashlook.com/articles_20170301.html */
           var cUrlPath = window.location.pathname;
           var cKey = "/articles_";
-          if (cUrlPath.indexOf(cKey) !== -1) {
+          if (cUrlPath.indexOf(cKey) == -1) {
+            var iRedirectSec = 100;
+            //Compute Url
             var cDateHtml = cUrlPath.substring(cUrlPath.indexOf(cKey) + cKey.length);
-            var cRightUrl = "/archive" + cDateHtml.substring(0, 4) + "/" + cDateHtml;
-            $("#uRedirectText").html("因應網站架構更改，請移至下列網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
-            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "'> Redirect to new URL &raquo;</a>");
+            var cRightUrl = "http://slashlook.com/archive" + cDateHtml.substring(0, 4) + "/" + cDateHtml;
+            //Write Meta
+            $('head').append("<meta http-equiv='refresh' content='" + iRedirectSec + "; url=" + cRightUrl + "'/>");
+            $('head').append("<link rel='canonical' href='" + cRightUrl + "'/>");
+            //Write UI
+            $("#uRedirectText").html("該網頁已搬家！將於 <span id='uCounter'></span> 秒轉跳至新網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
+            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "'>Redirect URL &raquo;</a>");
+            //Count
+            (function countdown(iCount) {
+              //if (iCount <= 0) { window.location.assign(cRightUrl); }
+              setTimeout(function () { countdown(iCount - 1); }, 1000);
+              $("#uCounter").text(iCount);
+            })(iRedirectSec);
           }
         });
       }, 2);	//Priority:2
