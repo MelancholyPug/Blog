@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
-	</head>
+  <head>
+    <meta charset="utf-8">
+    <script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+  </head>
   <body>
     <div class="container">
       <div class="col-md-12">
@@ -26,22 +26,22 @@
           var cUrlPath = window.location.pathname;
           var cKey = "/articles_";
           if (cUrlPath.indexOf(cKey) !== -1) {
-            var iRedirectSec = 3;
+            var iRedirectSecond = 3;
             //Compute Url
             var cDateHtml = cUrlPath.substring(cUrlPath.indexOf(cKey) + cKey.length);
             var cRightUrl = "http://slashlook.com/archive" + cDateHtml.substring(0, 4) + "/" + cDateHtml;
             //Write Meta
-            $('head').append("<meta http-equiv='refresh' content='" + iRedirectSec + "; url=" + cRightUrl + "'/>");
+            $('head').append("<meta http-equiv='refresh' content='" + iRedirectSecond + "; url=" + cRightUrl + "'/>");
             $('head').append("<link rel='canonical' href='" + cRightUrl + "'/>");
             //Write UI
-            $("#uRedirectText").html("該網頁已搬家！將於 <span id='uCounter'></span> 秒轉跳至新網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
+            $("#uRedirectText").html("該網頁已搬家！將於 <span id='uCounter' style='color:DarkRed'></span> 秒轉跳至新網址：<a href='" + cRightUrl + "'>" + cRightUrl + "</a>");
             $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "'>Redirect URL &raquo;</a>");
             //Count
             (function countdown(iCount) {
               //if (iCount <= 0) { window.location.assign(cRightUrl); }
               setTimeout(function () { countdown(iCount - 1); }, 1000);
               $("#uCounter").text(iCount);
-            })(iRedirectSec);
+            })(iRedirectSecond);
           }
         });
       }, 2);	//Priority:2
