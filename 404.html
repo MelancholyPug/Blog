@@ -12,7 +12,9 @@
             <h1>404 - Page Not Found</h1>
             <p>:( &nbsp; The requested page was not found on this web site.</p>
             <p>找不到這個網頁，請重新檢查您的網址是否輸入正確。</p>
-            <p><a class="btn btn-primary btn-lg" href="/_resource/html/articles.html">Go article lists &raquo;</a></p>
+            <p id="uButtonArea">
+              <a class="btn btn-primary btn-lg" href="/_resource/html/articles.html">Go article lists &raquo;</a>
+            </p>
           </div>
         </div>
       </div>
@@ -28,6 +30,7 @@
           if (cUrlPath.indexOf(cKey) !== -1) {
             var cDateHtml = cUrlPath.substring(cUrlPath.indexOf(cKey) + cKey.length);
             var cRightUrl = "/archive" + cDateHtml.substring(0, 4) + "/" + cDateHtml;
+            $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "> Go article lists & raquo;</a>");
           }
         });
       }, 2);	//Priority:2
