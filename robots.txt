@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://slashlook.com/_data/sitemap.txt
