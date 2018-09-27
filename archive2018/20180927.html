@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>列舉Windows作業系統下的造字檔內的所有文字，使其方便查詢</h1>
+
+  <p>這一兩天都在碰有關於Big5的使用者造字檔（EUDC；End User Defined Characters），將已經研究完成的相關知識透過一個小專案將其記錄在此，以免日後遺忘。</p>
+
+  <p>這隻程式碼我是用網頁的角度來寫，所以有些方法名稱如果覺得很詭異，那請自己在腦海中轉化一下吧。共計有下列重點：</p>
+
+  <ol>
+    <li>列舉EUDC中的BIG5編碼。（16進制；2 Bytes）</li>
+    <li>將EUDC字元以Unicode。（UTF-16；資料庫中的NVarChar）的角度來看，所代表的數值（10進制）</li>
+    <li>將EUDC字元輸出。（當然，作業系統端一定要安裝造字檔案才看的到）</li>
+  </ol>
+
+  <p>廢話不多說，直接上程式碼吧。</p>
+
+<pre>
+public void Page_Load(object sender, EventArgs e)
+{
+  //Big5 EUDC範圍列表
+  string[] aryEUDC = new string[]
+  {
+    "FA40", "FEFE",
+    "8E40", "A0FE",
+    "8140", "8DFE",
+    "C6A1", "C8FE",
+  };
+
+  //定義相關變數
+  System.Text.StringBuilder oSB = new System.Text.StringBuilder();
+  //定義委派函式
+  System.Func&lt;int, int, int&gt; funcFormula = null;
+
+  for (int i = 0; i &lt; aryEUDC.Length; i += 2)
+  {
+    //定義要尋訪的造字區間
+    var oCodeStart = String2RealByte(aryEUDC[i]);
+    var oCodeEnd = String2RealByte(aryEUDC[i+1]);
+    //設定要執行的函式
+    switch (oCodeStart.iHigh.ToString("X"))
+    {
+      case "81":
+        funcFormula = (iHigh, iLow) =&gt; { return 0xEEB8 + (157 * (iHigh - 0x81)) + ((iLow &lt; 0x80) ? (iLow - 0x40) : (iLow - 0x62)); }; break;
+      case "8E":
+        funcFormula = (iHigh, iLow) =&gt; { return 0xE311 + (157 * (iHigh - 0x8e)) + ((iLow &lt; 0x80) ? (iLow - 0x40) : (iLow - 0x62)); }; break;
+      case "C6":
+        funcFormula = (iHigh, iLow) =&gt; { return 0xF672 + (157 * (iHigh - 0xc6)) + ((iLow &lt; 0x80) ? (iLow - 0x40) : (iLow - 0x62)); }; break;
+      case "FA":
+        funcFormula = (iHigh, iLow) =&gt; { return 0xE000 + (157 * (iHigh - 0xfa)) + ((iLow &lt; 0x80) ? (iLow - 0x40) : (iLow - 0x62)); }; break;
+    }
+    //列印區間標示
+    oSB.Append($"－－－{oCodeStart.iValue.ToString("X")}～{oCodeEnd.iValue.ToString("X")}－－－\r\n");
+    //依照指定的範圍尋訪
+    for (int j = oCodeStart.iValue; j &lt;= oCodeEnd.iValue; j++)
+    {
+      int iTemp = MappingCode(oCodeStart, funcFormula);
+      /* Sample: FA40    57344    ☆ */
+      oSB.Append($"{oCodeStart.iValue.ToString("X")}\t{iTemp}\t{System.Convert.ToChar(iTemp)}\r\n");
+      oCodeStart = String2RealByte((j + 1).ToString("X"));
+    }
+  }
+  //輸出字串
+  uMessage.Text = oSB.ToString();
+}
+
+//實作委派
+private int MappingCode((int iHigh, int iLow, int iValue) oTemp, System.Func&lt;int, int, int&gt; funcFormula)
+{
+  return funcFormula(oTemp.iHigh, oTemp.iLow);
+}
+
+//將16進制的文字，轉換成真實地Byte
+private (int iHigh, int iLow, int iValue) String2RealByte(string cTemp)
+{
+  return (
+    iHigh:  System.Int32.Parse(cTemp.Substring(0, 2), System.Globalization.NumberStyles.HexNumber),
+    iLow:   System.Int32.Parse(cTemp.Substring(2, 2), System.Globalization.NumberStyles.HexNumber),
+    iValue: System.Int32.Parse(cTemp,                 System.Globalization.NumberStyles.HexNumber)
+  );
+}
+</pre>
+
+  <p>其實該知道的知識都寫在註解中了，所以就不再贅述。值得一提的是，這裡有運用到委派的架構，將要計算的方法踢給外函式去實作，如果有興趣的可以特別注意一下。</p>
+
+  <p>相關參考：</p>
+  <a href="/archive2018/20180925.html" target="_blank">找出字串中隱藏的Big5造字字元，並用Unicode將其取代</a><br>
+  <a href="/archive2014/20141201.html" target="_blank">利用Predicate泛型委派，進行類別方法委派之實作</a>
+
+  <small>BIG5 EUDC CharactersList</small>
+
+</body>
+</html>
