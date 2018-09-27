@@ -6,19 +6,19 @@
 </head>
 <body>
 
-  <h1>列舉Windows作業系統下的造字檔內的所有文字，使其方便查詢</h1>
+<h1>列舉Windows作業系統下的造字檔內的所有文字，使其方便查詢</h1>
 
-  <p>這一兩天都在碰有關於Big5的使用者造字檔（EUDC；End User Defined Characters），將已經研究完成的相關知識透過一個小專案將其記錄在此，以免日後遺忘。</p>
+<p>這一兩天都在碰有關於Big5的使用者造字檔（EUDC；End User Defined Characters），將已經研究完成的相關知識透過一個小專案將其記錄在此，以免日後遺忘。</p>
 
-  <p>這隻程式碼我是用網頁的角度來寫，所以有些方法名稱如果覺得很詭異，那請自己在腦海中轉化一下吧。共計有下列重點：</p>
+<p>這隻程式碼我是用網頁的角度來寫，所以有些方法名稱如果覺得很詭異，那請自己在腦海中轉化一下吧。共計有下列重點：</p>
 
-  <ol>
-    <li>列舉EUDC中的BIG5編碼。（16進制；2 Bytes）</li>
-    <li>將EUDC字元以Unicode。（UTF-16；資料庫中的NVarChar）的角度來看，所代表的數值（10進制）</li>
-    <li>將EUDC字元輸出。（當然，作業系統端一定要安裝造字檔案才看的到）</li>
-  </ol>
+<ol>
+  <li>列舉EUDC中的BIG5編碼。（16進制；2 Bytes）</li>
+  <li>將EUDC字元以Unicode。（UTF-16；資料庫中的NVarChar）的角度來看，所代表的數值（10進制）</li>
+  <li>將EUDC字元輸出。（當然，作業系統端一定要安裝造字檔案才看的到）</li>
+</ol>
 
-  <p>廢話不多說，直接上程式碼吧。</p>
+<p>廢話不多說，直接上程式碼吧。</p>
 
 <pre>
 public void Page_Load(object sender, EventArgs e)
@@ -86,13 +86,25 @@ private (int iHigh, int iLow, int iValue) String2RealByte(string cTemp)
 }
 </pre>
 
-  <p>其實該知道的知識都寫在註解中了，所以就不再贅述。值得一提的是，這裡有運用到委派的架構，將要計算的方法踢給外函式去實作，如果有興趣的可以特別注意一下。</p>
+<p>輸出會長得像下列：</p>
+<pre>
+－－－FA40～FEFE－－－
+FA40	57344	
+FA41	57345	
+FA42	57346	
+FA43	57347	
+FA44	57348	
+FA45	57349	
+...
+</pre>
 
-  <p>相關參考：</p>
-  <a href="/archive2018/20180925.html" target="_blank">找出字串中隱藏的Big5造字字元，並用Unicode將其取代</a><br>
-  <a href="/archive2014/20141201.html" target="_blank">利用Predicate泛型委派，進行類別方法委派之實作</a>
+<p>其實該知道的知識都寫在註解中了，所以就不再贅述。值得一提的是，這裡有運用到委派的架構，將要計算的方法踢給外函式去實作，如果有興趣的可以特別注意一下。</p>
 
-  <small>BIG5 EUDC CharactersList</small>
+<p>相關參考：</p>
+<a href="/archive2018/20180925.html" target="_blank">找出字串中隱藏的Big5造字字元，並用Unicode將其取代</a><br>
+<a href="/archive2014/20141201.html" target="_blank">利用Predicate泛型委派，進行類別方法委派之實作</a>
+
+<small>BIG5 EUDC CharactersList</small>
 
 </body>
 </html>
