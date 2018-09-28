@@ -36,6 +36,7 @@ public void Page_Load(object sender, EventArgs e)
   System.Text.StringBuilder oSB = new System.Text.StringBuilder();
   //定義委派函式
   System.Func&lt;int, int, int&gt; funcFormula = null;
+  System.Func&lt;(int H, int L, int V), System.Func&lt;int, int, int&gt;, int&gt; MappingCode = (d, f) =&gt; { return f(d.H, d.L); };
 
   for (int i = 0; i &lt; aryEUDC.Length; i += 2)
   {
@@ -67,12 +68,6 @@ public void Page_Load(object sender, EventArgs e)
   }
   //輸出字串
   uMessage.Text = oSB.ToString();
-}
-
-//實作委派
-private int MappingCode((int iHigh, int iLow, int iValue) oTemp, System.Func&lt;int, int, int&gt; funcFormula)
-{
-  return funcFormula(oTemp.iHigh, oTemp.iLow);
 }
 
 //將16進制的文字，轉換成真實地Byte
