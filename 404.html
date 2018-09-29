@@ -38,7 +38,7 @@
             $("#uButtonArea").prepend("<a class='btn btn-success btn-lg' href='" + cRightUrl + "'>Redirect URL &raquo;</a>");
             //Count
             (function countdown(iCount) {
-              //if (iCount <= 0) { window.location.assign(cRightUrl); }
+              if (iCount <= 0) { window.location.assign(cRightUrl); }
               setTimeout(function () { countdown(iCount - 1); }, 1000);
               $("#uCounter").text(iCount);
             })(iRedirectSecond);
