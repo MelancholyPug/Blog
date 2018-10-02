@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>LINQ筆記：集合物件屬性值的更新，以及SQL WHERE IN的寫法</h1>
+
+<p>簡單的紀錄一下LINQ資料的挑選作法，以利日後回憶。</p>
+
+<h3>利用LINQ語法，更新集合物件內部的屬性值</h3>
+<p>這個問題很簡單，就是把你現在持有的資料包，依據某些資訊去更新某個屬性的內容值，就跟SQL的Update的動作是一樣的，只是，我們並沒有要寫入到資料庫就是了，純粹只是更新資料包而已。</p>
+
+<p>程式碼如下：</p>
+<pre>
+class Program
+{
+  static void Main(string[] args)
+  {
+    System.Collections.Generic.IEnumerable&lt;Person&gt; oData = new System.Collections.Generic.List&lt;Person&gt;()
+    {
+      new Person(){ cName="Adam",  cAddress="忠孝東路一號", iMoney=1000 },
+      new Person(){ cName="Ben",   cAddress="忠孝東路二號", iMoney=2000 },
+      new Person(){ cName="John",  cAddress="忠孝東路三號", iMoney=3000 },
+      new Person(){ cName="Marry", cAddress="忠孝東路四號", iMoney=4000 }
+    };
+    //利用LINQ進行屬性值的內容替換
+    oData = oData.Select(x =&gt; { x.cAddress = $"地址：{x.cAddress}"; return x; });
+  }
+}
+
+class Person
+{
+  public string cName { get; set; }
+  public string cAddress { get; set; }
+  public int iMoney { get; set; }
+}
+</pre>
+
+<p>若把上面的oData印出來，就會發現所有的cAddress都被加上「地址：」兩個字。</p>
+
+<h3>利用LINQ語法，來完成類似SQL的WHERE IN (...)的查詢</h3>
+<p>WHERE IN更精確地說，應該就是多值的查找，當然再加上個反向運算子，就變成WHERE NOT IN了。</p>
+
+<p>程式碼如下：</p>
+<pre>
+class Program
+{
+  static void Main(string[] args)
+  {
+    System.Collections.Generic.IEnumerable&lt;Person&gt; oData = new System.Collections.Generic.List&lt;Person&gt;()
+    {
+      new Person(){ cName="Adam",  cAddress="忠孝東路一號", iMoney=1000 },
+      new Person(){ cName="Ben",   cAddress="忠孝東路二號", iMoney=2000 },
+      new Person(){ cName="John",  cAddress="忠孝東路三號", iMoney=3000 },
+      new Person(){ cName="Marry", cAddress="忠孝東路四號", iMoney=4000 }
+    };
+    //黑名單
+    string[] aryBlack = { "Adam", "Ben" };
+    //利用LINQ進行WHERE NOT IN的查詢
+    oData = oData.Where(x =&gt; !aryBlack.Contains(x.cName));
+  }
+}
+
+class Person
+{
+  public string cName { get; set; }
+  public string cAddress { get; set; }
+  public int iMoney { get; set; }
+}
+</pre>
+
+<p>從上面的程式碼中，我們可以知道黑名單是Adam、Ben，所以最後被Where到的資料就只剩下John、Marry，這樣的效果相當於SQL的WHERE NOT IN。而如果要進行WHERE IN的做法，那就是把反向運算子拿掉就好了。</p>
+
+<small>C# LINQ Query SQL Update WhereIn WhereNotIn</small>
+
+</body>
+</html>
