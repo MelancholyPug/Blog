@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <h1>攔截HttpWebResponse的錯誤代碼</h1>
+  <h1>攔截HttpWebResponse.GetResponse()引發非200 OK的錯誤代碼</h1>
 
   <p>當我們在進行網路HTTP通訊的設計下，有一個詭異的情況會發生，當我們試圖去用System.Net.HttpWebRequest去取用遠端的某一個頁面，並在程式碼外圍包覆一層Try-Cache，事實上當某頁面回傳的HTTP代碼並非200 OK（System.Net.HttpStatusCode.OK）時，例如：GetResponse()時對方Http Header返回404 FileNotFound（System.Net.HttpStatusCode.NotFound），這時候程式碼竟然會幫你跳到Catch段（該說貼心嗎？）</p>
 
