@@ -55,7 +55,9 @@ Resource interpreted as Document but transferred with MIME type application/pdf
   <p>基本上我自己是很討厭使用瀏覽器內建的PDF瀏覽器，或者是在瀏覽器中嵌入WORD之類的Viewer在裡面進行瀏覽操作行為，因此我對檔案下載的觀點就是，下載到我的本地端就好，管我要怎麼使用！</p>
   <p>答案就是，不要輸出任何「Content-Type」，你Chrome不想聽我也不想講啊！只要載明「Content-Disposition: attachment; filename="TEST.pdf"」就好。</p>
 
-  <p>這下，就不會有任何警告啦！（但話說回來，警告就警告，其實所有的檔案下載也都是正常運行的。）</p>
+  <p>這下，就不會有任何警告啦！但這樣的做法也不是沒有缺點，缺點就是在ASP.NET的機制下，他發現你沒有輸出Content-Type，就會自動幫你補上Content-Type: text/html，且在修補的過程中，你原本自行運算輸出的Content-Length也消失無蹤了，這意味著你喪失了檔案下載的進度觀測功能。</p>
+
+  <p>所以最終，我選擇做自己，我把所有正確的資訊都餵給瀏覽器，你Chrome要警告就警告，反正所有的檔案下載也都是正常運行無誤。</p>
 
   <small>GoogleChrome HttpHeader Content-Type Content-Disposition ResourceInterpretedAsDocument ButTransferredWithMimeType</small>
 
