@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>Chrome在處理檔案下載引發Resource interpreted警告</h1>
+
+  <p>今天同事回報在網站的一個稀鬆平常的PDF檔案下載，在檔案正確下載到本地端的情況下，Google Chrome瀏覽器的DevTools（F12）中卻回報了下列字眼。</p>
+
+<pre>
+Resource interpreted as Document but transferred with MIME type application/octet-stream
+</pre>
+
+  <p>由於該網站的檔案下載是由一個公用的類別統一去操作HttpContext，所以當下的直覺是Google Chrome也管太寬了，連我不老實的輸出MIME也要管，當我把System.Web.MimeMapping.GetMimeMapping動態判斷MIME的程式碼加入時，發現根本沒有用，檔案依然是正確下載了，但Google Chrome吐給我的警告也更WTF了！</p>
+
+<pre>
+Response Headers:
+-----
+Content-Disposition: attachment; filename="TEST.pdf"
+Content-Type: application/pdf
+
+Google Chrome DevTools (F12)
+-----
+Resource interpreted as Document but transferred with MIME type application/pdf
+</pre>
+
+  <h3>ＷＴＦ？我的MIME都正確了還吐出警告？</h3>
+  <p>開始瘋狂搜尋網路的討論，發現有這樣困擾的工程師還真不少，在各大論壇中都有人提出，但給的答案其實都無濟於事，有的人說要補上Content-Disposition，有的人說要補上Content-Length，拜託，這個我本來就都有了好嗎？</p>
+  <p>Google Chrome瀏覽器跟你警告的中譯是：資源被解釋成一個文件，但是傳輸過來的MIME卻跟我說是一個PDF。這個警告說明，再怎麼想也是正確的啊！</p>
+
+  <h3>真正引發這個警告的原因</h3>
+
+  <p>其實Google Chrome瀏覽器想要跟你講的真正意思是：我預計收到的是一個我能試圖去理解的「MIME文件」，你卻丟一個PDF檔案叫我去儲存，現在是三小情況？</p>
+  <p>當我在網路爬文無數，最後在我腦海中突然一閃而過理解到這個的真相時，心中的OS是，我正確的描述檔案MIME，並請你以attachment的型態去把檔案儲存也有事？你才三小，你全家都三小！</p>
+
+  <h3>讓這個警告不再出現的方法</h3>
+
+  <h4>修改下載標籤</h4>
+  <p>在a標籤的後面加上「download」屬性，叫瀏覽器用download的方式去處理這個連結，這個方法對Chrome有用，但對瀏覽器的相容性卻很有危險性，自己上<a href="https://caniuse.com/#feat=download" target="_blank">Can I Use</a>查看看便知到後果。</p>
+  <p>況且，修改全網站的a標籤的寫法，也不是一件好味道的事情。</p>
+
+  <h4>採用公認標準寫法</h4>
+  <p>基本上所謂的標準寫法，就是只打出Content-Type，而不在去輸出其他HTTP標頭，讓瀏覽器自己去判斷要怎麼處理這個MIME，這樣的做法會形成一些後果．．．</p>
+  <ol>
+    <li>如果這個檔案是瀏覽器可以處理的檔案的話，那就不會出現警告。例如瀏覽器看到PDF檔案會用瀏覽器內建程式打開，你要嘛直接在裡面看，要嘛去點擊內建PDF瀏覽程式的下載按鈕將檔案下載。但你的PDF檔案名稱會以網址上面的最後連結文字（通常是一組UUID）當作是檔名。</li>
+    <li>承上，如果你想要自訂檔名而非以URL當作存檔名稱，那麼可以使用「Content-Disposition: inline; filename="TEST.pdf"」來解決。</li>
+    <li>遇到瀏覽器無法處理的MIME檔案，那警告還是會出現。例如ZIP檔案下載，連GOOGLE自己的網站的ZIP下載也會發出類似的<a href="https://code.google.com/archive/p/openssl-for-windows/downloads" target="_blank">警告</a>。</li>
+  </ol>
+  <pre>Resource interpreted as Document but transferred with MIME type application/octet-stream</pre>
+
+  <h4>永遠儲存檔案到本機寫法</h4>
+  <p>基本上我自己是很討厭使用瀏覽器內建的PDF瀏覽器，或者是在瀏覽器中嵌入WORD之類的Viewer在裡面進行瀏覽操作行為，因此我對檔案下載的觀點就是，下載到我的本地端就好，你管我要怎麼使用！</p>
+  <p>答案就是，不要輸出任何「Content-Type」，而是寫「Content-Disposition: attachment; filename="TEST.pdf"」就好。</p>
+
+  <p>這下，就不會有任何警告啦！（但話說回來，警告就警告，其實所有的檔案下載也都是正常運行的。）</p>
+
+  <small>GoogleChrome HttpHeader Content-Type Content-Disposition ResourceInterpretedAsDocument ButTransferredWithMimeType</small>
+
+</body>
+</html>
