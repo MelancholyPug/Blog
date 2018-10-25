@@ -43,17 +43,17 @@ Resource interpreted as Document but transferred with MIME type application/pdf
   <p>況且，修改全網站的a標籤的寫法，也不是一件好味道的事情。</p>
 
   <h4>採用公認標準寫法</h4>
-  <p>基本上所謂的標準寫法，就是只打出Content-Type，而不在去輸出其他HTTP標頭，讓瀏覽器自己去判斷要怎麼處理這個MIME，這樣的做法會形成一些後果．．．</p>
+  <p>基本上所謂的標準寫法，就是只打出Content-Type，而不在去輸出其他HTTP標頭，讓瀏覽器自己去判斷要怎麼處理這個MIME，這樣的做法會形成一些後果...</p>
   <ol>
     <li>如果這個檔案是瀏覽器可以處理的檔案的話，那就不會出現警告。例如瀏覽器看到PDF檔案會用瀏覽器內建程式打開，你要嘛直接在裡面看，要嘛去點擊內建PDF瀏覽程式的下載按鈕將檔案下載。但你的PDF檔案名稱會以網址上面的最後連結文字（通常是一組UUID）當作是檔名。</li>
     <li>承上，如果你想要自訂檔名而非以URL當作存檔名稱，那麼可以使用「Content-Disposition: inline; filename="TEST.pdf"」來解決。</li>
-    <li>遇到瀏覽器無法處理的MIME檔案，那警告還是會出現。例如ZIP檔案下載，連GOOGLE自己的網站的ZIP下載也會發出類似的<a href="https://code.google.com/archive/p/openssl-for-windows/downloads" target="_blank">警告</a>。</li>
+    <li>遇到瀏覽器無法處理的MIME檔案，那警告還是會出現。例如ZIP檔案下載，連GOOGLE自己的網站的ZIP下載也會發出類似的<a href="https://code.google.com/archive/p/openssl-for-windows/downloads" target="_blank">警告</a>，詳見下方：</li>
   </ol>
   <pre>Resource interpreted as Document but transferred with MIME type application/octet-stream</pre>
 
   <h4>永遠儲存檔案到本機寫法</h4>
-  <p>基本上我自己是很討厭使用瀏覽器內建的PDF瀏覽器，或者是在瀏覽器中嵌入WORD之類的Viewer在裡面進行瀏覽操作行為，因此我對檔案下載的觀點就是，下載到我的本地端就好，你管我要怎麼使用！</p>
-  <p>答案就是，不要輸出任何「Content-Type」，而是寫「Content-Disposition: attachment; filename="TEST.pdf"」就好。</p>
+  <p>基本上我自己是很討厭使用瀏覽器內建的PDF瀏覽器，或者是在瀏覽器中嵌入WORD之類的Viewer在裡面進行瀏覽操作行為，因此我對檔案下載的觀點就是，下載到我的本地端就好，管我要怎麼使用！</p>
+  <p>答案就是，不要輸出任何「Content-Type」，你Chrome不想聽我也不想講啊！只要載明「Content-Disposition: attachment; filename="TEST.pdf"」就好。</p>
 
   <p>這下，就不會有任何警告啦！（但話說回來，警告就警告，其實所有的檔案下載也都是正常運行的。）</p>
 
