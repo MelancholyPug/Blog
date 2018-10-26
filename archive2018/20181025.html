@@ -31,7 +31,7 @@ Resource interpreted as Document but transferred with MIME type application/pdf
   <p>開始瘋狂搜尋網路的討論，發現有這樣困擾的工程師還真不少，在各大論壇中都有人提出，但給的答案其實都無濟於事，有的人說要補上Content-Disposition，有的人說要補上Content-Length，拜託，這個我本來就都有了好嗎？</p>
   <p>Google Chrome瀏覽器跟你警告的中譯是：資源被理解成一個文件，但是傳輸過來的MIME卻跟我說是一個PDF。然而，PDF就是文件吧？這個警告說明，再怎麼想也是正確的啊！</p>
 
-  <h3>真正引發這個警告的「可能」原因</h3>
+  <h3>引發這個警告的「可能」原因</h3>
   <p>無意間在Chrome的Request Headers看到這行：</p>
 <pre>
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
