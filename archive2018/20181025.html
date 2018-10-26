@@ -60,11 +60,11 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
   
   <p>在ASP.NET中的答案就是，不要輸出任何「Content-Type」，你Chrome不想聽我也不想講啊！只要載明「Content-Disposition: attachment; filename="TEST.pdf"」就好。在ASP.NET的機制下發現你沒有輸出Content-Type，就會自動幫你補上「Content-Type: text/html」，但在修補的過程中，你原本自行運算輸出的Content-Length也消失無蹤了，這意味著你喪失了檔案下載的進度觀測功能。</p>
 
-  <p>另一種比較跨平台泛用的解法，就是自己直接硬輸出成「Content-Type: text/html」，讓瀏覽器認為這是text/html，但瀏覽器又受到Content-Disposition控制，故不解釋它且直接儲存。</p>
+  <p>菲ASP.NET的解法，也是自己直接硬輸出成「Content-Type: text/html」或「Content-Type: application/xhtml+xml」，讓瀏覽器認為這是text/html（符合預期），但瀏覽器又受到Content-Disposition控制，故不解釋它且直接儲存。</p>
 
   <p>這下，DevTools（F12）就不會有任何警告啦！</p>
 
-  <p>後記：這篇文章只是在探討為何會發生這種錯誤，但最終我選擇做自己，我把所有正確的資訊都餵給瀏覽器，你Chrome要警告就警告吧，反正所有的下載功能也都是正常運行無誤。</p>
+  <h4>後記：這篇文章只是在探討為何會發生這種錯誤，但最終我選擇做自己，我把所有正確的資訊都餵給瀏覽器，你Chrome要警告就警告吧，反正所有的下載功能也都是正常運行無誤。</h4>
 
   <small>GoogleChrome HttpHeader Content-Type Content-Disposition ResourceInterpretedAsDocument ButTransferredWithMimeType</small>
 
