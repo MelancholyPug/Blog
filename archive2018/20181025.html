@@ -31,7 +31,7 @@ Resource interpreted as Document but transferred with MIME type application/pdf
   <p>開始瘋狂搜尋網路的討論，發現有這樣困擾的工程師還真不少，在各大論壇中都有人提出，但給的答案其實都無濟於事，有的人說要補上Content-Disposition，有的人說要補上Content-Length，拜託，這個我本來就都有了好嗎？</p>
   <p>Google Chrome瀏覽器跟你警告的中譯是：資源被理解成一個文件，但是傳輸過來的MIME卻跟我說是一個PDF。然而，PDF就是文件吧？這個警告說明，再怎麼想也是正確的啊！</p>
 
-  <h3>真正引發這個警告的原因</h3>
+  <h3>真正引發這個警告的「可能」原因</h3>
   <p>無意間在Chrome的Request Headers看到這行：</p>
 <pre>
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
@@ -61,9 +61,6 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/a
   <p>在ASP.NET中的答案就是，不要輸出任何「Content-Type」，你Chrome不想聽我也不想講啊！只要載明「Content-Disposition: attachment; filename="TEST.pdf"」就好。在ASP.NET的機制下發現你沒有輸出Content-Type，就會自動幫你補上「Content-Type: text/html」，但在修補的過程中，你原本自行運算輸出的Content-Length也消失無蹤了，這意味著你喪失了檔案下載的進度觀測功能。</p>
 
   <p>另一種比較跨平台泛用的解法，就是自己直接硬輸出成「Content-Type: text/html」，讓瀏覽器認為這是text/html，但是請不要解釋它且直接儲存。</p>
-<pre>
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
-</pre>
 
   <p>這下，DevTools（F12）就不會有任何警告啦！</p>
 
