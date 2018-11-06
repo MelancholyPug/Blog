@@ -10,19 +10,19 @@
 
 <p>在利用SQL製作檢視表時，我們常常會將多張資料表JOIN起來查詢，但是這樣的JOIN方式通常只能夠「完全條列」出綜合後的結果，卻無法達到統計式的用法、用途。舉例來說，我要列舉公司的銷售人員，每一個人的通訊錄中總共有幾筆顧客的資料？這樣的統計方式，利用單純的JOIN可能很難達成。（尤其在統計的欄位超過一個以上的時候，語法的複雜度會拉升很多）</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/34292601770/in/dateposted-public/"><img src="https://c1.staticflickr.com/5/4194/34292601770_0efc1deeb7_c.jpg" alt="20170515_01"></a>
+<img src="/image/2017/20170515_01.jpg" />
 
 <h3>SQL語法：相互關聯子查詢（Correlated Subqueries）</h3>
 
 <p>首先先讓我們描述一下要進行的情境，已知三張資料表，其關聯結構如下：</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/34292600500/in/dateposted-public/"><img src="https://c1.staticflickr.com/5/4192/34292600500_8de144d6ce_o.png" alt="20170515_02"></a>
+<img src="/image/2017/20170515_02.jpg" />
 
 <p>如上圖，所以我們可以觀察到武將列表、武器列表、資產列表，總共三張資料表。</p>
 
 <p>這些資料表我們將其SELECT出來看一下，可以看到欄位以及資料內容大致上如下列情況：</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/34292600340/in/dateposted-public/"><img src="https://c1.staticflickr.com/5/4181/34292600340_fe98309bff_o.png" alt="20170515_03"></a>
+<img src="/image/2017/20170515_03.jpg" />
 
 <h3>資料展現方式</h3>
 <p>在大家有了資料表的結構後，假設我們想要知道每一個武將的ＩＤ、姓名、擁有的武器數量、擁有的資產數量，那麼在製作這類型的統計檢視表時，利用傳統的JOIN方式其實不太容易辦到，但我們可以用相互關聯子查詢（Correlated Subqueries）來達成此一需求。</p>
@@ -49,7 +49,7 @@ FROM dbo.武將列表;
 
 <p>所以我們可以得到下圖的查詢結果，所有的統計資料就羅列在其中啦！</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/34292600240/in/dateposted-public/"><img src="https://c1.staticflickr.com/5/4163/34292600240_2c84008987_o.png" alt="20170515_04"></a>
+<img src="/image/2017/20170515_04.jpg" />
 
 <small>SQL Command Query View 相互關聯子查詢 CorrelatedSubqueries</small>
 

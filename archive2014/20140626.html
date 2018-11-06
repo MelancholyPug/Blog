@@ -12,28 +12,28 @@
 
 <p>但是，改成「啟用所有巨集」有其嚴重風險，舉例來說，如果今天你的Outlook收到一封含有巨集的惡意程式碼的附件而你不小心開了它，這下你的電腦就陷入了被攻擊的風險了。所以微軟才會特別在這個選項的後面註明「不建議使用，會執行有潛在危險的程式碼」。那麼，到底能不能在原設定模式下，進行巨集的運行呢？答案是可以的，你要靠的是數位簽章功能。本文章不討論正式CA等級的付費數位簽章，只是純討論簡單版本的自我數位簽章，來解決Office會彈出警告或永遠不能運行VBA巨集的問題。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/14510114344/"><img src="https://c1.staticflickr.com/3839/14510114344_e6a2b1ccce_b.jpg" alt="20140626_01"></a>
+<img src="/image/2014/20140626_01.jpg" />
 
 <p>Step 1. 請到你安裝的Office目錄下，去找到一個叫「SELFCERT.EXE」的執行檔，這個程式正式的名稱叫「Digital Certificate for VBA Projects」，如果你找不到的話，可以在開始＞程式集＞Office 2013＞Office 2013工具中找看看。再找不到的話，有可能是你在安裝Office的時候沒有安裝到這個選項，請拿光碟片補安裝這個功能。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/14531597713/"><img src="https://c1.staticflickr.com/3897/14531597713_fe63fa329c_b.jpg" alt="20140626_02"></a>
+<img src="/image/2014/20140626_02.jpg" />
 
 <p>Step 2. 點兩下，打入你想要的取的憑證名稱，下圖的例子是取名為「SlashLook」，點選確定後離開。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14510371812/"><img src="https://c1.staticflickr.com/3874/14510371812_8838be900a.jpg" alt="20140626_03"></a>
+<img src="/image/2014/20140626_03.jpg" />
 
 <p>Step 3. 打開你的Outlook裡面的開發者選單，進入後點選「工具＞數位簽名」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14324885429/"><img src="https://c1.staticflickr.com/3867/14324885429_c1d29a3646.jpg" alt="20140626_04"></a>
+<img src="/image/2014/20140626_04.jpg" />
 
 <p>Step 4. 選擇你剛才建立的名稱，以下圖為例當然是選「SlashLook」數位憑證。記得確定後逐步退出後，最後要把你的VBA程式碼再儲存一次喔，不然剛才的設定有可能會沒存進去！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14324895008/"><img src="https://c1.staticflickr.com/5581/14324895008_6ddfcd9ccd_b.jpg" alt="20140626_05"></a>
+<img src="/image/2014/20140626_05.jpg" />
 
 <p>Step 5. 接著要進行憑證匯出的工作。請點選「開始＞執行＞mmc.exe」，叫出主控台後，點選「檔案＞新增／移除嵌入式管理單元」，將憑證管理單元新增進選單中，按確定離開。然後點選「個人＞憑證」，往右邊看會有剛才建立的自我簽章叫作SlashLook，請在上面點選「右鍵＞所有工作＞匯出」，接下來所有動作就一直下一步就好，把你要匯出的憑證取個檔名存在桌面，等一下好找。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14510114244/"><img src="https://c1.staticflickr.com/5473/14510114244_5a2de5c941_b.jpg" alt="20140626_06"></a>
+<img src="/image/2014/20140626_06.jpg" />
 
 <p>Step 6. 接著要進行憑證匯入的工作。請打開你的「Internet Explorer(IE)＞網際網路選項＞內容＞憑證」，在「受信任的根憑證授權單位」、「受信任的發行者」這兩個頁籤當中，分別點選下方的「匯入」鈕，匯入對象當然是剛才匯出在桌面的「SlashLook」自我簽章啦！</p>
 
 <p>Step 7. 理論上做到Step 6就可以了，如果你要保險一點的話可以進入到Outlook的選項中，找到信任中心，點選信任中心設定，就可以看到你的SlashLook被加入到受信任的發行者之清單中啦！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14511577985/"><img src="https://c1.staticflickr.com/3897/14511577985_9fc77c5608_b.jpg" alt="20140626_08"></a>
+<img src="/image/2014/20140626_08.jpg" />
 
 <p>相關連結：<a href="/archive2014/20140625.html" target="_blank">利用Outlook VBA自動附加密件副本</a></p>
 

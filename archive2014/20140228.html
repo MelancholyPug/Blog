@@ -18,7 +18,7 @@ w00tw00t.at.blackhats.romanian.anti-sec:)
 
 <p>之前都是用Microsoft所出產的URL Scan來阻擋，但是因為IIS畢竟也進化到8了，實在不太想再去用 IIS 6時代的產物（不過話說URL Scan還是有一直在推新版本啦！），所以開始研究內建的「要求篩選」怎麼擋。但不幸的是，怎麼設定「規則」跟「URL」怎麼都弄不好（也就是IIS根本不吃我餵進去web.config的參數），無論進行iisreset或者是重開機都一樣，這部份有待日後研究，因為工作實在太忙了，或者有心得的同好可以在下方留言分享。</p>
 
-<a href="http://www.flickr.com/photos/105479788@N06/12809132615/" title="20140228_01"><img src="https://c1.staticflickr.com/7432/12809132615_ac8da5bbb8_o.png" alt="20140228_01"></a>
+<img src="/image/2014/20140228_01.jpg" />
 
 <p>後來只好再往上端處理，也就是ASP.NET層，因此我們來到了web.config中的httpRuntime段，找到了requestPathInvalidCharacters。請特別注意Path這個關鍵字，這代表了這個屬性的設定，跟未來的QueryString是毫無關係的。我們參考MSDN後發現，如果你整個網站設定中，都沒有打入任何的requestPathInvalidCharacters參數，那麼系統會自動引用預設值幫你阻擋，所以這部份是很安全的設定。</p>
 

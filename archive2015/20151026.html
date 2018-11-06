@@ -10,7 +10,7 @@
 
 <p>今日工作上有一個基於備份的角度，需要一個運算檔案雜湊值得需求，因為有自己的功能性要求，又不放心使用網路上的執行檔，因此乾脆自己寫一個比較妥當。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/22295268590/"><img src="https://c1.staticflickr.com/5801/22295268590_c756e39473_o.jpg" alt="20151026_01"></a>
+<img src="/image/2015/20151026_01.jpg" />
 
 <p>MD5演算法當然是直接使用.NET Framework提供的System.Security.Cryptography命名空間來進行設計啦，但這裡面有一個盲點，就是如果你沒有針對FileStream調整讀取的Buffer緩衝區空間，那麼在預設為4096 Bytes的基礎下，MD5運算的速度整個塞在頻繁的Disk IO上，算GB等級的檔案少說也要30分鐘起跳，真的是慢爆啦！</p>
 

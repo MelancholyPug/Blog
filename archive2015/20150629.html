@@ -10,7 +10,7 @@
 
 <p>對Google的服務因為很少用到，所以一直處於不求甚解的狀態，某個專案有在使用Google Data API 2.2.0，一直以來也都相安無事，一直到2015年5月份時出現了無法使用的錯誤，資訊如下：「Execution of authentication request returned unexpected result: 404」。原本會動的專案突然變成不會動，還丟一個沒頭沒腦的錯誤訊息，經過數十年訓練的嗅覺馬上拋出一個關鍵語句：「免費的最貴！」，於是馬上去<a href="https://goo.gl/wSennQ" target="_blank">Google Apps > Sheets API</a>找到這一個亮起來的關鍵語句，如下圖所示：</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/19070567879"><img src="https://c2.staticflickr.com/4/3892/19070567879_2027ef745c_c.jpg" alt="20150629_01"></a>
+<img src="/image/2015/20150629_01.jpg" />
 
 <pre>
 You must use OAuth 2.0 to authorize requests.
@@ -110,10 +110,10 @@ Error =
 
 <h3>Step 4. 請到<a href="https://admin.google.com/" target="_blank">Google Admin Console</a>管理控制台</h3>
 <p>經過了在茫茫網海中的找尋，最終我們來到了這一頁的設定，如下列圖中所示，請隨之設定：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/19261910581"><img src="https://c1.staticflickr.com/1/543/19261910581_d46c76717f_c.jpg" alt="20150629_02"></a>
-<a href="https://www.flickr.com/photos/105479788@N06/19252138042"><img src="https://c1.staticflickr.com/1/298/19252138042_09d3479739_c.jpg" alt="20150629_03"></a>
-<a href="https://www.flickr.com/photos/105479788@N06/19071938379"><img src="https://c2.staticflickr.com/4/3698/19071938379_8c5a61f74b_c.jpg" alt="20150629_04"></a>
-<a href="https://www.flickr.com/photos/105479788@N06/19070473540"><img src="https://c1.staticflickr.com/1/503/19070473540_14e9d0fc1c_c.jpg" alt="20150629_05"></a>
+<img src="/image/2015/20150629_02.jpg" />
+<img src="/image/2015/20150629_03.jpg" />
+<img src="/image/2015/20150629_04.jpg" />
+<img src="/image/2015/20150629_05.jpg" />
 <p>以此例來說，上圖用戶端名稱你要填入「594319598513-9mc93uki2kk12rlea17nkfo2g60oavvv.apps.googleusercontent.com」，API就填入你要存取的Scopes嘍！按下授權後，理論上你BigQuery到的Feeds數量，應該就不是0了，除非你真的是零筆。</p>
 
 

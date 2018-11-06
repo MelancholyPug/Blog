@@ -17,13 +17,13 @@
 <p>Step 1. 登入你的Google帳號後，先到Google Apps Script的首頁：<a href="https://www.google.com/script/start/" target="_blank">https://www.google.com/script/start/</a>，點選畫面中間的「Start Scripting」按鈕，開始一個全前後端JavaScript語言的創作空間。</p>
 
 <p>Step 2. 打開畫面後，你可以先到右上角，點選「無標題專案」，幫你這個Script重新命名。重新命名後，基本上你會在你的Google Drive中，看到以這個名字為命名的Google Apps Script檔案。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/26614410084/"><img src="https://c2.staticflickr.com/8/7641/26614410084_8e33c05f6e_o.png" alt="20160524_01"></a>
+<img src="/image/2016/20160524_01.jpg" />
 
 <p>Step 3. 由於我們是要透過網頁跟「匿名」的一般使用者溝通，因此有一個網頁介面是必要的，在下圖我們示範了如何去新增一個HTML檔案資料，當然很沒創意的，我們就叫他「MyForm.html」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/27124318412/"><img src="https://c2.staticflickr.com/8/7621/27124318412_ec473a6f89_o.png" alt="20160524_02"></a>
+<img src="/image/2016/20160524_02.jpg" />
 
 <p>Step 4. 點選左側的「MyForm.html」，並填入下列的HTML。先聲明，在這篇網誌中，我並不打算講解任何的前後端HTML、JS程式碼的意思，我已經盡量在段落的字裡行間加了一些註解，這種小孩子等級的程式碼應該難不倒各位Coding大師的啦！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/26614410404/"><img src="https://c2.staticflickr.com/8/7665/26614410404_f14c7dd606_o.png" alt="20160524_03"></a>
+<img src="/image/2016/20160524_03.jpg" />
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -106,7 +106,7 @@
 </pre>
 
 <p>Step 5. 點選左側的「程式碼.gs」（.gs就是Google Script的意思），把所有的程式碼取代成下列程式碼。同樣的，這種幼兒等級的程式碼，應該難不倒各位程式設計師之神的對吧！所以我就不再說明了。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/27124318682/"><img src="https://c2.staticflickr.com/8/7022/27124318682_289b9e9d81_o.png" alt="20160524_04"></a>
+<img src="/image/2016/20160524_04.jpg" />
 <pre>
 function doGet(e) {
   return HtmlService.createHtmlOutputFromFile('MyForm.html');
@@ -169,20 +169,20 @@ function uploadFiles(form) {
 </pre>
 
 <p>Step 6. 取得這支Google Apps Script對你的OneDrive之讀寫權限！點選「執行」＞「doGet」，跑一下doGet裡面的程式碼。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/27124319152/"><img src="https://c2.staticflickr.com/8/7531/27124319152_dc962a7794_o.png" alt="20160524_05"></a>
+<img src="/image/2016/20160524_05.jpg" />
 
 <p>Step 7. 彈出「需要授權」視窗，請核對授權並允許吧！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/27187191966/"><img src="https://c2.staticflickr.com/8/7119/27187191966_5b80f8e1f5_o.png" alt="20160524_06"></a>
-<a href="https://www.flickr.com/photos/105479788@N06/26615841913/"><img src="https://c2.staticflickr.com/8/7111/26615841913_d71f46b64b_o.png" alt="20160524_07"></a>
+<img src="/image/2016/20160524_06.jpg" />
+<img src="/image/2016/20160524_07.jpg" />
 
 <p>Step 8. 發佈你的程式碼，請點選「發佈」>「部署為網路應用程式」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/26615843023/"><img src="https://c2.staticflickr.com/8/7442/26615843023_9e3e579dbf_o.png" alt="20160524_08"></a>
+<img src="/image/2016/20160524_08.jpg" />
 
 <p>Step 9. 專案版本請每次都挑選「新增」，否則將會測不出你最新修改的前後端程式碼。另外有一點超級重要的，就是紅框中的「具有應用程式存取權的使用者」，這個一定要選「任何人，甚至是匿名使用者」，否則你無法真正的匿名檔案上傳。一切都確定後，點選部屬按鈕。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/26615843723/"><img src="https://c2.staticflickr.com/8/7647/26615843723_d826e8ea5a_o.png" alt="20160524_09"></a>
+<img src="/image/2016/20160524_09.jpg" />
 
 <p>Step 10. 最後，將畫面中的應用程式網址，COPY給你要應用的對象（一般使用者），他們就可以透過這個程式碼將檔案直接免登入，送到你的Google Drive之中了。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/26615844493/"><img src="https://c2.staticflickr.com/8/7008/26615844493_f6a0298ebc_o.png" alt="20160524_10"></a>
+<img src="/image/2016/20160524_10.jpg" />
 
 <h3>後記與心得</h3>
 <ol>

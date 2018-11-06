@@ -32,7 +32,7 @@ SpecialPollInterval  REG_DWORD  60（Dec; 十進制）
 <p>4. 至服務中設定Windows Time Service為自動啟動，如果你是Windows 7或Windows Server 2008R2之後的作業系統，必須參考<a href="/archive2013/20131219.html">這裡的「※ 補充說明」設定</a>，才能夠讓Windows Time Service正確的被啟動。</p>
 
 <p>5. 要再更精進一點的人，可以去「工作排程器」的「\Microsoft\Windows\Time Synchronization」路徑下把「SynchronizeTime」排程停掉或刪除。位置如下圖所示：</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11722577735/"><img src="https://c1.staticflickr.com/3747/11722577735_2d70512f8b_o.png" alt="20140102_01"></a>
+<img src="/image/2014/20140102_01.jpg" />
 
 <p>設定好重開機就完成了，特別要注意的地方是，如果你沒有指定0x1 SpecialInterval模式，那麼SpecialPollInterval數值的指定是無意義的。</p>
 

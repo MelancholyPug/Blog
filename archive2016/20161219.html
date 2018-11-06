@@ -13,19 +13,19 @@
 <h3>伺服器憑證的申請</h3>
 
 <p>Step 1. 打開IIS，點選IIS根目錄，點選伺服器憑證。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/31695738776/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/695/31695738776_721fb30c9b_o.png" alt="20161219_01"></a>
+<img src="/image/2016/20161219_01.jpg" />
 
 <p>Step 2. 點選建立憑證要求</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891934114/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/681/30891934114_612e68a9e4_o.png" alt="20161219_02"></a>
+<img src="/image/2016/20161219_02.jpg" />
 
 <p>Step 3. 填寫這張憑證的可視資訊，建議盡量越真實越好。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/31360309380/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/782/31360309380_5746d692cf_o.png" alt="20161219_03"></a>
+<img src="/image/2016/20161219_03.jpg" />
 
 <p>Step 4. 密碼編譯服務提供者選取Microsoft RSA SChannel Cryptographic Provider，位元長度選2048 Bits。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891934044/in/dateposted-public/"><img src="https://c2.staticflickr.com/6/5581/30891934044_d0c8fc1708_o.png" alt="20161219_04"></a>
+<img src="/image/2016/20161219_04.jpg" />
 
 <p>Step 5. 取得到憑證要求檔案（CERTIFICATE REQUEST），這個檔案會以BASE64進行編碼，請指定到該要求檔案要存放的路徑。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/31586554372/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/557/31586554372_e1f2ff6549_o.png" alt="20161219_05"></a>
+<img src="/image/2016/20161219_05.jpg" />
 
 <p>之後，請將憑證要求檔案依照GCA、Verisign等憑證供應中心的規範提出申請，這邊就不再贅述。</p>
 
@@ -34,33 +34,33 @@
 <p>進行這個步驟之前，請先確定您已經從憑證供應中心取得到憑證檔案（.cer），這個檔案會是以二進制的方式存在。</p>
 
 <p>Step 6. 打開IIS進入到根目錄，點選伺服器憑證。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891933774/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/482/30891933774_36dc11601e_o.png" alt="20161219_06"></a>
+<img src="/image/2016/20161219_06.jpg" />
 
 <p>Step 7. 點選「完成憑證要求」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891933804/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/260/30891933804_450736dfd8_o.png" alt="20161219_07"></a>
+<img src="/image/2016/20161219_07.jpg" />
 
 <p>Step 8. 請選擇.cer檔案存放的路徑，並賦予這個憑證一個容易記住的名稱（建議用日期來區分最佳）。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/31617776981/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/320/31617776981_af77a7f543_o.png" alt="20161219_08"></a>
+<img src="/image/2016/20161219_08.jpg" />
 
 <p>Step 9. 回到IIS，點選要套用憑證的網站，點選繫結。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891934454/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/462/30891934454_1fa6c0f252_o.png" alt="20161219_09"></a>
+<img src="/image/2016/20161219_09.jpg" />
 
 <p>Step 10. 點選https的標準Port 443，點選編輯。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/31360308980/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/527/31360308980_dca13edd57_o.png" alt="20161219_10"></a>
+<img src="/image/2016/20161219_10.jpg" />
 
 <p>Step 11. 下拉選擇SSL憑證，選到你剛才命名的SSL憑證。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891934414/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/540/30891934414_6f2ac44520_o.png" alt="20161219_11"></a>
+<img src="/image/2016/20161219_11.jpg" />
 
 <p>Step 12. 沒問題後就一路關閉啦！恭喜你憑證已經設定成功。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891934334/in/dateposted-public/"><img src="https://c2.staticflickr.com/6/5607/30891934334_32c27d1b49_o.png" alt="20161219_12"></a>
+<img src="/image/2016/20161219_12.jpg" />
 
 <h3>檢查伺服器憑證的有效性</h3>
 
 <p>回到瀏覽器端來檢查之前舊憑證的日期，發現到2017年01月就過期了。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891934244/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/277/30891934244_a40eb62bb3_o.png" alt="20161219_13"></a>
+<img src="/image/2016/20161219_13.jpg" />
 
 <p>更新後的憑證，到期時間已經來到2019年12月了，這代表你的網站的憑證已經新增/更新成功。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30891934194/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/460/30891934194_aa3b96cb68_o.png" alt="20161219_14"></a>
+<img src="/image/2016/20161219_14.jpg" />
 
 <small>Microsoft Windows Server IIS SSL Request Install Renewal GCA VeriSign OpenSSL</small>
 

@@ -12,7 +12,7 @@
 
 <p>要討論這個問題前，要先講一下理論，就是在NTFS格式下，允許你儲存一種叫「替代資料流」（Alternate Data Streams, ADS）格式的資料，讓你的檔案資料大小出現見山不是山的情況。簡單的說，如果你有一個文字檔案「text.txt」是10 Bytes，透過了ADS的附加操作，例如給定一個索引指標叫「plus」，則你可以針對「text.txt:plus」進行ADS方式的資料寫入（可以是純文字或二進制皆可）例如10MB的資料，寫入後你用檔案總管去看這個「text.txt」，它依然是10Bytes。用記事本打開來，依然是10Bytes的資料，但是當你透過特別的索引鍵方式存取時，就可以得到這10MB的資料了。詳細的官方操作工具以及理論，請參考保哥的<a href="http://goo.gl/APWG0a" target="_blank">這篇文章</a>。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/14084228010/"><img src="https://c1.staticflickr.com/5567/14084228010_1422963363_o.png" alt="20140526_01"></a>
+<img src="/image/2014/20140526_01.jpg" />
 
 <p>那我們討論ADS幹嘛？原來是微軟的作業系統在你從網路下載任一檔案時，他在不能任意更改這個檔案的情況下，只好在NTFS端進行ADS式的檔案標記，來跟你講這個檔案是從網路下載下來的，有風險請小心，而他的索引鍵叫「Zone.Identifier」，裡面存放著資料《[ZoneTransfer]ZoneId=3》，包含2個換行符號共26 Bytes。只要你把這個索引資料（26 Bytes）砍掉，這個煩人的資訊就會消失了。ZoneId的列舉如下：</p>
 
@@ -65,13 +65,13 @@ namespace RemoveZoneIdentifier
 
 <p>運行起來的畫面如下：</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/14247715426/"><img src="https://c1.staticflickr.com/3687/14247715426_7f386f8d38_o.png" alt="20140526_02"></a>
+<img src="/image/2014/20140526_02.jpg" />
 
 <p>這個程式只是個範例，如果想要寫成整個目錄下含子資料夾都要改，請自己改寫成遞迴的寫法。如果不想拿到VS上編譯（Compiled）的，我這邊有編譯好的可執行檔（Executable），可以直接套用。檔案下載請點選這裡：<a href="http://goo.gl/X7ZxRw" target="_blank">Download</a></p>
 
 
 <p>如果你只是要單純的解開一個檔案的限制，那不用這麼麻煩啦！直接在檔案上按右鍵點「解除封鎖」即可。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14084286577/"><img src="https://c1.staticflickr.com/3759/14084286577_9b3e5a16e5_o.png" alt="20140526_03"></a>
+<img src="/image/2014/20140526_03.jpg" />
 
 <small>Remove Disable Unblock Zone.Identifier NTFS ADS AlternateDataStreams</small>
 

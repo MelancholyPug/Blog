@@ -25,10 +25,10 @@ oContext.Response.ContentType = System.Web.MimeMapping.GetMimeMapping(".json");
 <h3>修正System.Web.MimeMapping.GetMimeMapping在比較老舊的Windows下，無法正確輸出MIME的方式：</h3>
 
 <p>Step 1. 打開Internet Information Services，請到最上方的機器設定項次，而不要點選到個別網站，這樣才能全網站套用繼承，看到後點選右方中間的「MIME類型」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/39662170831/in/dateposted-public/" title="20180115_01"><img src="https://farm5.staticflickr.com/4723/39662170831_1b78fa9d5d_b.jpg" alt="20180115_01"></a>
+<img src="/image/2018/20180115_01.jpg" />
 
 <p>Step 2. 點選新增，然後在副檔名中輸入「.josn」、MIME類型輸入「application/json」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/25790064128/in/dateposted-public/" title="20180115_02"><img src="https://farm5.staticflickr.com/4660/25790064128_6b49292909_b.jpg" alt="20180115_02"></a>
+<img src="/image/2018/20180115_02.jpg" />
 
 <p>Step 3. 可以的話，做一下IISRESET，就大功告成了。</p>
 

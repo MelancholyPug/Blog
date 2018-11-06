@@ -12,15 +12,15 @@
 
 <h3>Microsoft Internet Explorer（IE）disable ACAO</h3>
 <p>這個很簡單，只要進去IE的網際網路選項的設定中，切到安全性＞自訂等級，然後下拉到雜項區，找到「存取跨網域的資料來源」，點選「啟用」後就可以了。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14256378425/"><img src="https://c1.staticflickr.com/3712/14256378425_d7f1c42c44_c.jpg" width="800" height="499" alt="20140523_01"></a>
+<img src="/image/2014/20140523_01.jpg" />
 
 <h3>Google Chrome disable ACAO</h3>
 <p>Chrome瀏覽器比較麻煩一點，他不能用設定的方式來進行，只能自己切到commandline來進行，請依下圖指示輸入「chrome --disable-web-security」即可，他會自己開啟一個新的實體（instance）。要注意的事，做這個動作之前，請先把你畫面上所有的Chrome都先關起來比較妥當（比較會成功），成功開啟這個功能後，你可以看到視窗上有一列黃色的提醒這是危險的！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14069797347/"><img src="https://c1.staticflickr.com/3796/14069797347_e0d98e8c91_c.jpg" width="800" height="500" alt="20140523_02"></a>
+<img src="/image/2014/20140523_02.jpg" />
 
 <h3>Mozilla FireFox</h3>
 <p>FireFox的關閉方法也很簡單，在網址列輸入about:config後，搜尋security.fileuri.strict_origin_policy，然後把值value改成「false」即可。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14069797357/"><img src="https://c1.staticflickr.com/5500/14069797357_acf0233c46_c.jpg" width="800" height="500" alt="20140523_03"></a>
+<img src="/image/2014/20140523_03.jpg" />
 
 <p>後記：W3C有提出一份CORS（<a href="http://goo.gl/fz7X" target="_blank">Cross-Origin-Resource-Sharing</a>）提案，再搭配<a href="http://goo.gl/xpchz" target="_blank">XMLHttpRequest Level 2</a>的實作，可以達成跨域請求資料的動作，不過那又是另外一種處理方式了。</p>
 

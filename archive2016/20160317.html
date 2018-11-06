@@ -16,15 +16,15 @@
 
 <p>打開工作管理員後，發現Runtime Broker如圖，但是也有另外發現，我並沒有在進行檔案異動的OneDrive好像也默默的在消耗我的CPU運算資源。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/25229458393"><img src="https://c1.staticflickr.com/1689/25229458393_0379930484_o.png" alt="20160317_01"></a>
+<img src="/image/2016/20160317_01.jpg" />
 
 <p>再把工作管理員往拉一看，發現不得了，一大堆稱為「Microsoft OneDriveFile Co-Authoring Executable」的處理程序一直不斷的產生與消失，這表示極有可能是Runtime Broker這隻程式去不斷的調用所致。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/25760935791"><img src="https://c1.staticflickr.com/1610/25760935791_43b1b8d360_o.png" alt="20160317_02"></a>
+<img src="/image/2016/20160317_02.jpg" />
 
 <p>有了這樣的懷疑推論，直接開「資源監視器」看一下，果然發現兇手，答案就是Runtime Broker在對我OneDrive的音樂檔案進行雜湊（猜測），或許是在建立manifest或index之類的檔案吧。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/25830002886"><img src="https://c1.staticflickr.com/1694/25830002886_073acddefe_o.png" alt="20160317_03"></a>
+<img src="/image/2016/20160317_03.jpg" />
 
 <h3>Don't Worry, you should do nothing!</h3>
 <p>有了這樣的推論之後就放心了，放給他跑一陣子，在Intel i7 CPU的加持下，過不到30分鐘，我的OneDrive雲端音樂檔案（大約快50GB）就處理完了。一旦處理完成，Runtime Broker耗用CPU的程度就馬上變成0%了。</p>

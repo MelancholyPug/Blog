@@ -10,7 +10,7 @@
 
 <p>ORM的程式設計觀念在現代已經是大家普遍使用的技巧了，但是用來塑造ORM的類別，往往我們會賦予給他更多的非資料使用方式，例如可能會有一堆方法，甚至是事件的觸發。ClassType複雜歸複雜，但是總是運作的良好得當。BUT，人生最重要的就是這個BUT，當我們可能需要把這個類別狀態保留時（Application、Session、ViewState...或其他提供序列化Cache服務的機制），就需要序列化它，而事件若有被外部調用掛載，這時候你就會遭遇到莫名其妙的問題了。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/33616307365/in/dateposted-public/"><img src="https://c1.staticflickr.com/4/3827/33616307365_b638c92711_o.jpg" alt="20170324_01"></a>
+<img src="/image/2017/20170324_01.jpg" />
 
 <p>這個問題的中英文描述如下，大致上就是在跟你講某一個類別物件不可序列化：</p>
 <pre>

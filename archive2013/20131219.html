@@ -13,7 +13,7 @@
 <p>在Windows Server中，NTP被以服務的型態呈現出來，也就是說你不用透過光碟或系統的勾選安裝，就可以達到這樣的能力，關鍵在於「W32TIME」這隻服務。你可以透過操作「w32tm.exe」這隻程式來進行各式的設定，不過我想那大概是網路管理員需要寫script自動化時才會用到，一般的情況下都是透過登錄檔registry的修改來進行設定才是，必竟改過一次之後大概也不會再針對這一塊進行動作了。</p>
 
 <p>1. 首先由Windows Server 2012的伺服器管理員中，點選工具＞服務，確認Windows Time服務目前的狀態是被開啟的。如果是關閉的狀態，請點擊兩下開啟，啟動類型選「自動」＞點「啟動」鈕＞「套用」＞「確定」。</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11452086585/"><img src="https://c1.staticflickr.com/7423/11452086585_122af7bf62_o.png" alt="20131219_01"></a>
+<img src="/image/2013/20131219_01.jpg" />
 
 <p>2. 利用開始＞執行＞regedit來呼叫出登錄編輯程式，並進行之後的操作。</p>
 
@@ -162,13 +162,13 @@ Enabled              REG_DWORD  1
 </pre>
 
 <p>9. 依據<a href="https://www.ietf.org/rfc/rfc1305.txt">RFC1035</a>的規定，NTP服務的標準通訊埠是UDP 123。因此必須到Windows防火牆內將UDP 123設定開啟，下方連續圖片將逐步記錄防火牆設定的過程。</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11452086445/"><img src="https://c1.staticflickr.com/5542/11452086445_00e96473de_o.png" alt="20131219_02"></a>
-<a href="http://www.flickr.com/photos/105479788@N06/11452262003/"><img src="https://c1.staticflickr.com/7308/11452262003_1212f0d06f_o.png" alt="20131219_03"></a>
-<a href="http://www.flickr.com/photos/105479788@N06/11452086765/"><img src="https://c1.staticflickr.com/2835/11452086765_63104c9e85_o.png" alt="20131219_04"></a>
-<a href="http://www.flickr.com/photos/105479788@N06/11452202446/"><img src="https://c1.staticflickr.com/3818/11452202446_8646d612b8_o.png" alt="20131219_05"></a>
-<a href="http://www.flickr.com/photos/105479788@N06/11452202336/"><img src="https://c1.staticflickr.com/2878/11452202336_fbfca99f77_o.png" alt="20131219_06"></a>
-<a href="http://www.flickr.com/photos/105479788@N06/11452144844/"><img src="https://c1.staticflickr.com/3810/11452144844_c2125c463a_o.png" alt="20131219_07"></a>
-<a href="http://www.flickr.com/photos/105479788@N06/11452086545/"><img src="https://c1.staticflickr.com/3679/11452086545_6ffda40a4b_o.png" alt="20131219_08"></a>
+<img src="/image/2013/20131219_02.jpg" />
+<img src="/image/2013/20131219_03.jpg" />
+<img src="/image/2013/20131219_04.jpg" />
+<img src="/image/2013/20131219_05.jpg" />
+<img src="/image/2013/20131219_06.jpg" />
+<img src="/image/2013/20131219_07.jpg" />
+<img src="/image/2013/20131219_08.jpg" />
 
 <p>10. 終於到最後一步動作，這個動作很簡單，就是「重新開啟」你的伺服器（重新開機）。如果你的伺服器正在執行重要的工作而無法進行重新開機的話，那麼可以開啟命令模式進行下列指令即可。</p>
 <pre>net stop w32time && net start w32time</pre>

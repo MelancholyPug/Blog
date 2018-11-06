@@ -10,7 +10,7 @@
 
 <p>這篇文章不討論Web-Based，回到傳統的Windows Form來討論，當我們嘗試著在表單上面進行System.Drawing繪圖工作時，會發現在上面進行繪圖的動作極其緩慢，如果再加上不斷的呼叫表單this.Refresh()進行全物件的刷新時，會發現緩慢加上閃爍之問題更是極其嚴重。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/22773569160/"><img src="https://c1.staticflickr.com/5727/22773569160_3a13346d95_z.jpg" alt="20151109_01"></a>
+<img src="/image/2015/20151109_01.jpg" />
 
 <p>這篇文章我試著套用一個跑馬燈的案例，套用上我寫好的一個叫「MarqueeString」類別，試著採用.NET Framework的System.Drawing.BufferedGraphics類別，來操控所謂的圖形雙緩衝繪圖，也就是先在背景記憶體開設一個bitmap，然後對他進行繪圖，等到畫好後再瞬間套用到前景，藉此來消除螢幕重新繪製時期的空白問題，這也就是發生閃爍的主要原因。如果你有興趣的話，可以觀察一下外面比較科技化飲料攤前面的展示螢幕，上面如果有最新消息跑馬燈的功能，大部分的文字都會出現跑幾個Pixel就閃爍的問題。</p>
 

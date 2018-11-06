@@ -10,7 +10,7 @@
 
 <p>兩步驟驗證在現在的網站來說，似乎已經慢慢開始流行，許多大型的網站都已經支援這個標準。兩步驟驗證的名稱有很多，例如：兩階驗證、兩階段驗證、動態密碼、一次性密碼、2FA（Two Factor Authentication）、OTP（One Time Password）。一開始我也對這個概念很無知，經過不斷的爬文閱讀之後，才知道所有的概念源自於<a href="https://goo.gl/uLGxAf" target="_blank">RFC 6238</a> TOTP: Time-Based One-Time Password Algorithm與<a href="http://goo.gl/yxFlj" target="_blank">RFC 4226</a> HOTP: An HMAC-Based One-Time Password Algorithm這兩個標準。而現代的大型網站之兩步驟驗證的終端工具，也是實作這個標準而成。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/19377326091"><img src="https://c1.staticflickr.com/1/387/19377326091_7ec5cc0b97_o.png" alt="20150702_01"></a>
+<img src="/image/2015/20150702_01.jpg" />
 
 <p>本來以為這裡面的實作方式有許多的複雜運算、資料庫儲存以及防禦被竊的機制，但經過啃讀RFC後發現，最終就是網站會發給使用者一組ScrectKey，然後使用者要好好的保管這一組密鑰，一旦密鑰被流出去，那麼每個人都可以利用RFC的標準產生跟你一模一樣的動態密碼。我知道這個結論的當下也是很震驚的（如此簡單！），但是仔細再想一想也沒錯。兩步驟驗證就像另外一把會不斷變換樣貌的鑰匙，當這把鑰匙被偷走時，就算你再怎麼樣變換也沒有用吧！總而言之，兩步驟驗證只能夠保護你在公共場所登入時，如果有駭客在終端sniffer你的網路連線，那麼這組密碼他就算拿到了也無法再搞怪了（30秒內失效）。但是兩步驟驗證沒有辦法保護在你產生密鑰的當下，你的密鑰被人家監聽（拿走）了。</p>
 
@@ -84,10 +84,10 @@ static void Main(string[] args)
 </pre>
 
 <p>Console程式運行時的畫面ａ（每秒更新最正確的OTP code）</p>
-<a href="https://www.flickr.com/photos/105479788@N06/19347164366"><img src="https://c1.staticflickr.com/1/532/19347164366_920d2b2a3a_o.png" alt="20150702_02"></a>
+<img src="/image/2015/20150702_02.jpg" />
 
 <p>Console程式運行時的畫面ｂ（讓使用者輸入OTP code並判定是否正確）</p>
-<a href="https://www.flickr.com/photos/105479788@N06/18752613993"><img src="https://c1.staticflickr.com/1/381/18752613993_49267989c2_o.png" alt="20150702_03"></a>
+<img src="/image/2015/20150702_03.jpg" />
 
 <p>OTP demo EXE download: (with .NET Framework 4.5.1)</p>
 <p>

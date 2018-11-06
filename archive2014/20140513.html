@@ -9,87 +9,87 @@
 <h1>在Microsoft Office Word中使用功能變數進行自動化運算</h1>
 
 <p>有些時刻，我們需要進行一些制式化的Word報告輸出，然而在某些特定的條件下，這些報告不是像套用Excel資料來進行合併列印般的死板，多數時間需要人為的方式進行資料微異動，但又不是大到要調用到VBA來運作，這時候「功能變數（Functions）」就是一個很好的應用。如下圖所示，就是一個很好的應用，你可以手動請Word提示詢問你中獎金額，然後功能變數會幫你計算出你的稅後金額，當然稅率也是可以被設計成可調整的。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989334540/"><img src="https://c1.staticflickr.com/7367/13989334540_ccbe2e422b_o.png" alt="20140513_01"></a>
+<img src="/image/2014/20140513_01.jpg" />
 
 <p>首先把游標指到「中獎金額是」的後面，然後點選插入＞文字＞快速組件＞功能變數。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14172673761/"><img src="https://c1.staticflickr.com/5313/14172673761_6e575b1ca6_o.png" alt="20140513_02"></a>
+<img src="/image/2014/20140513_02.jpg" />
 
 <p>選擇「Fill-in」，這個功能會讓在你按下F9時，執行對話方框進行互動。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989334510/"><img src="https://c1.staticflickr.com/2915/13989334510_d518fa4cfd_o.png" alt="20140513_03"></a>
+<img src="/image/2014/20140513_03.jpg" />
 
 <p>按確定後，Word會馬上執行一次，請你輸入金額，在這邊我們先輸入1000。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14152821106/"><img src="https://c1.staticflickr.com/5071/14152821106_0d12334b89_o.png" alt="20140513_04"></a>
+<img src="/image/2014/20140513_04.jpg" />
 
 <p>接下來請反白1000的文字，點選插入＞連結＞書籤，然後輸入一個自定的名稱，例如：MyMoney，然後按新增。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14172673731/"><img src="https://c1.staticflickr.com/7445/14172673731_ba55bab160_o.png" alt="20140513_05"></a>
+<img src="/image/2014/20140513_05.jpg" />
 
 <p>接下來請反白2%的文字，做出一樣的書籤新增動作，輸入一個自定的名稱，例如：MyTax，然後按新增。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14173321872/"><img src="https://c1.staticflickr.com/7460/14173321872_b0c2171e51_o.png" alt="20140513_06"></a>
+<img src="/image/2014/20140513_06.jpg" />
 
 <p>接下來準備插入自動運算的函式，請將游標移到下圖中的「是」的後面，一樣點選插入功能變數。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14175987265/"><img src="https://c1.staticflickr.com/7362/14175987265_3c6edf7767_o.png" alt="20140513_07"></a>
+<img src="/image/2014/20140513_07.jpg" />
 
 <p>這次我們選擇的是公式（Formula）</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14176012744/"><img src="https://c1.staticflickr.com/7331/14176012744_74d413a2e5_o.png" alt="20140513_08"></a>
+<img src="/image/2014/20140513_08.jpg" />
 
 <p>這時候就是發揮程式設計師的本色的時刻啦，其實只要是略懂Excel的人都看的懂啦！就是把我們剛才設定的那兩個書簽當作變數名稱，進行數學運算即可，詳見下圖。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14152820966/"><img src="https://c1.staticflickr.com/7361/14152820966_a57834dc17_o.png" alt="20140513_09"></a>
+<img src="/image/2014/20140513_09.jpg" />
 
 <p>期待中的980金額已經自動跑出來啦！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14172673571/"><img src="https://c1.staticflickr.com/5499/14172673571_d7400bf5ea_o.png" alt="20140513_10"></a>
+<img src="/image/2014/20140513_10.jpg" />
 
 <p>接下的動作是多餘的，只是要示範日後這個檔案怎麼跟使用者進行互動之程序。請先點選1000數字，然後按右鍵選「更新功能變數」或者按「F9」也可以。在這邊我們輸入2000好了！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14172673491/"><img src="https://c1.staticflickr.com/7333/14172673491_94b1e9e132_o.png" alt="20140513_11"></a>
+<img src="/image/2014/20140513_11.jpg" />
 
 <p>接下來請移到980金額按右鍵選「更新功能變數」或者按「F9」也可以。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989334290/"><img src="https://c1.staticflickr.com/5478/13989334290_10771b7565_o.png" alt="20140513_12"></a>
+<img src="/image/2014/20140513_12.jpg" />
 
 <p>接下來你就會看到自動更新，還會幫你自動格式化成會計格式1,960喔！會了這個功能後，你再也不用擔心報告金額打錯或者是忘了更新某個數值了！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14176012584/"><img src="https://c1.staticflickr.com/2921/14176012584_67bda89175_o.png" alt="20140513_13"></a>
+<img src="/image/2014/20140513_13.jpg" />
 
 <p>P.S 要全文件運行「更新功能變數」，請按「Ctrl + A」然後按「F9」即可。</p>
 
 <h3>交互式運算：功能變數中的功能變數</h3>
 
 <p>這個功能是屬於更高階的用法，網路幾乎很少人談論到這一塊，更別提Word的書籍了，以下是示範日期的取得以及運算。請將游標移到「今天是」的後面，插入功能變數，選擇「Date」，然後挑選你想要表達的格式，就會自動的插入日期啦！P.S yyyy/M/d 可以自行調整。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989353837/"><img src="https://c1.staticflickr.com/7399/13989353837_3d6c5d5cc3_o.png" alt="20140513_14"></a>
+<img src="/image/2014/20140513_14.jpg" />
 
 <p>接著試著將30變數化，這個上面有講過不難，請跟著圖片做就好了，例如叫「MyYearPlus」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14173321732/"><img src="https://c1.staticflickr.com/5540/14173321732_9177ae3ff1_o.png" alt="20140513_15"></a>
+<img src="/image/2014/20140513_15.jpg" />
 
 <pre>
 這裡可能會有網友覺得Word中的今天的後30「天」被改成「年」了，原因是因為在寫這篇文章的當下，我以為功能變數可以運行VBA的DateAdd()函式，後來證實不行運行VBA！所以只好調整成「年」，但這不影響我們要介紹「功能變數中的功能變數」這個主軸。
 </pre>
 
 <p>接下來游標移到「是」的後面，插入功能變數啦！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989338728/"><img src="https://c1.staticflickr.com/2900/13989338728_6999d0f199_o.png" alt="20140513_16"></a>
+<img src="/image/2014/20140513_16.jpg" />
 
 <p>我們要使用的是公式，請按圖中的文字進行輸入動作，其中的「X」就是我們等一下要插入第二層的變數要用的。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14172673361/"><img src="https://c1.staticflickr.com/2933/14172673361_003b14fbfb_o.png" alt="20140513_17"></a>
+<img src="/image/2014/20140513_17.jpg" />
 
 <p>輸入完成後，Word會回應給你一個找不到X的錯誤（廢話），這時候不要緊張，請在這裡按右鍵選「切換功能變數代碼」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14173321662/"><img src="https://c1.staticflickr.com/7384/14173321662_1eaa7c90f9_o.png" alt="20140513_18"></a>
+<img src="/image/2014/20140513_18.jpg" />
 
 <p>接著你會看到剛才的公式的原形，根本就是一串Excel函式啊！然後我們把「X」反白圈選起來，再按一次插入功能變數，這個X將在之後被等一下要輸入的功能變數整個抽換（取代）掉。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989334080/"><img src="https://c1.staticflickr.com/2931/13989334080_6f442ccac2_o.png" alt="20140513_19"></a>
+<img src="/image/2014/20140513_19.jpg" />
 
 <p>一樣，選你要的日期就可以了。選定好格式後請按左下方的「功能變數代碼」鈕，進行進階設定。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14175986885/"><img src="https://c1.staticflickr.com/7351/14175986885_eb0d25ccc7_o.png" alt="20140513_20"></a>
+<img src="/image/2014/20140513_20.jpg" />
 
 <p>將雙引號內的日期格式，改成「yyyy」，因為我們只要取出「年份」來運算而已。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14173321632/"><img src="https://c1.staticflickr.com/7426/14173321632_8c9ba5f899_o.png" alt="20140513_21"></a>
+<img src="/image/2014/20140513_21.jpg" />
 
 <p>按確定後的畫面如下圖所示，你會看到2014被包成另外一個框，這就是傳說中的「功能變數中的功能變數」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989321379/"><img src="https://c1.staticflickr.com/7439/13989321379_7e8e6ae6ae_o.png" alt="20140513_22"></a>
+<img src="/image/2014/20140513_22.jpg" />
 
 <p>再對它進行「切換功能變數代碼」，會看到屬於這個日期的原形。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14176012344/"><img src="https://c1.staticflickr.com/5312/14176012344_9192c04c94_o.png" alt="20140513_23"></a>
+<img src="/image/2014/20140513_23.jpg" />
 
 <p>要把他切換成正常模式，請在最外面這一層功能變數按下「更新功能變數」即可。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14172673231/"><img src="https://c1.staticflickr.com/2895/14172673231_cea936c009_o.png" alt="20140513_24"></a>
+<img src="/image/2014/20140513_24.jpg" />
 
 <p>2014 + 30 = 2044 沒錯！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/13989354197/"><img src="https://c1.staticflickr.com/7408/13989354197_661bb869b3_o.png" alt="20140513_25"></a>
+<img src="/image/2014/20140513_25.jpg" />
 
 <p>P.S 這裡的重點就是第二層以上的功能變數，是不能直接切換，去打{}等對應符號來進行編輯的，一定要透過Word的功能來進行插入，一開始我也不知道，走了很多冤路。其實這部份的運用可以是很強大的，例如這個<a href="http://goo.gl/O8NDLM" target="_blank">連結</a>前半段就有很多很有趣的寫法，例如調用IF來進行輸出文字的判斷，在非VBA的領域裡，我從來沒有看過有人可以把Word用到這樣出神入化。</p>
 

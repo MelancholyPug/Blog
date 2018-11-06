@@ -10,7 +10,7 @@
 
 <p>觀察者模式（Observer pattern）又稱為發布／訂閱模式（Publish / Subscribe pattern），可以讓A、B物件間的出現相依性，並且可以當A出現動作時，B就被觸發連動。這篇文章將利用泛型委派（Action）來進行基本的觀察者模式實作。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/21249210192/"><img src="https://c1.staticflickr.com/624/21249210192_a328c95530_o.jpg" alt="20150909_01"></a>
+<img src="/image/2015/20150909_01.jpg" />
 
 <p>首先我們先建立狗類別，類別中有一個事件是OnBarking，而當我們讓狗叫Barking();的時候，他就會觸發這個OnBarking事件。</p>
 <pre>
@@ -52,7 +52,7 @@ static void Main(string[] args)
 
 <p>執行畫面如下圖：</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/21259717445/in/photostream/"><img src="https://c1.staticflickr.com/5777/21259717445_c99e4f84a1_o.png" alt="20150909_02"></a>
+<img src="/image/2015/20150909_02.jpg" />
 
 <h3>取消事件的觀察（取消訂閱）</h3>
 <p>在真實的世界裡，一個人被狗嚇到一定是一開始的突然事件，也就是你不太可能當狗吠叫第二聲還會再嚇到一次，因此我們就用剛才的範例，接著來講事件的取消觀察、取消訂閱。</p>

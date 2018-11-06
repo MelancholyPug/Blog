@@ -25,20 +25,20 @@
 <p>3. 將SQL Server套用憑證，這要分成兩種步驟：</p>
 
 <p>如果是SQL Server 2008（含以上），那麼要先進行SSL加密套件的調整。請開啟 cmd＞gpedit.msc，然後進入電腦設定＞系統管理範本＞網路＞SSL組態設定，會看到有一個「SSL加密套件順序」。點開來之後會出現下圖，請在左下方文字方框中，將TLS_RSA_WITH_RC4_128_SHA移到第一個（優先位置）。這邊的調整2j動作建議複製到文字檔會比較好修改。</p>
-<a href="http://www.flickr.com/photos/105479788@N06/10972988184/"><img src="https://c1.staticflickr.com/7335/10972988184_1202e6fcf0_o.png" alt="20131120_01"></a>
+<img src="/image/2013/20131120_01.jpg" />
 
 <p>如果是SQL Server 2005，那麼只要進行這個動作就好（上方動作請省略），請點選開始＞Microsoft SQL Server＞組態工具＞SQL Server 組態管理員，然後跟著下方這兩個圖示進行操作即可。</p>
-<a href="http://www.flickr.com/photos/105479788@N06/10972988094/"><img src="https://c1.staticflickr.com/3735/10972988094_da396be125_o.png" alt="20131120_02"></a>
-<a href="http://www.flickr.com/photos/105479788@N06/10972817075/"><img src="https://c1.staticflickr.com/2845/10972817075_7167106aa4_o.png" alt="20131120_03"></a>
+<img src="/image/2013/20131120_02.jpg" />
+<img src="/image/2013/20131120_03.jpg" />
 
 <p>此外，如果想要匯出自己剛才產生出來的憑證並且備份的話，請開啟cmd＞mmc，來進行「主控台的開啟」，並且加入憑證的管理元件，如下圖所示，最後你會在個人＞憑證中，看到你產生的那張憑證，右鍵就可以將它匯出嘍！</p>
-<a href="http://www.flickr.com/photos/105479788@N06/10972903716/"><img src="https://c1.staticflickr.com/7333/10972903716_5dfdc098e6_o.png" alt="20131120_04"></a>
+<img src="/image/2013/20131120_04.jpg" />
 <p>加入憑證管理單元，選擇電腦帳戶，然後按下一步。</p>
-<a href="http://www.flickr.com/photos/105479788@N06/10972988034/"><img src="https://c1.staticflickr.com/7343/10972988034_26dd58ee71_o.png" alt="20131120_05"></a>
+<img src="/image/2013/20131120_05.jpg" />
 <p>選擇本機電腦</p>
-<a href="http://www.flickr.com/photos/105479788@N06/10972987884/"><img src="https://c1.staticflickr.com/3824/10972987884_2068a659b3_o.png" alt="20131120_06"></a>
+<img src="/image/2013/20131120_06.jpg" />
 <p>在個人＞憑證下面，就會出現以你電腦為名字的憑證，按右鍵就可以匯出備份嘍！</p>
-<a href="http://www.flickr.com/photos/105479788@N06/10972816895/"><img src="https://c1.staticflickr.com/3743/10972816895_73b012fd73_o.png" alt="20131120_07"></a>
+<img src="/image/2013/20131120_07.jpg" />
 
 <small>MicrosoftSQLServer SSL Certificate X509</small>
 

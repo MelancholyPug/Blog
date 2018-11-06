@@ -10,7 +10,7 @@
 
 <p>我們都知道，NTP透過UDP協定與Port 123來進行操作，而UDP本身機制實在是太弱了，非常容易遭受到DDoS阻斷式服務的攻擊，因此這個管道常常會被網管人員封鎖掉。這篇文章試著使用C#搭配InterOP與HTTP，來進行遠端的時間查詢（非透過NTP機制）與設定本地端的時間。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/21816896401/"><img src="https://c1.staticflickr.com/731/21816896401_54d1b104f4_o.jpg" alt="20150929_01"></a>
+<img src="/image/2015/20150929_01.jpg" />
 
 <p>我們這次使用的機制是採用<a href="http://goo.gl/DP6Ph" target="_blank">TimeAndDate TAIWAN TAIPEI</a>所提供的資訊，解析其網頁下，發現有一個WebRequest會傳送UTC資訊的時間，這就是我們採用的基礎啦！</p>
 

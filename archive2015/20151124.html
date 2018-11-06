@@ -10,7 +10,7 @@
 
 <p>因為有機會要用到中文輸入法的調用，查了半天，全部都是依存在Windows每一版本的作業系統中所提供的不同輸入法的DLL程式庫，再進行所謂的DLL Hook，因為不想自己寫的系統元件或程式，被Windows的作業系統版本綁住，所以乾脆把研究方向轉向到自己自建字碼表（在本篇以注音輸入法為例），這樣一來就可以完全的從作業系統底層解脫了。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/22878932807/"><img src="https://c1.staticflickr.com/619/22878932807_48aacdd642_n.jpg" alt="20151124_01"></a>
+<img src="/image/2015/20151124_01.jpg" />
 
 <p>當然啦，我們不可能自己建立這些字碼表，因此行政院國家發展委員會的全字庫自然是我這次所有研究的重點，再繼續挖掘下去，發現全字庫已經有在政府開放資料網站上進駐，也就是說，我們可以不用辛苦的到他的網站上寫程式慢慢的crawler了。網站在這裡：<a href="http://goo.gl/mxvoq2" target="_blank">政府資料開放平台：CNS11643中文標準交換碼全字庫</a></p>
 
@@ -152,7 +152,7 @@ namespace SlashLook
 
 <p>經過轉換後，我們將會得到十進制（Dec）的Unicode編碼、十六進制（Hex）的Unicode編碼、注音字碼表、真實的Unicode文字，好歡樂啊！接下來就可以快樂的倒進資料庫中，快快樂樂的設計實作自己的輸入法嘍！</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/22905099679/in/photostream/"><img src="https://c1.staticflickr.com/5730/22905099679_c5720d0b69_c.jpg" alt="20151124_02"></a>
+<img src="/image/2015/20151124_02.jpg" />
 
 <small>CNS11643 Unicode UTF8 UTF16 UTF32 字面 轉換 字典檔</small>
 

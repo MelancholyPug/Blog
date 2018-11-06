@@ -10,7 +10,7 @@
 
 <p>如果你在ASP.NET的環境中需要儲存一種資料，只有在每一次的應用程式要求起始發生，到結束的生命週期就消失了，那麼說真的這樣的需求還真的有點難辦到。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/27849729648/in/dateposted-public/"><img src="https://farm1.staticflickr.com/831/27849729648_00cbc80d63_c.jpg" alt="20180426_01"></a>
+<img src="/image/2018/20180426_01.jpg" />
 
 <p>舉例來說，Application或是某類別的statice屬性，這些都是全站共享的。Session除非特別設計，否則一般來說還是會存活在使用者整個活動的周期內。姑且不論機敏性，Cookie、ViewState、InputTypeHidden這些把浪費效能打到前端資料儲存方式也不適合拿來實作在應用程式生命週期間的暫時儲存（亦很難達到全域存取的特性）。於是開始把腦筋動到MasterPage或Page物件，在這裡面AddLiteralContorl並對它賦值，並且把可視屬性關掉，的確在最終Render輸出時期會自動地被隱藏（不會輸出到前端），但最大的缺點是，你並沒有辦法自由的在生命週期區間內的各UserControl、Global.asax...等自帶的事件中，自由去存取這些你塞進去的Control屬性，否則你會乖乖地收到這種錯誤訊息：</p>
 

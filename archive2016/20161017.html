@@ -28,13 +28,13 @@ Object reference not set to an instance of an object.
 <p>總共有四個要點要注意，我所實驗的環境是Windows Server 2008 R2 + Office 2016 x64。</p>
 
 <p>Setp 1. 去應用程式集區，設定好你的運行身分，這對一個IIS的管理者應該不會太難才是。（若如果你沒有一個單一個運行身分，請去電腦管理建立一個）</p>
-<a href="https://www.flickr.com/photos/105479788@N06/29749899303/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8624/29749899303_d3ec9f7ef1_o.png" alt="20161017_01"></a>
+<img src="/image/2016/20161017_01.jpg" />
 
 <p>Step 2. 將這個運行身分，加入到Administrators群組內。（我知道很危險！但是，當你決定要用Microsoft.Office.Interop時，你已經決定了這一切的風險了不是嗎？好好的把Microsoft.Office.Interop Service鎖定在有限的網路、服務範圍，才是比較實際的做法。）</p>
-<a href="https://www.flickr.com/photos/105479788@N06/30345804856/in/dateposted-public/"><img src="https://c2.staticflickr.com/6/5540/30345804856_f1c3478ae8_o.png" alt="20161017_02"></a>
+<img src="/image/2016/20161017_02.jpg" />
 
 <p>Step 3. 打開元件服務「dcomcnfg.exe」。進入到電腦（Computer）＞我的電腦（Local Computer）＞DCOM設定（Config DCOM）＞Microsoft Word 97-2003文件（Microsoft Word 97-2003 Documents），點選右鍵選擇內容。切換到識別身分（Identity）的頁籤，把執行啟動的使用者（Launching User）改為指定下列使用者（This User），所謂的使用者當然就是你建立的這個運行身分啦！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/29770506023/in/dateposted-public/"><img src="https://c2.staticflickr.com/6/5591/29770506023_d2d142b68c_o.png" alt="20161017_03"></a>
+<img src="/image/2016/20161017_03.jpg" />
 <p>※ 網路上有很多人教你要設定為互動式使用者（interactive user），這個就是我說的真實使用者身分，但選這個選項是錯誤的，因為哪一台伺服器不會登出？如果你不幸選到這個選項，那麼你的功能只有在Administrator等級的身分登入，才可以正常的運作。</p>
 
 <p>Step 4. 在IIS的web.config中，加入下列字句：</p>

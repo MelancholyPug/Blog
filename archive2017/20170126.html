@@ -10,7 +10,7 @@
 
 <p>這篇是要討論如何使用.NET Framework來取得運行主機上面的記憶體狀態，看到這裡可能會有很多人第一印象就是，這還用講嗎？利用System.Diagnostics.PerformanceCounter來取得不是兩三行就寫完了嗎？這種想法也對也錯，如果你只是使用Console隨便POC一下，你可能會覺得數據貼近你在工作管理員（Task Manager）中看到的數據，因此就覺得這樣就是正確了。但是事實不然，如果你將這些程式碼移到Web端環境（例如ASP.NET），那你就會發現表現出來的數字遠遠與工作管理員背道而馳。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/31687735724/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/510/31687735724_06bbe4f471_c.jpg" alt="20170126_01"></a>
+<img src="/image/2017/20170126_01.jpg" />
 
 <h3>先示範一下常見的PerformanceCounter取得方式</h3>
 <pre>

@@ -10,7 +10,7 @@
 
 <p>這幾天花了許多時間在找一隻只有在Apple公司出品的作業系統（例如：MacOS、iOS）中，並使用Safari核心的瀏覽器才會出現的臭蟲。會花很多時間的原因是因為辦公室並沒有擁有MacOS設備的開發環境，因此你沒有辦法單靠使用者等級的設備（iPhone、iPad）來進行F12網路模式來除錯，花大時間去建置Sniffer環境想想又不太值得耗費這麼大的功夫，最後靠著別單位的一台Mac Mini設備直接跑MacOS起來除錯，問題總算是可以被開始被還原以利除錯。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/28009358285/"><img src="https://c6.staticflickr.com/8/7350/28009358285_6701f02eda_o.jpg" alt="20160701_01"></a>
+<img src="/image/2016/20160701_01.jpg" />
 
 <p>這隻臭蟲會在ASP.NET環境中，使用蘋果公司的Safari瀏覽器時出現，無論是哪個版本都一樣。簡單的來說，當你寫好一個正常可以在InternetExplorer、FireFox、Chrome，甚至是Microsoft Edge下面正確執行的網頁，但是移到iPhone、iPad、MacOS上面的Safari就會出現崩潰。值得一提的是，iPhone上面的Chrome是採用Safari引擎，所以也會產生崩潰，但是MacOs上面的Chrome上面不是採用Safari引擎，所以不會崩潰。</p>
 
@@ -44,7 +44,7 @@ Invalid postback or callback argument. Event validation is enabled using &lt;pag
 歷 F98C << 你塞入這個字元就會引爆炸彈
 </pre>
 
-<a href="https://www.flickr.com/photos/105479788@N06/27975629066/"><img src="https://c3.staticflickr.com/8/7359/27975629066_88665a9751_c.jpg" alt="20160701_02"></a>
+<img src="/image/2016/20160701_02.jpg" />
 
 <p>我自己推論Safari在PostBack的時候，會自己「假敖」（台語：自己覺得自己很厲害）把落在CJK Compatibility Ideographs區塊的字元，自己替換回正式的字元，導致ASP.NET在進行__VIEWSTATE或__EVENTVALIDATION的雜湊取回驗證時，發現有被修改過，因而引爆一連串的靈異現象。不過因為這個Bug實在有夠鳥浪費我太多時間，所以我也就沒有再多花時間去驗證就是了。</p>
 

@@ -81,18 +81,18 @@ VBCSCompiler.exe.config
 
 <p>Step 2. 在C# 7.0時代，當我們將上述的檔案放進去資料夾時，不若C# 6.0時代這麼簡單，應該是說，系統會出現無法取代檔案的問題。會發生這個問題是因為檔案權限被指派成TrustedInstaller而非Administrator（感覺是微軟的疏忽所致），因此必須進行權限的修正後，方能取代（覆蓋）之。</p>
 
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/36452197152/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4405/36452197152_149f33de9a_o.png" alt="20170817_01"></a>
+<img src="/image/2017/20170817_01.jpg" />
 
 <p>下方以System.Xml.ReaderWriter.dll這個衝突檔案當作範例，請觀看圖片內的解法，親自且逐一實作，將所有的衝突檔案排除即可。</p>
 
 <p>我們可以看到這個dll權限屬於TrustedInstaller，而非我們自己的Administrator，請點選變更。</p>
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/36224497860/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4405/36224497860_a12057d1cc_o.png" alt="20170817_02"></a>
+<img src="/image/2017/20170817_02.jpg" />
 
 <p>改回後，我們就可以發現這個dll屬於Administrator了。</p>
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/36574632156/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4384/36574632156_16923c4de4_o.png" alt="20170817_03"></a>
+<img src="/image/2017/20170817_03.jpg" />
 
 <p>最後請在確認一下Administrators是否擁有這個檔案的存取權限，如果沒有存取權限的話，一定要賦予，否則依然無法覆寫檔案。</p>
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/36621384895/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4404/36621384895_6061b86dfe_o.png" alt="20170817_04"></a>
+<img src="/image/2017/20170817_04.jpg" />
 
 <h3></h3>
 <p>一旦替換成功，到此資料夾下面輸入CSC，如果看到下方的資訊（沒有出現for C# 5.0），就代表你成功替換為Roslyn編譯器啦！</p>

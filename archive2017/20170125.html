@@ -10,7 +10,7 @@
 
 <p>前幾天在寫using的時候，裡面再包一層try catch時，總覺得良心很過意不去，但是就當下的程式碼結構一定非要這樣寫不可（為了有條件的攔截錯誤而修正，不讓整個using結構因為某個錯誤立即崩潰）。於是想寫這一篇文章，讓面臨這樣抉擇的人可以重新的審視一下自己是否真的有需要在using裡面再包try catch。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/32520246405/in/dateposted-public/"><img src="https://c1.staticflickr.com/1/613/32520246405_e2d25c5323_c.jpg" alt="20170125_01"></a>
+<img src="/image/2017/20170125_01.jpg" />
 
 <h3>心法：Try出錯時，先跑Catch區段，且一定會再去跑Finally區段</h3>
 <p>話不多說，請先看一下程式碼：</p>

@@ -10,7 +10,7 @@
 
 <p>OAuth2.0在當下已經是各大型網站認證的標準，各大型網站也都會幫各Server端的語言、Client端的環境推出各式各樣的程式庫（Library），舉Google的來說，你只是想要驗證並取得使用者的Email，就可能要用NuGet下載四五個以上的DLL才可以，對於愛乾淨的人來說簡直是刺眼到了極點。因此，這篇文章就是想要透過一步一腳印的方式，親自走完所有OAuth2.0的流程，並且取得使用者的相關資訊。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/19352139798/in/datetaken/"><img src="https://c1.staticflickr.com/393/19352139798_275a55d9c2_o.jpg" alt="20150708_01"></a>
+<img src="/image/2015/20150708_01.jpg" />
 
 <p>這裡要先聲明，本篇文章中的程式碼，都是我自己對於OAuth2.0的概念性證明（Proof of Concept），由其是類別中有很多沒有考慮Exception或者是罕見狀況的事，所以不建議用在正式用途上，如果要套用到正式用途的話，一定要再加以大幅修正才是。</p>
 
@@ -31,7 +31,7 @@
 
 <h3>建立一個OAuth2.0的存取類別，以及要跟Google端交握JSON的各式類別</h3>
 <p>因為本POC最終是要在Console端上運行，因此為了化簡程式碼，我們會在登錄檔上面建立三個機碼，來當作是我們小型的資料庫。最後登錄檔的狀況將會如下：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/19352744318/in/datetaken/"><img src="https://c1.staticflickr.com/3689/19352744318_bbb7961815_o.jpg" alt="20150708_02"></a>
+<img src="/image/2015/20150708_02.jpg" />
 
 <p>OAuth2.0類別與各方法、欄位之代表意義，請見下列程式碼與詳細註解：</p>
 <pre>
@@ -329,15 +329,15 @@ static void Main(string[] args)
 </pre>
 
 <p><strong>＊程式運行結果ａ：</strong>第一次運行，需要透過瀏覽器進行互動式驗證</p>
-<a href="https://www.flickr.com/photos/105479788@N06/19354728599/in/datetaken/" title="20150708_03"><img src="https://c1.staticflickr.com/382/19354728599_3934eaa825_o.png" alt="20150708_03"></a>
+<img src="/image/2015/20150708_03.jpg" />
 <p>通過授權後，就可以取得AccessToken了</p>
-<a href="https://www.flickr.com/photos/105479788@N06/19515113776/in/datetaken/" title="20150708_04"><img src="https://c1.staticflickr.com/305/19515113776_c9f608ae3c_o.png" alt="20150708_04"></a>
+<img src="/image/2015/20150708_04.jpg" />
 
 <p><strong>＊程式運行結果ｂ：</strong>正常運行</p>
-<a href="https://www.flickr.com/photos/105479788@N06/19534504822/in/datetaken/" title="20150708_05"><img src="https://c1.staticflickr.com/258/19534504822_24b714e4fb_o.png" alt="20150708_05"></a>
+<img src="/image/2015/20150708_05.jpg" />
 
 <p><strong>＊程式運行結果ｃ：</strong>AccessToken失效，進行RefreshToken更新</p>
-<a href="https://www.flickr.com/photos/105479788@N06/19534504852/in/datetaken/" title="20150708_06"><img src="https://c1.staticflickr.com/554/19534504852_08cbd36122_o.png" alt="20150708_06"></a>
+<img src="/image/2015/20150708_06.jpg" />
 
 <h3>特別注意下列事項</h3>
 <ol>

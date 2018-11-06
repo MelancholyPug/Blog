@@ -12,11 +12,11 @@
 
 <p>但是仔細想一想不太對吧！？如果沒有權限瀏覽，那我們卻可以透過瀏覽器正常的看到網站、運行ASPX？這不是見鬼了嗎？但是下圖的狀況「登入失敗: 不明的使用者名稱或錯誤密碼。」明明就發生了啊！？</p>
 
-<a href="http://www.flickr.com/photos/105479788@N06/12808705345/" title="20140227_01"><img src="https://c1.staticflickr.com/5479/12808705345_864b1f3730_o.png"></a>
+<img src="/image/2014/20140227_01.jpg" />
 
 <p>經過Try-Error測試後發現，推測IIS Manager裡的File Tree Viewer，與真正IIS在運行時期的File Viewer，應該是兩個不同的實例（Instance）所致。解決方案也很簡單，就是跑到檔案總管去利用UNC Path登入，記憶一下帳號密碼，就解決了。</p>
 
-<a href="http://www.flickr.com/photos/105479788@N06/12808795873/" title="20140227_02"><img src="https://c1.staticflickr.com/5505/12808795873_0cafe888b0_o.png"></a>
+<img src="/image/2014/20140227_02.jpg" />
 
 <p>反推回來，如果你的架構是Server Farm，應該不需要每一台進行這樣的動作，因為可想而知的是這樣的動作，一定會再消耗Server一點點效能。</p>
 

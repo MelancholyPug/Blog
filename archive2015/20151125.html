@@ -10,7 +10,7 @@
 
 <p>這篇老實說，算是思考KIOSK螢幕鍵盤時所發展出來的探討，在前一篇<a href="/archive2015/20151124.html" target="_blank">CNS11643中文全字庫轉換Unicode注音字碼表之實作</a>我們談到了要自建注音輸入法的文字對照表，那麼在這一篇中，我們要談的是如何在單一文件介面（SDI）中，進行有如多重文件介面（MDI）般的，在表單之間拋轉文字或數值等有用的資料。話說我的SDI與MDI的觀念是在VB4還是VB5的時候建立的，時至2015年，吾人還在寫Win32 - Windows Form的相關程式，實在有一種時光倒流的即視感啊！</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/23269366066/"><img src="https://c1.staticflickr.com/5688/23269366066_21c45b3fa0.jpg" alt="20151125_01"></a>
+<img src="/image/2015/20151125_01.jpg" />
 
 <p>廢話不多說了，話說在SDI的環境中，所有的表單都是一個獨立自主的類別，也就是說，表單之間要交換資料的方式，無非就是在Ａ表單設定一個公用的欄位，然後Ｂ表單去動態改變Ａ表單的此欄位，如此一來即可達到資料的拋轉，這也是你在網路上看到絕大部分的人給你的答案。但是，這種方式的缺點程式碼看起來有夠蠢，也不夠自動化，因此我才會想用委派（delegate）的方式來進行交換資料的行為。</p>
 
@@ -19,7 +19,7 @@
 <h3>輸入表單Ａ程式碼</h3>
 <p>在輸入表單Ａ中，我們佈署了兩顆按鈕，用來作為文字輸出用，另外有一顆按鈕用來模擬鍵盤的倒退鈕，最後一顆按鈕，只是用來單純的關閉表單，並用來觸發 System.Windows.Forms.DialogResult.OK。在輸入表單中，我們也設計了Form2EventHandler的委派器，並設計了一個公開的OnSending事件，這些東西將被用來與接收表單Ｂ進行互動。而設計this.Close()而非完整消滅掉Form2表單實體，也是基於躲避重建Form2時的效能考量。</p>
 <p>此外，我也特別設計了_bIAmAlive參數來進行防止表單重複被執行Form_Load事件，如果重複執行的話，那麼每一顆按鈕的事件將會堆疊很多次，造成錯誤的運行並嚴重降低效能。。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/22927572649/in/photostream/"><img src="https://c1.staticflickr.com/5757/22927572649_59ca683644_o.png" alt="20151125_02"></a>
+<img src="/image/2015/20151125_02.jpg" />
 <pre>
 namespace FormDataTranslation
 {
@@ -58,7 +58,7 @@ namespace FormDataTranslation
 
 <h3>接收表單Ｂ程式碼</h3>
 <p>在接收表單Ｂ中，我們針對TextBox1設計了GotFocus得到焦點、LostFocus失去焦點事件內文，用來自動啟動輸入表單Ａ之顯示，此外，我們在GotFocus中的內文，掛載了剛才設計的OnSending事件，讓輸入表單Ａ中如果有事件被觸發，會同時通知接收表單Ｂ進行我們想要進行的動作，也就是去動態修改文字方框的內容。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/23212871121/in/photostream/"><img src="https://c1.staticflickr.com/5712/23212871121_314df55f4a_o.png" alt="20151125_03"></a>
+<img src="/image/2015/20151125_03.jpg" />
 <pre>
 namespace FormDataTranslation
 {
@@ -135,7 +135,7 @@ namespace FormDataTranslation
 <h3>執行期的畫面</h3>
 <p>當然，經過我們的事件委派設計，功能運行的非常的順暢啦！</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/23212870941/in/photostream/"><img src="https://c1.staticflickr.com/5690/23212870941_d65ffc29d8_o.png" alt="20151125_04"></a>
+<img src="/image/2015/20151125_04.jpg" />
 
 <p>這篇文章比較像概念的展示，而不是在探討程式碼的寫法，會找到這篇文章的人應該不是不懂程式的人，比較可能是概念還沒有暢通但想找解法的人，因此我的程式碼並沒有寫上大量的註解。所有的程式碼在此提供ZIP壓縮下載：</p>
 

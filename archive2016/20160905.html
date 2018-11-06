@@ -28,15 +28,15 @@ http://127.0.0.1/Query.aspx?Words=Crop.
 </pre>
 
 <p>真的要解決這個詭異的問題，其實去設定IIS的錯誤網頁（Error Page）是沒有用的，最終他還是會吐出HTTP 500的錯誤，例如下圖：</p>
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/29178021410/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8862/29178021410_ddbfe27d88_o.png" alt="20160905_01"></a>
+<img src="/image/2016/20160905_01.jpg" />
 
 <h3>正確做法，設定Web.Config中的relaxedUrlToFileSystemMapping</h3>
 
 <p>介面式的作法 - 1：進入IIS，點選左邊樹狀網站根目錄，點選「設定編輯器」。</p>
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/29386974531/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8125/29386974531_257f825ab5_o.png" alt="20160905_02"></a>
+<img src="/image/2016/20160905_02.jpg" />
 
 <p>介面式的作法 - 2：下拉區段至System.Web/httpRuntime，找到relaxedUrlToFileSystemMapping將其設定為True。</p>
-<a data-flickr-embed="true"  href="https://www.flickr.com/photos/105479788@N06/29178021320/in/dateposted-public/"><img src="https://c1.staticflickr.com/9/8432/29178021320_8ced8ca1ee_o.png" alt="20160905_03"></a>
+<img src="/image/2016/20160905_03.jpg" />
 
 <p>直接開啟Web.Config的作法</p>
 <p>這種做法我想不用多說了，直接看XML即可。</p>

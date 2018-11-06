@@ -68,15 +68,19 @@
     50%  { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
     100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); }
   }
-</style>
+</style>
+
 <div class="spinner"></div>
 <div class="text">
   <span>倒數計時後會重新整理本頁面</span>
   <br />
   <span>Preparing website… <span id="uCounter">00</span>s</span>
-</div>
+</div>
+
 <div class="text-center" style="margin:4rem 0">
-  <button id="uStart" type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-time"></span> 開始倒數計時</button></div>
+  <button id="uStart" type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-time"></span> 開始倒數計時</button>
+</div>
+
 <script>
 	pushToExecuteList(function(){
 		//Event Binding
@@ -90,12 +94,14 @@
       })(10, window.location.href);
 		});
 	}, 2);	//Priority:2
-</script>
+</script>
+
 <script>
   /*
 
   */
-</script>
+</script>
+
 <small>HTML CSS JavaScript Countdown Redirect Jump LinkTo LoadSelf</small>
 
 </body>

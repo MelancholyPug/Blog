@@ -10,7 +10,7 @@
 
 <p>之前都在討論有關於佈署時期環境中，如何讓WSP（Website Project）專案可以順利的使用C# 6.0以上的語法。今天要討論的狀況是在Visual Studio中，我們其實也需要相關的開發環境來除錯，今天就是要來討論如何逐步地將相關的檔案添加進你的WSP目錄中，讓你的Visaul Studio（這裡採用的是2017版本）可以順利使用新的C#語法偵錯。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/25126214688/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4519/25126214688_9b21dce365_c.jpg" alt="20171211_01"></a>
+<img src="/image/2017/20171211_01.jpg" />
 
 <h3>請先使用nuget下載最新的Microsoft.CodeDom.Providers.DotNetCompilerPlatform</h3>
 <p>Step 1. 請到<a href="https://www.nuget.org/" target="_blank">Nuget</a>下載Commandline程式，放到桌面。</p>
@@ -22,7 +22,7 @@ nuget install Microsoft.CodeDom.Providers.DotNetCompilerPlatform
 
 <p>Step 3. 打開「Microsoft.CodeDom.Providers.DotNetCompilerPlatform」目錄，進入到「lib」資料夾中，想辦法找到「Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll」，找到後將其加入到你的WSP專案中的「bin」目錄。做完這個動作後，順便按右鍵查看一下DLL版本號，以下圖為例，版本號為「1.0.8」。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/38960833572/in/dateposted-public/"><img src="https://farm5.staticflickr.com/4526/38960833572_e4fabf5e00_o.png" alt="20171211_02"></a>
+<img src="/image/2017/20171211_02.jpg" />
 
 <p>Step 4. 在WSP的「bin」目錄下，建立一個叫做「roslyn」的資料夾。接著到「Microsoft.Net.Compilers」目錄中，進入到「tools」資料夾，接著把裡面所有的檔案，都複製到「bin\roslyn」資料夾之中。</p>
 

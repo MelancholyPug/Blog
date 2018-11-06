@@ -10,7 +10,7 @@
 
 <p>這個問題的觸發點也是因為弱點掃描，又是一個我不認為是問題的問題，原因是因為我的伺服器只開放了下列五個動詞：「OPTIONS, TRACE, GET, HEAD, POST」，第３、４、５項次我不認為有任何WEB伺服器可以不支援，第２項其實只是一個毫無風險的loop-back，剩下的就是第一個項次「OPTIONS」，而這個「OPTIONS」的目的也只能列出這四個項次，那...風險在哪？但是言歸正傳，想下班的話，人家說要關就關掉吧！</p>
 
-<a  href="https://www.flickr.com/photos/105479788@N06/43146441731/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1767/43146441731_c811f20047_o.jpg" alt="20180703_01"></a> 
+<img src="/image/2018/20180703_01.jpg" /> 
 
 <p>在弱點掃描伺服器上，他顯示的資訊如下所示：</p>
 <pre>
@@ -21,10 +21,10 @@ HTTP OPTIONS method is enabled on this web server. The OPTIONS method provides a
 
 <h3>用UI的方式來限制IIS可提供的HTTP Verbs.</h3>
 <p>Step 1. 打開IIS管理員，點選「要求篩選」進入設定。（如果沒有這個選項，那你要回去幫IIS裝一下這個套件）</p>
-<a  href="https://www.flickr.com/photos/105479788@N06/29274894928/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1810/29274894928_dfa40a8569_o.jpg" alt="20180703_02"></a> 
+<img src="/image/2018/20180703_02.jpg" /> 
 
 <p>Step 2. 看你要用白名單/黑名單的思維，自己去設定要開放還是要封鎖的指令動詞。</p>
-<a  href="https://www.flickr.com/photos/105479788@N06/42427877024/in/dateposted-public/"><img src="https://farm2.staticflickr.com/1788/42427877024_b7a4a32ff0_o.jpg" alt="20180703_03"></a> 
+<img src="/image/2018/20180703_03.jpg" /> 
 
 <h3>用Web.Config的方式來限制IIS可提供的HTTP Verbs.</h3>
 <p>說實在的，這是最快的方法了，而且在這個模式下，你可以更精確的指定是要採用黑名單工作方式，還是要採用白名單工作方式（allowUnlisted="true/false"）。</p>

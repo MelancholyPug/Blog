@@ -10,7 +10,7 @@
 
 <p>我們都知道有JavaScript與CSS的壓縮實作，但對於HTML壓縮的實作在網路上比較少人在討論（而且有很多程式碼都是錯誤的），但其實說實在的，在現代JavaScript與CSS技術氾濫的推播下，大家對於JS、CSS的Minify都已經很有sense，可是反過頭來看，乘載的HTML母體，卻充斥著更多大量的空白、跳位、換行。不相信的話，下面這張微軟的網站原始碼截圖出來給你感受一下（這些換行與空白只是原始碼中的冰山一角）！</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/27869449788/in/dateposted-public/"><img src="https://farm1.staticflickr.com/968/27869449788_ab72d1d8da_c.jpg" alt="20180427_01"></a>
+<img src="/image/2018/20180427_01.jpg" />
 
 <p>我這邊示範的範例還是以WebForm為主，如果你是採用MVC的話，可以考慮把類別掛在ActionFilter就可以了。</p>
 
@@ -97,7 +97,7 @@ namespace Slashlook
   <li>IHttpModule有很多事件，但可以讓你及時掛上Response.Filter並且可以正常調用運作的其實很少（多數的事件都處於生命週期的晚期，已經來不急了），最下方補一張IHttpModule事件列表讓你自己實驗參考一下。如果有頁面是在最終輸出時期才決定自己要輸出Content-Type的型態，建議事件掛在PostRequestHandlerExecute會比BeginRequest來的有效率。</li>
 </ol>
 
-<a href="https://www.flickr.com/photos/105479788@N06/40840345985/in/dateposted-public/"><img src="https://farm1.staticflickr.com/969/40840345985_179723b0df_b.jpg" alt="20180427_02"></a>
+<img src="/image/2018/20180427_02.jpg" />
 
 <small>ASP.NET MVC WebForm HTML Compression IHttpModule Response.Filter LifeCycle</small>
 

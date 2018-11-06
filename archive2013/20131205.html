@@ -13,48 +13,48 @@
 <p>其實各項功能模組化可以讓使用者自己挑選自己想要的東西，進而最佳化伺服器的安全以及效能，以一件很好的事，只是面對這麼龐大且分散的選項，我覺得微軟可以在過渡期，針對UI做出更好的提示才是。（必竟選擇裝IIS的人，不裝ASP.NET的有幾人？）下面就讓我們一步步來完成這個安裝的說明吧！</p>
 
 <p>1. 開啟伺服器管理員，點選管理＞新增角色及功能</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221456635/"><img src="https://c1.staticflickr.com/3677/11221456635_207e4286ab_o.png" alt="20131205_01"></a>
+<img src="/image/2013/20131205_01.jpg" />
 
 <p>2. 出現新增角色及功能精靈，點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221560313/"><img src="https://c1.staticflickr.com/3702/11221560313_4cd3fca944_o.png" alt="20131205_02"></a>
+<img src="/image/2013/20131205_02.jpg" />
 
 <p>3. 點選角色型或功能型安裝，點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221456835/"><img src="https://c1.staticflickr.com/3680/11221456835_e36b750cdf_o.png" alt="20131205_03"></a>
+<img src="/image/2013/20131205_03.jpg" />
 
 <p>4. 點選從伺服器集區選取伺服器，點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221473196/"><img src="https://c1.staticflickr.com/7387/11221473196_f9b963eb45_o.png" alt="20131205_04"></a>
+<img src="/image/2013/20131205_04.jpg" />
 
 <p>5. 下拉到「Web Server (IIS)」選項，勾選他</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221560603/"><img src="https://c1.staticflickr.com/3832/11221560603_d690176d48_o.png" alt="20131205_05"></a>
+<img src="/image/2013/20131205_05.jpg" />
 
 <p>6. 系統會自動提示跟IIS有關聯性的模組，點選新增功能</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221560763/"><img src="https://c1.staticflickr.com/2870/11221560763_a8a475366a_o.png" alt="20131205_06"></a>
+<img src="/image/2013/20131205_06.jpg" />
 
 <p>7. 接下來就是很多剛使用Windows Server 2012的使用者，非常容易乎略的點，就是如果你要跑ASP.NET的話，千千萬萬、一定要再來挑選這個「Application Server」角色喔！勾選完後就點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221457525/"><img src="https://c1.staticflickr.com/3681/11221457525_35c56d701c_o.png" alt="20131205_07"></a>
+<img src="/image/2013/20131205_07.jpg" />
 
 <p>8. 理論上我們是跑安裝後內建的.NET Framework 4.5，如果你有需要運行3.5舊版請自行安裝。點開「.NET Framework 4.5 Features」後，勾選ASP.NET 4.5後點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221560963/"><img src="https://c1.staticflickr.com/7322/11221560963_a5a73c4e4c_o.png" alt="20131205_08"></a>
+<img src="/image/2013/20131205_08.jpg" />
 
 <p>9. 接著到了網頁伺服器角色(IIS)的設定，點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221473546/"><img src="https://c1.staticflickr.com/7305/11221473546_3a03dbe3bb_o.png" alt="20131205_09"></a>
+<img src="/image/2013/20131205_09.jpg" />
 
 <p>10. 勾選您想要的角色服務（其實就是選擇IIS各式功能模組）後，點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221473816/"><img src="https://c1.staticflickr.com/2872/11221473816_58e99ce2b3_o.png" alt="20131205_10"></a>
+<img src="/image/2013/20131205_10.jpg" />
 
 <p>11. 接著到了應用程式伺服器角色的設定，點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221457835/"><img src="https://c1.staticflickr.com/5480/11221457835_72cab5b32d_o.png" alt="20131205_11"></a>
+<img src="/image/2013/20131205_11.jpg" />
 
 <p>12. 勾選偵對「Web Server (IIS) Support」選項，點選下一步</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221473076/"><img src="https://c1.staticflickr.com/3824/11221473076_c14b8dd14b_o.png" alt="20131205_12"></a>
+<img src="/image/2013/20131205_12.jpg" />
 
 <p>13. 同樣的，系統會彈出提示，如果要使用「Web Server (IIS) Support」，必須要安裝哪些相關的功能項次，像是HTTP Redirection或是IIS Extensions等...</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221459594/"><img src="https://c1.staticflickr.com/3766/11221459594_0250413a5c_o.png" alt="20131205_13"></a>
+<img src="/image/2013/20131205_13.jpg" />
 <p>14. 來到最後的安裝畫面，建議勾選「必要時自動重新啟動目的伺服器」，以防止安裝過程中需要重開機的問題。（如果需要重開機而未重開機，那麼有可能你直接上ASP.NET的相關程式碼會失敗）</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221456675/"><img src="https://c1.staticflickr.com/3770/11221456675_ab366b2a2d_o.png" alt="20131205_14"></a>
+<img src="/image/2013/20131205_14.jpg" />
 
 <p>15. 點選安裝就開始架設IIS以及ASP.NET相關功能啦！</p>
-<a href="http://www.flickr.com/photos/105479788@N06/11221472596/"><img src="https://c1.staticflickr.com/5483/11221472596_73e4878301_o.png" alt="20131205_15"></a>
+<img src="/image/2013/20131205_15.jpg" />
 <p>以上這是對於初入門的使用者最簡單的安裝方式，如果要更進階的話就要從「網頁伺服器角色(IIS)」的角色服務中，手動設定「Application Deployment」中的「ASP.NET 4.5、.NET Extensibility 4.5、ISAPI Extensions、ISAPI Filters」等功能了。</p>
 
 <p>經過這樣Step By Step的教學，相信大家一定可以在Windows Server 2012 IIS上面順利的運行ASP.NET，祝大家安裝順利！運行畫面不要再出現下方的語句了。</p>

@@ -44,7 +44,7 @@ namespace RegularExpression
 }
 </pre>
 <p>結果圖片如下所示：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/18289997868"><img src="https://c1.staticflickr.com/1/546/18289997868_1a3bb6108b_o.png" alt="20150605_01"></a>
+<img src="/image/2015/20150605_01.jpg" />
 
 
 <h3>命中取出法</h3>
@@ -78,7 +78,7 @@ namespace RegularExpression
 }
 </pre>
 <p>結果圖片如下所示：（使用「再度解析一次拆陣列」的程式碼為圖片執行結果）</p>
-<a href="https://www.flickr.com/photos/105479788@N06/18451394166"><img src="https://c1.staticflickr.com/1/489/18451394166_01918b2a67_o.png" alt="20150605_02"></a>
+<img src="/image/2015/20150605_02.jpg" />
 
 
 <h3>取代字串法</h3>
@@ -102,7 +102,7 @@ namespace RegularExpression
 }
 </pre>
 <p>結果圖片如下所示：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/18289997708"><img src="https://c1.staticflickr.com/1/362/18289997708_c280edb354_o.png" alt="20150605_03"></a>
+<img src="/image/2015/20150605_03.jpg" />
 
 <h3>取代字串法 + MatchEvaluator委派</h3>
 <p>上面不完美的問題再於，你沒有辦法對於$0, $1, $2...之類的變數，進行額外的加工處理。以這個例子為例，這個輸出的超連結中文字，在丟到Internet Explorer顯示時，可能會因為IE6, IE7, IE8, IE9, IE10, IE11...等不同版本、不同代理字串的影響下，產生不同的POST編碼丟回Server端，我們會直覺得想要UrlEncode把這些Parameter編碼起來，但是在上面的例子很顯然的無法完成。</p>
@@ -129,7 +129,7 @@ namespace RegularExpression
 }
 </pre>
 <p>結果圖片如下所示：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/18290097210"><img src="https://c1.staticflickr.com/1/478/18290097210_4210e3609d_o.png" alt="20150605_04"></a>
+<img src="/image/2015/20150605_04.jpg" />
 
 <p>看到上圖中，那「說明書.zip」被UrlEncode編碼成一大串的%XX的文字，這下IE再也不敢造次了。</p>
 

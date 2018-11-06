@@ -10,7 +10,7 @@
 
 <p>序列化有時候可以方便我們省下很多程式碼，又基於我目前所有的系統都是運行在非商用溝通的Web介面上，因此在這篇文章中我們討論的是「文字型XML序列化」、「二進制型序列化」，而「SOAP序列化」就不在我們討論的範圍了。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/21630960172/"><img src="https://c1.staticflickr.com/5637/21630960172_e40e1ebc07_c.jpg" alt="20150923_01"></a>
+<img src="/image/2015/20150923_01.jpg" />
 
 <p>在開始之前一定要先請建立觀念，序列化只會序列實例（instances）的Public等級的成員，也就是Private等級的一律被忽略無視，因此如果你某一個實例裡面有用到Private等級的成員來保持某一種狀態，那麼就很抱歉了。此外，也不要認為在沒有任何可以Reference目標類別（DLL）的環境中，可以憑空的反序列化回來，這也是不可能的事。</p>
 
@@ -119,7 +119,7 @@ class Program
 
 <p>經過上面的程式碼我們發現是正確的運行的，我們勉強地把二進制資料轉換成文字印在Big5等級的Console上，想當然爾會出現一堆亂碼，不過可以確定的是，所有資料的反序列化回來後，都是正確的資料。</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/21630960332/in/photostream/"><img src="https://c1.staticflickr.com/644/21630960332_2aeda68bee_o.jpg" alt="20150923_02"></a>
+<img src="/image/2015/20150923_02.jpg" />
 
 <small>.NET C# Object Serialize Serializable Deserialize Deserializable</small>
 

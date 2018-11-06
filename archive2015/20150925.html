@@ -10,7 +10,7 @@
 
 <p>Windows Services的開發由於缺乏前端顯示介面，因此在除錯的過程中相當的惱人，也因此我幾乎能不碰就不要碰這一塊。但是開始遇到了需要自己掌控Services的時刻，所以只好硬著頭皮自己下海摸索了。網路上的範例其實不多，而且很多作者都省略掉很多的步驟，這一點讓我覺得不是很好，既然要分享了還遮遮掩掩、丟東落西的幹嘛？話不多說，打開我們的Visual Studio 2015開始建立吧！</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/21176864894/"><img src="https://c1.staticflickr.com/5632/21176864894_3b036b04f0_o.png" alt="20150925_01"></a>
+<img src="/image/2015/20150925_01.jpg" />
 
 <p>由上圖可以得知，由範本＞Visual C#＞Windows＞傳統桌面＞Windows服務，就可以建立一個Windows Services起來，在這邊我們把名字取名為MyService。一個服務要寫得好，名字很重要，因為他將會干擾到你最後運行時期的唯一觀察介面，也就是Windows事件紀錄簿，因此，請好好地把你想要的名稱定義好。</p>
 
@@ -24,16 +24,16 @@
 </ol>
 
 <p>打開Service1.cs，並在畫面中空白處按下右鍵，點選「加入安裝程式」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21611564580/in/photostream/"><img src="https://c1.staticflickr.com/5793/21611564580_d2f0a0dd03_o.png" alt="20150925_02"></a>
+<img src="/image/2015/20150925_02.jpg" />
 
 <p>這時會出現一個叫做「ProjectInstaller.cs」的程式，請選擇「serviceProcessInstaller1」這個元件，並且將其參數進行修正。像我就把名稱改掉了，想不到名稱的話，建議最後加上Installer字眼即可。另外，我們在執行時期的Account選擇使用最高權限「LocalSystem」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21809070011/in/photostream/"><img src="https://c1.staticflickr.com/745/21809070011_f74c884080_o.png" alt="20150925_03"></a>
+<img src="/image/2015/20150925_03.jpg" />
 
 <p>切換到「ServiceInsaller1」元件，在這邊我們要指定最後存在於Windows服務介面中，所有的顯示資訊，再次提醒，這邊的名字請不要與「serviceProcessInstaller1」元件有任何的相同之處，以避免執行時期不必要的困擾。當然啦，你喜歡Try-Error浪費生命的話重蹈我的覆轍，那我沒意見。下圖我用一個已經存在於Windows服務的DHCP Client來當作範例對照，你可以發現微軟也是把服務名稱與顯示名稱切開來命名，為何呢？</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21773445196/in/photostream/"><img src="https://c1.staticflickr.com/722/21773445196_cb7a174d1a_o.png" alt="20150925_04"></a>
+<img src="/image/2015/20150925_04.jpg" />
 
 <p>基於本人喜歡使用匈牙利命名法混搭Pascal命名法，因此我決定把Service1.cs物件更名為oService（這個動作非必要）。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21612680589/in/photostream/"><img src="https://c1.staticflickr.com/5770/21612680589_e4daae954c_o.png" alt="20150925_05"></a>
+<img src="/image/2015/20150925_05.jpg" />
 
 <p>撰寫服務所需要的程式碼，我們的目標動作如下：建立一個沒有用的服務，該服務每5秒會觸發一次事件紀錄簿，寫下紀錄。此外，服務的啟動與終止也都會被記錄在事件紀錄簿中。</p>
 <pre>
@@ -84,30 +84,30 @@ public partial class oService : ServiceBase
 <h3>安裝寫好的Windows服務</h3>
 
 <p>理論上當你撰寫好一個服務，你應該需要用正規的方式來發行你的程式，然後去其他的電腦安裝，但由於我們太精實了，所以我們使用命令模式來安裝。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21799600865/in/photostream/"><img src="https://c1.staticflickr.com/5712/21799600865_f6aa772f4a_o.png" alt="20150925_06"></a>
+<img src="/image/2015/20150925_06.jpg" />
 
 <p>首先先找到程式建置完成後的路徑。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21176864094/in/photostream/"><img src="https://c1.staticflickr.com/5640/21176864094_5ff7667994_o.png" alt="20150925_07"></a>
+<img src="/image/2015/20150925_07.jpg" />
 
 <p>確認專案的依存.NET Framework的版本號，範例中是採用.NET Framework 4.6，因此我就把路徑切到「C:\Windows\Microsoft.NET\Framework64\v4.0.30319」，並將這個路徑設定到你電腦中的「Path」環境變數，以利隨時調用到「InstallUtil.exe」這隻程式。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21176863944/in/photostream/"><img src="https://c1.staticflickr.com/653/21176863944_68e98b819a_o.png" alt="20150925_08"></a>
+<img src="/image/2015/20150925_08.jpg" />
 
 <p>以系統管理員（Administrator）身分，打開命令提示字元（cmd），畢竟你要安裝的使用身分是「LocalSystem」。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21809069311/in/photostream/"><img src="https://c1.staticflickr.com/5677/21809069311_eef4a9e098_o.png" alt="20150925_09"></a>
+<img src="/image/2015/20150925_09.jpg" />
 
 <p>範例中我們的服務執行檔案是放在「C:\Services」中，因此我們切換到該目錄下指令，就可以完成服務的安裝。</p>
 <pre>InstallUtil MyService.exe</pre>
-<a href="https://www.flickr.com/photos/105479788@N06/21178513763/in/photostream/"><img src="https://c1.staticflickr.com/5693/21178513763_e972c089aa_o.png" alt="20150925_10"></a>
+<img src="/image/2015/20150925_10.jpg" />
 
 <p>打開Windows的服務管理員，就可以看到我們的無用Service Clock被安裝成功啦，你可以開始去設定啟動它了。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21178513673/in/photostream/"><img src="https://c1.staticflickr.com/5832/21178513673_a4803498fd_o.png" alt="20150925_11"></a>
+<img src="/image/2015/20150925_11.jpg" />
 
 <p>啟動完成後，馬上跑到事件紀錄簿看一下，發現我們的服務正確地被運行起來，而且也忠實地按照我們的意志，將它記錄在LogName=SlashLook、Source=Simply Clock Services的目錄中，服務的細部文字資訊也有被正確的登載。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/21787822582/in/photostream/"><img src="https://c1.staticflickr.com/5769/21787822582_90e84d5146_o.png" alt="20150925_12"></a>
+<img src="/image/2015/20150925_12.jpg" />
 
 <p>玩完這個無聊的服務後，當然是移除這個服務了。</p>
 <pre>InstallUtil /u MyService.exe</pre>
-<a href="https://www.flickr.com/photos/105479788@N06/21809068971/in/photostream/"><img src="https://c1.staticflickr.com/644/21809068971_cbded00634_o.png" alt="20150925_13"></a>
+<img src="/image/2015/20150925_13.jpg" />
 
 <small>C# VisualStudio2015 WindowsServices System.Timers.Timer System.Diagnostics.EventLog LogName LogSource InstallServices RemoveServices</small>
 

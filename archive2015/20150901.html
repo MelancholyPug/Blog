@@ -10,7 +10,7 @@
 
 <p>在ASP.NET或Windows Forms的程式設計中，我們很常用到事件，幾乎是視為已經習以為常的事。但是在我的程式設計經驗裡面，在自己設計的類別中幾乎不太用到事件的設計，總覺得這是一個很無聊的動作。今天剛好有機會要用到多重觸發的運行架構，因此特別研究了一下事件的撰寫方式，並記錄在此。一個C#事件的基本架構如下圖所示：</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/21060698881/"><img src="https://c1.staticflickr.com/686/21060698881_6db77b9294_o.png" alt="20150901_01"></a>
+<img src="/image/2015/20150901_01.jpg" />
 
 <p>在上圖中，我們可以看到使用者控制項中，有宣告了一個委派（Delegates），以及一個事件（Events）指向委派，而當使用者控制項觸發了（Fire、Raise）事件時，訂閱這些事件的應用程式，就會跟著一起動起來了，並將行為指定給Event Handler運行。</p>
 
@@ -67,7 +67,7 @@ static void Main(string[] args)
 </pre>
 
 <p>然後，這個Console運行時期的圖片如下所示，我們可以發現Ctrl-C真的被Console.CancelKeyPress攔截到並觸發了：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/20430790594/"><img src="https://c1.staticflickr.com/616/20430790594_8cd75af2f5_o.png" alt="20150901_02"></a>
+<img src="/image/2015/20150901_02.jpg" />
 
 <h3>在自建類別中，撰寫事件供給他人使用</h3>
 
@@ -146,7 +146,7 @@ private static void myOnKnowAnswer(object sender, Calculator.AnswerArgs e)
 </pre>
 
 <p>輸出結果照片如下：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/20431282794/"><img src="https://c1.staticflickr.com/5735/20431282794_906eaceb0c_o.png" alt="20150901_03"></a>
+<img src="/image/2015/20150901_03.jpg" />
 
 <p>最後值得一提的是（在Console示範時也有提醒過），如果你願意的話，可以將程式碼寫得更正規：（純粹可以表示這是受哪一個在委派託管，意義不大。）</p>
 <pre>
