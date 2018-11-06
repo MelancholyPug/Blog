@@ -15,16 +15,16 @@
 <h3>建立類別與執行編譯</h3>
 
 <p>Step 1. 在C:\javaTest資料夾下，建立Things與Human資料夾。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/15616283172"><img src="https://c1.staticflickr.com/3939/15616283172_33e3f70883_o.png" alt="20130705_01"></a>
+<img src="/image/2013/20130705_01.jpg" />
 
 <p>Step 2. 在C:\javaTest\Things下，建立Thing.java類別程式。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/15429866040"><img src="https://c1.staticflickr.com/5597/15429866040_fd7fc295cf_o.png" alt="20130705_02"></a>
+<img src="/image/2013/20130705_02.jpg" />
 
 <p>Step 3. 在C:\javaTest\Human下，建立People.java類別程式。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/15616283212"><img src="https://c1.staticflickr.com/3948/15616283212_56b7eafab4_o.png" alt="20130705_03"></a>
+<img src="/image/2013/20130705_03.jpg" />
 
 <p>Step 4. 將目錄切換到Human資料夾下，對People.java進行編譯，這時候java compiler會自動啟動make編譯機制，幫你把Thing.java也一起處理掉了。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14995301033"><img src="https://c1.staticflickr.com/5603/14995301033_785642653d_o.png" alt="20130705_04"></a>
+<img src="/image/2013/20130705_04.jpg" />
 <pre>
 	//編譯People.java
 	C:\javaTest\Human>javac -cp C:\javaTest People.java
@@ -36,23 +36,23 @@
 
 <h3>private存取限制修飾子</h3>
 <p>private通常用於資訊隱藏之用途，在物件中，不必要讓人家看的，就不需要外顯出來，這樣的觀念叫作「封裝」（Encapsulation）。private是最嚴格的存取限制修飾子，加了這個字眼後只有類別本體內部的程式碼可以完成「Java的成員存取三種限制」之要求，其它的類別想要用，想都別想。以下是證明：</p>
-<a href="https://www.flickr.com/photos/105479788@N06/15613127651"><img src="https://c1.staticflickr.com/5611/15613127651_65c6fc8125_o.png" alt="20130705_05"></a>
+<img src="/image/2013/20130705_05.jpg" />
 
 <h3>package（default）存取限制修飾子</h3>
 <p>其實沒有什麼所謂的package存取限制修飾子，如果你什麼都沒有寫，那就是使用預設值，也就是所謂的package模式。宣告成這種存取限制，表示在同一個package內所有的類別，都可以完成「Java的成員存取三種限制」之要求，一旦跳脫了同一個package範圍之外，就不能夠使用了。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/15615805695"><img src="https://c1.staticflickr.com/5615/15615805695_692e01dee9_o.png" alt="20130705_06"></a>
+<img src="/image/2013/20130705_06.jpg" />
 
 <h3>protected存取限制修飾子</h3>
 <p>protected存取限制修飾子的作用，就是用於跨package繼承時，仍然可以完成「Java的成員存取三種限制」之要求，那可能會有人覺得，為何還要這樣分？一開始程式碼中的public不就可以跨package來完成「Java的成員存取三種限制」之要求了嗎？基本上，這樣的想法是沒錯的，但是還是有其差別！</p>
 
-<a href="https://www.flickr.com/photos/105479788@N06/15613127571"><img src="https://c1.staticflickr.com/3938/15613127571_7fde917556_o.png" alt="20130705_07"></a>
+<img src="/image/2013/20130705_07.jpg" />
 
 <p>protected跟public都支援跨package存取，但差別是protected於子類別繼承後，只能在類別資料成員或類別方法成員中存取，一旦你對其實體化（實例化）後，它會鎖定拒絕你去存取它。這種感覺就像是，B類別繼承至A類別，則B類別中的成員可以直接存取A類別之資源，無論A,B是否在同一個Package下。但是，當有一個實作程式，直接調用A類別要實際運用，去變更他的實體成員時，這時候A類別如果成員有被下protected存取限制修飾子，它會悍然的拒絕你的存取。</p>
-<a href="https://www.flickr.com/photos/105479788@N06/14995647413"><img src="https://c1.staticflickr.com/5605/14995647413_ed81500b37_o.png" alt="20130705_08"></a>
+<img src="/image/2013/20130705_08.jpg" />
 
 <h3>public存取限制修飾子</h3>
 <p>最後就是我們文章一開始的範例就採用的public存取限制修飾子啦！在public的世界裡面，一切沒有限制，歡迎使用！例如下圖所示，本來被protected封印的資料成員，突然間就變成可以通過編譯了！</p>
-<a href="https://www.flickr.com/photos/105479788@N06/15615805665"><img src="https://c1.staticflickr.com/3933/15615805665_730a850700_o.png" alt="20130705_09"></a>
+<img src="/image/2013/20130705_09.jpg" />
 
 <small>Java SCJP Package Compiler ClassPath Private Default Protected Public Access</small>
 
