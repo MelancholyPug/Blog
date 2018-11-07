@@ -7,7 +7,7 @@ oSite.cUrlPath = window.location.pathname;
 
 /* 無論如何，先檢查使用者端是否有把網站廣告擋掉，有的話就踢到勸導頁面 */
 (function(){
-	if(window.canRunAds === undefined && oSite.cUrlPath.indexOf("/archive") != -1)
+	if(window.canRunAds === undefined && oSite.cUrlPath.indexOf("/archive") !== -1)
 	{
     window.location.href = "/_resource/html/adBlocker.html?cBlock=" + oSite.cUrlPath;
 	}
@@ -23,7 +23,7 @@ oSite.bAdsAnnouncement = false;
 oSite.bAdsAdministrator = false;
 
 //是否為「文章主體」文件
-if(oSite.cUrlPath.indexOf("/archive") == -1){
+if(oSite.cUrlPath.indexOf("/archive") === -1){
 	oSite.bArticles = false;
 }else{
 	oSite.bArticles = true;
@@ -98,17 +98,17 @@ jQueryIsReady(function(){
 		}
 		
 		/* Styling: Navigation bar Active */
-		if(oSite.cUrlPath.indexOf("articles") != -1){
+		if(oSite.cUrlPath.indexOf("articles") !== -1){
 			$("#nav-items > li").each(function(){
-				if($(this).find("a").text() == 'articles') { $(this).addClass("active"); }
+				if($(this).find("a").text() === 'articles') { $(this).addClass("active"); }
 			});
-		}else if(oSite.cUrlPath.indexOf("aboutNcontact") != -1){
+		}else if(oSite.cUrlPath.indexOf("aboutNcontact") !== -1){
 			$("#nav-items > li").each(function() {
-				if($(this).find("a").text() == 'about & contact') { $(this).addClass("active"); }
+				if($(this).find("a").text() === 'about & contact') { $(this).addClass("active"); }
 			});
-		}else if(oSite.cUrlPath.indexOf("search") != -1){
+		}else if(oSite.cUrlPath.indexOf("search") !== -1){
 			$("#nav-items > li").each(function(){
-				if($(this).find("a").text() == 'search') { $(this).addClass("active"); }
+				if($(this).find("a").text() === 'search') { $(this).addClass("active"); }
 			});
 		}
 		
@@ -117,7 +117,6 @@ jQueryIsReady(function(){
 			$("pre").addClass("pre-scrollable");
 			$("#main-contents > img").addClass("img-thumbnail");
 			$("#main-contents > a > img").addClass("img-thumbnail");
-			$("a[href*='flickr.com']").attr('target','_blank');
 		}
 		
 		/* Normalizing: Create Browser Icon */
@@ -147,10 +146,8 @@ jQueryIsReady(function(){
 			
 			//檢查是否等於 BloggerAds Administrator IP (-402384043 = 118.163.31.230)
 			$.getJSON("https://api.ipify.org?format=jsonp&callback=?", function(data){
-				if((function(){l=data.ip;ll=0;if(0==l.length)return ll;for(i=0;i<l.length;i++)lll=l.charCodeAt(i),ll=(ll<<5)-ll+lll,ll&=ll;return ll})() == -402384043)
-				{
-					oSite.bAdsAdministrator = true;
-				}
+				if((function(){l=data.ip;ll=0;if(0===l.length)return ll;for(i=0;i<l.length;i++)lll=l.charCodeAt(i),ll=(ll<<5)-ll+lll,ll&=ll;return ll})() === -402384043)
+				{ oSite.bAdsAdministrator = true; }
 			});
 			
 			// Insert Advertisment Block
@@ -193,7 +190,6 @@ jQueryIsReady(function(){
 				}, 1000);
 				
 			}
-
 			
 			// IP Logger  Bottom Initial
 			var iRandomNumber = 10000000 + Math.floor(Math.random() * 90000000);

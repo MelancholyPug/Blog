@@ -171,6 +171,7 @@ p {
 	border-radius: 50%;
 	border: 8px solid #749B00;
 	padding: 4px;
+  width: 180px;
 }
 /* Search Page */
 #Search > div.page-header {
