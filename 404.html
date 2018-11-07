@@ -19,10 +19,11 @@
       </div>
     </div>
     <script>
+      /* 為了解決Google索引判斷失效，因此先將自動動轉址功能關閉
       pushToExecuteList(function() {
         $(document).ready(function () {
-          /* 解決早期網站目錄架構轉換問題（Client端轉址）
-           * e.g. http://slashlook.com/articles_20170301.html */
+          //解決早期網站目錄架構轉換問題（Client端轉址）
+          //e.g. http://slashlook.com/articles_20170301.html
           var cUrlPath = window.location.pathname;
           var cKey = "/articles_";
           if (cUrlPath.indexOf(cKey) !== -1) {
@@ -45,6 +46,7 @@
           }
         });
       }, 2);	//Priority:2
+      */
     </script>
   </body>
 </html>
