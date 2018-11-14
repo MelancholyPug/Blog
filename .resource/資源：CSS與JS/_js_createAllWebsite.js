@@ -6,11 +6,11 @@ var oSite = new Object();
 oSite.cUrlPath = window.location.pathname;
 
 /* 無論如何，先檢查使用者端是否有把網站廣告擋掉，有的話就踢到勸導頁面 */
-(function () {
-  if (window.canRunAds === undefined && oSite.cUrlPath.indexOf("/archive") !== -1) {
-    window.location.href = "/_resource/html/adBlocker.html?cBlock=" + oSite.cUrlPath;
-  }
-})();
+//(function () {
+//  if (window.canRunAds === undefined && oSite.cUrlPath.indexOf("/archive") !== -1) {
+//    window.location.href = "/_resource/html/adBlocker.html?cBlock=" + oSite.cUrlPath;
+//  }
+//})();
 
 //記載Menu Bar的程式碼
 oSite.cMenuBar = "<div class='navbar navbar-inverse navbar-fixed-top'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><span class='navbar-brand pull-left' style='padding-top:18px'><img class='navbar-brand-logo' src='/_resource/image/_img_logo.png' /></span><a class='navbar-brand' href='/index.html'>SlashLook!</a></div><div class='collapse navbar-collapse'><ul id='nav-items' class='nav navbar-nav'><li><a href='/_resource/html/articles.html'>articles</a></li><li><a href='/_resource/html/aboutNcontact.html'>about &amp; contact</a></li><li><a href='/_resource/html/search.html'>search</a></li></ul></div></div></div>";
