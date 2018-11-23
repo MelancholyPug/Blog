@@ -32,18 +32,27 @@ If you use the Response.End, Response.Redirect, or Server.Transfer method, a Thr
 <p>由於IIS的執行緒（Worker Process; W3WP）在運作時期是共用佇列的方式進行，當某Request在運行Response.End();指令運行後，將會強制把這個執行緒關閉，而完全關閉前可能此時執行緒正在處理下一個Request中，這時候就會發生莫名其妙的執行中斷等詭異現象、被登出等問題。更進一步來說，若Application Pool裡面的Worker Process被不斷地重新啟動Ｎ次後（Ｎ的數值要查一下設定），IIS會啟動保護機制，直接給你吐出Service Unavailable，這也是Response.End();可能產生出的原因。</p>
 
 <h3>安全的Response.End();替換方式</h3>
-<p>所以如果可以的話，請完全忘記Response.End();指令吧！例如包裝成另外一個函式，用來取代Response.End();</p>
+<p>所以如果可以的話，請完全忘記Response.End();指令吧！例如包裝成另外一個函式，用來取代Response.End();，以下是我建議的寫法，但不代表一定適用所有的情境。</p>
 
 <pre>
 public void SafeResponseEnd()
 {
-	HttpContext.Current.Response.Flush();
-	//阻斷繼續送HTTP內容給Client
-	HttpContext.Current.Response.SuppressContent = true;
-	//跳過所有HTTP pipeline中的事件與過濾器，直接調用EndRequest事件
-	HttpContext.Current.ApplicationInstance.CompleteRequest();
+  try
+  { //強制內容輸出
+    HttpContext.Current.Response.Flush();
+  }
+  catch
+  { /* 有時候接收端關閉，會引發串流中斷問題 */ }
+  finally
+  { //阻斷繼續送HTTP內容給Client
+    HttpContext.Current.Response.SuppressContent = true;
+    //跳過所有HTTP pipeline中的事件與過濾器，直接調用EndRequest事件
+    HttpContext.Current.ApplicationInstance.CompleteRequest();
+  }
 }
 </pre>
+
+<p>※ 並非所有的情境都可以使用上述的方法進行替代，例如：Response.TransmitFile()，在檔案的Size過大的極端情況下，如果沒有使用Response.End()有時會出現尾部被夾雜後續的處理結果。（例如：尾部被加入網站的HTML輸出程式碼。）</p>
 
 <h3>快速記憶各常用方法的取代方式</h3>
 <ul>
