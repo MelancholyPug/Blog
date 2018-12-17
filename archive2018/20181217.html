@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>使用ASP.NET的路由環境下，讓ASPX、ASHX等WebForm技術仍然可以繼續運作</h1>
+
+  <p>在WebForm的環境下，我們依然可以使用MVC給予的路由技術，在One ASP.NET的理念下繼續快樂的運行。今天遇到一個問題是在複雜的路由表中，其實很難切割（禮讓）出一條正確的路由給傳統的WebForm技術來使用，這篇文章就是在教你怎麼激活這些老技術。（使用ASP.NET MVC技術的請自動略過）</p>
+
+  <img src="/image/2018/20181217_01.jpg" />
+
+  <h3>一個傳統在ASP.NET WebForm下使用網址路由的範例</h3>
+  <p>這沒有甚麼好說的，程式碼大概會長的如下：</p>
+  <pre>
+//global.asax
+void Application_Start(object sender, EventArgs e)
+{ //Initial MVC URL Routing
+  RegisterRoutes(System.Web.Routing.RouteTable.Routes);
+}
+
+void RegisterRoutes(System.Web.Routing.RouteCollection oRoutes)
+{ //url routing
+  oRoutes.Add("ProductDetail", new System.Web.Routing.Route("{Product}/detail/", new YourRouteHandlerClass()));
+}
+</pre>
+
+  <h3>路由會動了，但接下來你會遇到aspx、ashx都沒辦法運行</h3>
+  <p>原因很簡單，因為所有的程式路徑都被ProductDetail這條路由規則命中了。規避方式就是在上方加入預設的忽略路由（如果你用VS MVC專案起始，這兩行就會被預設加入）：</p>
+<pre>
+oRoutes.Ignore("{cResource}.ashx/{*cFullPathAndName}");
+oRoutes.Ignore("{cResource}.aspx/{*cFullPathAndName}");
+</pre>
+
+  <p>寫MVC專案的人路過也不用嗤之以鼻，維護WebForm傳統大型專案本身就有自己的苦。</p>
+
+  <small>ASP.NET System.Web.Routing.RouteTable.Routes WebForm</small>
+
+</body>
+</html>
