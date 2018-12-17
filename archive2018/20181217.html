@@ -28,7 +28,7 @@ void RegisterRoutes(System.Web.Routing.RouteCollection oRoutes)
 </pre>
 
   <h3>路由會動了，但接下來你會遇到aspx、ashx都沒辦法運行</h3>
-  <p>原因很簡單，因為所有的程式路徑都被ProductDetail這條路由規則命中了。規避方式就是在上方加入預設的忽略路由（如果你用VS MVC專案起始，這兩行就會被預設加入）：</p>
+  <p>原因很簡單，因為有可能程式路徑被ProductDetail這條路由規則命中了。規避方式就是在上方加入預設的忽略路由（如果你用VS MVC專案起始，這兩行就會被預設加入）：</p>
 <pre>
 oRoutes.Ignore("{cResource}.ashx/{*cFullPathAndName}");
 oRoutes.Ignore("{cResource}.aspx/{*cFullPathAndName}");
