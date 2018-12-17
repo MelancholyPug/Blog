@@ -39,7 +39,7 @@
             //Count
             (function countdown(iCount) {
               if (iCount <= 0) { window.location.assign(cRightUrl); }
-              setTimeout(function () { countdown(iCount - 1); }, 0);
+              setTimeout(function () { countdown(iCount - 1); }, 1000);
               $("#uCounter").text(iCount);
             })(iRedirectSecond);
           }
