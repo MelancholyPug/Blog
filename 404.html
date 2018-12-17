@@ -19,7 +19,6 @@
       </div>
     </div>
     <script>
-      /* 為了解決Google索引判斷失效，因此先將自動動轉址功能關閉
       pushToExecuteList(function() {
         $(document).ready(function () {
           //解決早期網站目錄架構轉換問題（Client端轉址）
@@ -40,13 +39,12 @@
             //Count
             (function countdown(iCount) {
               if (iCount <= 0) { window.location.assign(cRightUrl); }
-              setTimeout(function () { countdown(iCount - 1); }, 1000);
+              setTimeout(function () { countdown(iCount - 1); }, 0);
               $("#uCounter").text(iCount);
             })(iRedirectSecond);
           }
         });
       }, 2);	//Priority:2
-      */
     </script>
   </body>
 </html>
