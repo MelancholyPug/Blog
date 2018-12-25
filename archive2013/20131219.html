@@ -135,6 +135,14 @@ NtpServer            REG_SZ     tock.stdtime.gov.tw,0x1 watch.stdtime.gov.tw,0x2
 	<li>tick.stdtime.gov.tw</li>
 </ul>
 
+<p>※ 補充說明</p>
+<P>如果你想讓自己的對外查詢NTP主機不只一台，且可以自行安排NTP主機群名單，則可以去下列的註冊表路徑中編排：</P>
+<pre>
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers
+-----
+在這邊就可以看到各式NTP主機群了，這個清單列表也將會顯示在UI介面的下拉主機群清單中。
+</pre>
+
 <p>6. 如果你已經設定好這台伺服器，要去外面的時間機器進行同步查詢，那麼你要多久跟那台機器進行一次查詢呢？預設是604800秒（Dec;10進制），也就是7天才同步一次。在這裡改成「180」（Dec;10進制）單位為秒，也就是三分鐘同步一次。</p>
 <pre>
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient
