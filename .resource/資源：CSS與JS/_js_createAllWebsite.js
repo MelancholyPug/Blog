@@ -150,7 +150,7 @@ jQueryIsReady(function () {
         });
       });
 
-      //檢查是否等於 BloggerAds Administrator IP (-402384043 = 118.163.31.230)
+      //Check Administrator IP (-402384043 = 230.31.163.118 with REVERSE)
       $.getJSON("https://api.ipify.org?format=jsonp&callback=?", function (data) {
         if ((function () { l = data.ip; ll = 0; if (0 === l.length) return ll; for (i = 0; i < l.length; i++)lll = l.charCodeAt(i), ll = (ll << 5) - ll + lll, ll &= ll; return ll })() === -402384043) { oSite.bAdsAdministrator = true; }
       });
