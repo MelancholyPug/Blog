@@ -13,7 +13,7 @@ oSite.cUrlPath = window.location.pathname;
 //})();
 
 //記載Menu Bar的程式碼
-oSite.cMenuBar = "<div class='navbar navbar-inverse navbar-fixed-top'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><span class='navbar-brand pull-left' style='padding-top:18px'><img class='navbar-brand-logo' src='/_resource/image/_img_logo.png' /></span><a class='navbar-brand' href='/index.html'>SlashLook!</a></div><div class='collapse navbar-collapse'><ul id='nav-items' class='nav navbar-nav'><li><a href='/_resource/html/articles.html'>articles</a></li><li><a href='/_resource/html/aboutNcontact.html'>about &amp; contact</a></li><li><a href='/_resource/html/search.html'>search</a></li></ul></div></div></div>";
+oSite.cMenuBar = "<div class='navbar navbar-inverse navbar-fixed-top'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><span class='navbar-brand pull-left' style='margin-top:-1px'><img class='navbar-brand-logo' src='/_resource/image/_img_logo.png' /></span><a class='navbar-brand' href='/index.html'>SlashLook!</a></div><div class='collapse navbar-collapse'><ul id='nav-items' class='nav navbar-nav'><li><a href='/_resource/html/articles.html'>articles</a></li><li><a href='/_resource/html/aboutNcontact.html'>about &amp; contact</a></li><li><a href='/_resource/html/search.html'>search</a></li></ul></div></div></div>";
 
 //記載全網站是否已經有（顯示）公告過鼓勵點擊廣告對話框
 oSite.bAdsAnnouncement = false;
