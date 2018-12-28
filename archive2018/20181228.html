@@ -9,7 +9,7 @@
   <h1>瀏覽器回報HTTPS使用過舊的加密套件進行加密</h1>
 
   <p>某天發現網站中的Https SSL的詳細資訊中，出現了下列令人不安心的文字：</p>
-  
+
   <img src="/image/2018/20181228_01.jpg" />
 
 <pre>
@@ -48,6 +48,8 @@
 
   <p>另外一個理論基礎簡稱為EC（Elliptic Curve），這個技術最主要是用橢圓曲線加密產生公鑰與私鑰配對。DHE基於EC基礎上，就稱為ECDHE。</p>
 
+  <p>橢圓曲線動態演繹影片：<a href="https://www.youtube.com/watch?v=5wDvlq-MrLg&t=2m10s" target="_blank">A Look Into Elliptic Curve Cryptography (ECC)</a></p>
+  
   <p>由於ECDHE在計算的過程中，採用公用的ECC證書（Elliptic Curve Cryptography），且DHE的交換過程也沒有把私鑰混入計算，因此解決了前向安全性 Forward Secrecy的問題。</p>
 
   <img src="/image/2018/20181228_02.jpg" />
