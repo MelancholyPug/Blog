@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+<h1>.NET Framework中使用SHA512來進行字串雜湊之程式碼</h1>
+
+<p>在2017年2月23日Google宣布實現SHA1碰撞攻擊後，SHA1在業界的聲望已經大不如前，盡管要製造出這樣的攻擊所費不貲（九百萬兆次運算；10的18次方），後面所耗用的運算電力成本非常可觀，但是不明就裡的半桶水，就會開始嘩啦嘩啦的跟你吵SHA1不安全。</p>
+
+<h3>使用SHA512</h3>
+<p>既然嘴砲人都感覺到2019年就是量子電腦普及的年代，那我們就來改寫成SHA512吧，其實強大的.NET Framework在1.1就已經提供了SHA512的相關類別，撰寫起來跟SHA1其實沒啥兩樣，就將程式碼記錄在此吧。</p>
+
+<pre>
+//SHA512程式碼只有三行就解決了
+System.Security.Cryptography.SHA512 oSHA = new System.Security.Cryptography.SHA512Managed();
+byte[] aryByte = oSHA.ComputeHash(System.Text.Encoding.UTF8.GetBytes("YourStringThatWannaHash"));
+WriteLine(System.BitConverter.ToString(aryByte).Replace("-", ""));
+</pre>
+
+<p>Happy Coding!</p>
+
+<p>相關連結：</p>
+<ul>
+  <li><a href="/archive2013/20130815.html" target="_blank">.NET Framework中使用SHA1來進行字串雜湊之程式碼</a></li>
+  <li><a href="https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html" target="_blank">Google Security Blog: Announcing the first SHA1 collision</a></li>
+</ul>
+
+<small>SHA1 SHA512</small>
+
+</body>
+</html>
