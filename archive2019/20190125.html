@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+  <h1>在ASP.NET網站中啟用內建的Trace訊息追蹤功能</h1>
+
+  <p>說來汗顏，從古老時代.NET Framework 1.1就擁有的內建功能（trace）到今天才將其部屬到實驗環境中，目的為的是追求在日益複雜的網路資料交換架構下，利用「應用程式層級的追蹤」紀錄每一次執行與交叉調用相關網頁下的動作，以及紀錄當下的環境參數與Session記憶體內部相關數據，在此紀錄一下設定方式。</p>
+
+  <img src="/image/2019/20190125_01.jpg" />
+
+  <h3>啟用ASP.NET內建的Trace功能</h3>
+  <p>很簡單，到Web.Config中寫入下列的XML就可以啟用內建的訊息追蹤功能，完全不需要安裝任何套件。</p>
+<pre>
+&lt;system.web&gt;
+  &lt;trace enabled="true" requestLimit="20" mostRecent="true" localOnly="false" /&gt;
+&lt;/system.web&gt;
+</pre>
+
+  <p>參數簡略說明如下，如果要詳細說明請自己翻MSDN。</p>
+  <ol>
+    <li>enabled: 啟用訊息追蹤 / 錯誤追蹤。</li>
+    <li>requestLimit: 最大紀錄幾筆資料，建議不要太大以免消耗伺服器資源。</li>
+    <li>mostRecent: 是否只記錄現在最即時的資料？這個屬性很有趣，當他是false時且伺服器已經紀錄到達requestLimit上限，則伺服器會自動Disable Trace。如果是true，則伺服器會以requestLimit為容量不斷的紀錄歷程，超過的紀錄會被自動拋棄了。</li>
+    <li>localOnly: 安全性設定，如果你要讓遠端可以看到錯誤紀錄，那就設定成false，否則只有運行在本機才可以看到。</li>
+  </ol>
+
+  <h3>將自訂字串寫入trace log中</h3>
+  <p>其實你沒有太多選擇，要顯示紅色文字程式碼中就寫「Trace.Warn」，一般黑色文字就寫「Trace.Write」，就這麼簡單。</p>
+
+  <h3>觀察Trace時期的相關資訊</h3>
+  <p>經過上面的設定後，你的網頁基本上已經被ASP.NET監控中，要查看相關資訊只要在任何地方輸入HTTP handlers的制定指令「trace.axd」，即可看到追蹤畫面。</p>
+  <img src="/image/2019/20190125_02.jpg" />
+
+  <p>舉凡SessionID、WebForm的每一個事件、所有的ServerControl、CustomControl（ascx）之組合順序、耗用ViewState大小、SessionState狀態、ApplicationState狀態、Cookie狀態、HTTP完整標頭、QueryString集合等，無一不側錄啊！</p>
+  <img src="/image/2019/20190125_03.jpg" />
+
+  <small>ASP.NET Trace trace.axd logs</small>
+
+</body>
+</html>
