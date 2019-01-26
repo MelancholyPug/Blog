@@ -113,7 +113,7 @@ function createJson2Table(){
 			$("<td class=\"hidden-xs\"></td>").text(function(){
 				return item.D.substring(0, 4) + "/" + item.D.substring(4, 6) + "/" + item.D.substring(6, 8);
 			}),
-			$("<td></td>").text(item.T),
+      $("<td style=\"word-break:break-all;\"></td>").text(item.T),
 			$("<td></td>").html(function(){
         return "<a class='btn btn-danger btn-sm' href='/archive" + item.D.substring(0, 4) + "/" + item.D + ".html'>點擊閱讀</a>";
 			})
