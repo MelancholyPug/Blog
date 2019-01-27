@@ -163,8 +163,11 @@ p {
 	margin: 0 auto 15px auto;
 }
 /* Articles list page */
+.articles-list-title {
+  word-break: break-all;
+}
 #pagging-list {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 /* aboutNcontact page */
 .aboutNcontactImg {
