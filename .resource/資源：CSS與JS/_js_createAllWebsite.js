@@ -132,7 +132,7 @@ jQueryIsReady(function () {
     $("<title></title>", { text: $("h1").text() }).appendTo("head");
 
     /* Normalizing: Create Android Chrome Theme */
-    $("head > meta:eq(0)").after("<meta name='theme-color' content='#10CC4E'>");
+    $("head > meta:eq(0)").after("<meta name='theme-color' content='#719D06'>");
 
     /* Normalizing: Create Meta Keyword, Viewport Tag */
     if (oSite.bArticles) {
