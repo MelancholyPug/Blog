@@ -131,6 +131,9 @@ jQueryIsReady(function () {
     /* Normalizing: Create Title Tag */
     $("<title></title>", { text: $("h1").text() }).appendTo("head");
 
+    /* Normalizing: Create Android Chrome Theme */
+    $("head > meta:eq(0)").after("<meta name='theme-color' content='#61D660'>");
+
     /* Normalizing: Create Meta Keyword, Viewport Tag */
     if (oSite.bArticles) {
       $("head > meta:eq(0)").after("<meta name='keywords' content='" + cMetaKeywords + "'>");
