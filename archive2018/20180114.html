@@ -66,7 +66,7 @@ public void WriteUpdate()
 
 <p>對於寫入的程式碼，這邊針對mode做一下小小的補充，如果你要寫入的速度效能最大化，那麼應該設定成System.IO.FileMode.OpenOrCreate，在多執行緒的情景實際測試下來會比System.IO.FileMode.Create的效能快約3倍以上（1xxms變成3xms）。</p>
 
-<p>然而，有一好沒兩好，如果你這個檔案是要給ASP.NET做快取（Cache）用的，那麼System.IO.FileMode.Create會是你的最佳選擇，因為Create會把檔案砍掉重新創造一個新檔案，這會造成SMB的檔案監控馬上觸發，因此依存在這個檔案上的快取會馬上消失。而OpenOrCreate會進行檔案的開啟與修改，這時SMB的檔案監控機制沒有辦法馬上反應，反而要等待10~15秒左右才會觸發（發現這個檔案被異動過），這對網站要求Cache要即時因為修正檔案而反應的效率上，大打折扣呢！</p>
+<p>然而，有一好沒兩好，如果你這個檔案是要給ASP.NET做快取（Cache）監控用的，那麼System.IO.FileMode.Create會是你的最佳選擇，因為Create會把檔案砍掉重新創造一個新檔案，這會造成SMB的檔案監控馬上觸發，因此依存在這個檔案上的快取會馬上消失。而OpenOrCreate會進行檔案的開啟與修改，這時SMB的檔案監控機制沒有辦法馬上反應，反而要等待10~15秒左右才會觸發（發現這個檔案被異動過），這對網站要求Cache要即時因為修正檔案而反應的效率上，因而大打折扣喔！</p>
 
 <small>.NetFramework Files non-Lock ReadOnly ReadShared</small>
 
