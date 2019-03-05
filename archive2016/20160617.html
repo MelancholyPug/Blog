@@ -41,7 +41,7 @@ vbc.rsp
 
 <p>※ 備註１：其實CodeAnalysis等相關的DLL，都在Step.6都處理掉了。</p>
 <p>※ 備註２：我猜這種土匪方式等到下一次升級.NET Framework 4.6.2時，csc.exe會被蓋回來（未經過證實）。除非.NET Framework 4.6.2已經不包含csc.exe的升級。總之，還是希望微軟把新一代的語言編譯器整到.NET Framework安裝包啦！</p>
-<p>※ 備註３：Microsoft.CodeDom.Providers.DotNetCompilerPlatform是Roslyn的前身，不要再去安裝它了。</p>
+<p>※ 備註３：Roslyn是微軟新一代的編譯平台代號，Microsoft.CodeDom.Providers.DotNetCompilerPlatform是ASP.NET團隊對於Roslyn的CodeDOM封裝。</p>
 <p>※ 備註４：若你的IIS網站之前一直沿用C# 5.0編譯器，當你安裝.NET Framework 4.6.2之類的，並去修改web.config中的compilation targetFramework="4.6.2"，此舉並不會讓你的編譯器自動升級為C# 6.0（但在開發時其於VisualStudio中若進行.NET Framework版本切換，則會自動實作編譯器的切換），請拋棄這個幻想並實作本篇文章。</p>
 
 <p>相關連結：</p>
