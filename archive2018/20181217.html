@@ -36,7 +36,11 @@ oRoutes.Ignore("{cResource}.aspx/{*cFullPathAndName}");
 
   <p>寫MVC專案的人路過也不用嗤之以鼻，維護WebForm傳統大型專案本身就有自己的苦。</p>
 
-  <small>ASP.NET System.Web.Routing.RouteTable.Routes WebForm</small>
+  <p>ASP.NET的URL Routing本身是一種實作了IHttpModule的Module，基本上就是發生在PostResolveRequestCache與PostMapRequestHandler事件中，下面是整理過的流程示意圖。</p>
+
+  <img src="/image/2018/20181217_02.jpg" />
+
+  <small>ASP.NET System.Web.Routing.RouteTable.Routes WebForm IHttpModule HttpModule</small>
 
 </body>
 </html>
