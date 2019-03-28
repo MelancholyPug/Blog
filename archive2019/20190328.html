@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>關於C#編譯器的一些知識整理</h1>
+
+  <p>C#在2002年隨著Visual Studio .NET 2002被一併發表後，迄今也過了17個年頭，比較特別的是C#的進化能力非常的活躍，即便過了十幾年後到現在仍然是一個熱門度很高的語言，在2015年C# 6發表時，微軟正式把原本內建在.NET Framework的編譯器拆分，用以加速編譯器的推陳更新速度，並將其稱之為CAAS（Compiler-As-A-Service），代號為Roslyn。</p>
+
+  <img src="/image/2019/20190328_01.jpg" />
+
+  <h3>C#歷代語言特性表</h3>
+  <p>在這個<a href="https://github.com/dotnet/csharplang/blob/master/Language-Version-History.md" target="_blank">Features Added in C# Language Versions</a>頁面裡面，可以看到歷代的C#語言特性。</p>
+
+  <h3>C#編譯器最新版本及最新發展進度</h3>
+  <p>最新版本及最新發展進度都被集縮到nuget平台上的<a href="https://www.nuget.org/packages/Microsoft.Net.Compilers/" target="_blank">Microsoft.Net.Compilers</a>下，在撰寫文章的今日可以看到已經發展到「3.0.0-beta4-final」，也就是即將推出的C# 8.0版本。初學者如果不知道要下載哪個版本，可以參考nuget網站給你的藍色建議（下載次數最多的）。</p>
+  <img src="/image/2019/20190328_02.jpg" />
+
+  <h3>Microsoft.Net.Compilers版本與C#編譯器版本之對應說明</h3>
+  <p>在nuget中的Microsoft.Net.Compilers（Roslyn）版本多如牛毛，對於一個沒有在追蹤C#編譯器的使用者來說難免初次相見一頭霧水，以下這個頁面可以詳細的查詢到編譯器版本號（Versions）對應C#版本號碼，例如下圖。</p>
+  <img src="/image/2019/20190328_03.jpg" />
+
+  <h3>CodeDomProviders又是啥？</h3>
+  <p>簡單的說，Roslyn只處理C#編譯器核心的問題，其他你要怎麼用就不是Roslyn團隊關心的事情，而微軟的伺服器網站架構是由ASP.NET團隊在負責的，那麼要如何讓使用者在ASP.NET架構下使用最新版的Roslyn特性，就要安裝「Microsoft.CodeDom.Providers.DotNetCompilerPlatform」，否則你在VisualStudio寫的東西都會變成紅色蚯蚓。另外CodeDom也可以有效提升ASP.NET的執行期編譯效能。</p>
+  
+  <p>在這邊可以下載CodeDom：<a href="https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform" target="_blank">Microsoft.CodeDom.Providers.DotNetCompilerPlatform</a></p>
+
+  <small>C# CSharp Compiler-As-A-Service Roslyn Microsoft.Net.Compilers Microsoft.CodeDom.Providers.DotNetCompilerPlatform</small>
+
+</body>
+</html>
