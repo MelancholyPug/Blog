@@ -22,9 +22,20 @@ void Application_Start(object sender, EventArgs e)
 }
 
 void RegisterRoutes(System.Web.Routing.RouteCollection oRoutes)
-{ //url routing
-  oRoutes.Add("ProductDetail", new System.Web.Routing.Route("{Product}/detail/", new YourRouteHandlerClass()));
+{ 
+  //Url Routing with CLASS
+  oRoutes.Add("ProductDetail1", new System.Web.Routing.Route("Product/{cDetail}", new YourRouteHandlerClass()));
+  //Url Routing with Normal
+  oRoutes.MapPageRoute("ProductDetail2", "Product/{cDetail}", "~/product.aspx");
+  //Url Routing with Parameter
+  oRoutes.MapPageRoute("ProductDetail3", "Product/{cDetail}", "~/product.aspx", true, new System.Web.Routing.RouteValueDictionary { { "cDetail", "" } });
 }
+</pre>
+
+  <p>自訂類別或ASPX方法裡面取值的語句範例：</p>
+
+<pre>
+string cDetail = System.Web.Routing.RequestContext.RouteData.Values["cDetail"];
 </pre>
 
   <h3>路由會動了，但接下來你會遇到aspx、ashx都沒辦法運行</h3>
