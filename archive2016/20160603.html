@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>C#函式如何得知是哪一個方法或屬性來呼叫自己本身？</h1>
+<h1>C#函式如何得知是哪一個方法或屬性來呼叫自己本身</h1>
 
 <p>早期在寫沒有IDE環境下寫程式時，最怕的就是偵錯。當你的程式碼越來越長、越來越龐大時，如果有數十個Function去調用某隻Function，然後在這隻Function裡面被Try-Cache到某個錯誤時，你就會發現問題大條了！是誰？是誰來呼叫這隻Function的？失去了單步追蹤，這時候簡直是Debug的夢靨。</p>
 
@@ -68,7 +68,7 @@ private static void whoscall_3(
 
 <p>相關連結請參考MSDN：<a href="https://goo.gl/IumZf8" target="_blank">System.Runtime.CompilerServices Namespace / CallerMemberNameAttribute Class</a></p>
 
-<p>System.Reflection.MethodBase.GetCurrentMethod();盡管好用，但其實就某一種角度來說其實未必「自動」，說穿了其實是你自己主動把現在調用的方法名稱取出，並且將訊息傳遞給想要知道的方法，如果需要更自動的寫法可以參考下面這支修改過後的程式碼，或者直接參考另外一篇連結：<a href="/archive2019/20190521.html" target="_blank">如何在父類別中知道是哪個子類別過來繼承、調用或呼叫？</a></p>
+<p>System.Reflection.MethodBase.GetCurrentMethod();盡管好用，但其實就某一種角度來說其實未必「自動」，說穿了其實是你自己主動把現在調用的方法名稱取出，並且將訊息傳遞給想要知道的方法，如果需要更自動的寫法可以參考下面這支修改過後的程式碼，或者直接參考另外一篇連結：<a href="/archive2019/20190521.html" target="_blank">如何在父類別中知道是哪個子類別過來繼承、調用或呼叫</a></p>
 <pre>
 private static void whoscall_4()
 {
