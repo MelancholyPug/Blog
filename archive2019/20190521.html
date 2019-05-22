@@ -14,9 +14,9 @@
 
   <p>答案就是堆疊：System.Diagnostics.StackTrace</p>
 
-  <p>一開始有這個需求的時候我也是找遍網路想破頭，就是不得其門而路，只是心中很確定一定有這個門道可以進來。後來使用Stack果然找出端倪，進而達成我要的目的，話不多說先來看程式碼：</p>
+  <p>一開始有這個需求的時候，我也是找遍網路想破頭就是不得其門而路，但心中很確定一定某道門可以進入。後來使用Stack關鍵字去尋找果然找出端倪，進而達成我要的目的，話不多說先來看程式碼：</p>
 
-  <p>首先定義一個父類別，然後在誰調用我（WhoWakeMeUp()）的方法中實作System.Diagnostics.StackTrace。</p>
+  <p>首先定義一個父類別，然後在「WhoWakeMeUp()」（誰調用我？）的方法中實作System.Diagnostics.StackTrace。</p>
 <pre>
 class Father
 {
