@@ -15,8 +15,15 @@
   <p>Step 2. 找到「GRUB_TIMEOUT=5」，將其改為「GRUB_TIMEOUT=0」後存檔。</p>
 
   <p>Step 3. 設定好後，記得去Make一下GRUB2 config檔案。</p>
-<pre>
+  <pre>
 grub2-mkconfig -o /boot/grub2/grub.cfg
+-----
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-3.10.0-957.el7.x86_64
+Found initrd image: /boot/initramfs-3.10.0-957.el7.x86_64.img
+Found linux image: /boot/vmlinuz-0-rescue-08a8ec5b8f9743eebf7bbddc1f2968b1
+Found initrd image: /boot/initramfs-0-rescue-08a8ec5b8f9743eebf7bbddc1f2968b1.img
+done
 </pre>
 
   <p>Step 4. 重開機就知道效果。</p>
