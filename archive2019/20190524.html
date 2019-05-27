@@ -14,7 +14,12 @@
 
   <p>Step 2. 找到「GRUB_TIMEOUT=5」，將其改為「GRUB_TIMEOUT=0」後存檔。</p>
 
-  <p>Step 3. 下次重新開機時就可以看到效果。</p>
+  <p>Step 3. 設定好後，記得去Make一下GRUB2 config檔案。</p>
+<pre>
+grub2-mkconfig -o /boot/grub2/grub.cfg
+</pre>
+
+  <p>Step 4. 重開機就知道效果。</p>
 
   <small>Linux CentOS GRUB GRUB2 Menu Timeout 5 Seconds Change Modify</small>
 
