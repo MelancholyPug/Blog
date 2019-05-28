@@ -25,14 +25,14 @@ Microsoft SQL Server 2008 R2 (RTM) - 10.xx.xxxx (X64) May 31 2019 00:00:00 Copyr
 SELECT
   @@SERVERNAME 'InstanceName',
   CASE
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '8%'    THEN 'SQL Server 2000'
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '9%'    THEN 'SQL Server 2005'
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '10.0%' THEN 'SQL Server 2008'
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '10.5%' THEN 'SQL Server 2008 R2'
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '11%'   THEN 'SQL Server 2012'
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '12%'   THEN 'SQL Server 2014'
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '13%'   THEN 'SQL Server 2016'
-    WHEN CONVERT(VARCHAR(255), SERVERPROPERTY ('ProductVersion')) like '14%'   THEN 'SQL Server 2017'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '8%'    THEN 'SQL Server 2000'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '9%'    THEN 'SQL Server 2005'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '10.0%' THEN 'SQL Server 2008'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '10.5%' THEN 'SQL Server 2008 R2'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '11%'   THEN 'SQL Server 2012'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '12%'   THEN 'SQL Server 2014'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '13%'   THEN 'SQL Server 2016'
+    WHEN CONVERT(VARCHAR(99), SERVERPROPERTY('ProductVersion')) like '14%'   THEN 'SQL Server 2017'
     ELSE 'unknown'
     END AS 'SQLServerVersion', 
   CASE
