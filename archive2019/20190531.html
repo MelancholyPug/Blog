@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>VMware執行時，開啟Local GuestOS出現Device/Credential Guard不相容</h1>
+
+  <p>因為在本機安裝了Windows Sandbox因而間接的啟動Hyper-V，然而眾所皆知這兩個虛擬電腦軟體是不相容的，有你就沒有我，因此當你啟動VMware Workstation後要去Power on Local GuestOS，就會看到下列的經典訊息：</p>
+
+  <p>VMware Workstation and Device/Credential Guard are not compatible. VMware Workstation can be run after disabling Device/Credential Guard. Please visit http://www.vmware.com/go/turnoff_CG_DG for more details.</p>
+
+  <p>其實會出現這個訊息不是因為Windows Sandbox所引發，而是背後的Hyper-V已經在開機時配置啟動了，因此就算你跑Docker也會有這個問題。解決方式如下：</p>
+
+  <h3>在開機的時候關閉Hyper-V：</h3>
+<pre>
+請以最高管理權限執行，並於執行後重新開機（reboot）
+－－－－－
+bcdedit /set hypervisorlaunchtype off
+</pre>
+
+  <h3>在開機的時候啟動Hyper-V：</h3>
+  <p>如果你剛好想要使用Hyper-V相關的應用，可以再度啟動。</p>
+  <pre>
+請以最高管理權限執行，並於執行後重新開機（reboot）
+－－－－－
+bcdedit /set hypervisorlaunchtype auto
+</pre>
+
+  <small>VMware GuestOS Hyper-V Enable Disable Boot DeviceGuard DG CredentialGuard CG</small>
+
+</body>
+</html>
