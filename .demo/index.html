@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <title>Exam Time HUD</title>
+</head>
+
+<body class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 text-warning" style="font-size:1.2em">
+        <i class="fas fa-clock fa-fw"></i> Exam Time HUD
+      </div>
+      <div class="col-sm-12 col-md-4 text-right">
+        <button type="button" class="btn btn-info" id="uClassInfo">Class Info</button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <hr class="bg-warning">
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 align-self-center">
+        <i class="fas fa-fire fa-fw text-danger"></i> 現在時間：
+      </div>
+      <div class="col-md-7" id="uTimeNow">
+        00:00:00
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        預備入場時間：
+      </div>
+      <div class="col-10 col-md-4" id="uTimePrepare">
+        00:00:00
+      </div>
+      <div class="col-2 col-md-3"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        登入練習時間：
+      </div>
+      <div class="col-10 col-md-4" id="uTimeLogin">
+        00:00:00
+      </div>
+      <div class="col-2 col-md-3"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        考試開始時間：
+      </div>
+      <div class="col-10 col-md-4" id="uTimeStart">
+        00:00:00
+      </div>
+      <div class="col-2 col-md-3"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        禁止入場時間：
+      </div>
+      <div class="col-10 col-md-4" id="uTimeDisable">
+        00:00:00
+      </div>
+      <div class="col-2 col-md-3"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        允許繳卷時間：
+      </div>
+      <div class="col-10 col-md-4" id="uTimeFinish">
+        00:00:00
+      </div>
+      <div class="col-2 col-md-3"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        考試終止時間：
+      </div>
+      <div class="col-10 col-md-4" id="uTimeStop">
+        00:00:00
+      </div>
+      <div class="col-2 col-md-3"></div>
+    </div>
+  </div>
+</body>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/custom.js"></script>
+
+</html>

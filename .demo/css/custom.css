@@ -1,0 +1,29 @@
+body {
+  color: #999;
+  background-color: #222;
+  font-weight: bolder;
+  font-size: 2em;
+  font-family: "微軟正黑體", "Microsoft JhengHei";
+  letter-spacing: .15em;
+}
+
+button {
+  /* 修改BS4的按鈕，讓文字更明顯 */
+  font-size: .65em!important;
+  font-weight: bolder!important;
+}
+
+.text-success {
+  /* 修改BS4的綠色，讓他更鮮豔 */
+  color: #03ea38!important;
+}
+
+#uTimeNow {
+  color: white;
+  font-size: 2.4em;
+  font-family: "Segoe UI Light";
+  font-weight: 100;
+  letter-spacing: .2em;
+  text-shadow: rgb(255, 255, 255) 0px 0px 10px;
+}
+
