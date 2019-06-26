@@ -1,4 +1,4 @@
-body {
+﻿body {
   color: #999;
   background-color: #222;
   font-weight: bolder;
@@ -18,12 +18,34 @@ button {
   color: #03ea38!important;
 }
 
-#uTimeNow {
-  color: white;
-  font-size: 2.4em;
-  font-family: "Segoe UI Light";
-  font-weight: 100;
-  letter-spacing: .2em;
-  text-shadow: rgb(255, 255, 255) 0px 0px 10px;
+@media (max-width: 575.98px) {
+  #uTitle {
+    font-size: 1em;
+    letter-spacing: 0em;
+  }
+
+  #uTimeNow {
+    color: white;
+    font-size: 2.4em;
+    font-family: "Segoe UI Light";
+    font-weight: 100;
+    letter-spacing: .1em;
+    text-shadow: rgb(255, 255, 255) 0px 0px 10px;
+  }
 }
 
+@media (min-width: 576px) {
+  #uTitle {
+    font-size: 1.2em;
+    letter-spacing: .1em;
+  }
+
+  #uTimeNow {
+    color: white;
+    font-size: 2.4em;
+    font-family: "Segoe UI Light";
+    font-weight: 100;
+    letter-spacing: .2em;
+    text-shadow: rgb(255, 255, 255) 0px 0px 10px;
+  }
+}

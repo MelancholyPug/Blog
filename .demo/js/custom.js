@@ -1,4 +1,4 @@
-$(document).ready(function () {
+﻿$(document).ready(function () {
   //定時執行
   setInterval(function () {
     //取得現在時間並更新
@@ -6,16 +6,18 @@ $(document).ready(function () {
     $("#uTimeNow").text(oTimeNow.format("HH:mm:ss"));
     
     //定義變數
-    var iNextInterval = 3;   //過期多久就拋棄本場次，更換到下一場（分鐘）
+    var iNextInterval = 2;   //過期多久就拋棄本場次，更換到下一場（分鐘）
     var iPrepare      = 0;   //預備入場時間（分鐘）
     var iAllowLogin   = 3;   //允許考前可預先登入練習（分鐘）
     var iAllowDelay   = 0;   //允許可遲到時間（分鐘）
+    var iAllowPrint   = 16;  //允許可列印缺考統計時間（分鐘）；可能是有顧及到身心障礙考生所致，透過觀察在每節的「15+1分鐘」後系統才開放可列印
     var iAllowLeave   = 45;  //允許可離開考場時間（分鐘）
     var iClassNumber  = 0;   //目前處於第幾節次
     var oTimePrepare;        //預備考試時間
     var oTimeLogin;          //可登入時間
     var oTimeStart;          //考試開始時間
     var oTimeDisabled;       //禁止入場時間
+    var oTimePrint;          //允許列印缺考統計時間
     var oTimeFinish;         //允許繳卷時間
     var oTimeStop;           //考試終止時間
 
@@ -33,6 +35,7 @@ $(document).ready(function () {
       oTimeLogin   = oTimeBase.clone().add(iPrepare - iAllowLogin, "minutes");
       oTimeStart   = oTimeBase.clone().add(iPrepare, "minutes");
       oTimeDisable = oTimeStart.clone().add(iAllowDelay, "minutes");
+      oTimePrint   = oTimeStart.clone().add(iAllowPrint, "minutes");
       oTimeFinish  = oTimeStart.clone().add(iAllowLeave, "minutes");
       //是否為兩小時等級考試
       if (!oData[i].bIs2HR)
@@ -49,6 +52,7 @@ $(document).ready(function () {
     $("#uTimeLogin").text(oTimeLogin.format("HH:mm:ss"));
     $("#uTimeStart").text(oTimeStart.format("HH:mm:ss"));
     $("#uTimeDisable").text(oTimeDisable.format("HH:mm:ss"));
+    $("#uTimePrint").text(oTimePrint.format("HH:mm:ss"));
     $("#uTimeFinish").text(oTimeFinish.format("HH:mm:ss"));
     $("#uTimeStop").text(oTimeStop.format("HH:mm:ss"));
     
@@ -82,6 +86,11 @@ $(document).ready(function () {
     { $("#uTimeDisable").next().html(cChecked); }
     else
     { $("#uTimeDisable").next().html(cNotAvailable); }
+
+    if (oTimeNow.isAfter(oTimePrint))
+    { $("#uTimePrint").next().html(cChecked); }
+    else
+    { $("#uTimePrint").next().html(cNotAvailable); }
 
     if (oTimeNow.isAfter(oTimeFinish))
     { $("#uTimeFinish").next().html(cChecked); }
