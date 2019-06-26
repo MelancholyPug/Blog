@@ -6,7 +6,7 @@
     $("#uTimeNow").text(oTimeNow.format("HH:mm:ss"));
     
     //定義變數
-    var iNextInterval = 2;   //過期多久就拋棄本場次，更換到下一場（分鐘）
+    var iNextInterval = 1;   //過期多久就拋棄本場次，更換到下一場（分鐘）
     var iPrepare      = 0;   //預備入場時間（分鐘）
     var iAllowLogin   = 3;   //允許考前可預先登入練習（分鐘）
     var iAllowDelay   = 0;   //允許可遲到時間（分鐘）
@@ -64,7 +64,11 @@
     if (oTimeNow.isAfter(oTimePrepare))
     {
       $("#uTimePrepare").next().html(cChecked);
-      $("#uClassInfo").html("第 " + iClassNumber + " 節／進行");
+      //完全結束：最後一堂考試 && 現在時間已經超過考試截止時間
+      if ((iClassNumber == oData.length) && oTimeNow.isAfter(oTimeStop))
+      { $("#uClassInfo").html("今日考試結束"); }
+      else
+      { $("#uClassInfo").html("第 " + iClassNumber + " 節／進行"); }
     }
     else
     {
