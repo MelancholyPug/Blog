@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>清除遠端桌面（RDP）操作連線歷程</h1>
+
+  <p>從Windows XP時代就已經廣為流傳的資訊，因為每次用都要找一次乾脆記錄在此。</p>
+
+  <img src="/image/2019/20190809_01.jpg" />
+
+  <p>Step 1. 刪除*.rdp檔案</p>
+  <p>到User的Documents文件夾（我的文件夾）中，解除檔案的隱藏屬性，把裡面的「Default.rdp」砍掉。</p>
+
+  <p>Step 2. 刪除註冊檔裡面的RDP歷程</p>
+  <p>接著就是要刪除連線的IP、DomainName歷程，請打開RegEdit後，到達「HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default」，把裡面的「MRU*」字串值刪除即可，要更懶一點可以把整個Default機碼刪除。</p>
+
+  <p>這樣就大功告成啦！</p>
+
+  <small>RemoteDesktop Logs Delete Remove</small>
+
+</body>
+</html>
