@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>C# switch指令的case when語法初體驗</h1>
+
+  <p>會出現這個需求是因為有需要用switch指令來進行作業切割，而裡面又需要進行非精準的字串命中解析，以防止有些人為狀況下導致程式碼不能使用，例如下列這個情況：</p>
+
+  <p>假設 "Abc", "ABc", "abC" ... 都要命中某個case，所以我們都會先在switch端進行ToUpper()或ToLower()的轉換，但是轉換後case端字串又顯得其醜難以閱讀，例如下面這兩段程式碼，你會覺得哪個比較好閱讀？</p>
+
+<pre>
+case "TheBoySayWannaDrink": //閱讀良好
+  DoSomething();
+case "THEBOYSAYWANNADRINK": //難以閱讀
+  DoSomething();
+</pre>
+
+  <h3>C# 7.0之後的case when來解救你啦！</h3>
+  <p>從C# 7.0開始case陳述式不需要互斥，所以可新增when子句來指定其他條件，滿足這些條件case陳述式才會評估為true。when子句可以是任何傳回布林值的運算式。</p>
+
+  <p>以剛才舉的ToUpper()例子來說，我們可以用這個寫法來讓程式碼變得更好閱讀。</p>
+
+<pre>
+//終於可以保留高辨識度的字串了
+switch (cTemp)
+{
+  case string x when x.Equals("TheBoySayWannaDrink", System.StringComparison.InvariantCultureIgnoreCase):
+    DoSomething();
+    break;
+  case string x when x.Equals("TheGirlSayWannaEat", System.StringComparison.InvariantCultureIgnoreCase):
+    DoSomething();
+    break;
+}
+</pre>
+
+  <small>C#7.0 switch case when ToUpper() ToLower()</small>
+
+</body>
+</html>
