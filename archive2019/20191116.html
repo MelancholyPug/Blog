@@ -13,42 +13,51 @@
   <h3>軟體式磁碟陣列：RAID 1模式</h3>
 
   <p>先建立具備兩顆全新硬碟的磁碟環境，若不知道的人可以參考：<a href="/archive2019/20191114.html" target="_blank">Windows軟體式磁碟陣列巡禮：JBOD模式</a>這篇文章。</p>
-  <img src="../image/2019/20191116_01.jpg" />
+  <img src="/image/2019/20191116_01.jpg" />
 
   <p>Step 1. 在任何一顆硬碟上點選右鍵，選擇RAID 1，也就是「新增鏡像磁碟區」。</p>
-  <img src="../image/2019/20191116_02.jpg" />
+  <img src="/image/2019/20191116_02.jpg" />
 
   <p>Step 2. Windows會出現精靈引導你下一步。</p>
-  <img src="../image/2019/20191116_03.jpg" />
+  <img src="/image/2019/20191116_03.jpg" />
 
   <p>Step 3. 選擇左邊要加入RAID 1架構的磁碟機，將其新增到右邊選單中。RAID 1至少要有兩台，至多可以有很多台喔！</p>
-  <img src="../image/2019/20191116_04.jpg" />
+  <img src="/image/2019/20191116_04.jpg" />
 
   <p>Step 4. 選擇磁碟機代號。</p>
-  <img src="../image/2019/20191116_05.jpg" />
+  <img src="/image/2019/20191116_05.jpg" />
 
   <p>Step 5. 格式化成NTFS，並請勾選「執行快速格式化」。</p>
-  <img src="../image/2019/20191116_06.jpg" />
+  <img src="/image/2019/20191116_06.jpg" />
 
   <p>Step 7. 點選完成後，就會開始處理RAID 1建立工作。</p>
-  <img src="../image/2019/20191116_07.jpg" />
+  <img src="/image/2019/20191116_07.jpg" />
 
   <p>Step 8. 經過數秒鐘的處理作業後，RAID 1的磁碟陣列就建立完成了，他在Windows磁碟管理中的代表顏色是棕色。</p>
-  <img src="../image/2019/20191116_08.jpg" />
+  <img src="/image/2019/20191116_08.jpg" />
 
   <p>Step 10. 打開檔案總管觀看，可以查覺到兩顆50GB的硬碟組成的RAID 1磁碟陣列，他的容量依然是50GB。我們在這個RAID 1的磁碟機中寫入一個測試純文字檔案。</p>
-  <img src="../image/2019/20191116_09.jpg" />
+  <img src="/image/2019/20191116_09.jpg" />
 
   <p>Step 11. 將電腦關機後，去虛擬機設定中將其中的一顆硬碟移除，模擬RAID 1硬碟掛掉的狀態。</p>
-  <img src="../image/2019/20191116_10.jpg" />
+  <img src="/image/2019/20191116_10.jpg" />
 
   <p>Step 12. 重新開機後，可以在磁碟管理員中發現有一顆硬碟已經遺失了（可代表硬碟已經掛掉）。</p>
-  <img src="../image/2019/20191116_11.jpg" />
+  <img src="/image/2019/20191116_11.jpg" />
 
   <p>Step 13. 重新開啟測試用的純文字檔案，發現檔案內容依然正常可以讀取，代表資料並沒有遺失，</p>
-  <img src="../image/2019/20191116_12.jpg" />
+  <img src="/image/2019/20191116_12.jpg" />
 
   <p>※ RAID 1是我最喜歡的磁碟陣列格式，理由很簡單，當你在管理大量的伺服器群時，不必記住繁複的設定或磁碟結構，只要有哪一顆硬碟壞掉就換哪一顆硬碟。當然啦，極度倒楣（例如兩顆硬碟同時掛掉）的時候RAID 1還是有其極限，但要這樣討論下去，RAID 5、6架構也有可能同時掛掉，這樣就沒完沒了了。RAID 1也可建立多顆硬碟鏡射，在經濟條件允許的情況下，奉勸大家可以嚴格的考慮這樣的架構，畢竟千古流傳了那一句話：「資料無價」！</p>
+
+  <h4>Windows RAID軟體式磁碟陣列建置系列文章</h4>
+  <ol>
+    <li><a href="/archive2019/20191114.html" target="_blank">Windows軟體式磁碟陣列巡禮：JBOD模式</a></li>
+    <li><a href="/archive2019/20191115.html" target="_blank">Windows軟體式磁碟陣列巡禮：RAID 0模式</a></li>
+    <li><a href="/archive2019/20191116.html" target="_blank">Windows軟體式磁碟陣列巡禮：RAID 1模式</a></li>
+    <li><a href="/archive2019/20191122.html" target="_blank">Windows軟體式磁碟陣列巡禮：RAID 5模式</a></li>
+    <li><a href="/archive2019/20191125.html" target="_blank">Windows軟體式磁碟陣列巡禮：RAID 10模式</a></li>
+  </ol>
 
   <small>Windows RAID Create Build RAID1 SoftwareDiskArrayMode</small>
 
