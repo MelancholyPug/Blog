@@ -22,6 +22,8 @@ VBoxManage.exe modifyhd "檔案名稱.vdi" --resize 40960
 //其中的40960單位是MB，所以這串數值表示的是40GB。
 </pre>
 
+<p>擴增完成後，進去Windows的磁碟管理，針對磁碟分割區進行「延伸磁碟區」的指令，就可以發現後面空白的容量被吃進來啦。</p>
+
 <p>壓縮 VDI(HDD)</p>
 <p>先到Microsoft technet下載<a href="https://goo.gl/Jm5rRl" target="_blank">SDelete</a>，在Guest OS中下指令：</p>
 <pre>
@@ -47,7 +49,7 @@ VBoxManage.exe modifyhd "硬碟名稱.vdi" compact
 
 <img src="/image/2013/20131029_01.jpg" />
 
-<small>Oracle VirtualBox UUID VDI</small>
+<small>Oracle VirtualBox UUID VDI VHD VMDK</small>
 
 </body>
 </html>
