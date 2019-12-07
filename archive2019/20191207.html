@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>郵局ATM帳號產生器</h1>
+
+  <p>每次要進行ATM匯款的對象如果是郵局，總是對他的局號帳號的規則有所疑慮，尤其是要匯款過去的金額過大的話，總是要在網路再三的查詢才敢下手。</p>
+
+  <p>其實規則很簡單，郵局的局號七碼＋帳號七碼，總共14碼即為匯款帳號，有些銀行ATM不接受14碼的帳號的話，請在前面自己補零足16碼，即為標準的銀行共通帳號格式。如果還是不放心（或者字太多看不懂、看不下去），我寫了一個簡單的產生器，請把要匯款過去的目標對象之郵局局號與帳號輸入後，程式會產生一個16碼正確格式的郵局ATM帳號。</p>
+
+  <h3>轉換郵局帳號成為可匯款的ATM帳號</h3>
+
+  <div class="form-group form-group-lg" style="padding-top:1em">
+    <label for="uText1">請輸入局號</label>
+    <input type="number" class="form-control" id="uText1" placeholder="七碼局號">
+  </div>
+  <div class="form-group form-group-lg">
+    <label for="uText2">請輸入帳號</label>
+    <input type="number" class="form-control" id="uText2" placeholder="七碼帳號">
+  </div>
+
+  <button id="uProcess" type="button" class="btn btn-warning btn-lg">產生ATM匯款資料</button>
+
+  <div id="uMessage" style="padding:1em 0em"></div>
+
+  <script>
+    pushToExecuteList(function () {
+      $("#uText1").focus();
+
+      //Event Binding
+      $("#uProcess").click(function () {
+
+        $("#uMessage").empty();
+        var bSuccess = true;
+
+        var cText1 = $("#uText1").val();
+        var cText2 = $("#uText2").val();
+
+        if (cText1.length != 7 || cText2.length != 7) {
+          ShowMessage("❌ 局號與帳號必須為七碼數字。");
+          bSuccess = false;
+        }
+
+        if (isNaN(parseInt(cText1)) || isNaN(parseInt(cText2))) {
+          ShowMessage("❌ 局號與帳號必須為數字型態。");
+          bSuccess = false;
+        }
+
+        if (bSuccess) {
+          ShowMessage("--- 🏧 匯款資訊 ---");
+          ShowMessage("銀行代碼：700（中華郵政）");
+          ShowMessage("匯款帳號：00" + cText1 + cText2);
+        }
+        
+      });
+
+      function ShowMessage(cTemp) {
+        $("#uMessage").append("<p>" + cTemp + "</p>");
+      }
+
+    }, 2);	//Priority:2
+  </script>
+
+  <small>郵局 ATM 轉帳 局號 帳號 七碼 7碼 16碼</small>
+
+</body>
+</html>
