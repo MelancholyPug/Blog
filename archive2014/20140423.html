@@ -96,10 +96,10 @@ namespace Reflection
 <h4>2019-12-30 補充說明：</h4>
 
 <p>
-  在網路上找資料時看到有網友在討論我這篇文章所提供的程式碼有問題，在System.Activator.CreateInstance時期會出現「System.ArgumentNullException: Value cannot be null. Parameter name: type」的錯誤。這個問題其實很簡單，就是這個網友他忽略掉一個關鍵的地方：
+  在網路上找資料時看到有網友在討論我這篇文章所提供的程式碼有問題，在System.Activator.CreateInstance時期會出現「System.ArgumentNullException: Value cannot be null. Parameter name: type」的錯誤。這個問題其實很簡單，就是這個網友他忽略掉一個關鍵的地方：一個典型的Type name形成應為如此「Namespace.TypeName, Assembly」，但是如果你的Type對象跟你的MAIN主程序位於同一個組件下，那麼後面那個「Assembly」組件名稱是可以省略不用撰寫的。也就是因為如此，我的程式碼中才只有寫著「Reflection（名稱空間）.Transportation（類別名稱）」。
 </p>
 
-<p>一個典型的Type name形成應為如此「Namespace.TypeName, Assembly」，但是如果你的Type對象跟你的MAIN主程序位於同一個組件下，那麼後面那個「Assembly」組件名稱是可以省略不用撰寫的，也就是因此我的程式碼中撰寫著「Reflection（名稱空間）.Transportation（類別名稱）」。個人推測他的實驗環境有可能是採用線上實驗環境（例如：try.dot.net），那種環境的編譯會幫你把組件拆開來陳列，自然是找不到而回報空值了。或者是他個人在Console環境下，根本沒有複製到Namespace為Reflection語句。有發生類似問題的網友，建議可以把程式碼修改一下，改成動態取出Type的AssemblyQualifiedName。</p>
+<p>個人推測他的實驗環境有可能是採用線上實驗環境（例如：try.dot.net），那種環境的編譯會幫你把組件拆開來陳列，自然是找不到而回報空值了。或者是他個人在Console環境下，根本沒有複製到Namespace為Reflection的區塊語句。有發生類似問題的網友，建議可以把程式碼修改一下，改成動態取出Type的AssemblyQualifiedName。</p>
 
 <pre>
 //取得正規的組件名稱，例如：Reflection.Transportation, xxxxxxxx, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
