@@ -47,7 +47,7 @@ public static void Main()
 <p>如果是把System.Linq弄進來，使用他的語法來進行資料搜尋的話，語法變成一行就可以解決了。這樣的寫法還有一個好處，就是因為enum是實值型別（ValueType），所以就算找不到命中FirstOrDefault也不會傳回null，而是會傳回這個enum的預設值，也就是等於0的NoFriend。（如果列舉裡面沒有等於0的項次，則會回傳一個0，你對它.GetType()還是會回傳myFriend。）</p>
 
 <pre>
-myFriend eFind = System.Enum.GetValues(typeof(myFriend)).OfType<myFriend>().Where(x => (int)x == iFriend).FirstOrDefault();
+myFriend eFind = System.Enum.GetValues(typeof(myFriend)).OfType&lt;myFriend&gt;().Where(x =&gt; (int)x == iFriend).FirstOrDefault();
 </pre>
 
 <p>Happy Coding！</p>
