@@ -23,6 +23,7 @@ System.Collections.Generic.List&lt;string&gt; oList = new System.Collections.Gen
   "EEEEE",
   "FFFFF"
 };
+
 //調用Tasks.Parallel幫你一行多工多執行緒化
 System.Threading.Tasks.Parallel.ForEach(
   //等待處理的工作佇列
@@ -34,7 +35,8 @@ System.Threading.Tasks.Parallel.ForEach(
     Console.WriteLine($"Now processing in {x}");
   }
 );
-//會等到上面執行緒內的工作全部完成，才會再繼續往下進行
+
+//等到上面執行緒內的工作全部完成，才會再繼續往下進行
 Console.WriteLine("Completed!");
 </pre>
 
