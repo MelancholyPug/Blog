@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>利用Promise來進行前端Jacascipt之非同步且循序的工作排程</h1>
+
+  <p>以往都是在後端進行大型工程程序時，才會遇到這個需求，如今AJAX非同步傳輸盛行的年代，有機會在前端遇到類似的非同步且循序的工作排程問題（先做Ａ才能再做Ｂ，如果發生Ｃ的時候就去Ｄ，否則就去做Ｅ）之類的，所幸後期有Promise語法，讓Jacascipt在不使用監聽事件的寫法下，有機會可以進行更複雜的排程工作。</p>
+
+  <p>或許有人會問，那為何不要用事件監聽去寫？答案很簡單，如果單一性的工作用事件監聽來寫，並進行後續的成功或失敗回調呼叫，倒也無可厚非，但如果是一連串的工作用事件監聽來寫，那麼你會得到<a href="/archive2018/20180711.html" target="_blank">波動拳程式碼</a>，看你有沒有辦法受的了那種愚蠢的結構（我是沒辦法）。</p>
+
+  <p>以下是一段來自於Mozilla MDN所展示的<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Using_promises" target="_blank">Callback波動拳</a>範例程式碼，讓大家感受一下。</p>
+
+<pre>
+doSomething(function(result) {
+  doSomethingElse(result, function(newResult) {
+    doThirdThing(newResult, function(finalResult) {
+      console.log('Got the final result: ' + finalResult);
+    }, failureCallback);
+  }, failureCallback);
+}, failureCallback);
+</pre>
+
+  <h3>Promise寫法簡介</h3>
+  <p></p>
+
+  
+  
+  <a href="" target="_blank"></a>
+  <a href="" target="_blank"></a>
+  <a href="" target="_blank"></a>
+
+  <small></small>
+
+</body>
+</html>
