@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>利用HTML pre標籤來簡單的模擬Console視窗</h1>
+
+  <p>這是一個還蠻無聊的功能，但有時候在開發系統上面就是會用到，因此將其記錄在此讓有需要的人取用。當你不斷地餵食資訊給pre標籤時，他會自己紀錄歷程並捲動至最後一列顯示資訊。</p>
+
+  <form class="form-horizontal" style="margin-top:2em">
+    <fieldset>
+      <legend style="font-size:26px;border-bottom:1px dashed black;padding-bottom:18px;"><strong><span class="glyphicon glyphicon-blackboard"></span> 利用pre標籤模擬Console視窗</strong></legend>
+      <div class="form-group form-group-lg">
+        <div class="col-md-12">
+          <pre id="uMsg" style="height:200px; overflow-y:scroll;"></pre>
+        </div>
+      </div>
+      <div class="form-group form-group-lg">
+        <div class="col-md-12">
+          <a id="uBtn" class="btn btn-success btn-lg">切換顯示 / 停止按鈕</a>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <script>
+    pushToExecuteList(function () {
+      var bShow = true;
+      var bMsg = false;
+      var iID;
+
+      $(document).ready(function () {
+        //模擬按下按鈕，讓網頁一進入就有Console展示效果
+        $("#uBtn").click();
+      });
+
+      $("#uBtn").click(function () {
+        if (bShow) {
+          iID = window.setInterval(function () {
+            bMsg = !bMsg;
+            if (bMsg)
+            { showMsg("Hello..."); }
+            else
+            { showMsg("你好！"); }
+          }, 1000);
+        } else {
+          window.clearInterval(iID);
+        }
+        bShow = !bShow;
+      });
+
+      //顯示函式
+      function showMsg(cTemp) {
+        $("#uMsg").append(new Date().toString().split(" ")[4] + " " + cTemp + "\n");
+        $("#uMsg").scrollTop($("#uMsg")[0].scrollHeight);
+      }
+    }, 2);	//Priority:2
+  </script>
+
+  <p>語法就自己F12看一下內容了，基本上就是江湖一點訣，節省大家爬文的時間啦！</p>
+  
+  <small>HTML pre Tag Console Scroll ScrollToEnd MoveToEnd ScrollToBottom</small>
+
+</body>
+</html>
