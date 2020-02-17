@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <h1>ASP.NET Session State無法寫入謎案</h1>
+  <h1>ASP.NET Session State無法寫入之謎案</h1>
 
   <p>前陣子在寫泛型處理常式（ASHX）時發現一個問題，就是有一個運算完成的結果無論怎麼樣就是無法指派到Session記憶體中，無論怎麼樣只要重複Request，記憶體中的Session就會被洗掉。出現這個問題第一個當然是檢查自己是否有繼承IRequiresSessionState或IReadOnlySessionState（當然是有繼承，不然寫了這麼多年是白寫的喔！），翻遍了StackOverflow也沒有人在討論這方面的問題，心底甚是沮喪。</p>
 
