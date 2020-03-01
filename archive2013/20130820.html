@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>Microsoft SQL Server的Unicode N Prefix問題</h1>
+<h1>SQL筆記：Microsoft SQL Server的Unicode N Prefix問題</h1>
 
 <p>在 SQL Server 中處理 Unicode 字串常數時，您必需在所有的 Unicode 字串前加上大寫字母 N 做為前置詞，如《SQL Server 線上叢書》主題＜使用 Unicode 資料＞所述。「N」前置詞代表的是 SQL-92 標準中的國家語言，且必須為大寫。如果您沒有在 Unicode 字串常數前面加上 N 做為前置詞，則 SQL Server 會在使用字串前，先將其轉換成目前資料庫的非 Unicode 字碼頁。</p>
 
