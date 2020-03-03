@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>利用Attribute為ORM型別的屬性添增新色彩</h1>
+
+  <p>前陣子有朋友說看了我之前的<a href="/archive2014/20140422.html" target="_blank">C#中的Attribute屬性（特性）用法</a>後，對用法還是不甚了解，本篇文章就以常見的ORM為例子，稍微介紹一下Attribute的用法。</p>
+
+  <img src="/image/2020/20200303_01.jpg" />
+
+  <h3>一、先建立起一個自訂的Attribute型別</h3>
+  <p>.NET規範Attribute型別名稱最好以Attribute為結尾，但其實不寫也無妨。</p>
+<pre>
+public class AliasAttribute : System.Attribute
+{
+  private string _cAliasName = string.Empty;
+
+  public AliasAttribute(string cTemp)
+  { _cAliasName = cTemp; }
+
+  public string cAliasName { get { return _cAliasName; } }
+}
+</pre>
+  <p>從上面的例子可以看出這個型別的名稱為Alias，且在建構子時期就擁有可以變更_cAliasName欄位的能力，另外提供一個可取用欄位的屬性，名為cAliasName。</p>
+
+  <h3>二、建立起一個範例用的ORM型別</h3>
+  <p>如果你採用的是.NET EF（Entity Framework），那麼ORM型別你應該用很大，我們自定義一個簡單的ORM如下，並賦予給cName、iMoney兩個屬性各自的AliasAttribute，而bSex不賦予的原因是因為等一下要拿來對照測試。</p>
+<pre>
+public class ORM
+{
+  [Alias("姓名")]
+  public string cName { get; set; }
+  [Alias("金額")]
+  public int iMoney { get; set; }
+  public bool bSex { get; set; }
+}
+</pre>
+
+  <h3>三、寫程式提取</h3>
+  <p>首先記得要引用using System.Reflection;、using System.Linq;喔！不然程式碼會動不了。</p>
+<pre>
+ORM oTemp = new ORM()
+{
+  cName = "王小明",
+  iMoney = 9999,
+  bSex = true
+};
+
+var oList = oTemp.GetType().GetProperties().Select(prop =&gt; {
+  //判斷是否存在AliasAttribute
+  if (prop.IsDefined(typeof(AliasAttribute), true))
+  { return $"{prop.Name}：{prop.GetValue(oTemp)} / 別名：{prop.GetCustomAttribute&lt;AliasAttribute&gt;().cAliasName}"; }
+  else
+  { return $"{prop.Name}：{prop.GetValue(oTemp)} / 別名：沒有指定"; }
+});
+
+foreach (var oItem in oList)
+{ 
+  WriteLine(oItem);        
+}
+</pre>
+
+  <p>如此一來，我們就可以輕易的拿到這個ORM的相關資訊啦！</p>
+<pre>
+輸出
+－－－－－
+cName：王小明 / 別名：姓名
+iMoney：9999 / 別名：金額
+bSex：True / 別名：沒有指定
+</pre>
+
+  <p>相關連結：</p>
+  <a href="/archive2014/20140422.html" target="_blank">C#中的Attribute屬性（特性）用法</a>
+  <a href="/archive2019/20190509.html" target="_blank">利用Attribute Type打造一個類MVC的驗證</a>
+
+  <small>ORM System.Reflection ObjectRelationalMapping EntityFramework PCOC PlainOldCLRObject</small>
+
+</body>
+</html>

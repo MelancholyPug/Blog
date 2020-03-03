@@ -16,7 +16,7 @@
 
 <p>基於上述的理由，我們建立一個CMD環境的程式碼，其中包含了一個自訂的特性類別「Writer」，用來記錄這一段程式是由誰來撰寫，以及相關的參考參數可以取出。另外一個「SomeClass」則是真正的把Attribute的寫法使用上去，你可以發現它甚至可以拿來當成程式碼的註解來使用（這也是這個無用的範例假設的情境），無論是Class或Method都可以支援Attribute，且可以不只一個Attribute。</p>
 
-<p>※註：可支援Attribute的寫法包含了組件Assembly、Module、Type、Property、Event、Field、Method、Pparam、Return等。</p>
+<p>※註：可支援Attribute的寫法包含了組件Assembly、Module、Type、Property、Event、Field、Method、Param、Return等。</p>
 
 <p>最後我們可以從主控台Main這邊，來進行這兩個類別的操作，程式碼以及相關說明如下：</p>
 
@@ -100,6 +100,10 @@ namespace Attribute
 <p>
 在Attribute的應用中，如果你用到的是自訂Attribute特性，其實最後大多是準備要用於晚期繫結，不然在執行期要這些無聊的類別註解資訊要幹嘛？晚期繫結在.NET裡面的實作就叫做Reflection，中文稱為反射，這個留在「<a href="/archive2014/20140423.html" target="_blank">C#中的Reflection反射（反映）用法</a>」中再來探討。
 </p>
+
+  <p>相關連結：</p>
+  <a href="/archive2019/20190509.html" target="_blank">利用Attribute Type打造一個類MVC的驗證</a>
+  <a href="/archive2020/20200303.html" target="_blank">利用Attribute為ORM型別的屬性添增新色彩</a>
 
 <small>C# Attribute 屬性 特性 中括號 Reflection</small>
 
