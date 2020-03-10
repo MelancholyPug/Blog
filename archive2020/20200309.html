@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>LinqToXml簡介3：利用LINQ找到正確的XElement並插入資料</h1>
+
+  <p>這篇文章，我們來講講怎麼找到之前建立的XML資料，並且對其新增新的XElement。</p>
+
+  <p>先確認程式碼與產出的XML資料長成這樣：</p>
+
+  <p>程式碼：</p>
+<pre>
+System.Xml.Linq.XNamespace oXmlNsAAA = "這完全是我亂打的一個字串";
+System.Xml.Linq.XNamespace oXmlNsBBB = "http://www.foo.com/";
+System.Xml.Linq.XNamespace oXmlNsCCC = "CompanyType";
+
+System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
+  new System.Xml.Linq.XDeclaration("1.0", "UTF-8", "yes"),
+  new System.Xml.Linq.XElement(oXmlNsAAA + "Employees",
+    new System.Xml.Linq.XAttribute(System.Xml.Linq.XNamespace.Xmlns + "AAA", "這完全是我亂打的一個字串"),
+    new System.Xml.Linq.XAttribute(System.Xml.Linq.XNamespace.Xmlns + "BBB", "http://www.foo.com/"),
+    new System.Xml.Linq.XAttribute(System.Xml.Linq.XNamespace.Xmlns + "CCC", "CompanyType"),
+    new System.Xml.Linq.XElement(oXmlNsCCC + "Company",
+      new System.Xml.Linq.XAttribute("Code", "Taipei"),
+      new System.Xml.Linq.XElement(oXmlNsAAA + "Person",
+        new System.Xml.Linq.XAttribute(oXmlNsBBB + "ID", "A1234"),
+        new System.Xml.Linq.XElement(oXmlNsAAA + "Name", "王小明"),
+        new System.Xml.Linq.XElement(oXmlNsAAA + "Address", "台北市OOO路")
+      )
+    ),
+    new System.Xml.Linq.XElement(oXmlNsCCC + "Company",
+      new System.Xml.Linq.XAttribute("Code", "Kaohsiung"),
+      new System.Xml.Linq.XElement(oXmlNsAAA + "Person",
+        new System.Xml.Linq.XAttribute(oXmlNsBBB + "ID", "A5678"),
+        new System.Xml.Linq.XElement(oXmlNsAAA + "Name", "李小華"),
+        new System.Xml.Linq.XElement(oXmlNsAAA + "Address", "高雄市OOO路")
+      ),
+      new System.Xml.Linq.XElement(oXmlNsAAA + "Person",
+        new System.Xml.Linq.XAttribute(oXmlNsBBB + "ID", "B1234"),
+        new System.Xml.Linq.XElement(oXmlNsAAA + "Name", "陳小英"),
+        new System.Xml.Linq.XElement(oXmlNsAAA + "Address", "高雄市XXX路")
+      )
+    )
+  )
+);
+</pre>
+
+  <p>產出之XML文件：</p>
+<pre>
+&lt;AAA:Employees xmlns:AAA="這完全是我亂打的一個字串" xmlns:BBB="http://www.foo.com/" xmlns:CCC="CompanyType"&gt;
+  &lt;CCC:Company Code="Taipei"&gt;
+    &lt;AAA:Person BBB:ID="A1234"&gt;
+      &lt;AAA:Name&gt;王小明&lt;/AAA:Name&gt;
+      &lt;AAA:Address&gt;台北市OOO路&lt;/AAA:Address&gt;
+    &lt;/AAA:Person&gt;
+  &lt;/CCC:Company&gt;
+  &lt;CCC:Company Code="Kaohsiung"&gt;
+    &lt;AAA:Person BBB:ID="A5678"&gt;
+      &lt;AAA:Name&gt;李小華&lt;/AAA:Name&gt;
+      &lt;AAA:Address&gt;高雄市OOO路&lt;/AAA:Address&gt;
+    &lt;/AAA:Person&gt;
+    &lt;AAA:Person BBB:ID="B1234"&gt;
+      &lt;AAA:Name&gt;陳小英&lt;/AAA:Name&gt;
+      &lt;AAA:Address&gt;高雄市XXX路&lt;/AAA:Address&gt;
+    &lt;/AAA:Person&gt;
+  &lt;/CCC:Company&gt;
+&lt;/AAA:Employees&gt;
+</pre>
+
+  <h3>接著就是LINQ練習時間</h3>
+  <p>挑出CCC:Company並使其成為一個IEnumerable集合。</p>
+  <pre>var oCollections = oXml.Root.Elements(oXmlNsCCC + "Company");</pre>
+
+<pre>
+[0]
+&lt;CCC:Company Code="Taipei" xmlns:CCC="CompanyType"&gt;
+  &lt;AAA:Person BBB:ID="A1234" xmlns:BBB="http://www.foo.com/" xmlns:AAA="這完全是我亂打的一個字串"&gt;
+    &lt;AAA:Name&gt;王小明&lt;/AAA:Name&gt;
+    &lt;AAA:Address&gt;台北市OOO路&lt;/AAA:Address&gt;
+  &lt;/AAA:Person&gt;
+&lt;/CCC:Company&gt;
+
+[1]
+&lt;CCC:Company Code="Kaohsiung" xmlns:CCC="CompanyType"&gt;
+  &lt;AAA:Person BBB:ID="A5678" xmlns:BBB="http://www.foo.com/" xmlns:AAA="這完全是我亂打的一個字串"&gt;
+    &lt;AAA:Name&gt;李小華&lt;/AAA:Name&gt;
+    &lt;AAA:Address&gt;高雄市OOO路&lt;/AAA:Address&gt;
+  &lt;/AAA:Person&gt;
+  &lt;AAA:Person BBB:ID="B1234" xmlns:BBB="http://www.foo.com/" xmlns:AAA="這完全是我亂打的一個字串"&gt;
+    &lt;AAA:Name&gt;陳小英&lt;/AAA:Name&gt;
+    &lt;AAA:Address&gt;高雄市XXX路&lt;/AAA:Address&gt;
+  &lt;/AAA:Person&gt;
+&lt;/CCC:Company&gt;
+</pre>
+
+  <p>找出在高雄公司的員工，並利用FirstOrDefault返回一個XElement。</p>
+<pre>
+var oKaohsiung = oXml.Root.Elements(oXmlNsCCC + "Company").Where(x =&gt; x.Attribute("Code").Value == "Kaohsiung").FirstOrDefault();
+</pre>
+
+<pre>
+&lt;CCC:Company Code="Kaohsiung" xmlns:CCC="CompanyType"&gt;
+  &lt;AAA:Person BBB:ID="A5678" xmlns:BBB="http://www.foo.com/" xmlns:AAA="這完全是我亂打的一個字串"&gt;
+    &lt;AAA:Name&gt;李小華&lt;/AAA:Name&gt;
+    &lt;AAA:Address&gt;高雄市OOO路&lt;/AAA:Address&gt;
+  &lt;/AAA:Person&gt;
+  &lt;AAA:Person BBB:ID="B1234" xmlns:BBB="http://www.foo.com/" xmlns:AAA="這完全是我亂打的一個字串"&gt;
+    &lt;AAA:Name&gt;陳小英&lt;/AAA:Name&gt;
+    &lt;AAA:Address&gt;高雄市XXX路&lt;/AAA:Address&gt;
+  &lt;/AAA:Person&gt;
+&lt;/CCC:Company&gt;
+</pre>
+
+  <p>接續上題，找出在高雄公司的員工中編號為內含1234字串，將其姓名挑出。</p>
+<pre>
+var oPerson = oKaohsiung.Elements(oXmlNsAAA + "Person").Where(x =&gt; x.Attribute(oXmlNsBBB + "ID").Value.Contains("1234")).Select(x =&gt; x.Element(oXmlNsAAA + "Name").Value);
+</pre>
+
+<pre>
+只會找到一筆「陳小英」。
+</pre>
+
+  <h4>插入一筆資料到台北公司</h4>
+  <p>有了上面的LINQ練習後，對於XDocument的SELECT應該是有一定的熟悉度了，在這邊我們用插入一筆XElement資料作為結束。</p>
+
+<pre>
+oXml
+  .Root
+  .Elements(oXmlNsCCC + "Company")
+  .Where(x =&gt; x.Attribute("Code").Value == "Taipei")
+  .FirstOrDefault()
+  .Add(
+    new System.Xml.Linq.XElement(oXmlNsAAA + "Person",
+      new System.Xml.Linq.XAttribute(oXmlNsBBB + "ID", "C7788"),
+      new System.Xml.Linq.XElement(oXmlNsAAA + "Name", "郭大頭"),
+      new System.Xml.Linq.XElement(oXmlNsAAA + "Address", "高雄市VVV路")
+    )
+  );
+</pre>
+
+  <p>最終XML結果</p>
+  <pre>
+&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;
+&lt;AAA:Employees xmlns:AAA="這完全是我亂打的一個字串" xmlns:BBB="http://www.foo.com/" xmlns:CCC="CompanyType"&gt;
+  &lt;CCC:Company Code="Taipei"&gt;
+    &lt;AAA:Person BBB:ID="A1234"&gt;
+      &lt;AAA:Name&gt;王小明&lt;/AAA:Name&gt;
+      &lt;AAA:Address&gt;台北市OOO路&lt;/AAA:Address&gt;
+    &lt;/AAA:Person&gt;
+    &lt;AAA:Person BBB:ID="C7788"&gt;
+      &lt;AAA:Name&gt;郭大頭&lt;/AAA:Name&gt;
+      &lt;AAA:Address&gt;高雄市VVV路&lt;/AAA:Address&gt;
+    &lt;/AAA:Person&gt;
+  &lt;/CCC:Company&gt;
+  &lt;CCC:Company Code="Kaohsiung"&gt;
+    &lt;AAA:Person BBB:ID="A5678"&gt;
+      &lt;AAA:Name&gt;李小華&lt;/AAA:Name&gt;
+      &lt;AAA:Address&gt;高雄市OOO路&lt;/AAA:Address&gt;
+    &lt;/AAA:Person&gt;
+    &lt;AAA:Person BBB:ID="B1234"&gt;
+      &lt;AAA:Name&gt;陳小英&lt;/AAA:Name&gt;
+      &lt;AAA:Address&gt;高雄市XXX路&lt;/AAA:Address&gt;
+    &lt;/AAA:Person&gt;
+  &lt;/CCC:Company&gt;
+&lt;/AAA:Employees&gt;
+</pre>
+
+  <small>XmlDocument System.Xml XDocument System.Xml.Linq LambdaExpressions Namespace 名稱空間 命名空間 LinqSelect LinqWhere XElementInsert XElementDelete</small>
+
+
+</body>
+</html>

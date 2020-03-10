@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>LinqToXml簡介1：建立並儲存XML</h1>
+
+  <p>早在.NET Framework 1.1時代就大量的利用XmlDocument類別來處理XML相關的事務，每天在那邊Node來Entity去的，雖然說很煩但實在也慢慢的習慣了，後來JSON興盛起來後慢慢就沒有再涉獵XML較晚期的技術。LINQ to XML其實是在.NET Framework 3.5時期發表，被放置在System.Xml.Linq.dll類別裡面，利用LINQ to XML技術，我們可以擺脫早期使用XmlDocument要組成一個複雜的XML文件，必須宣告一堆複雜的XML類別實例之問題。取而代之的是利用串接的Lambda表達式來快速創建XML文件。</p>
+
+  <p>這陣子剛好要處理XML相關需求，因此就來練習一下。</p>
+
+  <h3>利用LINQ to XML快速創建XML文件</h3>
+  <p>他的方便性跟以前簡直不可同日而語，詳細過程直接看程式碼，有經驗的程式設計師應該會馬上意會過來怎麼使用。</p>
+<pre>
+System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
+  new System.Xml.Linq.XDeclaration("1.0", "UTF-8", "yes"),
+  new System.Xml.Linq.XElement("Employees",
+    new System.Xml.Linq.XElement("Person",
+      new System.Xml.Linq.XAttribute("ID", "A1234"),
+      new System.Xml.Linq.XElement("Name", "王小明"),
+      new System.Xml.Linq.XElement("Address", "台北市OOO路")
+    ),
+    new System.Xml.Linq.XElement("Person",
+      new System.Xml.Linq.XAttribute("ID", "A5678"),
+      new System.Xml.Linq.XElement("Name", "李小華"),
+      new System.Xml.Linq.XElement("Address", "高雄市OOO路")
+    )
+  )
+);
+</pre>
+
+  <p>P.S 若是要從外部讀取XML，跟以前一樣使用LOAD()方法即可。</p>
+
+  <p>從上面的程式碼我們可以得知，主要就是建立XDocument，另外給一個XDeclaration型塑出Well-Formed XML。此外就是最重要的重點XElement與XAttribute，基本上XML主要的描述就是由這兩個類別元素構成。</p>
+
+  <h3>為何需要外面要包一個XDocument？</h3>
+
+  <p>若你沒有輸出XML的必要性，其實可以不要包一個XDocument，因為XElement等級的元素也可以直接ToString()將XML輸出。而包入XDocument根類別很簡單，因為XDocument有一個SAVE()方法，可以把你的XML進行minify壓縮輸出（縮減容量）。</p>
+<pre>
+oXml.Save(@"D:\test.xml", System.Xml.Linq.SaveOptions.DisableFormatting);
+</pre>
+<p>壓縮前（SaveOptions.None）：</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;
+&lt;Employees&gt;
+  &lt;Person ID="A1234"&gt;
+    &lt;Name&gt;王小明&lt;/Name&gt;
+    &lt;Address&gt;台北市OOO路&lt;/Address&gt;
+  &lt;/Person&gt;
+  &lt;Person ID="A5678"&gt;
+    &lt;Name&gt;李小華&lt;/Name&gt;
+    &lt;Address&gt;高雄市OOO路&lt;/Address&gt;
+  &lt;/Person&gt;
+&lt;/Employees&gt;
+</pre>
+<p>壓縮後（SaveOptions.DisableFormatting）：</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;&lt;Employees&gt;&lt;Person ID="A1234"&gt;&lt;Name&gt;王小明&lt;/Name&gt;&lt;Address&gt;台北市OOO路&lt;/Address&gt;&lt;/Person&gt;&lt;Person ID="A5678"&gt;&lt;Name&gt;李小華&lt;/Name&gt;&lt;Address&gt;高雄市OOO路&lt;/Address&gt;&lt;/Person&gt;&lt;/Employees&gt;
+</pre>
+
+  <h3>簡單的LINQ查詢XML範例</h3>
+
+  <p>基本上要使用LINQ查詢，就要引入System.Linq才可以使用，有了IEumerable&lt;T&gt;後，相信一切都不是問題了！</p>
+
+<pre>
+//返回IEumerable&lt;System.Xml.Linq.XElement&gt;集合
+var oSubXML = oXml.Root.Elements("Person");
+</pre>
+
+<pre>
+//找Person裡面的ID屬性開頭是A123的集合
+var oSubXml = oXml.Root.Elements("Person").Where(x =&gt; x.Attribute("ID").Value.StartsWith("A123"));
+</pre>
+
+<pre>
+//找Person裡面的Address元素內容包含高雄市的集合
+var oSubXml = oXml.Root.Elements("Person").Where(x =&gt; x.Element("Address").Value.Contains("高雄市"));
+</pre>
+
+<p>以最後這個搜尋地址的範例來說，所找出來的XElement集合只有一筆，且其挑選到的結果內容為：</p>
+<pre>
+&lt;Person ID="A5678"&gt;
+  &lt;Name&gt;李小華&lt;/Name&gt;
+  &lt;Address&gt;高雄市OOO路&lt;/Address&gt;
+&lt;/Person&gt;
+</pre>
+
+  <small>XmlDocument System.Xml XDocument System.Xml.Linq LambdaExpressions Namespace 名稱空間 命名空間 LinqSelect LinqWhere XElementInsert XElementDelete</small>
+
+</body>
+</html>
