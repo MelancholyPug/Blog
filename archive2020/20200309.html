@@ -10,7 +10,7 @@
 
   <p>這篇文章，我們來講講怎麼找到之前建立的XML資料，並且對其新增新的XElement。</p>
 
-  <p>先確認程式碼與產出的XML資料長成這樣：</p>
+  <p>先確認程式碼與產出的XML資料長成下列這樣：</p>
 
   <p>程式碼：</p>
 <pre>
@@ -50,7 +50,8 @@ System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
 </pre>
 
   <p>產出之XML文件：</p>
-<pre>
+  <pre>
+&lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;
 &lt;AAA:Employees xmlns:AAA="這完全是我亂打的一個字串" xmlns:BBB="http://www.foo.com/" xmlns:CCC="CompanyType"&gt;
   &lt;CCC:Company Code="Taipei"&gt;
     &lt;AAA:Person BBB:ID="A1234"&gt;
@@ -72,7 +73,7 @@ System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
 </pre>
 
   <h3>接著就是LINQ練習時間</h3>
-  <p>挑出CCC:Company並使其成為一個IEnumerable集合。</p>
+  <p>挑出CCC:Company並使其成為一個IEnumerable集合。可以觀察到很有趣的結果，當失去了Employees根元素，XElement會在第一個元素被自動賦予有用到命名空間的xmlns，這個設計很強。</p>
   <pre>var oCollections = oXml.Root.Elements(oXmlNsCCC + "Company");</pre>
 
 <pre>
@@ -170,7 +171,6 @@ oXml
 </pre>
 
   <small>XmlDocument System.Xml XDocument System.Xml.Linq LambdaExpressions Namespace 名稱空間 命名空間 LinqSelect LinqWhere XElementInsert XElementDelete</small>
-
 
 </body>
 </html>
