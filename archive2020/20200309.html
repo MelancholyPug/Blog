@@ -122,11 +122,11 @@ var oPerson = oKaohsiung.Elements(oXmlNsAAA + "Person").Where(x =&gt; x.Attribut
 </pre>
 
 <pre>
-只會找到一筆「陳小英」。
+集合裡面只會有一筆資料，就是「陳小英」。
 </pre>
 
-  <h4>插入一筆資料到台北公司</h4>
-  <p>有了上面的LINQ練習後，對於XDocument的SELECT應該是有一定的熟悉度了，在這邊我們用插入一筆XElement資料作為結束。</p>
+  <h4>利用LINQ找出XElement目標，對其插入一筆XElement</h4>
+  <p>有了上面的LINQ練習後，對於XDocument的SELECT應該是有一定的熟悉度了，在這邊我們用插入一筆XElement資料作為結束。找出台北公司的XElement，然後再子屬節點中插入一個全新的員工資料（XElement）。</p>
 
 <pre>
 oXml
