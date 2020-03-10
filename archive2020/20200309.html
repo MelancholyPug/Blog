@@ -73,7 +73,7 @@ System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
 </pre>
 
   <h3>接著就是LINQ練習時間</h3>
-  <p>挑出CCC:Company並使其成為一個IEnumerable集合。可以觀察到很有趣的結果，當失去了Employees根元素，XElement會在第一個元素被自動賦予有用到命名空間的xmlns，這個設計很強。</p>
+  <p>挑出CCC:Company並使其成為一個IEnumerable集合。可以觀察到很有趣的結果，當失去了Employees根元素，XElement會在後續元素被自動賦予有用到命名空間的xmlns用來參考，這個設計很強。</p>
   <pre>var oCollections = oXml.Root.Elements(oXmlNsCCC + "Company");</pre>
 
 <pre>
