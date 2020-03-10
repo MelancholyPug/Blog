@@ -77,7 +77,7 @@ System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
   <h4>XNamespace使用要點如下：</h4>
   <ol>
     <li>利用靜態的方式，宣告一個Xml Namespace，且給定一個獨一無二的字串（Key）。</li>
-    <li>利用XNamespace類別以變數的方式宣告，並給定在XDocument靜態宣告的一致性獨一無二的字串（Key）。若不一致會造成XDocument識別錯誤，認為這是兩個不一樣的Namespace，進而幫你進行補充添加，出來的結果一定不會如你所想像（會有垃圾資料）。</li>
+    <li>利用XNamespace類別以變數的方式動態宣告，並給定在XDocument靜態宣告的一致性獨一無二的字串（Key）。若不一致會造成XDocument識別錯誤，認為這是兩個不一樣的Namespace，進而幫你進行補充添加，出來的結果一定不會如你所想像（會有垃圾資料）。</li>
     <li>使用XNamespace與＋這個操作子，進行XElement類別的命名空間添加。</li>
     <li>XDocument有很強的命名空間整理功能，你利用動態方法使用到到沒有宣告過的命名空間，在輸出時期他會幫你利用xmlns補宣告。設計時期重複宣告引入宣告過的命名空間，在輸出時期他會幫你去除重複。</li>
   </ol>
