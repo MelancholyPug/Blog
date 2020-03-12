@@ -63,7 +63,8 @@ var jQueryIsReady = function(fCallBack){
 (function(){
 	//Css可以平行載入，無優先權問題
 	LoadFile("css", "//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
-  LoadFile("css", "/_resource/css/_css_customize.min.css");
+  LoadFile("css", "/_resource/css/_css_highlight.css");     //程式碼高亮度
+  LoadFile("css", "/_resource/css/_css_customize.min.css"); //網站基底
 	/*
 	理論上這些JavaScript都是要平行載入的，但是因為jQuery實在太重要了，因此必須確定他載入完再去驅動其它的載入。
 	雖然可以保證jQuery一定會先載入完成後，再去載入其它的Javascript，但是其實同時間內，瀏覽器還會繼續去往下讀取
@@ -72,8 +73,16 @@ var jQueryIsReady = function(fCallBack){
 	根本不認識誰是$,jQuery，因為jQuery的JavaScript有可能還在Load當中。因此需要jQueryIsReady涵式來進行把關。
 	*/
   LoadFile("js", "//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js", function () {
-    LoadFile("js", "/_resource/js/_js_ads.min.js");								                    //偵測網站是否有被擋掉廣告（盡量提早下載）
-		LoadFile("js",  "//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"); //Bootstrap
-    LoadFile("js",  "/_resource/js/_js_createAllWebsite.min.js");                     //全網站建置
+    LoadFile("js", "/_resource/js/_js_ads.min.js");								                   //偵測網站是否有被擋掉廣告（盡量提早下載）
+    LoadFile("js", "//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"); //Bootstrap
+    LoadFile("js", "/_resource/js/_js_highlight.js");                                //程式碼高亮度
+    LoadFile("js", "/_resource/js/_js_createAllWebsite.min.js");                     //網站基底
 	});
 })();
+
+/* 將網站高亮度的樣式，留在最後觸發繪製 */
+pushToExecuteList(function () {
+  document.querySelectorAll('pre').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+}, 99);
