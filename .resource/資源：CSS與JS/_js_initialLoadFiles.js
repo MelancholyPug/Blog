@@ -28,7 +28,7 @@ var LoadFile = function(cType, cUrl, fCallBack) {
 				oDom.onload = function(){	fCallBack(); };
 			}
 		}
-	} else if (cType = "css") {
+	} else if (cType == "css") {
 		var oDom = document.createElement("link");
 		oDom.setAttribute("rel", "stylesheet");
 		oDom.setAttribute("href", cUrl);
