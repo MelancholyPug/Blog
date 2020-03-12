@@ -6,7 +6,7 @@
 		var cUrlFinal = cURL.substring(cURL.indexOf(cFind) + cFind.length);
 		window.location.href = "//slashlook.com" + cUrlFinal;
 	}
-})();
+})(); 
 
 /* 動態載入 JavaScript, Css 涵式 */
 var LoadFile = function(cType, cUrl, fCallBack) {
