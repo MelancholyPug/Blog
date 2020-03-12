@@ -5,13 +5,6 @@ var oSite = new Object();
 //記載現在的網址路徑
 oSite.cUrlPath = window.location.pathname;
 
-/* 無論如何，先檢查使用者端是否有把網站廣告擋掉，有的話就踢到勸導頁面 */
-//(function () {
-//  if (window.canRunAds === undefined && oSite.cUrlPath.indexOf("/archive") !== -1) {
-//    window.location.href = "/_resource/html/adBlocker.html?cBlock=" + oSite.cUrlPath;
-//  }
-//})();
-
 //記載Menu Bar的程式碼
 oSite.cMenuBar = "<div class='navbar navbar-inverse navbar-fixed-top'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><span class='navbar-brand pull-left' style='margin-top:-1px'><img class='navbar-brand-logo' src='/_resource/image/_img_logo.png' /></span><a class='navbar-brand' href='/index.html'>SlashLook!</a></div><div class='collapse navbar-collapse'><ul id='nav-items' class='nav navbar-nav'><li><a href='/_resource/html/articles.html'>articles</a></li><li><a href='/_resource/html/aboutNcontact.html'>about &amp; contact</a></li><li><a href='/_resource/html/search.html'>search</a></li></ul></div></div></div>";
 
@@ -62,6 +55,11 @@ pushToExecuteList(function () {
   /* Insert Blocks: Footer */
   $("<div class='container'><div class='row'><div class='col-md-12'><div class='footer'><p class='footer-color'>Copyright <span class='glyphicon glyphicon-copyright-mark'></span> 2013 by <a href='/_resource/html/aboutNcontact.html'><strong>SlashLook!</strong></a> Inc. All Rights Reserved.</p></div></div></div></div>").appendTo("body");
 
+  /* Make <pre> tag code Highlight */
+  $("pre").each(function (i, block) {
+    hljs.highlightBlock(block);
+  });
+
 }, 1);	//Priority:1
 
 /* 當jQuery真正具備運行能力的時候... */
@@ -77,7 +75,7 @@ jQueryIsReady(function () {
     });
   });
 
-  //美化優化等東西，擺在windowLoad時期再做即可
+  //美化優化等東西，擺在windowLoad時期做
   $(window).load(function () {
     /* Styling: <h1> tag */
     if (oSite.bArticles) { $("h1").wrap("<div class='title title-color'></div>"); }
@@ -215,4 +213,5 @@ jQueryIsReady(function () {
       });
     }
   });
+
 });

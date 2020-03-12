@@ -38,8 +38,12 @@ var LoadFile = function(cType, cUrl, fCallBack) {
 };
 
 /*
-在一般的情況下，本文HTML裡面的JavaScript一定會被先執行，但是在這個網站的例子裡面剛好相反，我們會希望先去運行全網站繪製的JavaScript，再來運行本文裡的JavaScript。不幸的是，這兩段程式碼通常都被塞在DocumentReady裡面，但是jQuery的DocumentReady是不允許進行排序的，也就是瀏覽器會優先跑本文JavaScript，再運行全站繪製JavaScript。這樣的現象尤其在行動裝置瀏覽器按下「重新整理」鈕時更會發生，要解決這個問題，比較高級的可以用Queue的觀念來重新設計，另外較不優雅的方式就是想要比較晚執行的DocumentReady就使用TimeOut來進行延遲。
+在一般的情況下，本文HTML裡面的JavaScript一定會被先執行，但是在這個網站的例子裡面剛好相反，我們會希望先去運行全網站繪製的JavaScript，再來運行本文裡的JavaScript。
+不幸的是，這兩段程式碼通常都被塞在DocumentReady裡面，但是jQuery的DocumentReady是不允許進行排序的，也就是瀏覽器會優先跑本文JavaScript，再運行全站繪製JavaScript。
+這樣的現象尤其在行動裝置瀏覽器按下「重新整理」鈕時更會發生，要解決這個問題，比較高級的可以用Queue的觀念來重新設計，
+另外較不優雅的方式就是想要比較晚執行的DocumentReady就使用TimeOut來進行延遲。
 */
+
 //陣列將存放全站想要放在DocumentReady內跑的程序
 var aryExecuteList = new Array();
 //函式將要執行的程式碼，以及想要的優先權，以Queue的方式推入陣列中
@@ -73,16 +77,8 @@ var jQueryIsReady = function(fCallBack){
 	根本不認識誰是$,jQuery，因為jQuery的JavaScript有可能還在Load當中。因此需要jQueryIsReady涵式來進行把關。
 	*/
   LoadFile("js", "//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js", function () {
-    LoadFile("js", "/_resource/js/_js_ads.min.js");								                   //偵測網站是否有被擋掉廣告（盡量提早下載）
     LoadFile("js", "//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"); //Bootstrap
     LoadFile("js", "/_resource/js/_js_highlight.js");                                //程式碼高亮度
     LoadFile("js", "/_resource/js/_js_createAllWebsite.min.js");                     //網站基底
 	});
 })();
-
-/* 將網站高亮度的樣式，留在最後觸發繪製 */
-pushToExecuteList(function () {
-  document.querySelectorAll('pre').forEach((block) => {
-    hljs.highlightBlock(block);
-  });
-}, 99);
