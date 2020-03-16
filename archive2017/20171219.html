@@ -50,9 +50,57 @@ public static void Main()
 myFriend eFind = System.Enum.GetValues(typeof(myFriend)).OfType&lt;myFriend&gt;().Where(x =&gt; (int)x == iFriend).FirstOrDefault();
 </pre>
 
+<h3>利用列舉名稱（Enum Name；String）來取得列舉型別本身</h3>
+
+<p>有時候我們會希望利用某個Enum的名稱來反轉換（反求得）列舉型別，可以使用下列程式碼來進行：</p>
+<pre>
+//Parse寫法
+try
+{
+  var eTemp = System.Enum.Parse(typeof(myFriend), "John");
+  Console.WriteLine(eTemp.ToString());
+}
+catch
+{ Console.WriteLine("找不到這個列舉名稱。"); }
+</pre>
+
+<pre>
+//TryParse寫法，這個方法另外有個多載引數可以支援不區分大小寫比對
+System.Enum.TryParse("John", out myFriend eTemp);
+//如果不存在這個字串而比對失敗，會回傳預設值NoFriend（0）
+Console.WriteLine(eTemp.ToString());
+</pre>
+
+<h3>利用列舉數值（Enum Value；Int）來取得列舉型別本身</h3>
+
+<p>有時候我們會希望利用某個Enum的數值來反轉換（反求得）列舉型別，可以使用下列程式碼來進行：</p>
+<pre>
+//傳統轉型寫法
+myFriend eTemp = (myFriend)3;
+Console.WriteLine(eTemp.ToString());  //印出Sam
+
+//傳統轉型寫法的缺點
+myFriend eTemp = (myFriend)123;       //根本沒有此列舉
+Console.WriteLine(eTemp.ToString());  //不會出錯且印出123
+</pre>
+
+<pre>
+//使用Enum.IsDefined來輔助檢查
+int i = 123;
+if(System.Enum.IsDefined(typeof(myFriend), i))
+{ 
+  myFriend eTemp = (myFriend)i;
+  Console.WriteLine(eTemp.ToString());
+}
+else
+{ Console.WriteLine("找不到這個列舉數值。"); }
+</pre>
+
+<p>要特別注意的是，當Enum被套用了[System.Flags] Attributes屬性時Enum.IsDefined將會失效（失去判斷作用），如果你有到這麼深的程度，要自己特別小心。</p>
+
 <p>Happy Coding！</p>
 
-<small>System.Enum.GetValues System.Enum.GetNames Foreach Int32 Assignment</small>
+<small>System.Enum.GetValues System.Enum.GetNames Foreach Int32 Assignment IntToEnum StringToEnum ConvertToEnum</small>
 
 </body>
 </html>
