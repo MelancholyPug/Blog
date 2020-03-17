@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>Bootstrap 4讓特定元素在特定的裝置畫面中消失</h1>
+
+  <p>有時候我們會想要在行動裝置的寬度下，讓按鈕中的文字或圖案消失，在不變更版面的排列下讓UI的體驗可以更加一致性，這篇文章將展示如何做到這樣的語法。</p>
+
+  <img src="/image/2020/20200315_01.jpg" />
+
+  <p>首先我們有下列的HTML：</p>
+<pre>
+&lt;div class="row col-12 mt-4"&gt;
+  &lt;div class="col-8 col-md-6"&gt;
+    &lt;h3&gt;&lt;i class="fab fa-microsoft fa-fw"&gt;&lt;/i&gt; ＯＯＯ管理系統&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="col-4 col-md-6"&gt;
+    &lt;div class="d-inline float-right"&gt;
+      &lt;a href="#" class="btn btn-primary"&gt;&lt;i class="fas fa-check fa-fw"&gt;&lt;/i&gt; 新增&lt;/a&gt;
+      &lt;a href="#" class="btn btn-danger"&gt;&lt;i class="fas fa-times fa-fw"&gt;&lt;/i&gt; 刪除&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+  
+  <p>畫面如下：</p>
+  <img src="/image/2020/20200315_02.jpg" />
+
+  <p>而我們希望如果畫面寬度再進一步縮小，是否可以留下打勾跟打叉的ICON就好，新增跟刪除的中文字眼可以消失。</p>
+
+  <h3>讓特定元素在特定的裝置畫面中消失</h3>
+
+  <p>答案就是利用d-none CSS類別來進行控制，例如某個元素只想要在md（Medium）以上的裝置才顯現，md以下的裝置都消失，則我們可以使用這樣的語法。</p>
+
+<pre>
+ＯＯＯ&lt;span class="d-none d-md-inline"&gt;這行字在md以下的裝置會消失喔！&lt;/span&gt;ＯＯＯ
+</pre>
+
+  <p>承剛才的HTML，套用上去後會長的如下：</p>
+
+<pre>
+&lt;div class="row col-12 mt-4"&gt;
+  &lt;div class="col-8 col-md-6"&gt;
+    &lt;h3&gt;&lt;i class="fab fa-microsoft fa-fw"&gt;&lt;/i&gt; ＯＯＯ管理系統&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="col-4 col-md-6"&gt;
+    &lt;div class="d-inline float-right"&gt;
+      &lt;a href="#" class="btn btn-primary"&gt;&lt;i class="fas fa-check fa-fw"&gt;&lt;/i&gt; &lt;span class="d-none d-sm-inline"&gt;新增&lt;/span&gt;&lt;/a&gt;
+      &lt;a href="#" class="btn btn-danger"&gt;&lt;i class="fas fa-times fa-fw"&gt;&lt;/i&gt; &lt;span class="d-none d-sm-inline"&gt;刪除&lt;/span&gt;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+  <img src="/image/2020/20200315_03.jpg" />
+
+  <small>Bootstrap4 DifferentDevice DisplayWidth ShowElement HideElement Visible Invisible</small>
+
+</body>
+</html>
