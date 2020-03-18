@@ -65,11 +65,12 @@ int iMoney = oJson.iMoney;  //9999
 ]
 </pre>
   <p>解析程式碼如下：</p>
-<pre>
+  <pre>
 //解析JSON Array
 dynamic oJson = Newtonsoft.Json.Linq.JArray.Parse(cTemp);
 //因為是動態型別，因此若有正確傳入預期的資料，可以順利的使用傳入參數嘍～
 string cName = oJson[1].cName;  //馬英九
+int iMoney = oJson[0].iMoney;  //9999
 </pre>
 
   <h4>參考資料：</h4>
