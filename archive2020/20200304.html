@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>ASP.NET求得目前HTTP來源要求方法（GET、POST...）</h1>
+
+  <p>原本寫API都是單一用途，大家彼此律定好就成立。今天遇到一個需求是既要能用GET又要能支援POST，礙於在WebForm架構內GET與POST求取System.Collections.Specialized.NameValueCollection的方法途徑並沒有一致，因此需要視情況切換兩種指令來進行擷取。</p>
+
+  <h3>判斷客戶端是用哪個方式送出Http Request？</h3>
+  
+  <p>答案很簡單，.NET有提供對應方法回傳字串（public string HttpMethod { get; }）：</p>
+
+  <p>.aspx寫法：</p>
+<pre>
+System.Web.HttpContext.Current.Request.HttpMethod
+</pre>
+
+  <p>.ashx寫法：</p>
+<pre>
+System.Web.HttpContext.Request.HttpMethod
+</pre>
+
+  <p>實作上建議還是先轉大寫會比較好，這裡.NET沒有提供enum回傳其實我個人沒有寫得很好：</p>
+
+  <pre>
+switch (oContext.Request.HttpMethod.ToUpper())
+{ //進行GET方法處理
+  case "GET":
+    if (!string.IsNullOrEmpty(oContext.Request.QueryString["xxx"]))
+    { cTemp = oContext.Request.QueryString["xxx"] as string; }
+    ...
+    break;
+  //進行POST方法處理
+  case "POST":
+    if (!string.IsNullOrEmpty(oContext.Request.Form["xxx"]))
+    { cTemp = oContext.Request.Form["xxx"] as string; }
+    ...
+    break;
+}
+</pre>
+
+  <small>ASP.NET C# CSharp HTTP HTTPS Request Verbs Methods 動詞</small>
+
+</body>
+</html>
