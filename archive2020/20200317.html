@@ -35,13 +35,37 @@ ngrok http 8080
   <p>Step 6. 接著你會看到下列畫面，其中Forward裡面有一個https的亂數網址，那個就是你要複製起來去某服務登錄Webhook的字串了。</p>
   <img src="/image/2020/20200317_03.jpg" />
 
-  <p>以上就是ngrok的操作方式。另外有幾點補充事項如下：</p>
+  <p>以上就是ngrok的操作方式。另外有幾點注意事項如下：</p>
 
   <ol>
     <li>因為他是一支Console模式程式，因此在除錯的期間必須讓Console視窗留著，按下Ctrl+C可以關閉服務。</li>
     <li>當你關閉後再重新執行一次ngrok，那麼你的Webhook字串就會被更換，因此必須重新註冊。（覺得麻煩就花錢吧！）</li>
-    <li>Console在response時期會有資訊跳出，另外也可以透過<a href="http://127.0.0.1:4040" target="_blank">http://127.0.0.1:4040</a>看到更多詳細資訊。（有提供迷你HttpService）</li>
+    <li>Console在response時期會有資訊跳出，另外也可以透過<a href="http://127.0.0.1:4040" target="_blank">http://127.0.0.1:4040</a>看到更多Request、Response詳細資訊。（有提供迷你HttpService）</li>
   </ol>
+
+  <h4>補充說明：</h4>
+
+  <p>實作上若有遇到400 Bad Request的錯誤，或者得到下列的錯誤資訊輸出：</p>
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd"&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+    &lt;TITLE&gt;Bad Request&lt;/TITLE&gt;
+    &lt;META HTTP-EQUIV="Content-Type" Content="text/html; charset=us-ascii"&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+    &lt;h2&gt;Bad Request - Invalid Hostname&lt;/h2&gt;
+    &lt;hr&gt;
+    &lt;p&gt;HTTP Error 400. The request hostname is invalid.&lt;/p&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+  <p>可以試著用下列的啟動指令解決：</p>
+<pre>
+ngrok http 65535 -host-header="localhost:65535"
+</pre>
 
   <small>ngrok Install Http Https Webhook Bot ChatBot Telegram Whatsapp Line IM InstantMessage</small>
 
