@@ -46,8 +46,8 @@ public void ProcessRequest(System.Web.HttpContext oContext)
 //解析一般JSON
 dynamic oJson = Newtonsoft.Json.Linq.JObject.Parse(cTemp);
 //因為是動態型別，因此若有正確傳入預期的資料，可以順利的使用傳入參數嘍～
-string cName = oJson.cName; //游錫堃
-int iMoney = oJson.iMoney;  //9999
+string cName = (string)oJson.cName; //游錫堃
+int iMoney = (int)oJson.iMoney;  //9999
 </pre>
 
   <h4>JSON Array格式</h4>
@@ -69,8 +69,8 @@ int iMoney = oJson.iMoney;  //9999
 //解析JSON Array
 dynamic oJson = Newtonsoft.Json.Linq.JArray.Parse(cTemp);
 //因為是動態型別，因此若有正確傳入預期的資料，可以順利的使用傳入參數嘍～
-string cName = oJson[1].cName;  //馬英九
-int iMoney = oJson[0].iMoney;  //9999
+string cName = (string)oJson[1].cName;  //馬英九
+int iMoney = (int)oJson[0].iMoney;  //9999
 </pre>
 
   <h4>參考資料：</h4>
