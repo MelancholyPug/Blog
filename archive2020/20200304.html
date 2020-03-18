@@ -24,7 +24,7 @@ System.Web.HttpContext.Current.Request.HttpMethod
 System.Web.HttpContext.Request.HttpMethod
 </pre>
 
-  <p>實作上建議還是先轉大寫會比較好，這裡.NET沒有提供enum回傳其實我個人沒有寫得很好：</p>
+  <p>實作上建議還是先轉大寫會比較好，這裡.NET沒有提供enum回傳我個人覺得考慮欠佳：</p>
 
   <pre>
 switch (oContext.Request.HttpMethod.ToUpper())
