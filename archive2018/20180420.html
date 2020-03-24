@@ -99,6 +99,20 @@ VALUES
 string cTemp = "已經插入{iResult}筆資料。";
 </pre>
 
+<p>若有需要更新的話，也無須重新製作一個新的DataORM，只要你確定這包IEnumerable資料包裡面有出現對應欄位，且資料包的內容已經更新完成即可。</p>
+<pre>
+iResult = oConn.Execute($@"
+UPDATE
+  fooTable
+SET
+  cName = @cName
+WHERE
+  iIndex = @iIndex
+  ",
+  oData //假設這是一整包資料
+);
+</pre>
+
 <p>以上是Dapper簡單的介紹，日後若有增補的說明會再行另外發文。</p>
 
 <small>Dapper ADO.NET ORM StrongTyping WeakTyping</small>
