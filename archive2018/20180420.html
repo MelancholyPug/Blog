@@ -64,6 +64,41 @@ using (System.Data.SqlClient.SqlConnection oConn = new System.Data.SqlClient.Sql
 }
 </pre>
 
+<h3>有關於INSERT或UPDATE的寫法</h3>
+
+<p>若存在一個IEnumerable等級的資料包，利用Dapper來做寫入也是一件極度輕鬆爽快的事情，詳見下列語法（以INSERT為例）：</p>
+
+<pre>
+int iResult;
+using (System.Data.SqlClient.SqlConnection oConn = new System.Data.SqlClient.SqlConnection(YourDbConnectionString))
+{
+  oConn.Open();
+  iResult = oConn.Execute($@"
+INSERT INTO
+  fooTable
+(
+  iIndex,
+  cID,
+  cName
+)
+VALUES
+(
+  iIndex = @iIndex,
+  cID    = @cID,
+  cName  = @cName
+)
+    ",
+    new System.Collections.Generic.List&lt;UserORM&gt;()
+    {
+      new UserORM() { iIndex = 1, cID = "A001", cName = "王小明" },
+      new UserORM() { iIndex = 2, cID = "A002", cName = "李小華" },
+      new UserORM() { iIndex = 3, cID = "A003", cName = "陳小英" }
+    }
+  );
+}
+string cTemp = "已經插入{iResult}筆資料。";
+</pre>
+
 <p>以上是Dapper簡單的介紹，日後若有增補的說明會再行另外發文。</p>
 
 <small>Dapper ADO.NET ORM StrongTyping WeakTyping</small>
