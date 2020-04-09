@@ -12,7 +12,7 @@
 
 <p>在這邊分享一下一個SQL指令的小技巧，可以讓這種情境下的程式碼，可以更簡潔易讀。</p>
 
-<h3>情境假設：</h3>
+<h3>情境假設</h3>
 
 <p>假設我們要在資料庫查詢一些資料，想要達到的動作條件是：</p>
 
@@ -37,9 +37,9 @@ WHERE
 ";
 
 //加入參數
-oCmd.Parameters.Add("@cFirstName",  System.Data.SqlDbType.NVarChar, 10).Value = cFirstName;
-oCmd.Parameters.Add("@cSex",        System.Data.SqlDbType.NVarChar,  1).Value = (string.IsNullOrEmpty(cSex)) ? (System.Object)System.DBNull.Value : cSex;
-oCmd.Parameters.Add("@iAge",        System.Data.SqlDbType.Int).Value          = (iAge == 0)                  ? (System.Object)System.DBNull.Value : iAge;
+oCmd.Parameters.Add("@cFirstName", System.Data.SqlDbType.NVarChar, 10).Value = cFirstName;
+oCmd.Parameters.Add("@cSex",       System.Data.SqlDbType.NVarChar,  1).Value = (string.IsNullOrEmpty(cSex)) ? (System.Object)System.DBNull.Value : cSex;
+oCmd.Parameters.Add("@iAge",       System.Data.SqlDbType.Int).Value          = (iAge == 0)                  ? (System.Object)System.DBNull.Value : iAge;
 </pre>
 
 <p>從上面的程式碼，我們可以得知cFirstName是一個必要帶值的文字字串，然後我們再利用小技巧接續個'%'字串，來達成LIKE的模糊查詢，這點應該不需要再討論。而真正應該要關注的是，有可能我們在執行期時，並未對cSex、iAg進行賦值的動作，所以cSex有可能一開始為null或為空字串，而iAge有可能一開始就為整數實值型別的預設值，也就是0。
@@ -53,9 +53,29 @@ oCmd.Parameters.Add("@iAge",        System.Data.SqlDbType.Int).Value          = 
 
 <p>大家覺得這樣的語法，是不是一個很巧妙的設計呢？</p>
 
+<h3>注意避免使用ISNULL()</h3>
+
+<p>網路上有一些文章教你使用ISNULL(xxx, ooo)來進行選擇性條件的替代，這種做法的思路跟上述的寫法大致上相同，但寫起來更簡潔容易閱讀，例如：</p>
+<pre>
+SELECT * FROM	Employee
+WHERE
+		cFirstName LIKE @cFirstName + '%'
+	AND 
+		cSex = ISNULL(@cSex, cSex)
+	AND
+		iAge = ISNULL(@iAge, iAge)
+</pre>
+
+<p>以cSex當作範例，主要的思路是當@cSex不是null的時候（例如：1），那麼相當於cSex = 1，如果@cSex為null則會使用後面的cSex參數來替代，也就是會形成cSex = cSex這種詭異的邏輯，網路上的文章認為這樣的寫法會等效「恆為true」，一般的情況「結果」的確是如此，But...世界上最重要的就是這個But...</p>
+
+<p>結果正確，但你確定你對於SQL指令的理解是對的？</p>
+
+<p>如果今天的cSex欄位裡面出現三態「0:10筆, 1:20筆, null:40筆」，那麼這樣的寫法就崩潰了，因為where cSex = cSex出來的筆數是30筆（0與1的總和），屬於null的40筆被拋棄了。所以在顧慮許多未知情況的條件下（例如你程式去讀別人產生的檢視表，你根本無法掌控可能出現怎麼樣的情況？），我強烈建議不要利用ISNULL來進行選擇性條件的寫法。</p>
+
+<p>相關連結：</p>
 <a href="/archive2019/20190906.html" target="_blank">使用LINQ進行可選擇化聯集條件（AND）的設計手法</a>
 
-<small>C# Database SqlParameter SqlCommand OptionalConditions AND OR</small>
+<small>選擇性條件 C# Database SqlParameter SqlCommand OptionalConditions AND OR</small>
 
 </body>
 </html>
