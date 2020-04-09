@@ -53,7 +53,7 @@ oCmd.Parameters.Add("@iAge",       System.Data.SqlDbType.Int).Value          = (
 
 <p>大家覺得這樣的語法，是不是一個很巧妙的設計呢？</p>
 
-<h3>注意避免使用ISNULL()</h3>
+<h3>注意避免使用SQL ISNULL()函式</h3>
 
 <p>網路上有一些文章教你使用ISNULL(xxx, ooo)來進行選擇性條件的替代，這種做法的思路跟上述的寫法大致上相同，但寫起來更簡潔容易閱讀，例如：</p>
 <pre>
