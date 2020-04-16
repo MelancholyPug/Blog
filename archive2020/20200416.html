@@ -76,8 +76,6 @@ ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9.ewogICJuYW1lIjogIkpvaG4iLAogICJ
   <h4>發出去的JWT有充分的回收機制嗎？</h4>
   <p>一個JWT憑證發出去後，這串代碼就代表這個使用者，那麼你已經有充分的機制來阻擋或消除當使用者聲明這張JWT憑證失效了嗎？（例如透過某條路徑被盜走、被側錄走。）如果你想到的是每次又要回去資料庫看簽發出去的TOKEN是否被註記失效，那麼恕我再提醒你一次，所謂的拋棄Session達到無狀態，不就是為了要減少Server對於認證機制的負擔嗎？</p>
 
-  <p>我認為JWT在我目前的評估中，他並沒有辦法完美的取代Session，更精確地說，他或許解決了Session的一部分痛處，但留下更多漏洞更大的問題。JWT在我的心中只是一種思維，或許你可以用這樣的思維與可能傳遞資料的方法，在你認為某種程度上安全的環境下去實現你自己的驗證架構。</p>
-
   <h3>JWT的優點</h3>
 
   <p>我認為JWT可以作為某一種一次性、短暫性、申明性的驗證。例如今天某廠商的使用者，去你的Server A頁面認證帳號密碼後，Server A給了一串JWT回應長的如下：</p>
@@ -86,9 +84,15 @@ ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9.ewogICJuYW1lIjogIkpvaG4iLAogICJ
 Authorization: Bearer aaa.bbb.ccc
 </pre>
 
-<p>這串一次性（或時間超級短暫）的資料透過廠商的主機回送給Server B，要求代表某使用者存取你主機的資源，這時候你就可以把「aaa.bbb.ccc」拿去拆解與驗證，我覺得這是一個蠻不錯、可橫向拓展驗證機制的一種方式。但說到底，這樣的環境下你也不一定要採用JWT的規範啊。</p>
+  <p>這串一次性（或時間超級短暫）的資料透過廠商的主機回送給Server B，要求代表某使用者存取你主機的資源，這時候你就可以把「aaa.bbb.ccc」拿去拆解與驗證，我覺得這是一個蠻不錯、可橫向拓展驗證機制的一種方式。但說到底，這樣的環境下你也不一定要採用JWT的規範啊。</p>
 
-<small>JWT JsonWebToken Session jQuery Javascript GetHttpHeader</small>
+  <h3>結論</h3>
+
+  <p>我認為JWT在我目前的評估中，他並沒有辦法完美的取代Session，更精確地說，他或許解決了Session的一部分痛處，但留下更多漏洞更大的問題。JWT在我的心中只是一種思維，或許你可以用這樣的思維與可能傳遞資料的方法，在你認為某種程度上安全的環境下去實現你自己的驗證架構。</p>
+
+  <p>至於很多人說可以抵擋CSRF跨站請求偽造，我只能說這種東西還是從框架動手，乖乖產生單次拋棄式驗證碼才是王道吧。</p>
+
+  <small>JWT JsonWebToken Session jQuery Javascript GetHttpHeader</small>
 
 </body>
 </html>
