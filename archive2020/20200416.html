@@ -30,8 +30,8 @@
 }
 </pre>
 
-  <p>Step 3. 將Step 1與Step 2各自進行BASE64編碼</p>
-  <pre class="plaintext">
+  <p>Step 3. 將Step 1與Step 2各自進行BASE64編碼（網路上的做法會把中間的換行跟空白去除掉，換取更精簡的bytes數）</p>
+<pre class="plaintext">
 Step 1：ewogICJ0eXAiOiAiSldUIiwKICAiYWxnIjogIkhTMjU2Igp9
 Step 2：ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICJBMTIzNDU2Nzg5Igp9
 </pre>
@@ -45,8 +45,10 @@ HMAC-SHA256
   "ewogICJ0eXAiOiAiSldUIiwKICAiYWxnIjogIkhTMjU2Igp9.ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICJBMTIzNDU2Nzg5Igp9",
   "secret"
 )
-最後結果為：27ed6a82994390c00669da66eb02110d9647638318f5bfda17cf0719dd2c0044
 </pre>
+  <p>HS256後的byte[]陣列結果再轉為BASE64編碼，假設為：27ed6a82994390c00669da66eb02110d9647638318f5bfda17cf0719dd2c0044</p>
+
+  <p>註：此步驟在網路上有些具有不一樣的做法，其直接把byte[]轉字串就拿出來了而不經過BASE64，我比較欣賞這種做法，但畢竟標準就是一種約定成俗，所以要看配合端是否擁有同樣的驗證方式。</p>
 
   <p>我們可以在這個步驟上面觀察到，JWT可藉由雜湊函數達到不可竄改的特性。</p>
 
