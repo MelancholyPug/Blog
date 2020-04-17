@@ -14,45 +14,45 @@
 
   <h3>JWT三大區塊與編碼解析</h3>
   <p>Step 1. Header 頭部：描述這是一個甚麼樣的JWT格式。</p>
-<pre class="JSON">
+<pre class="json">
 {
-  'typ': 'JWT',  //這是JWT
-  'alg': 'HS256' //採用HMAC-SHA256進行雜湊
+  "typ": "JWT",  //這是JWT
+  "alg": "HS256" //採用HMAC-SHA256進行雜湊
 }
 </pre>
 
   <p>Step 2. Payload 側載：最主要要放置、傳遞的資料。</p>
   <p>其實規範中有許多JWT建議紀錄的東西，不過，這些資訊的提供取決於你。（詳見：<a href="https://en.wikipedia.org/wiki/JSON_Web_Token#Standard_fields" target="_blank">JWT Standard fields</a>）</p>
-<pre class="JSON">
+<pre class="json">
 {
   "name": "John",
-  "id": 'A123456789'
+  "id": "A123456789"
 }
 </pre>
 
   <p>Step 3. 將Step 1與Step 2各自進行BASE64編碼</p>
   <pre class="plaintext">
-Step 1：ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9
-Step 2：ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICdBMTIzNDU2Nzg5Jwp9
+Step 1：ewogICJ0eXAiOiAiSldUIiwKICAiYWxnIjogIkhTMjU2Igp9
+Step 2：ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICJBMTIzNDU2Nzg5Igp9
 </pre>
 
   <p>Step 4. Signature 簽章：可以使用單向雜湊或使用雙向加解密的機制來處理。</p>
   <p>這邊以單向雜湊函數HS256，也就是HMAC-SHA256來進行運算，並以「secret」作為KEY，將下列的值代入：</p>
-<pre class="plaintext">
+  <pre class="plaintext">
 //格式：Step1Base64Value.Step2Base64Value
 HMAC-SHA256
 (
-  "ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9.ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICdBMTIzNDU2Nzg5Jwp9",
+  "ewogICJ0eXAiOiAiSldUIiwKICAiYWxnIjogIkhTMjU2Igp9.ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICJBMTIzNDU2Nzg5Igp9",
   "secret"
 )
-最後結果為：877c6bfe529e414ca630ccee510845178e8286bd4711c529e0bea4fe59e47e10
+最後結果為：27ed6a82994390c00669da66eb02110d9647638318f5bfda17cf0719dd2c0044
 </pre>
 
   <p>我們可以在這個步驟上面觀察到，JWT可藉由雜湊函數達到不可竄改的特性。</p>
 
   <p>Step 5. 最後把Step 1、2、4得到的字串，中間用「.」串起來。</p>
-<pre class="plaintext">
-ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9.ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICdBMTIzNDU2Nzg5Jwp9.877c6bfe529e414ca630ccee510845178e8286bd4711c529e0bea4fe59e47e10
+  <pre class="plaintext">
+ewogICJ0eXAiOiAiSldUIiwKICAiYWxnIjogIkhTMjU2Igp9.ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICJBMTIzNDU2Nzg5Igp9.27ed6a82994390c00669da66eb02110d9647638318f5bfda17cf0719dd2c0044
 </pre>
 
   <p>編碼動作自此完成，接下來所有的操作就要靠你自己的想像力了。你可能會覺得蛤？就這樣？那我也可以自訂自己的格式啊，其實如果系統前後端你都可以掌控，本來就可以自訂格式了，所謂的標準就是不用太明講，所有的人都可以遵循制度去解析。</p>
@@ -65,7 +65,7 @@ ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9.ewogICJuYW1lIjogIkpvaG4iLAogICJ
 
   <h4>防止CSRF跨站請求偽造</h4>
   <p>會出現CSRF就是因為連去調用HTTP GET方法都會順便把Cookie回傳，因此如果使用者還沒把瀏覽器關掉導致SessionID還存在時，就會變成去執行「非自我意志」下的動作。</p>
-  <p>那我問你，這一串「ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9.ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICdBMTIzNDU2Nzg5Jwp9.877c6bfe529e414ca630ccee510845178e8286bd4711c529e0bea4fe59e47e10」你要放哪裡？</p>
+  <p>那我問你，這一串「ewogICJ0eXAiOiAiSldUIiwKICAiYWxnIjogIkhTMjU2Igp9.ewogICJuYW1lIjogIkpvaG4iLAogICJpZCI6ICJBMTIzNDU2Nzg5Igp9.27ed6a82994390c00669da66eb02110d9647638318f5bfda17cf0719dd2c0044」你要放哪裡？</p>
 
   <h4>Client端沒有辦法拿到Http Header</h4>
   <p>怕CSRF不要放在Cookie，而選擇了放到HTTP Header裡面，那當你要在前端使用Javascript回傳資料時，你有本事拿到之前Server打給你的Header嗎？（Javascript只能組裝Http Header但根本拿不到上一次打過來的Http Header，這點有很多篇JWT文章都犯了這個推論的錯誤，超無言。）</p>
