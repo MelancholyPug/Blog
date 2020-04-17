@@ -71,7 +71,7 @@ ewogICd0eXAnOiAnSldUJywKICAnYWxnJzogJ0hTMjU2Jwp9.ewogICJuYW1lIjogIkpvaG4iLAogICJ
   <p>怕CSRF不要放在Cookie，而選擇了放到HTTP Header裡面，那當你要在前端使用Javascript回傳資料時，你有本事拿到之前Server打給你的Header嗎？（Javascript只能組裝Http Header但根本拿不到上一次打過來的Http Header，這點有很多篇JWT文章都犯了這個推論的錯誤，超無言。）</p>
 
   <h4>LocalStorage安全嗎？</h4>
-  <p>接著JWT談論者會叫你往LocalStorage丟，這意味著你網站之後所有的動作只能放棄GET方法，因為只有Javascript才可以動態去LocalStorage撈資料，再往你的API拋資料。然而，你確定LocalStorage有比演化了超久的Cookie安全嗎？</p>
+  <p>接著JWT談論者會叫你往LocalStorage丟，這意味著你網站之後所有的動作只能放棄GET方法，因為只有Javascript才可以動態去LocalStorage撈資料，再往你的API拋資料。然而，你確定Browser對於LocalStorage的抵擋有比演化了超久的Cookie安全嗎？這個我打上問號。</p>
 
   <h4>發出去的JWT有充分的回收機制嗎？</h4>
   <p>一個JWT憑證發出去後，這串代碼就代表這個使用者，那麼你已經有充分的機制來阻擋或消除當使用者聲明這張JWT憑證失效了嗎？（例如透過某條路徑被盜走、被側錄走。）如果你想到的是每次又要回去資料庫看簽發出去的TOKEN是否被註記失效，那麼恕我再提醒你一次，所謂的拋棄Session達到無狀態，不就是為了要減少Server對於認證機制的負擔嗎？</p>
