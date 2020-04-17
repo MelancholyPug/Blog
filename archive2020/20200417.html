@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <h1>JWT從入門到放棄：完整實作jwt.io網站演算（HMAC-SHA256雜湊）</h1>
+  <h1>JWT從入門到放棄（二）：完整實作JWT演算（HMAC-SHA256雜湊）</h1>
 
   <p>在研究JWT（Json Web Token）的過程中，大家一定有逛過一個很好用的工具網站，叫做<a href="https://jwt.io/" target="_blank">JWT.io</a>，盡管網站已經很盡力的表明運算過程，但很多人對於他背後的運算過程一定還是有所疑問，這篇文章就是把這個網站運算出來的結果用C#語言從頭到尾走一次，來證明已經對於JWT的運算了然於心了。</p>
 
@@ -111,6 +111,8 @@ JWT:     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZS
 
   <p>如果你可以透過這樣的計算過程中，得到與jwt.io網站相同的結果，這意味著你一定有能力進行JWT的驗證比對。</p>
 
+  <p>喔，最後再做一個小小的補充，jwt.io網站中的「secret base64 encoded」指的是給你輸入的HMACSHA256密碼框中，你輸入的如果是被BASE64編碼過的Key就要把這個選項打勾，例如原本我們的Key是「your-256-bit-secret」，而當你輸入的是BASE64過的Key「eW91ci0yNTYtYml0LXNlY3JldA==」，這時候就要把選項打勾。</p>
+
   <h4>相關連結：</h4>
   <p>
     1. RFC7519: <a href="https://tools.ietf.org/html/rfc7519" target="_blank">JSON Web Token (JWT)</a><br />
@@ -119,7 +121,7 @@ JWT:     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZS
     4. <a href="/archive2013/20130815.html" target="_blank">.NET Framework中使用SHA1來進行字串雜湊之程式碼</a>
   </p>
 
-  <small>JWT JsonWebToken BASE64Encode BASE64Decode BASE64UrlEncode BASE64UrlDecode SHA256 HMAC-SHA256</small>
+  <small>JWT JsonWebToken BASE64Encode BASE64Decode BASE64UrlEncode BASE64UrlDecode SHA256 HMACSHA256 HMAC-SHA256</small>
 
 </body>
 </html>
