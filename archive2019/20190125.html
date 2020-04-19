@@ -37,6 +37,27 @@
   <p>舉凡SessionID、WebForm的每一個事件、所有的ServerControl、CustomControl（ascx）之組合順序、耗用ViewState大小、SessionState狀態、ApplicationState狀態、Cookie狀態、HTTP完整標頭、QueryString集合等，無一不側錄啊！</p>
   <img src="/image/2019/20190125_03.jpg" />
 
+  <h4>完全關閉trace.axd路徑</h4>
+
+  <p>trace.axd由於內建於Handler中，因此就算沒有啟用（或設定停用）也會出現YSOD（黃底紅字錯誤畫面），透過下列設定可將其強制從Handler中移除，這樣可以解決掉某些弱點偵測軟體之警告。</p>
+<pre>
+&lt;system.webServer&gt;
+  &lt;handlers&gt;
+    &lt;remove name="TraceHandler-Integrated-4.0" /&gt;
+  &lt;/handlers&gt;
+&lt;/system.webServer&gt;
+</pre>
+
+  <h4>關於trace.axd名稱覆寫（改寫；更改名稱）</h4>
+  <p>其實說實在的，trace.axd到臨時要用的時候，有時候還真的會忘記這個名稱，這時候我們會想如果可以在網址上直接打上一句熟悉的debug字眼那該多好，其實是辦的到的，請參考下列的web.config設定即可。</p>
+<pre>
+&lt;system.webServer&gt;
+  &lt;handlers&gt;
+    &lt;add verb="GET" name="TraceAxdAlias" path="Debug" type="System.Web.Handlers.TraceHandler" /&gt;
+  &lt;/handlers&gt;
+&lt;/system.webServer&gt;
+</pre>
+
   <p>相關連結：<a href="/archive2020/20200410.html" target="_blank">.axd：直接在.cs類別（DLL）裡面實作IHttpHandler</a></p>
 
   <small>ASP.NET Trace trace.axd logs</small>
