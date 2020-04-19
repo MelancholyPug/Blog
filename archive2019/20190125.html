@@ -39,7 +39,7 @@
 
   <h4>完全關閉trace.axd路徑</h4>
 
-  <p>trace.axd由於內建於Handler中，因此就算沒有啟用（或設定停用）也會出現YSOD（黃底紅字錯誤畫面），透過下列設定可將其強制從Handler中移除，這樣可以解決掉某些弱點偵測軟體之警告。</p>
+  <p>trace.axd由於內建於Handler中，因此就算沒有啟用（或設定停用）也會出現YSOD（黃底紅字錯誤畫面），透過下列web.config設定可將其強制從Handler中移除，這樣可以解決掉某些弱點偵測軟體之警告。</p>
 <pre>
 &lt;system.webServer&gt;
   &lt;handlers&gt;
