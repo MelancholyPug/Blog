@@ -45,7 +45,7 @@ foreach(var cKey in oPara.AllKeys)
     return x; //無意義的回傳，純粹迎合LINQ語法
   }).ToList();
 }
-Console.WriteLine($"{oData.cName} / 新台幣：{oData.fMoney *30}");
+Console.WriteLine($"{oData.cName} / 新台幣：{oData.fMoney * 30}");
 </pre>
   <p>上述的程式碼中最重要的就是解決自動轉型的問題，例如你單純的用SetValue試圖要把一個屬於字串型別的浮點數值（123.456），強灌到fMoney名稱的decimal型別屬性，這是會馬上跳Exception的。</p>
 
