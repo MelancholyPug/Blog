@@ -10,7 +10,7 @@
 
   <p>相信在「中文世界」裡面，很多人都夢想著可以基於不同的中文字型，讀取並繪製SVG Path以利在網頁中顯示。為何會特別強調中文世界？因為SVG裡面其實是有實作Text繪製顯示的方法，但前提是你必須載入網頁字型（WebFont），對英語系國家的人來說自然是沒問題了，小小的一個字型檔幾百KBytes就解決了，但一個實作完整的中文字往往是數十MBytes啊！</p>
 
-  <p>也因為如此，你在網路上幾乎找不到在討論這塊領域的文章，各式知名的套件其實也沒有針對這一塊多有著墨，直到我發現了微軟的maker.js裡面有一個<a href="https://maker.js.org/docs/api/classes/makerjs.models.text.html" target="_blank">Api - Text Class</a>類別，其建構子就具備文字繪圖的方法，亦可以透過<a href="https://maker.js.org/docs/exporting/#SVG" target="_blank">Exporting SVG</a>方法直接把SVG輸出回畫面，這讓我心中的嚮往找到了一個方向。</p>
+  <p>也因為如此，你在網路上幾乎找不到在討論這塊領域的文章，各式知名的套件其實也沒有針對這一塊多有著墨。幾年前有個熟識的朋友向我抱怨網站裡面我撰寫的文字圖片產生器，應用在現代的手機上字體顯得模糊不堪，想當然爾，小小一塊螢幕做成FullHD，再怎麼高解析度的文字型態圖片看起來自然也是模糊不堪。這問題一直擱在我心上，直到發現了微軟的maker.js裡面有一個<a href="https://maker.js.org/docs/api/classes/makerjs.models.text.html" target="_blank">Api - Text Class</a>類別，其建構子就具備文字繪圖的方法，亦可以透過<a href="https://maker.js.org/docs/exporting/#SVG" target="_blank">Exporting SVG</a>方法直接把SVG輸出回畫面，這讓我心中的嚮往找到了一個方向。</p>
 
   <h3>基於不同的中文字型，動態產生SVG文字路徑並繪製</h3>
   <p>基於上述的資料研究後，我這邊寫了一個Javascript版本的動態SVG Path產生器，若有需要臨時靜態用途的網友，可以用這個產生SVG字串後，拿回去自己的網站做延伸應用。</p>
@@ -41,11 +41,11 @@
   <h3><span class="label label-info">SVG原始碼</span></h3>
   <pre id="uSvgCode" class="html"></pre> 
 
-  <h4>附註： </h4>
+  <h4>附註：</h4>
   <ol>
     <li>這個網頁其實並沒有解決真實環境下，中文網站設計者對於SVG的Text套用字型問題，因為他還是真實的用AJAX去讀取整包的中文字型檔案，然後再依照你指示的指令去畫出路徑。</li>
     <li>基於第一項，所以第一次讀取的時候會完整下載中文字型檔，網路速度比較慢的人會等超久。當然啦，字型若是有下載過的話會被瀏覽器快取，所以若是重複使用同一個字型，那麼只剩下Javascript的運算是非常快的。</li>
-    <li>若你想要基於這個技術套用回.NET環境上面，我可以先跟你說別走這條路。許多nuget的套件（Javascript.Net V8 engine、ClearScript、System.Windows.Forms.WebBrowser...等）都沒有辦法很正確的執行這些程式碼，這些功夫我花過了你可以省略，不要白做工。</li>
+    <li>若你想要基於這個技術套用回.NET Server端環境上面，我可以先跟你說別走這條路。許多nuget的套件（Javascript.Net V8 engine、ClearScript、System.Windows.Forms.WebBrowser...等）都沒有辦法很正確的執行這些程式碼，這些功夫我花過了你可以省略，不要白做工。（可以參考我另外一篇NodeJS文章的解法比較佳）</li>
     <li>若想要這隻程式的原始碼右鍵就可以看到了，基本上就是三個套件Maker.js、bezier.j、opentype.js互相依存組合而成。</li>
   </ol>
   
