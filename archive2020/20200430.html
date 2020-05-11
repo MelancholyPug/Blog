@@ -52,9 +52,13 @@ Console.WriteLine($"{oData.cName} / 新台幣：{oData.fMoney * 30}");
   <p>解決的方式是巧妙的使用System.Convert.ChangeType來進行動態轉型，這樣大概可以解決一半以上的問題，其餘有特殊的問題我就沒有太深入研究，但大致上也可以使用switch-case來處理。（例如Enum就需要特別的處理，否則也沒有辦法自動轉型）</p>
 
   <p>程式碼最後會印出下列文句，代表decimal真的可以運算啦！</p>
-  <pre>
+<pre>
 王小明 / 新台幣：3703.680
 </pre>
+
+  <h4>相關連結</h4>
+  <p><a href="/archive2020/20200511.html" target="_blank">在WebForm下使用ModelBinding（PostBack遭遇之問題）</a></p>
+  <p><a href="/archive2020/20200512.html" target="_blank">在WebForm下使用ModelBinding（打造ASHX可用的通用類別）</a></p>
 
   <small>ASP.NET WebForm QueryString ModelBinding Reflection SetValue ConvertType</small>
 
