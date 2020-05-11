@@ -12,7 +12,7 @@
 
   <img src="/image/2020/20200512_01.jpg" />
 
-  <h3>打造ASPX、ASHX均可通用的類別</h3>
+  <h3>打造ASPX、ASHX均可通用的ModelBinding類別</h3>
   <p>既然微軟沒有提供，那我們就自己想辦法抄一份類別出來。在這邊我的處理方式是往.NET Framework原始碼的方向走，也就是我自己去抄一份原始碼到我自己的類別，再將其修改成我想要操作的方法。後來找到這個<a href="https://referencesource.microsoft.com/#system.web/UI/Page.cs,491" target="_blank">ModelBindingExecutionContext</a>方法簡直是太棒啦！原來他也是透過new HttpContextWrapper(Context)建構子來取得HttpContext，那就代表ASHX可以支援了。</p>
 
   <p>在最小的修改狀況下，我撰寫了一個類別讓這一切變得可能。</p>
