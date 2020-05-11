@@ -156,7 +156,7 @@ ext4    EXT4
     ‧移除使用者（連同HOME目錄下的資料夾）：userdel -r john<br />
     ‧如果使用者在線上就會顯示這個訊息：userdel: user john is currently used by process 7653<br />
     ‧先用who查一下有哪些使用者：<br />
-    john    pts/1    2019-05-01 15:36 (120-114-101-1.ksu.edu.tw)<br />
+    john    pts/1    2019-05-01 15:36 (your.domain.name)<br />
     ‧查一下pts/1當前的工作ProcessID：ps -t pts/1<br />
     7654 pts/1    00:00:00 bash<br />
     ‧找到PID後就線上踢出（該使用者的putty會斷線）：kill -hup 7654<br />
