@@ -48,7 +48,7 @@
 
 <h3>補充</h3>
 
-<p>在開發時期的環境下，有些瀏覽器會忽略Last-Modifed與Expires or Cache-Control的之間的關係，當每次運行頁面時盡管應該展現出Cache後的機制，但瀏覽器還是會強制送出Request到你的Localhost Server，這點請特別注意。</p>
+<p>在開發時期的環境下（localhost），有些瀏覽器會忽略Last-Modifed與Expires or Cache-Control的之間的關係，當每次運行頁面時盡管應該展現出Cache後的機制，但瀏覽器還是會強制送出Request到你的Localhost Server，這點請特別注意。</p>
 
 <p>當你完成了上述的網頁快取機制時，可能會到瀏覽器的F12（DevTools）觀察，以Chrome瀏覽器來說，它會區分磁碟快取（Disk Cache）與記憶體快取（Memory Cache）兩種機制，這兩種機制的快取來源顧名思義就知道了，而出現的機制就是當瀏覽器全部關閉後第一次打開運行到你觀察的頁面，這時候如果所有的快取機制都是成立的，則瀏覽器會從磁碟拿出舊有的檔案，這時候稱為磁碟快取（Disk Cache），而當瀏覽器尚未關閉但卻又被你按下F5重新整理時，就會發現這時候的快取被洗成記憶體快取（Memory Cache），這就是Chrome瀏覽器為何會速度快（吃掉大量記憶體）的原因之一，畢竟他把所有的網頁資源全部往記憶體塞啊！</p>
 
