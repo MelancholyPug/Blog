@@ -15,7 +15,7 @@
   <p>Step 1. 打開一個具備BOM的UTF-8編碼的空白文字檔案。</p>
 
   <p>Step 2. 將下列的程式碼貼上去並儲存成「ChangeDate.ps1」。該寫的註解我都寫了，應該都看得懂才對。</p>
-<pre class="plaintext">
+  <pre class="plaintext">
 #利用Powershell修正Windows檔案的「建立日期」、「修改日期」、「存取日期」屬性
 #Use Powershell to change Windows files CreationTime, LastWriteTime(a.k.a ModifyDate), LastAccessTime date.
 # -name FileName
@@ -32,6 +32,7 @@ if ([string]::IsNullOrEmpty($name))
   exit;
 }
 
+$name = "$($PSScriptRoot)\$($name)";
 if (!([System.IO.File]::Exists($name)))
 {
   Write-Host "指定的檔案不存在。";
@@ -83,6 +84,9 @@ Write-Host "成功將「$($name)」之修改日期變更為「$($newDate.ToStrin
 <p>
   若只需要變更檔案建立日期、檔案修改日期、檔案存取日期之中的某一項目，可以自己用#把指令碼註解掉就可以了。
 </p>
+
+  <h3>檔案下載</h3>
+  <p>如果看不懂上面在寫甚麼的人，也可以透過 <a href="https://drive.google.com/open?id=1wpoJRSveI8IKirITLCCsOahg4z2JY_4W" target="_blank" class="btn btn-sm btn-danger">檔案下載 FileDownload</a> 的方式取得。</p>
 
   <small>Windows PowerShell WindowsFiles FileCreationDate FileModifyDate FileAccessDate NoNeedSoftware GreenSoftware 3rdSoftware Safty NoVirus</small>
 
