@@ -12,8 +12,8 @@
 
   <h3>利用JsonPropertyAttribute來輕鬆完成</h3>
   <p>Step 1. 假設有一個ORM物件如下，但我們不滿意他將被輸出JSON格式的屬性名稱，因此建立屬性描述如下：</p>
-<pre>
-class ORM
+  <pre>
+public class ORM
 {
   [JsonProperty("cAliasName")]
   public string cName { get; set; }
