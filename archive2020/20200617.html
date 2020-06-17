@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>如何得知當前SMB/CIFS的連線版本</h1>
+
+  <p>當SMB/CIFS 1.0爆發出重重漏洞後，古老的協定迫使Windows 10慢慢的走向放棄SMB/CIFS 1.0的道路。可能有需要架設NAS的朋友心中都有一個疑問，那就是我要如何得知當前網路磁碟機／網路芳鄰的SMB/CIFS連線版本呢？其實我們可以透過Powershell來輕易辦到查詢功能。</p>
+
+  <h3>求得當前SMB/CIFS連線的版本</h3>
+  <p>Step 1. 請用管理者權限打開Powershell。</p>
+
+  <p>Step 2. 求得當前SMB/CIFS連線的精簡結果：</p>
+<pre>
+PS C:\> Get-SmbConnection
+
+ServerName  ShareName UserName           Credential                 Dialect NumOpens
+----------  --------- --------           ----------                 ------- --------
+192.168.1.X XXXXX     Slashlook          MicrosoftAccount\Slashlook 3.1.1   2
+</pre>
+
+  <p>Step 3. 求得當前SMB/CIFS連線的詳細結果：</p>
+  <pre>
+PS C:\> Get-SmbConnection | Select-Object -Property *
+
+SmbInstance           : Default
+ContinuouslyAvailable : False
+Credential            : MicrosoftAccount\Slashlook
+Dialect               : 3.1.1
+Encrypted             : False
+NumOpens              : 2
+Redirected            : False
+ServerName            : 192.168.1.X
+ShareName             : XXXXX
+Signed                : False
+UserName              : Slashlook
+PSComputerName        :
+CimClass              : ROOT/Microsoft/Windows/SMB:MSFT_SmbConnection
+CimInstanceProperties : {ContinuouslyAvailable, Credential, Dialect, Encrypted...}
+CimSystemProperties   : Microsoft.Management.Infrastructure.CimSystemProperties
+</pre>
+
+  <p>從上面的精簡或詳細結果中，我們可以看到SMB/CIFS連線結果是3.1.1，代表是採用最新的SMB 3.0的協定在進行連線。可以的話，也請各位網友不要再使用SMB 1.0版本的協議了。</p>
+
+  <small>SMB ServerMessageBlock CIFS CommonInternetFileSystem CurrentConntection Version</small>
+
+</body>
+</html>
