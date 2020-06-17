@@ -14,7 +14,7 @@
   <p>Step 1. 請用管理者權限打開Powershell。</p>
 
   <p>Step 2. 求得當前SMB/CIFS連線的精簡結果：</p>
-<pre>
+<pre class="plaintext">
 PS C:\> Get-SmbConnection
 
 ServerName  ShareName UserName           Credential                 Dialect NumOpens
@@ -23,7 +23,7 @@ ServerName  ShareName UserName           Credential                 Dialect NumO
 </pre>
 
   <p>Step 3. 求得當前SMB/CIFS連線的詳細結果：</p>
-  <pre>
+<pre class="plaintext">
 PS C:\> Get-SmbConnection | Select-Object -Property *
 
 SmbInstance           : Default
