@@ -58,8 +58,10 @@ public void SafeResponseEnd()
 <ul>
 	<li>Response.End：<br>
 		用 HttpContext.Current.ApplicationInstance.CompleteRequest 取代。</li>
-	<li>Response.Redirect：<br>
-		用 Response.Redirect ("nextpage.aspx", false); 取代。</li>
+  <li>
+    Response.Redirect：<br>
+    用 Response.Redirect ("nextpage.aspx", false); 取代，並在後面補上HttpContext.Current.ApplicationInstance.CompleteRequest讓執行緒強制終結。。
+  </li>
 	<li>Server.Transfer：<br>
 		用 Server.Execute 取代。</li>
 </ul>
