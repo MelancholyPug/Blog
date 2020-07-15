@@ -6,7 +6,7 @@
 */
 
 var oData = [
-  { "cStart": "08:40:00", "bIsFirstClass": true, "bIs2HR": true },
+  { "cStart": "08:40:00", "bIsFirstClass": true,  "bIs2HR": true },
   { "cStart": "12:50:00", "bIsFirstClass": false, "bIs2HR": true },
 ];
 
