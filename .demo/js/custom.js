@@ -6,7 +6,7 @@
     $("#uTimeNow").text(oTimeNow.format("HH:mm:ss"));
     
     //定義變數
-    var iNextInterval = 1;   //過期多久就拋棄本場次，更換到下一場（分鐘）
+    var iNextInterval = 10;  //過期多久就拋棄本場次，更換到下一場（秒鐘）
     var iPrepare      = 0;   //預備入場時間（分鐘）
     var iAllowLogin   = 3;   //允許考前可預先登入練習（分鐘）
     var iAllowDelay   = 0;   //允許可遲到時間（分鐘）
@@ -29,7 +29,7 @@
       if (oData[i].bIsFirstClass)
       { iPrepare = 20; iAllowDelay = 15; }
       else
-      { iPrepare = 5;  iAllowDelay = 15;  }  //2020年不限身分節次，一律改允許遲到15分鐘
+      { iPrepare = 5;  iAllowDelay = 15; }  //2020年改不限身分節次一律允許遲到15分鐘
       //計算其餘相關時間
       oTimePrepare = oTimeBase.clone();
       oTimeLogin   = oTimeBase.clone().add(iPrepare - iAllowLogin, "minutes");
@@ -43,7 +43,7 @@
       else
       { oTimeStop = oTimeStart.clone().add(2, "hours"); }
       //計算是否要進行本場次的拋棄，以利更換到下一場
-      if (!oTimeNow.isAfter(oTimeStop.clone().add(iNextInterval, "minutes")))
+      if (!oTimeNow.isAfter(oTimeStop.clone().add(iNextInterval, "seconds")))
       { break; }
     }
 
