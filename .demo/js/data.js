@@ -5,13 +5,12 @@
     bIs2HR: 考試時間是否為兩小時制
 */
 
-/* Day1
 var oData = [
   { "cStart": "08:40:00", "bIsFirstClass": true,  "bIs2HR": true },
   { "cStart": "12:50:00", "bIsFirstClass": false, "bIs2HR": true },
 ];
-*/
 
+/* Day2
 var oData = [
   { "cStart": "08:40:00", "bIsFirstClass": true,  "bIs2HR": false },
   { "cStart": "10:25:00", "bIsFirstClass": false, "bIs2HR": false },
@@ -20,6 +19,7 @@ var oData = [
   { "cStart": "16:05:00", "bIsFirstClass": false, "bIs2HR": false },
   { "cStart": "17:35:00", "bIsFirstClass": false, "bIs2HR": false },
 ];
+*/
 
 /* Day3
 var oData = [
