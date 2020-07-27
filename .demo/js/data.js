@@ -6,14 +6,6 @@
 */
 
 var oData = [
-  { "cStart": "08:40:00", "bIsFirstClass": true,  "bIs2HR": true },
-  { "cStart": "12:50:00", "bIsFirstClass": false, "bIs2HR": true },
-  { "cStart": "22:44:00", "bIsFirstClass": false, "bIs2HR": false },
-  { "cStart": "23:50:00", "bIsFirstClass": false, "bIs2HR": false },
-];
-
-/* Day2
-var oData = [
   { "cStart": "08:40:00", "bIsFirstClass": true,  "bIs2HR": false },
   { "cStart": "10:25:00", "bIsFirstClass": false, "bIs2HR": false },
   { "cStart": "12:50:00", "bIsFirstClass": false, "bIs2HR": false },
@@ -21,15 +13,3 @@ var oData = [
   { "cStart": "16:05:00", "bIsFirstClass": false, "bIs2HR": false },
   { "cStart": "17:35:00", "bIsFirstClass": false, "bIs2HR": false },
 ];
-*/
-
-/* Day3
-var oData = [
-  { "cStart": "08:40:00", "bIsFirstClass": true,  "bIs2HR": false },
-  { "cStart": "10:25:00", "bIsFirstClass": false, "bIs2HR": false },
-  { "cStart": "12:50:00", "bIsFirstClass": false, "bIs2HR": false },
-  { "cStart": "14:35:00", "bIsFirstClass": false, "bIs2HR": false },
-  { "cStart": "16:05:00", "bIsFirstClass": false, "bIs2HR": false },
-  { "cStart": "17:35:00", "bIsFirstClass": false, "bIs2HR": false },
-];
-*/
