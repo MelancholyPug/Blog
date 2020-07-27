@@ -8,6 +8,8 @@
 var oData = [
   { "cStart": "08:40:00", "bIsFirstClass": true,  "bIs2HR": true },
   { "cStart": "12:50:00", "bIsFirstClass": false, "bIs2HR": true },
+  { "cStart": "22:44:00", "bIsFirstClass": false, "bIs2HR": false },
+  { "cStart": "23:50:00", "bIsFirstClass": false, "bIs2HR": false },
 ];
 
 /* Day2

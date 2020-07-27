@@ -18,6 +18,17 @@ button {
   color: #03ea38!important;
 }
 
+.blink {
+  /* 讓文字閃爍 */
+  animation: blinkText 5s linear infinite;
+}
+
+@keyframes blinkText {
+  50% {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 575.98px) {
   #uTitle {
     font-size: 1em;
