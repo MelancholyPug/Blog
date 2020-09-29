@@ -34,7 +34,7 @@ SELECT CAST(SCOPE_IDENTITY() AS int);
 INSERT INTO [Table]
   ...
 OUTPUT
-  [Table].iAutoIndex  //這張資料表的索引欄位名稱
+  INSERTED.iAutoIndex  //這張資料表的索引欄位名稱
 VALUES
   ...
 </pre>
