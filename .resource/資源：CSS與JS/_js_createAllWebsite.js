@@ -6,7 +6,7 @@ var oSite = new Object();
 oSite.cUrlPath = window.location.pathname;
 
 //記載Menu Bar的程式碼
-oSite.cMenuBar = "<div class='navbar navbar-inverse navbar-fixed-top'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><span class='navbar-brand pull-left' style='margin-top:-1px'><img class='navbar-brand-logo' src='/_resource/image/_img_logo.png' /></span><a class='navbar-brand' href='/index.html'>SlashLook!</a></div><div class='collapse navbar-collapse'><ul id='nav-items' class='nav navbar-nav'><li><a href='/_resource/html/articles.html'>articles</a></li><li><a href='/_resource/html/aboutNcontact.html'>about &amp; contact</a></li><li><a href='/_resource/html/search.html'>search</a></li></ul></div></div></div>";
+oSite.cMenuBar = "<div class='navbar navbar-inverse navbar-fixed-top'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><span class='navbar-brand pull-left' style='margin-top:-1px'><img class='navbar-brand-logo' src='/_resource/image/_img_logo.png' /></span><a class='navbar-brand' href='/index.html'>SlashView</a></div><div class='collapse navbar-collapse'><ul id='nav-items' class='nav navbar-nav'><li><a href='/_resource/html/articles.html'>articles</a></li><li><a href='/_resource/html/aboutNcontact.html'>about &amp; contact</a></li><li><a href='/_resource/html/search.html'>search</a></li></ul></div></div></div>";
 
 //記載全網站是否已經有（顯示）公告過鼓勵點擊廣告對話框
 oSite.bAdsAnnouncement = false;
@@ -28,7 +28,7 @@ var cArticlesDate = oSite.cUrlPath.substring(oSite.cUrlPath.indexOf(".html") - 8
 pushToExecuteList(function () {
   /* Insert Head: Google Canonical Link */
   if (oSite.bArticles) {
-    $("<link rel='canonical' href='http://slashlook.com/archive" + cArticlesDate.substring(0, 4) + "/" + cArticlesDate + ".html'/>").appendTo("head");
+    $("<link rel='canonical' href='http://slashview.com/archive" + cArticlesDate.substring(0, 4) + "/" + cArticlesDate + ".html'/>").appendTo("head");
   }
 
   /* Insert Blocks: Menu bar & contents process */
@@ -53,7 +53,7 @@ pushToExecuteList(function () {
 	*/
 
   /* Insert Blocks: Footer */
-  $("<div class='container'><div class='row'><div class='col-md-12'><div class='footer'><p class='footer-color'>Copyright <span class='glyphicon glyphicon-copyright-mark'></span> 2013 by <a href='/_resource/html/aboutNcontact.html'><strong>SlashLook!</strong></a> Inc. All Rights Reserved.</p></div></div></div></div>").appendTo("body");
+  $("<div class='container'><div class='row'><div class='col-md-12'><div class='footer'><p class='footer-color'>Copyright <span class='glyphicon glyphicon-copyright-mark'></span> 2013 by <a href='/_resource/html/aboutNcontact.html'><strong>SlashView</strong></a> Inc. All Rights Reserved.</p></div></div></div></div>").appendTo("body");
 
   /* Make <pre> tag code Highlight */
   $("pre").each(function (i, block) {

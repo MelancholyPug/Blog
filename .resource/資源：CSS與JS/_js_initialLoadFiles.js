@@ -4,7 +4,7 @@
 	if (window.location.hostname === cFind) {
 		var cURL = window.location.href;
 		var cUrlFinal = cURL.substring(cURL.indexOf(cFind) + cFind.length);
-		window.location.href = "//slashlook.com" + cUrlFinal;
+		window.location.href = "//slashview.com" + cUrlFinal;
 	}
 })(); 
 
