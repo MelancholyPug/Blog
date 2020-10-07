@@ -78,7 +78,7 @@ public class makeJSON : System.Web.IHttpHandler
       using (System.IO.StreamWriter oSW = new System.IO.StreamWriter(cFileText, append: false, encoding: System.Text.Encoding.UTF8))
       {
         foreach (var oItem in oFilePackage)
-        { oSW.WriteLine($"http://slashlook.com/archive{(oItem.D.Substring(0, 4))}/{oItem.D}.html"); }
+        { oSW.WriteLine($"http://slashview.com/archive{(oItem.D.Substring(0, 4))}/{oItem.D}.html"); }
       }
       cMessage = "檔案寫入成功。";
     }
