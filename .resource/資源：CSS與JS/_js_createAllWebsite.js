@@ -190,7 +190,7 @@ jQueryIsReady(function () {
           //BloggerAds ButtonAds
           setTimeout(function () {
             $("<iframe src='/_resource/html/_bloggerAdsBottom.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:370px;width:100%;'></iframe>").appendTo("#BloggerAdsBottom");
-          }, 1000);
+          }, 6000);
         }, 1000);
       }
 
