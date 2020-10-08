@@ -181,9 +181,11 @@ jQueryIsReady(function () {
           $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline1");
 
 					//BloggerAds BannerAds-2
+          /*
 					setTimeout(function(){
 						$("<iframe src='/_resource/html/_bloggerAdsInline2.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline2");
 					}, 3000);
+          */
 
           //BloggerAds ButtonAds
           setTimeout(function () {
