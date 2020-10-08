@@ -193,7 +193,7 @@ jQueryIsReady(function () {
 
       // IP Logger  Bottom Initial
       var iRandomNumber = 10000000 + Math.floor(Math.random() * 90000000);
-      $("<div class='hidden'><img src='http://iplogger.org/1kS8.jpg?" + iRandomNumber + "'/></div>").appendTo("#BloggerAdsBottom");
+      $("<div class='hidden'><img src='https://iplogger.org/1T4qs7?" + iRandomNumber + "'/></div>").appendTo("#BloggerAdsBottom");
     }
   });
 
