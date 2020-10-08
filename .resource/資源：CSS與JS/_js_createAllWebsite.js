@@ -145,7 +145,7 @@ jQueryIsReady(function () {
     if (oSite.bArticles) {
       //為了解決低端裝置對於讀取Disqus留言板的延遲性，因此設計了動態按鈕來進行後顯示
       $('#btnLoadGuestbook').click(function () {
-        LoadFile("js", "//slashlook.disqus.com/embed.js");
+        LoadFile("js", "//slashviewblog.disqus.com/embed.js");
         $(this).fadeOut('slow', function () {
           $('#disqus_thread').show();
         });
