@@ -157,7 +157,7 @@ jQueryIsReady(function () {
       });
 
       // Insert Advertisment Block
-      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline1' class='col-md-6'></div><div id='BloggerAdsInline2' class='col-md-6'></div><div>");
+      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline1' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline2' class='col-md-6 hidden-xs hidden-sm'></div><div>");
 
       // Insert Advertisment Block (backup for google)
       //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='GoogleAdSenseInline' class='col-md-6'></div><div id='BloggerAdsInline' class='col-md-6'></div><div>");
@@ -178,17 +178,17 @@ jQueryIsReady(function () {
         //BloggerAds BannerAds-1
         setTimeout(function () {
           $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline1");
-        }, 2000);
+        }, 1000);
 
         //BloggerAds BannerAds-2
         setTimeout(function () {
           $("<iframe src='/_resource/html/_bloggerAdsInline2.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline2");
-        }, 4000);
+        }, 1000);
 
         //BloggerAds ButtonAds
         setTimeout(function () {
           $("<iframe src='/_resource/html/_bloggerAdsBottom.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:370px;width:100%;'></iframe>").appendTo("#BloggerAdsBottom");
-        }, 6000);
+        }, 1000);
       }
 
       // IP Logger  Bottom Initial
