@@ -178,7 +178,9 @@ jQueryIsReady(function () {
         //If not BloggerAds Administrator IP then show Ads in iFrame tag. 
         setTimeout(function () {
           //BloggerAds BannerAds-1
-          $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline1");
+          setTimeout(function () {
+            $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline1");
+          }, 1000);
 
 					//BloggerAds BannerAds-2
           /*
