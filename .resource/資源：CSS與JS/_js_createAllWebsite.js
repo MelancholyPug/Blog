@@ -173,25 +173,22 @@ jQueryIsReady(function () {
 			for(i=0;i<2;i++){ (adsbygoogle=window.adsbygoogle||[]).push({}); }
 			*/
 
-      // BloggerAds Process
+      // BloggerAds Process（If not BloggerAds Administrator IP then show Ads in iFrame tag.）
       if (!oSite.bAdsAdministrator) {
-        //If not BloggerAds Administrator IP then show Ads in iFrame tag. 
+        //BloggerAds BannerAds-1
         setTimeout(function () {
-          //BloggerAds BannerAds-1
-          setTimeout(function () {
-            $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline1");
-          }, 1000);
+          $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline1");
+        }, 2000);
 
-					//BloggerAds BannerAds-2
-					setTimeout(function(){
-						$("<iframe src='/_resource/html/_bloggerAdsInline2.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline2");
-					}, 3000);
+        //BloggerAds BannerAds-2
+        setTimeout(function () {
+          $("<iframe src='/_resource/html/_bloggerAdsInline2.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline2");
+        }, 4000);
 
-          //BloggerAds ButtonAds
-          setTimeout(function () {
-            $("<iframe src='/_resource/html/_bloggerAdsBottom.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:370px;width:100%;'></iframe>").appendTo("#BloggerAdsBottom");
-          }, 6000);
-        }, 1000);
+        //BloggerAds ButtonAds
+        setTimeout(function () {
+          $("<iframe src='/_resource/html/_bloggerAdsBottom.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:370px;width:100%;'></iframe>").appendTo("#BloggerAdsBottom");
+        }, 6000);
       }
 
       // IP Logger  Bottom Initial
