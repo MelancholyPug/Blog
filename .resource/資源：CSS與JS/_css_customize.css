@@ -128,9 +128,6 @@ p {
 #BloggerAdsInline1, #BloggerAdsInline2 {
 	padding: 0;
 }
-#BloggerAdsInline1, #BloggerAdsInline2 > iframe {
-  height: 104px!important;
-}
 #AdvertisementBottom {
 	border: 1px solid #aaa;
 	border-radius: 6px;
