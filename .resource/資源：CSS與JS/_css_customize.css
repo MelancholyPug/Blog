@@ -2,11 +2,13 @@
 @font-face {
 	font-family: SlashLookFont;
 	font-weight: 400;
+  font-display: swap;
 	src: local("Helvetica Neue"), local("\5FAE\8EDF\6B63\9ED1\9AD4"), local("Microsoft JhengHei"), local("MingLiU"), local("sans-serif");
 }
 @font-face {
 	font-family: SlashLookFontMonospace;
 	font-weight: 600;
+  font-display: swap;
 	src: local("PT Mono"), local("PTMono-Regular"), url("http://themes.googleusercontent.com/static/fonts/ptmono/v1/jmle3kzCPnW8O7_gZGRDlQ.woff") format("woff");
 }
 /* Overwrite Bootstrap Css */
