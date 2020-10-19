@@ -58,8 +58,8 @@ WriteLine($"現在溫度：{cTemperature}");
 
   <p>在很多時候可能因為網站小改版，造成HTML階層異動而無法正確取用到資料，這時候XPATH的語法可能要寫得更彈性才不會跟隨對方網站版面的小異動而功能失效，舉例來說，基本上某關鍵區塊的CSS類別名稱不太可能會更動，因此我們或許可以用這樣的語法來下XPATH。</p>
 
-<pre>
-篩選某個HTML標籤，Class類別名稱出現「ThisIsTemperatureBlock」。
+<pre class="plaintext">
+查詢某個HTML標籤之class類別名稱出現「ThisIsTemperatureBlock」：
 //*[starts-with(@class, ""ThisIsTemperatureBlock"")]"
 </pre>
 
