@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>Chrome瀏覽器頂端消失問題的解法</h1>
+
+  <p>Chrome瀏覽器在某些時刻頂端列會消失，這個問題其實困擾我大約有兩年多了，消失的方式不是這個應用程式的頂端列消失，而是當Chrome應用程式開起來視窗放到最大（Windows Maximum）的時候，上方Windows經典的三個按鈕、Chrome網址列、Chrome我的最愛列都會消失變成全黑，彷彿這個應用程式上方被某種黑色區塊遮罩一樣，非常的詭異。</p>
+
+  <p>若說是Chrome瀏覽器的問題的話，把瀏覽器縮小視窗後是沒問題的，將其拉到另外一顆螢幕也沒問題。若說是Windows的問題的話，在有問題的這顆主螢幕打開其他的應用程式，也是沒問題的。會發生這樣的情況也不是說一定是Chrome應用程式才會這樣（也有過其他應用程式也會有雷同的情況），但只要有這種情況發生，99.9%都發生在Chrome開啟成為工作焦點（Focus）的情況下，或者是工作列有Chrome瀏覽器的情況之下。狀況示意圖如下：</p>
+
+  <img src="/image/2020/20201020_01.jpg" />
+
+  <p>一般發生這樣的情況，我通常都會勉強地把手頭上的工作做完後，把電腦重新開機（其實登出就可以了）就解決了，但是今天剛好手頭上有一些比較重的工作根本不可能重新開機，一怒之下花時間上網找一下答案，沒想到這個問題大家都遇到了，而且把問題指向Intel內顯網卡，Intel大概也嗅到狀況不對，就把鍋甩給Windows。</p>
+
+  <p>
+    來看看Intel怎麼說：
+    <a href="https://www.intel.com/content/www/us/en/support/articles/000054952/graphics/graphics-for-8th-generation-intel-processors.html" target="_blank">Maximized window blank/empty space on top of screen</a>
+  </p>
+
+<pre class="plaintext">
+看到Intel寫上這段話，我都快笑死了...
+Investigation has shown that this issue occurs not only on Intel graphics controllers but also with 3rd party graphics vendors.
+This is a strong indicator of an issue with the Operating System.
+</pre>
+
+  <p>好啦，我個人認為這個鍋不應該是Windows或Intel背負，因為我自己用的是Nvidia顯示卡也是中獎，我強烈懷疑是現代瀏覽器啟用GPU加速所致，而我們又不可能把這個加速的東西關閉（因為這個狀況不常出現，只是出現時很惱人），所以我傾向朝著Scale Full Screen來調查。</p>
+
+  <h3>解決Chrome瀏覽器頂端列消失問題（不需要重開機）</h3>
+  <p>Nvidia顯示卡解決方式</p>
+  <img src="/image/2020/20201020_02.jpg" />
+
+  <p>Intel顯示卡解決方式</p>
+  <img src="/image/2020/20201020_03.jpg" />
+
+  <p>其實關鍵的解法就是去把Scale Full Screen的方式做一下異動，只要不影響你電腦的觀看範圍，你改過去另外一個選項，或者改過去再改回來都可以，不需要重新開機，超開心的！</p>
+  
+  <small>Windows Minimize/Maximize/Close MaximizedWindow FullScreen BlankSpace EmptySpace TopOfScreen Disappeared Gone ScaleFullScreen</small>
+
+</body>
+</html>
