@@ -14,7 +14,7 @@
 
 <p>Step 1. 打開一個具備BOM的UTF-8編碼的空白文字檔案。</p>
 
-<p>Step 2. 將下列的程式碼貼上去並儲存成「ChangeDate.ps1」。該寫的註解我都寫了，應該都看得懂才對。</p>
+<p>Step 2. 將下列的程式碼貼上去並儲存成「ChangeDate.ps1」，要注意的是PowerShell有出現中文的話，應該要以「UTF8 with BOM」的格式儲存，沒有BOM的話他的語法解析器會爛掉喔。該寫的註解我都寫了，應該都看得懂才對。</p>
 <pre class="plaintext">
 #利用Powershell修正Windows檔案的「建立日期」、「修改日期」、「存取日期」屬性
 #Use Powershell to change Windows files CreationTime, LastWriteTime(a.k.a ModifyDate), LastAccessTime date.
