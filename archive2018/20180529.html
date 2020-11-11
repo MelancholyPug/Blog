@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>利用Magick.NET來進行圖片的重新採樣與無損壓縮</h1>
+<h1>利用Magick.NET來進行圖片的重新採樣與壓縮</h1>
 
 <p>最近因為工作的關係，研究了一下Magick.NET相關的程式碼，發現與GDI+（System.Drawing）比較起來，程式碼簡直簡單到爆，雖然到最後還是放棄採用，不過還是在此把研究結果記錄在此，以備不時之需。</p>
 
@@ -76,6 +76,9 @@ private void optimizeJPEG(string file)
   jpegTranProcess.WaitForExit();
 }
 </pre>
+
+<h4>相關連結</h4>
+<a href="/archive2020/20201111.html" target="_blank">用Magick.NET產生符合GooglePageSpeedInsights要求的圖片</a>
 
 <small>System.Drawing GDI+ JpegTran LossyCompression LosslessCompression</small>
 
