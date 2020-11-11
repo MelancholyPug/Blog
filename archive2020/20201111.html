@@ -35,6 +35,7 @@
   <p>其實沒有偏方，因為標準是Google制定的，既然他認為它就是標準我們也只能遵守，因此把建議的指令列出來，跟著建議的參數實作就對了：</p>
 <pre class="plaintext">
 convert INPUT.jpg -sampling-factor 4:2:0 -strip [-resize WxH] [-quality N] [-interlace JPEG] [-colorspace Gray/sRGB] OUTPUT.jpg
+
 convert puzzle.jpg -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace sRGB puzzle_converted.jpg
 </pre>
 
