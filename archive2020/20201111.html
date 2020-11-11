@@ -55,10 +55,10 @@ using (var oImage = new ImageMagick.MagickImage("OriginalImagePath.jpg"))
 
   <p>由於網路範例不多，在這邊特別順帶提一下串流型態的無損壓縮（Stream LosslessCompress）與存檔的寫法，給大家參考一下。</p>
   <pre>
-var oStream = XXX; //Some HttpPostedFile.InputStream ...
+var oStream = XXX; //maybe HttpPostedFile.InputStream ...
 using (System.IO.MemoryStream oMS = new System.IO.MemoryStream())
 using (System.IO.FileStream oFS = System.IO.File.Create("DestinationImagePath.jpg"))
-{ //從網路過來的串流幾乎都是唯獨（readonly），但這個ImageOptimizer類別中的方法會採用WriteBack的方式把串流內容覆寫（Overwrite），因此需要複製一份新的串流物件
+{ //從網路過來的串流幾乎都是唯獨（readonly），但這個ImageOptimizer類別中的方法會採用WriteBack的方式把串流內容覆寫（Overwrite），因此需要複製一份新的串流物件使其可運作
   oStream.CopyTo(oMS);
   //把指標指向位置0
   oMS.Seek(0, System.IO.SeekOrigin.Begin);
