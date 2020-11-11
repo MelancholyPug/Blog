@@ -30,15 +30,15 @@ using (ImageMagick.MagickImage oImage = new ImageMagick.MagickImage("original.jp
 <p>優點：</p>
 <ul>
   <li>程式碼封裝的超級簡單。</li>
-  <li>高品質的壓縮演算法（Lossy compression），有比GDI+好上許多。</li>
+  <li>高品質的壓縮演算法（Lossy compression），在「90」以下品質有比GDI+好上許多。</li>
   <li>縮放採用不同的方法名稱（Resize是最佳方法），不會像GDI+在那邊自己囉嗦的列舉一堆設定。</li>
   <li>支援無損壓縮（Lossless compression）。</li>
 </ul>
 
 <p>缺點：</p>
 <ol>
-  <li>相較GDI+同樣的壓縮比例（當然大家自己的定義不同啦），壓出來的檔案肥大很多，丟到<a href="https://tinypng.com/" target="_blank">tinyPNG.com</a>就知道效果，隨便一壓縮都是接近40%起跳。（※註：tinyPNG並非無損壓縮，只是他用特別的演算法讓圖片大小可以縮減，又讓你的視覺看不出來特別的差異。）</li>
-  <li>產生的圖形檔丟到<a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Google PageSpeed Insights</a>，會被嚴重的嫌棄圖形檔太大。（話說現在Google為最佳化網頁推行有損壓縮，我不知道到底在想甚麼，建議壓縮後的JPG檔案畫質跟屎一樣！）</li>
+  <li>在超過「90」以上的JPG壓縮品質後，相較GDI+壓出來的檔案肥大很多，但畫質卻沒有顯著的提升。</li>
+  <li>用官方推薦的LosslessCompress壓縮方法丟到<a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Google PageSpeed Insights</a>，會被嚴重的嫌棄圖形檔太大。（話說現在Google為最佳化網頁推行有損壓縮，我不知道到底在想甚麼，建議壓縮後的JPG檔案畫質跟屎一樣！）</li>
   <li>若要使用需要外掛DLL，相較GDI+內建，部署上仍然有些不便。</li>
 </ol>
 
