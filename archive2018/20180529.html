@@ -37,7 +37,7 @@ using (ImageMagick.MagickImage oImage = new ImageMagick.MagickImage("original.jp
 
 <p>缺點：</p>
 <ol>
-  <li>在超過「90」以上的JPG壓縮品質後，相較GDI+壓出來沒有明顯的比較好（甚至有時候檔案反而比較大），但畫質卻沒有顯著的提升。</li>
+  <li>在超過「90」以上的JPG壓縮品質後，相較GDI+壓出來畫質沒有顯著的提升，甚至有時候檔案反而比較大。</li>
   <li>用官方推薦的LosslessCompress壓縮方法丟到<a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank">Google PageSpeed Insights</a>，會被嚴重的嫌棄圖形檔太大。（話說現在Google為最佳化網頁推行有損壓縮，我不知道到底在想甚麼，建議壓縮後的JPG檔案畫質跟屎一樣！）</li>
   <li>若要使用需要外掛DLL，相較GDI+內建，部署上仍然有些不便。</li>
 </ol>
