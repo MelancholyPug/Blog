@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>LINQ筆記：使用LINQ達成NOT IN的效果（黑名單）</h1>
+
+  <p>今天遇到一個LINQ的應用，需要使用到SQL的Where NOT IN某個清單的效果，稍微想了一下把程式碼寫出並記錄在此供回憶。</p>
+
+  <img src="/image/2020/20201112_01.jpg" />
+
+  <h3>LINQ達成SQL的NOT IN效果</h3>
+  <p>假設我們有一個oUsers清單，另外有一張oBlocks黑名單，想要將oUsers NOT IN oBlocks，挑選成為一個oAlllows可登入系統清單，程式碼如下：</p>
+
+<pre class="csharp">
+public static void Main()
+{ //使用者清單
+  var oUsers = new System.Collections.Generic.List&lt;string&gt;() { "aaa", "bbb", "ccc", "ddd", "eee", "fff" };
+  //黑名單
+  var oBlocks = new System.Collections.Generic.List&lt;string&gt;() { "bbb", "ddd", "eee" };
+  //可登入系統清單
+  var oAllows = oUsers.Where(x =&gt; !oBlocks.Any(y =&gt; y.Contains(x)));
+  //輸出
+  WriteLine(string.Join("、", oAllows));
+  Read();
+}
+</pre>
+
+  <p>經過這樣的程式碼後，我們就可以將oBlocks清單裡面的成員排除掉了，輸出的結果如下：</p>
+
+<pre>
+aaa、ccc、fff
+</pre>
+
+  <small>CSharp LINQ SQL WhereNotIn BlockList BlackList</small>
+
+</body>
+</html>
