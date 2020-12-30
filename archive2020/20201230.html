@@ -17,7 +17,7 @@
 string cMyQueryString = String.Join("&", oNVC.AllKeys.Select(x => $"{x}={System.Web.HttpUtility.UrlEncode(oNVC[x])}));
 </pre>
 
-  <p>寫完後想想，且慢，微軟會設定這個NameValueCollection，在網路氾濫的現代，應該絕大部分都是用在QueryString居多吧，於是去網路查了一下，發現有人分享這個小密技：</p>
+  <p>寫完後想想，且慢，微軟會設定這個NameValueCollection，在網路氾濫的現代，應該絕大部分都是用在QueryString居多吧，這樣說來應該有更快速產生QueryString格式的方法啊？於是去網路查了一下，發現有人分享這個小密技：</p>
 
 <pre class="plaintext">
 用System.Web.HttpUtility.ParseQueryString(String.Empty);實例化就好了
