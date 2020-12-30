@@ -8,7 +8,7 @@
 
   <h1>NameValueCollection類別快速轉QueryString()之作法</h1>
 
-  <p>今天剛好要用System.Net.HttpWebRequest撰寫一個Form Post的動作，裡面需要組合一些欄位，因此遇到這個以前都沒有發現過的事情，特此紀載。這故事很長，長話短說就是，如果你今天是在.NET Framework 4.5.2以下的平台，請「自幹」。如果已經在.NET Framework 4.5.2含以上，請用ParseQueryString()會快很多。</p>
+  <p>今天剛好要用System.Net.HttpWebRequest撰寫一個Form Post的動作，裡面需要組合一些欄位，因此遇到這個以前都沒有發現過的事情，特此紀載。這故事很長，長話短說就是，如果你今天是在.NET Framework 4.5.2以下的平台且有UrlEncodeUnicode()編碼的顧慮，請「自幹」。如果已經在.NET Framework 4.5.2含以上，請用ParseQueryString()會快很多。</p>
 
   <h3>NameValueCollection直接ToString()並不如想像</h3>
   <p>如果你對NameValueCollection直接ToString()，會得到回應System.Collections.Specialized.NameValueCollection，而沒有像想像中的幫你組合好HTTP QueryString的組合（cKey1=OO&cKey2=XX...），這時候我們一定覺得這簡單，拿起LINQ馬上硬幹起來...</p>
@@ -44,7 +44,7 @@ cKey1=Test&cKey2=%3cp%3eHtml%3c%2fp%3e&cKey3=%e4%b8%ad%e6%96%87%e5%ad%97
   <p>知道這種神奇的寫法與結果後，當下去翻MSDN簡直驚呆了。</p>
 
   <p>1. HttpUtility.ParseQueryString真的會回傳NameValueCollection類別，<a href="https://docs.microsoft.com/zh-tw/dotnet/api/system.web.httputility.parsequerystring?view=net-5.0" target="_blank">https://docs.microsoft.com/zh-tw/dotnet/api/system.web.httputility.parsequerystring?view=net-5.0</a></p>
-  
+
   <p>2. NameValueCollection類別本身ToString()方法並沒有提供太特別的實作（所以才會拋出System.Collections.Specialized.NameValueCollection）。<a href="https://docs.microsoft.com/zh-tw/dotnet/api/system.collections.specialized.namevaluecollection?view=net-5.0" target="_blank">https://docs.microsoft.com/zh-tw/dotnet/api/system.collections.specialized.namevaluecollection?view=net-5.0</a></p>
 
   <p>基於第1、2點，那是誰提供如此爽快的ToString()覆寫呢？這中間一定有問題，趕快翻.NET原始碼，找到這個：</p>
@@ -73,11 +73,11 @@ internal class HttpValueCollection : NameValueCollection {
 </pre>
 
   <p>5. 快來看一下是否有覆寫ToString()，果然有。（<a href="https://referencesource.microsoft.com/#System.Web/HttpValueCollection.cs,290" target="_blank">https://referencesource.microsoft.com/#System.Web/HttpValueCollection.cs,290</a>）</p>
-  
+
   <p>6. 再來看一下是否有偷偷幫我們UrlEncode，果然有。<a href="https://referencesource.microsoft.com/#System.Web/HttpValueCollection.cs,352" target="_blank">https://referencesource.microsoft.com/#System.Web/HttpValueCollection.cs,352</a></p>
-  
+
   <p>這個UrlEncodeForToString裡面有一個關鍵資訊需要特別注意，就是如果有被設定DontUsePercentUUrlEncoding = true，就會採用後期統一的System.Web.HttpUtility.UrlEncode()，如果DontUsePercentUUrlEncoding被設定false，那就會使用不再被推薦使用（非標準）的System.Web.HttpUtility.UrlEncodeUnicode()。這只好再往下AppSettings.DontUsePercentUUrlEncoding。</p>
-  
+
   <p>7. 追到這邊才算是透徹的了解DontUsePercentUUrlEncoding設定（<a href="https://referencesource.microsoft.com/#System.Web/Util/AppSettings.cs,413" target="_blank">https://referencesource.microsoft.com/#System.Web/Util/AppSettings.cs,413</a>），在這個屬性已經很清楚的說明差異之處了，只有.NET Framework大於等於4.5.2版本，才會被預設設為true。</p>
 <pre class="plaintext">
 false - use UrlEncodeUnicode for some URL generation within ASP.NET, which can produce non-compliant results
@@ -87,7 +87,7 @@ defaults to true when targeting &gt;= 4.5.2, otherwise false
 
   <p>這個DontUsePercentUUrlEncoding沒有辦法動態指派，一般來說我們不太可能會跑去web.config再單獨設定這個參數，所以建議.NET Framework 4.5.2以下的人，還是自幹ToQueryString()比較快，反正也不用幾行就寫完了。</p>
 
-  <p>※補充一：可能會有人問說，用UrlEncodeUnicode()會有甚麼問題，答案是用這個來傳遞FormData裡面的Value若出現HTML標籤，一樣會被ASP.NET框架判定為傳遞違法內容而被攔截喔！</p>
+  <p>※補充一：無論是UrlEncode()或是UrlEncodeUnicode()，透過Form Post過去到遠端的ASP.NET一樣會觸發ASP.NET框架判定為傳遞違法內容問題，出現「具有潛在危險 Request.Form 的值已從用戶端...」等字眼，這種情況可使用雙重編碼繞過UrlEncode(UrlEncode(""))。</p>
 
   <p>※補充二：若要在web.config中設定DontUsePercentUUrlEncoding的值，請參考下方XML：</p>
 <pre>
