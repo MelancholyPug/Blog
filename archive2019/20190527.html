@@ -101,15 +101,19 @@
   <h3>grep</h3>
   <p>global regular expression print；在特定對象檔案中，搜尋特定的字眼，例如：grep test Readme。</p>
 
-  <h3>yum</h3>
+  <h3>yum（Ubuntu使用apt-get）</h3>
   <p>
     軟體套件安裝器，例如：yum -y install wget<br />
     yum install 套件名稱<br />
     yum update 套件名稱<br />
+    yum update（直接更新所有套件）<br />
     yum remove 套件名稱<br />
     yum search 套件名稱<br />
     yum list 列舉所有套件
   </p>
+
+  <h3>sudo</h3>
+  <p>在每個指令的前面加上這個字眼，就是以最高管理權限root運行，類似Window UAC（User Account Control；使用者帳戶控制）機制。只是其實在Linux CLI介面裡，哪個動作不是你意圖以最高管理者的身分進行，所以弄到最後幾乎每一行都是sudo開頭，這樣一來就跟Windows Vista那時候被罵得要死的原因一致了，要規避這個問題，可以使用「sudo -i」直接切換到root，不過風險就跟關閉UAC一樣了。</p>
 
   <h3>mount -t 檔案類型 /dev/設備 /media/名稱</h3>
   <p>掛載設備，要進行指令前，請先到media mkdir一下。</p>
