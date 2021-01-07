@@ -1,4 +1,5 @@
 ﻿http://slashview.com/archive2021/20210106.html
+http://slashview.com/archive2021/20210101.html
 http://slashview.com/archive2020/20201230.html
 http://slashview.com/archive2020/20201222.html
 http://slashview.com/archive2020/20201207.html
@@ -66,7 +67,6 @@ http://slashview.com/archive2020/20200209.html
 http://slashview.com/archive2020/20200208.html
 http://slashview.com/archive2020/20200203.html
 http://slashview.com/archive2020/20200107.html
-http://slashview.com/archive2020/20200101.html
 http://slashview.com/archive2019/20191230.html
 http://slashview.com/archive2019/20191226.html
 http://slashview.com/archive2019/20191207.html
