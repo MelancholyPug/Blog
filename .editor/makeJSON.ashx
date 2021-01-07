@@ -55,11 +55,8 @@ public class makeJSON : System.Web.IHttpHandler
       );
     }
 
-    //因為要日期逆排，所以用LINQ進行真正的逆排序，而非單純反轉檔案資料包而已
-    var oFilePackageReverse = from oItem in oFilePackage
-                              orderby oItem.D descending
-                              select oItem;
-    oFilePackage = oFilePackageReverse.ToList();
+    //因為要日期逆排，所以用LINQ進行逆排序後並輸出成LIST資料包
+    oFilePackage = oFilePackage.OrderByDescending(x => x.D).ToList();
 
     //取得存檔目標路徑
     string cPath = oContext.Request.MapPath("/_data/");
