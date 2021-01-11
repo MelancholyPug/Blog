@@ -12,7 +12,7 @@
 
   <h3>傳統delegate簽名的寫法</h3>
   <p>這個寫法巧妙的利用泛型的機制，將delegate myWork()塞入到System.Collections.Generic.List&lt;T&gt;，這麼一來就可以在List.Add()時期快樂的使用黏巴達（Lambda）來寫程式了。</p>
-<pre>
+  <pre>
 class Program
 {
   public delegate void myWork();
@@ -20,7 +20,7 @@ class Program
   {
     System.Collections.Generic.List&lt;myWork&gt; oList = new System.Collections.Generic.List&lt;myWork&gt;();
 
-    //此處不可使用 For-Next 迴圈，不然會引爆C#閉包（Closure）參數問題
+    //此處不可使用 For-Next 迴圈，不然會引爆C#閉包（Closure）區域參數問題
     foreach (var i in new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 })
     { //將自建函式封裝進去
       oList.Add(() =&gt;
@@ -52,7 +52,7 @@ class Program
   {
     System.Collections.Generic.List&lt;System.Action&gt; oList = new System.Collections.Generic.List&lt;Action&gt;();
 
-    //此處不可使用 For-Next 迴圈，不然會引爆C#閉包（Closure）參數問題
+    //此處不可使用 For-Next 迴圈，不然會引爆C#閉包（Closure）區域參數問題
     foreach (var iItem in new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 })
     { //將自建函式封裝進去
       oList.Add(() =&gt; {
