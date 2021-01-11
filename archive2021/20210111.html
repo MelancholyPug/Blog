@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>利用委派讓List(T)可以使用Lambda運算式寫法</h1>
+
+  <p>在網路上看到越來越的開源程式碼範例，拐彎抹角的使用了一大堆委派的寫法來展現出自己高超過人的程式設計技巧，從來沒想過會有人把委派塞入到System.Collections.Generic.List&lt;T&gt;再跑迴圈讓這個集合運作起來，初次遇見算是增長見識了。</p>
+
+  <h3>傳統delegate簽名的寫法</h3>
+  <p>這個寫法巧妙的利用泛型的機制，將delegate myWork()塞入到System.Collections.Generic.List&lt;T&gt;，這麼一來就可以在List.Add()時期快樂的使用黏巴達（Lambda）來寫程式了。</p>
+<pre>
+class Program
+{
+  public delegate void myWork();
+  public static void Main()
+  {
+    System.Collections.Generic.List&lt;myWork&gt; oList = new System.Collections.Generic.List&lt;myWork&gt;();
+
+    //此處不可使用 For-Next 迴圈，不然會引爆C#閉包（Closure）參數問題
+    foreach (var i in new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 })
+    { //將自建函式封裝進去
+      oList.Add(() =&gt;
+      {
+        for (int j = 1; j &lt; 10; j++)
+        {
+          Console.WriteLine($"{i} X {j} = {i * j}");
+        }
+      });
+    }
+
+    foreach (var oItem in oList)
+    { //全部叫出來執行
+      oItem();
+    }
+
+    Read();
+  }
+}
+</pre>
+
+  <h3>使用System.Action或System.Func的寫法</h3>
+  <p>這種寫法算是C#後期大家都採用的寫法，可以省略掉delegate簽名的宣告（程式設計師可以少想一個變數名稱），由於這次的DEMO是99乘法表，並沒有任何的傳入傳出值，因此採用System.Action&lt;T&gt;來示範即可。</p>
+
+  <pre>
+class Program
+{
+  public static void Main()
+  {
+    System.Collections.Generic.List&lt;System.Action&gt; oList = new System.Collections.Generic.List&lt;Action&gt;();
+
+    //此處不可使用 For-Next 迴圈，不然會引爆C#閉包（Closure）參數問題
+    foreach (var iItem in new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 })
+    {
+      oList.Add(() =&gt; {
+        for (int i = 0; i &lt; 10; i++)
+        {
+          Console.WriteLine($"{iItem} X {i} = {iItem * i}");
+        }
+      });
+    }
+
+    foreach (var oItem in oList)
+    { //全部叫出來執行
+      oItem();
+    }
+
+    Read();
+  }
+}
+</pre>
+
+  <p>目前職業生涯中還沒有遇過這樣的寫法適用的情境，先備份起來日後若有用途可以拿出來參考。</p>
+
+  <p>相關連結：</p>
+  <ul>
+    <li><a href="/archive2014/20140514.html" target="_blank">C#之委派之演進史與匿名函式之應用</a></li>
+    <li><a href="/archive2014/20141117.html" target="_blank">泛型委派（General Delegates）之研究</a></li>
+    <li><a href="/archive2014/20141201.html" target="_blank">利用Predicate泛型委派，進行類別方法委派之實作</a></li>
+    <li><a href="/archive2019/20190111.html" target="_blank">新舊委派的撰寫與呼叫方式：以購物車折扣為例</a></li>
+  </ul>
+
+  <small>System.Collections.Generic.List List(T) Delegate Lambada</small>
+
+</body>
+</html>
