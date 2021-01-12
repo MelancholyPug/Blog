@@ -27,8 +27,34 @@
 
   <h3>CodeDomProviders又是啥？</h3>
   <p>簡單的說，Roslyn只處理C#編譯器核心的問題，其他你要怎麼用就不是Roslyn團隊關心的事情，而微軟的伺服器網站架構是由ASP.NET團隊在負責的，那麼要如何讓使用者在ASP.NET架構下使用最新版的Roslyn特性，就要安裝「Microsoft.CodeDom.Providers.DotNetCompilerPlatform」，否則你在VisualStudio寫的東西都會變成紅色蚯蚓。另外CodeDom也可以有效提升ASP.NET的執行期編譯效能。</p>
-  
+
   <p>在這邊可以下載CodeDom：<a href="https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform" target="_blank">Microsoft.CodeDom.Providers.DotNetCompilerPlatform</a></p>
+
+  <h4>2021-01-12 資訊更新</h4>
+  <ol>
+    <li>在查詢.NET Framework 4.8相關資訊時發現，Microsoft.Net.Compilers被拋棄了，改成<a href="https://www.nuget.org/packages/Microsoft.Net.Compilers.Toolset" target="_blank">Microsoft.Net.Compilers.Toolset</a></li>
+    <li>Roslyn與C#版本的對應表也被改網址到<a href="https://github.com/dotnet/roslyn/blob/master/docs/wiki/NuGet-packages.md" target="_blank">這裡</a>了，找了非常久才被我找到，並順手將目前的資訊備份如下，以免下次又被改位址了。</li>
+  </ol>
+  <pre class="plaintext">
+Roslyn與C#版本對照表（僅備份用途，內容不會再更新，欲知最新資訊請自己上GitHub看資料）
+－－－－－
+Versions 1.x mean C# 6.0 and VB 14 (Visual Studio 2015 and updates). For instance, 1.3.2 corresponds to the most recent update (update 3) of Visual Studio 2015.
+Version 2.0 means C# 7.0 and VB 15 (Visual Studio 2017 version 15.0).
+Version 2.1 is still C# 7.0, but with a couple fixes (Visual Studio 2017 version 15.1).
+Version 2.2 is still C# 7.0, but with a couple more fixes (Visual Studio 2017 version 15.2). Language version "default" was updated to mean "7.0".
+Version 2.3 means C# 7.1 and VB 15.3 (Visual Studio 2017 version 15.3). For instance, 2.3.0-beta1 corresponds to Visual Studio 2017 version 15.3 (Preview 1).
+Version 2.4 is still C# 7.1 and VB 15.3, but with a couple fixes (Visual Studio 2017 version 15.4).
+Version 2.6 means C# 7.2 and VB 15.5 (Visual Studio 2017 version 15.5).
+Version 2.7 means C# 7.2 and VB 15.5, but with a number of fixes (Visual Studio 2017 version 15.6).
+Version 2.8 means C# 7.3 (Visual Studio 2017 version 15.7)
+Version 2.9 is still C# 7.3 and VB 15.5, but with more fixes (Visual Studio 2017 version 15.8)
+Version 2.10 is still C# 7.3 and VB 15.5, but a couple more fixes (Visual Studio 2017 version 15.9)
+Version 3.0 includes a preview of C# 8.0 (Visual Studio 2019 version 16.0), but 2.11 was used for preview1.
+Version 3.1 includes a preview of C# 8.0 (Visual Studio 2019 version 16.1)
+Version 3.2 includes a preview of C# 8.0 (Visual Studio 2019 version 16.2)
+Version 3.3 includes C# 8.0 (Visual Studio 2019 version 16.3, .NET Core 3.0)
+Version 3.4 includes C# 8.0 (Visual Studio 2019 version 16.4, .NET Core 3.1)
+</pre>
 
   <small>C# CSharp Version Compiler-As-A-Service Roslyn Microsoft.Net.Compilers Microsoft.CodeDom.Providers.DotNetCompilerPlatform</small>
 
