@@ -73,7 +73,30 @@ class Program
 }
 </pre>
 
-  <p>目前職業生涯中還沒有遇過這樣的寫法適用的情境，先備份起來日後若有用途可以拿出來參考。</p>
+  <h3>補充：改用更精簡的事件疊加掛載寫法</h3>
+  <pre>
+public class Program
+{
+  public static void Main()
+  {
+    System.Action fAction = null;
+    //此處不可使用 For-Next 迴圈，不然會引爆C#閉包（Closure）區域參數問題
+    foreach (var iItem in new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 })
+    { //將自建函式封裝進去
+      fAction += new Action(() =&gt; {
+        for (int i = 0; i &lt; 10; i++)
+        {
+          Console.WriteLine($"{iItem} X {i} = {iItem * i}");
+        }
+      });
+    }
+    //叫出來執行10個匿名函式
+    fAction();
+  }
+}
+</pre>
+
+  <p>目前職業生涯中還沒有遇過這樣的寫法適用的情境，先備份起來日後若有用途可以拿出來參考。另外有關於「引爆C#閉包（Closure）區域參數問題」可參考<a href="https://www.dotblogs.com.tw/billchung/2015/05/25/151399" target="_blank">匿名函式陷阱</a></p>
 
   <p>相關連結：</p>
   <ul>
