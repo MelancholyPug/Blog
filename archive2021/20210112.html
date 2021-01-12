@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>SQL筆記：將自動增量索引值歸零</h1>
+
+  <p>自動增量索引就是在資料庫欄位設定為PK（Primary Key）時，該欄位內的int會自動的依據資料的插入筆數而增加，一般又名為Auto Index、Auto Identity、Auto Increment、Identity、識別規格、識別增量等。一般來說這個欄位就是索引編碼，在程式撰寫與測試時期會多有增長，正式上線砍掉後可能會從非零的數字開始繼續往後增加，遇到某些特殊要求下是可以歸零的。</p>
+
+  <h3>SQL AutoIndex reset（歸零）</h3>
+
+<p>T-SQL指令很簡單：</p>
+<pre class="sql">
+DBCC CHECKIDENT('Your DataTable name', RESEED, 0);
+</pre>
+
+  <p>相關參考：</p>
+  <a href="https://docs.microsoft.com/zh-tw/sql/t-sql/database-console-commands/dbcc-checkident-transact-sql" target="_blank">DBCC CHECKIDENT (Transact-SQL)</a>
+
+  <small>AutoIndex AutoIdentity AutoIncrement Identity 識別規格 識別增量 Reset SetZero</small>
+
+</body>
+</html>
