@@ -8,14 +8,14 @@
 
 <h1>在SubDomain下，完全移除RootDomain的Cookies</h1>
 
-<p>公司的根網域（假設為：slashview.com）因為行銷的需求，被加入了Root Domain等級的Google Analysis Cookies（GA），然而在公司內部的應用網站（例如：app.slashlook.com），卻不需要這些GA Cookies的追蹤，也就是往來之間，我們不需要諸如：__utma、__utmb、__utmc、__utmt、__utmz這些無用的數據傳輸與干擾。</p>
+<p>公司的根網域（假設為：slashview.com）因為行銷的需求，被加入了Root Domain等級的Google Analysis Cookies（GA），然而在公司內部的應用網站（例如：app.slashview.com），卻不需要這些GA Cookies的追蹤，也就是往來之間，我們不需要諸如：__utma、__utmb、__utmc、__utmt、__utmz這些無用的數據傳輸與干擾。</p>
 
 <p>那麼，如何顧及其他網站的追蹤需求，又不讓這些根網域的餅乾屑掉到家中呢？</p>
 
 <h3>Cookies小常識</h3>
 <ol>
-  <li>子網域（app.slashview.com）可以建立根網域（slashlook.com）的Cookies。</li>
-  <li>一旦根網域的Cookies被建立，那麼所有的子網域中（例如：www.slashview.com、mail.slashview.com、erp.slashview.com...）中的任何一次Http Request都會被夾帶根網域（slashlook.com）的資訊，自Http Header回傳至Server。</li>
+  <li>子網域（app.slashview.com）可以建立根網域（slashview.com）的Cookies。</li>
+  <li>一旦根網域的Cookies被建立，那麼所有的子網域中（例如：www.slashview.com、mail.slashview.com、erp.slashview.com...）中的任何一次Http Request都會被夾帶根網域（slashview.com）的資訊，自Http Header回傳至Server。</li>
   <li>反過來說，子網域亦可以刪除根網域（slashview.com）的Cookies。</li>
 </ol>
 

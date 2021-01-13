@@ -1,6 +1,6 @@
 ﻿/* 宣告搜尋用變數物件 */
 var oPreSearchConfig = {
-	siteURL: "slashlook.com",	//要搜尋的目標網域
+  siteURL: "slashview.com",	//要搜尋的目標網域
 	type:	"web",							//搜尋的對象可以是不一樣的，例如:圖片、影片...
 	itemsPerPage: 8,					//傳回結果集每次的筆數，Google規定最大八筆
 	nowPage: 0,								//傳回結果集的頁面啟始數

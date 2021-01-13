@@ -88,7 +88,7 @@ SpreadsheetFeed oSF = oService.Query(new SpreadsheetQuery());
 </pre>
 
 <h3>Step 3. 歹誌絕對不是像憨人想的那麼簡單</h3>
-<p>程式碼跑了，Token拿到了，我已經可以用Big Query去查我要查的東西了吧！結果無論你怎麼在ServiceAccountCredential.Initializer去授權Scopes，無倫是存取整個https://docs.google.com/feeds或單一服務https://spreadsheets.google.com/feeds，你永遠得到的檔案數（feeds）都是為零（0）。原因是，你的Service Account並不能代表你自己（someone@slashview.com），就算建立的這個Service Account的正是你（someone@slashlook.com）本人。更爛的是，Google官方開發者文件並不會跟你講這些事情。答案是，請在上面的程式碼中，加入User屬性。</p>
+<p>程式碼跑了，Token拿到了，我已經可以用Big Query去查我要查的東西了吧！結果無論你怎麼在ServiceAccountCredential.Initializer去授權Scopes，無倫是存取整個https://docs.google.com/feeds或單一服務https://spreadsheets.google.com/feeds，你永遠得到的檔案數（feeds）都是為零（0）。原因是，你的Service Account並不能代表你自己（someone@slashview.com），就算建立的這個Service Account的正是你（someone@slashview.com）本人。更爛的是，Google官方開發者文件並不會跟你講這些事情。答案是，請在上面的程式碼中，加入User屬性。</p>
 <pre>
 new ServiceAccountCredential.Initializer(cEmail)
 {
