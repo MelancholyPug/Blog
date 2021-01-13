@@ -39,7 +39,7 @@ public class TSConverter
 }
 </pre>
 
-<p>Step 3. 切換到Release模式，編譯成DLL檔案，並將DLL複製到SQL Server的「C:\SlashLookCLR\」目錄下。</p>
+<p>Step 3. 切換到Release模式，編譯成DLL檔案，並將DLL複製到SQL Server的「C:\SlashviewCLR\」目錄下。</p>
 
 <p>Step 4. 開啟SSMS，新增一個查詢，找出要植入純量函式的資料庫桶子（例如：myDB），並開始進行下列的指令設定：</p>
 <pre>
@@ -56,18 +56,18 @@ Go
 
 --建立Assembly
 Use myDB 
-Create ASSEMBLY SlashLook
-FROM 'C:\SlashLookCLR\TSConverter.dll'
+Create ASSEMBLY Slashview
+FROM 'C:\SlashviewCLR\TSConverter.dll'
 WITH PERMISSION_SET = SAFE 
 GO 
 
 --建立SQL純量函式
 CREATE FUNCTION Simplified(@cInput [nvarchar](max)) 
 RETURNS NVARCHAR(MAX) WITH EXECUTE AS CALLER 
-AS EXTERNAL NAME SlashLook.TSConverter.Simplified
+AS EXTERNAL NAME Slashview.TSConverter.Simplified
 </pre>
 
-<p>Step 5. 大功告成！你可以在「myDB的桶子＞可程式性（Programmability）＞純量值函式（Sclar-valued Functions）」裡面，找到Simplified函式。也可以在「myDB的桶子＞組件（Assemblies」裡面，找到SlashLook組件（也就是你的DLL啦！）。</p>
+<p>Step 5. 大功告成！你可以在「myDB的桶子＞可程式性（Programmability）＞純量值函式（Sclar-valued Functions）」裡面，找到Simplified函式。也可以在「myDB的桶子＞組件（Assemblies」裡面，找到Slashview組件（也就是你的DLL啦！）。</p>
 
 <h3>驗證繁體轉簡體的SQL純量函式</h3>
 <p>輸入一下函式名稱，進行轉換看看。</p>
@@ -82,8 +82,8 @@ select dbo.Simplified('大家都是中國人，相逢何必曾相識。')
 <h3>移除SQL CLR純量函式</h3>
 <p>只要把建立的程序反過來，就可以順利的移除嘍！</p>
 <p>Step 1. 「myDB的桶子＞可程式性（Programmability）＞純量值函式（Sclar-valued Functions）」裡面，刪除Simplified函式。</p>
-<p>Step 2. 「myDB的桶子＞組件（Assemblies」裡面，刪除SlashLook組件。</p>
-<p>Step 3. 到「C:\SlashLookCLR」目錄下，把「TSConverter.dll」砍掉。</p>
+<p>Step 2. 「myDB的桶子＞組件（Assemblies」裡面，刪除Slashview組件。</p>
+<p>Step 3. 到「C:\SlashviewCLR」目錄下，把「TSConverter.dll」砍掉。</p>
 
 <small>SQL C# VB.NET DLL SqlServerClrIntegration .NetFramework 正體中文 簡體中文 繁體中文 轉換</small>
 

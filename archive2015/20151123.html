@@ -17,7 +17,7 @@
 <h3>MarqueeImage文字跑馬燈類別原始程式碼</h3>
 <p>程式碼裡面依然有透過System.Reflection反射方法，來調用Windows Forms被保護（protected）的SetStyle、UpdateStyles方法，因此你不需要再去Form建構子中，去設定啟用OptimizedDoubleBuffer。</p>
 <pre>
-namespace SlashLook
+namespace Slashview
 {
 	/// &lt;summary&gt;
 	/// MarqueeImage事件委派器
@@ -298,8 +298,8 @@ oMarquee = new MarqueeImage()
 	iHeight = 100,
 	iTimerInterval = 50,
 	iMovePixel = 20,
-	oCurrentImage = System.Drawing.Image.FromFile(@"X:\SlashLook\001.png"),
-	oNextImage = System.Drawing.Image.FromFile(@"X:\SlashLook\002.png"),
+	oCurrentImage = System.Drawing.Image.FromFile(@"X:\Slashview\001.png"),
+	oNextImage = System.Drawing.Image.FromFile(@"X:\Slashview\002.png"),
 	oTargetForm = this
 };
 oMarquee.OnDrawing += oMarquee_OnDrawing;	//可選擇不掛上事件

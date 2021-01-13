@@ -50,7 +50,7 @@ public partial class oService : ServiceBase
 		oTimer = new System.Timers.Timer();
 		oLog = new System.Diagnostics.EventLog();
 		//如果沒有目錄就建立
-		if (!System.Diagnostics.EventLog.SourceExists("Simply Clock Services")) { System.Diagnostics.EventLog.CreateEventSource("Simply Clock Services", "SlashLook"); }
+		if (!System.Diagnostics.EventLog.SourceExists("Simply Clock Services")) { System.Diagnostics.EventLog.CreateEventSource("Simply Clock Services", "Slashview"); }
 		//將Log物件指向指定的服務目錄
 		oLog.Source = "Simply Clock Services";
 	}
@@ -102,7 +102,7 @@ public partial class oService : ServiceBase
 <p>打開Windows的服務管理員，就可以看到我們的無用Service Clock被安裝成功啦，你可以開始去設定啟動它了。</p>
 <img src="/image/2015/20150925_11.jpg" />
 
-<p>啟動完成後，馬上跑到事件紀錄簿看一下，發現我們的服務正確地被運行起來，而且也忠實地按照我們的意志，將它記錄在LogName=SlashLook、Source=Simply Clock Services的目錄中，服務的細部文字資訊也有被正確的登載。</p>
+<p>啟動完成後，馬上跑到事件紀錄簿看一下，發現我們的服務正確地被運行起來，而且也忠實地按照我們的意志，將它記錄在LogName=Slashview、Source=Simply Clock Services的目錄中，服務的細部文字資訊也有被正確的登載。</p>
 <img src="/image/2015/20150925_12.jpg" />
 
 <p>玩完這個無聊的服務後，當然是移除這個服務了。</p>

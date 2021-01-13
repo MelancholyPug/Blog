@@ -14,21 +14,21 @@
   <p>Step 1. 請用管理者權限打開Powershell。</p>
 
   <p>Step 2. 求得當前SMB/CIFS連線的精簡結果：</p>
-<pre class="plaintext">
+  <pre class="plaintext">
 PS C:\> Get-SmbConnection
 
 ServerName  ShareName UserName           Credential                 Dialect NumOpens
 ----------  --------- --------           ----------                 ------- --------
-192.168.1.X XXXXX     Slashlook          MicrosoftAccount\Slashlook 3.1.1   2
+192.168.1.X XXXXX     Slashview          MicrosoftAccount\Slashview 3.1.1   2
 </pre>
 
   <p>Step 3. 求得當前SMB/CIFS連線的詳細結果：</p>
-<pre class="plaintext">
+  <pre class="plaintext">
 PS C:\> Get-SmbConnection | Select-Object -Property *
 
 SmbInstance           : Default
 ContinuouslyAvailable : False
-Credential            : MicrosoftAccount\Slashlook
+Credential            : MicrosoftAccount\Slashview
 Dialect               : 3.1.1
 Encrypted             : False
 NumOpens              : 2
@@ -36,7 +36,7 @@ Redirected            : False
 ServerName            : 192.168.1.X
 ShareName             : XXXXX
 Signed                : False
-UserName              : Slashlook
+UserName              : Slashview
 PSComputerName        :
 CimClass              : ROOT/Microsoft/Windows/SMB:MSFT_SmbConnection
 CimInstanceProperties : {ContinuouslyAvailable, Credential, Dialect, Encrypted...}

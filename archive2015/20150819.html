@@ -117,7 +117,7 @@
 <img src="/image/2015/20150819_27.jpg" />
 
 <p>Step 27. 設定發行集之前，讓我們先來確定一下要發送的資料庫資訊。</p>
-<p>資料庫：SlashLook</p>
+<p>資料庫：Slashview</p>
 <p>資料表：Employee</p>
 <p>資料表欄位：iAutoIndex（PK, Primary Key）、cName</p>
 <img src="/image/2015/20150819_28.jpg" />
@@ -221,7 +221,7 @@
 
 <p>以上就是這篇三層式複寫架構的一步步說明，希望可以節省掉你大量的錯誤測試、摸索的時間。</p>
 
-<p>如果有一些人為了追求更高的安全性，在Step 35連入發行者、或Step 50連入散發者作業的時候，選擇了「藉由模擬處理帳戶」、或者是「非最高權限管理員SA」的資料庫使用者（成員），那麼極有可能會出現複寫作業失敗，這時候不妨請您回到SQL-A、SQL-B的MSSMS中，看一下「安全性」→「登入」→「新增登入」，看看是否有該名使用者被授權在這個資料庫中運行？例如：SQL-A發行者資料庫的某使用者，應該要可以使用SlashLook資料庫桶子才對，又例如：SQL-B散發者資料庫的某使用者，應該要可以使用distribution資料庫桶子才對。</p>
+<p>如果有一些人為了追求更高的安全性，在Step 35連入發行者、或Step 50連入散發者作業的時候，選擇了「藉由模擬處理帳戶」、或者是「非最高權限管理員SA」的資料庫使用者（成員），那麼極有可能會出現複寫作業失敗，這時候不妨請您回到SQL-A、SQL-B的MSSMS中，看一下「安全性」→「登入」→「新增登入」，看看是否有該名使用者被授權在這個資料庫中運行？例如：SQL-A發行者資料庫的某使用者，應該要可以使用Slashview資料庫桶子才對，又例如：SQL-B散發者資料庫的某使用者，應該要可以使用distribution資料庫桶子才對。</p>
 
 <small>StepByStep SQLServerReplication DatabaseReplication TransactionalReplication Publisher Distributor Subscriber</small>
 

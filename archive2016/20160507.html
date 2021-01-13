@@ -24,7 +24,7 @@
 /// 廠牌：Prowill
 /// 型號：PD-S326 Plus
 /// &lt;/summary&gt;
-namespace Slashlook.Hardware.Print
+namespace Slashview.Hardware.Print
 {
 	/// &lt;summary&gt;
 	/// PD-S326 Plus發票收據列印機主要類別檔案
@@ -39,7 +39,7 @@ namespace Slashlook.Hardware.Print
 		/// &lt;summary&gt;
 		/// 品項名稱以及金額的列舉
 		/// &lt;/summary&gt;
-		public System.Collections.Generic.List&lt;Slashlook.Hardware.Print.PDS326PlusData&gt; oItemsList { get; set; }
+		public System.Collections.Generic.List&lt;Slashview.Hardware.Print.PDS326PlusData&gt; oItemsList { get; set; }
 		/// &lt;summary&gt;
 		/// 所有品項的加總後之金額
 		/// &lt;/summary&gt;
@@ -78,7 +78,7 @@ namespace Slashlook.Hardware.Print
 			if (oItemsList == null || oItemsList.Count == 0) { throw new System.Exception("沒有任何的項次資訊可供列印。");	}
 			//檢查是否超過金額欄位最大列印長度（包含正負符號、Comma符號）
 			int iPrintLimitLength = 7;
-			foreach (Slashlook.Hardware.Print.PDS326PlusData oItem in oItemsList)
+			foreach (Slashview.Hardware.Print.PDS326PlusData oItem in oItemsList)
 			{
 				if (string.Format("{0:n0}", oItem.iPrice).Length &gt; iPrintLimitLength)
 				{ throw new System.Exception(string.Format("品項內所提供之金額，含正負號、千位逗號後，已經超過最大列印極限{0}個字。", iPrintLimitLength.ToString())); }
@@ -151,7 +151,7 @@ namespace Slashlook.Hardware.Print
 			fPrintY += fVertical * 0.25F;
 
 			//繪製明細金額
-			foreach (Slashlook.Hardware.Print.PDS326PlusData oItem in oItemsList)
+			foreach (Slashview.Hardware.Print.PDS326PlusData oItem in oItemsList)
 			{
 				e.Graphics.DrawString(oItem.cName, oFontContent, oBrush, new System.Drawing.RectangleF(fPrintX_Item, fPrintY, fPrintX_Price - fPrintX_Item, fVertical));
 				e.Graphics.DrawString(string.Format("{0:n0}", oItem.iPrice), oFontContent, oBrush, new System.Drawing.RectangleF(fPrintX_Price, fPrintY, fPageWidth - fPrintX_Price, fVertical), new System.Drawing.StringFormat() { Alignment = System.Drawing.StringAlignment.Far });
@@ -208,13 +208,13 @@ namespace Slashlook.Hardware.Print
 private void button2_Click(object sender, EventArgs e)
 {
 	//寫入資料
-	Slashlook.Hardware.Print.PDS326Plus oPrinter = new Slashlook.Hardware.Print.PDS326Plus()
+	Slashview.Hardware.Print.PDS326Plus oPrinter = new Slashview.Hardware.Print.PDS326Plus()
 	{
-		cLogoPath = @"D:\Slashlook\Sample.png",
-		oItemsList = new System.Collections.Generic.List&lt;Slashlook.Hardware.Print.PDS326PlusData&gt; {
-			new Slashlook.Hardware.Print.PDS326PlusData() { cName = "麵包", iPrice = 12345 },
-			new Slashlook.Hardware.Print.PDS326PlusData() { cName = "手續費", iPrice = 10 },
-			new Slashlook.Hardware.Print.PDS326PlusData() { cName = "感光紙費", iPrice = 1 },
+		cLogoPath = @"D:\Slashview\Sample.png",
+		oItemsList = new System.Collections.Generic.List&lt;Slashview.Hardware.Print.PDS326PlusData&gt; {
+			new Slashview.Hardware.Print.PDS326PlusData() { cName = "麵包", iPrice = 12345 },
+			new Slashview.Hardware.Print.PDS326PlusData() { cName = "手續費", iPrice = 10 },
+			new Slashview.Hardware.Print.PDS326PlusData() { cName = "感光紙費", iPrice = 1 },
 		},
 		iTotalAccount = 12356,
 		cSystemName = "真好吃麵包坊收銀系統",

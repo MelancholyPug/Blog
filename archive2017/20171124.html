@@ -14,7 +14,7 @@
 
 <h3>先建立一個JPEG圖像品質方面的列舉</h3>
 <pre>
-namespace Slashlook.Image
+namespace Slashview.Image
 {
 	/// <summary>
 	/// 列舉：影像品質
@@ -40,7 +40,7 @@ namespace Slashlook.Image
 </ol>
 
 <pre>
-namespace Slashlook.Image
+namespace Slashview.Image
 {
 	/// &lt;summary&gt;
 	/// 這個類別用來壓縮影像大小
@@ -55,7 +55,7 @@ namespace Slashlook.Image
 		//影像檔案目的路徑
 		private string _cFileTargetPathAndName;
 		//檔案壓縮程度
-		private Slashlook.Image.Quality? _eQuality;
+		private Slashview.Image.Quality? _eQuality;
 		//實作資源鎖
 		private static System.Object _oLock = new System.Object();
 
@@ -86,7 +86,7 @@ namespace Slashlook.Image
 		/// &lt;summary&gt;
 		/// 設定影像壓縮品質
 		/// &lt;/summary&gt;
-		public Slashlook.Image.Quality? eQuality
+		public Slashview.Image.Quality? eQuality
 		{
 			set { _eQuality = value; }
 			get { return _eQuality; }
@@ -178,11 +178,11 @@ namespace Slashlook.Image
 
 <p>調用方法很簡單，請參考下列的程式碼應可以意會：</p>
 <pre>
-Slashlook.Image.Compress oImg = new Slashlook.Image.Compress()
+Slashview.Image.Compress oImg = new Slashview.Image.Compress()
 {
 	cFileSourcePathAndName = @"\Source.jpg",
 	cFileTargetPathAndName = @"\Target.jpg",
-	eQuality = Slashlook.Image.Quality.Highest
+	eQuality = Slashview.Image.Quality.Highest
 };
 oImg.Run();
 //最後建議將整個物件都釋放掉
@@ -198,12 +198,12 @@ oImage = null;
 </ol>
 
 <pre>
-namespace Slashlook.Image
+namespace Slashview.Image
 {
 	/// &lt;summary&gt;
 	/// 這個類別用來變更影像大小
 	/// &lt;/summary&gt;
-	public class Resize : Slashlook.Base.Base
+	public class Resize : Slashview.Base.Base
 	{
 		//建構子
 		public Resize() { }
@@ -217,7 +217,7 @@ namespace Slashlook.Image
 		//影像檔案目的路徑
 		private string _cFileTargetPathAndName;
 		//檔案壓縮程度
-		private Slashlook.Image.Quality? _eQuality;
+		private Slashview.Image.Quality? _eQuality;
 		//實作資源鎖
 		private static System.Object _oLock = new System.Object();
 		//記憶體看門狗
@@ -268,7 +268,7 @@ namespace Slashlook.Image
 		/// &lt;summary&gt;
 		/// 設定影像壓縮品質
 		/// &lt;/summary&gt;
-		public Slashlook.Image.Quality? eQuality
+		public Slashview.Image.Quality? eQuality
 		{
 			set { _eQuality = value; }
 			get { return _eQuality; }
@@ -404,11 +404,11 @@ namespace Slashlook.Image
 
 <p>調用方法很簡單，請參考下列的程式碼應可以意會：</p>
 <pre>
-Slashlook.Image.Resize oImg = new Slashlook.Image.Resize()
+Slashview.Image.Resize oImg = new Slashview.Image.Resize()
 {
 	cFileSourcePathAndName = @"\Source.jpg",
 	cFileTargetPathAndName = @"\Target.jpg",
-	eQuality = Slashlook.Image.Quality.Highest,
+	eQuality = Slashview.Image.Quality.Highest,
 	iWidth  = 999,
 	iHeight = 999
 };

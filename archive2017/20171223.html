@@ -31,7 +31,7 @@ nuget install Microsoft.AspNet.Web.Optimization
 
 <p>Step 3. 到App_Code目錄下面，建立你自己專屬的類別，理論上這個類別用靜態，會比較好方便調用。特別要強調的是，System.Web.Optimization有跟web.config裡面的「compilation debug值」有互動關係。這點請你在使用前，請先閱讀我下面類別裡面的SetOptimization方法，裡面的註解很重要。</p>
 <pre>
-namespace Slashlook
+namespace Slashview
 {
 	/// &lt;summary&gt;
 	/// 本類別用來管理JavaScript、CSS的壓縮
@@ -82,7 +82,7 @@ namespace Slashlook
 
 <p>Step 4. 打開「global.asax」，去「Application_Start」方法裡面，調用剛才類別裡面的靜態方法，把打包引擎調用一下吧。</p>
 <pre>
-Slashlook.BundleResource.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
+Slashview.BundleResource.RegisterBundles(System.Web.Optimization.BundleTable.Bundles);
 </pre>
 
 <p>Step 5. 打開你的「MasterPage」或某個aspx檔案，在想要插入的地方，插入你想要的壓縮檔案。例如下面的程式碼：</p>

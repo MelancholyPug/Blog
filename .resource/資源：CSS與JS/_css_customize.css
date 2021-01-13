@@ -1,21 +1,21 @@
 ﻿/* Customize fonts */
 @font-face {
-	font-family: SlashLookFont;
+	font-family: SlashViewFont;
 	font-weight: 400;
   font-display: swap;
 	src: local("Helvetica Neue"), local("\5FAE\8EDF\6B63\9ED1\9AD4"), local("Microsoft JhengHei"), local("MingLiU"), local("sans-serif");
 }
 @font-face {
-	font-family: SlashLookFontMonospace;
-	font-weight: 600;
+  font-family: SlashViewFontMonospace;
+  font-weight: 600;
   font-display: swap;
-	src: local("PT Mono"), local("PTMono-Regular"), url("http://themes.googleusercontent.com/static/fonts/ptmono/v1/jmle3kzCPnW8O7_gZGRDlQ.woff") format("woff");
+  src: local("PT Mono"), local("PTMono-Regular"), url("http://themes.googleusercontent.com/static/fonts/ptmono/v1/jmle3kzCPnW8O7_gZGRDlQ.woff") format("woff");
 }
 /* Overwrite Bootstrap Css */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: SlashLookFont;
-	margin-bottom: 10px;
-	margin-top: 10px;
+  font-family: SlashViewFont;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 h2, h3 {
 	color: rgba(96, 128, 0, 1);
@@ -31,15 +31,17 @@ h2, h3 {
   margin: 1em 0;
 }
 pre {
-	color: #63DE00;
-	font-size: 15px;
-	font-family: SlashLookFontMonospace;
-	line-height: 1.5em;
-	border-radius: 6px 0 0 6px;
-	border: 1px solid #000;
-	background-color: #000;
-	tab-size: 2; -moz-tab-size: 2;
-	white-space: pre-wrap; white-space: -moz-pre-wrap;
+  color: #63DE00;
+  font-size: 15px;
+  font-family: SlashViewFontMonospace;
+  line-height: 1.5em;
+  border-radius: 6px 0 0 6px;
+  border: 1px solid #000;
+  background-color: #000;
+  tab-size: 2;
+  -moz-tab-size: 2;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
 }
 .img-thumbnail {
 	border-radius: 6px;
@@ -74,7 +76,7 @@ pre {
 /* Customize Design */
 body {
   padding-top: 75px;
-  font-family: SlashLookFont;
+  font-family: SlashViewFont;
   font-size: 16px;
   color: #222;
   letter-spacing: 2px;
@@ -107,10 +109,10 @@ p {
 	margin: 0 0 10px;
 }
 .keywords {
-	margin: 40px 0 15px;
-	font-size: 14px;
-	font-family: SlashLookFont;
-	line-height: 26px;
+  margin: 40px 0 15px;
+  font-size: 14px;
+  font-family: SlashViewFont;
+  line-height: 26px;
 }
 #disqus_thread {
 	border-radius: 6px;

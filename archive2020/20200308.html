@@ -12,11 +12,11 @@
 
   <h3>靜態方式加入Namespace（XmlNS）</h3>
   <p>請直接看程式碼，語法如下：</p>
-<pre>
+  <pre>
 System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
   new System.Xml.Linq.XDeclaration("1.0", "UTF-8", "yes"),
   new System.Xml.Linq.XElement("Employees",
-    new System.Xml.Linq.XAttribute(System.Xml.Linq.XNamespace.Xmlns + "AAA", "urn:SomeDescribe:xmlns:slashlookA:1.0"),
+    new System.Xml.Linq.XAttribute(System.Xml.Linq.XNamespace.Xmlns + "AAA", "urn:SomeDescribe:xmlns:slashviewA:1.0"),
     new System.Xml.Linq.XAttribute(System.Xml.Linq.XNamespace.Xmlns + "BBB", "http://www.w3.org/"),
     new System.Xml.Linq.XAttribute(System.Xml.Linq.XNamespace.Xmlns + "CCC", "SomethiongICanNotTellYou"),
     new System.Xml.Linq.XElement("Person",
@@ -35,9 +35,9 @@ System.Xml.Linq.XDocument oXml = new System.Xml.Linq.XDocument(
 
   <p>輸出的XML已經有看到諸多的XML Namespace被加入了，例如：AAA、BBB...</p>
 
-<pre>
+  <pre>
 &lt;?xml version="1.0" encoding="utf-8" standalone="yes"?&gt;
-&lt;Employees xmlns:AAA="urn:SomeDescribe:xmlns:slashlookA:1.0" xmlns:BBB="http://www.w3.org/" xmlns:CCC="SomethiongICanNotTellYou"&gt;
+&lt;Employees xmlns:AAA="urn:SomeDescribe:xmlns:slashviewA:1.0" xmlns:BBB="http://www.w3.org/" xmlns:CCC="SomethiongICanNotTellYou"&gt;
   &lt;Person ID="A1234"&gt;
     &lt;Name&gt;王小明&lt;/Name&gt;
     &lt;Address&gt;台北市OOO路&lt;/Address&gt;

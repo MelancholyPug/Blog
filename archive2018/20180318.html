@@ -12,8 +12,8 @@
 
 <p>基於安全的因素，在一般的Windows工作站版本，PowerShell運行檔案式的Script能力是被封印起來，必須要自己手動打開，例如你開啟一個PowerShell隨意執行一個叫做「Sample.ps1」的檔案，可能會得到下列的提示語句：</p>
 <pre>
-PS C:\Users\Slashlook> .\Sample.ps1
-.\Sample.ps1 : 因為這個系統上已停用指令碼執行，所以無法載入 C:\Users\Slashlook\Sample.ps1 檔案。
+PS C:\Users\Slashview> .\Sample.ps1
+.\Sample.ps1 : 因為這個系統上已停用指令碼執行，所以無法載入 C:\Users\Slashview\Sample.ps1 檔案。
 如需詳細資訊，請參閱 about_Execution_Policies，網址為 https:/go.microsoft.com/fwlink/?LinkID=135170。
 </pre>
 
@@ -27,13 +27,13 @@ PS C:\Users\Slashlook> .\Sample.ps1
 
 <p>Step 2. 輸入指令「Get-ExecutionPolicy」，查看你現在PS被鎖在哪個權限下，理論上會是被鎖住的權限。</p>
 <pre>
-PS C:\Users\Slashlook> Get-ExecutionPolicy
+PS C:\Users\Slashview> Get-ExecutionPolicy
 Restricted
 </pre>
 
 <p>Step 3. 輸入指令「Get-ExecutionPolicy」來進行執行權限的切換，以一般的開發環境來說，選擇「RemoteSigned」已經足夠</p>
 <pre>
-PS C:\Users\Slashlook> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+PS C:\Users\Slashview> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 </pre>
 
 <p>是的，就這樣而已，不放心的話可以再輸入一次「Get-ExecutionPolicy」查看你現在的PowerShell執行權限。</p>

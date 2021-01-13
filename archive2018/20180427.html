@@ -19,7 +19,7 @@
 <pre>
 &lt;system.webServer&gt;
   &lt;modules runAllManagedModulesForAllRequests="true"&gt;
-    &lt;add name="ChangeContent" type="Slashlook.HttpResponseContent" /&gt;
+    &lt;add name="ChangeContent" type="Slashview.HttpResponseContent" /&gt;
   &lt;/modules&gt;
 &lt;/system.webServer&gt;
 </pre>
@@ -29,7 +29,7 @@
 <p>沒有甚麼技術性，就是把IHttpModule叫出來掛上事件後，對Response.Filter再掛一個類別，接下來就交給ASP.NET的機制，等到最終要Flush前，ASP.NET會自動去Call你定義的Filter，等於對你的類別事件進行委派啦！</p>
 
 <pre>
-namespace Slashlook
+namespace Slashview
 {
   //實作IHttpModule來壓縮Http Response輸出的HTML字串
   public class HttpResponseContent : System.Web.IHttpModule

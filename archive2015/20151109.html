@@ -18,7 +18,7 @@
 <p>基本上所有應該講的事情，我都已經在程式註解裏面說清楚了，所以我就不在這裏多廢話了。此外我有在這個類別裡面提供一個OnDrawing事件，如果有需要再進行重繪時觸發事件用來進行某些延伸的工作，就可以善用掛載這個事件，不需要再浪費一個Timer了。</p>
 <p>此外，我也有透過System.Reflection反射方法，來調用Windows Forms被保護（protected）的SetStyle、UpdateStyles方法，因此你不需要再去Form建構子中，去設定啟用OptimizedDoubleBuffer。</p>
 <pre>
-namespace SlashLook
+namespace Slashview
 {
 	/// &lt;summary&gt;
 	/// MarqueeText事件委派器
@@ -366,7 +366,7 @@ private void Form1_Load(object sender, EventArgs e)
 		iTimerInterval = 50,
 		iBrushBorderWidth = 10,
 		oFont = new System.Drawing.Font("微軟正黑體", 48, System.Drawing.FontStyle.Bold),
-		cContent = new string[] { "歡迎光臨 SlashLook 官方網站...", "Marquee testing string..." },
+		cContent = new string[] { "歡迎光臨 Slashview 官方網站...", "Marquee testing string..." },
 		oBrushBack = new System.Drawing.SolidBrush(System.Drawing.Color.Transparent),
 		oBrushFront = new System.Drawing.SolidBrush(System.Drawing.ColorTranslator.FromHtml("#78FFDD")),
 		oBrushBorder = new System.Drawing.SolidBrush(System.Drawing.ColorTranslator.FromHtml("#333")),

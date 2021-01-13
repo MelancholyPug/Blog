@@ -32,7 +32,7 @@
 <p>因此，基於偷懶的原因。我們今天要進行存取的是HKEY_USERS這個機碼下面的目錄，比較簡單、可以專注於程式碼上。我們要動用到的namespace是「Microsoft.Win32」。</p>
 
 <h3>C#存取Registry的程式碼</h3>
-<p>假設我們要存取.DEFAULT\SOFTWARE\SlashLook\下面的機碼，但是基本上，SOFTWARE下面根本沒有SlashLook，所以我們的程式碼就要假定它可能不存在，然後試圖去解決它。也就是，如果不存在的話，那就建立；如果存在，那就讀取值。</p>
+<p>假設我們要存取.DEFAULT\SOFTWARE\Slashview\下面的機碼，但是基本上，SOFTWARE下面根本沒有Slashview，所以我們的程式碼就要假定它可能不存在，然後試圖去解決它。也就是，如果不存在的話，那就建立；如果存在，那就讀取值。</p>
 
 <pre>
 static void Main(string[] args)
@@ -44,7 +44,7 @@ static void Main(string[] args)
 	DateTime dLastUpdateDate;
 
 	//準備讀取Registry前的動作
-	string cRegistryPath = @".DEFAULT\SOFTWARE\SlashLook";
+	string cRegistryPath = @".DEFAULT\SOFTWARE\Slashview";
 	Microsoft.Win32.RegistryKey oRK = Microsoft.Win32.Registry.Users.CreateSubKey(cRegistryPath);
 	oRK = Microsoft.Win32.Registry.Users.OpenSubKey(cRegistryPath, true);
 

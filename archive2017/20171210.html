@@ -31,7 +31,7 @@
 /root
 	-Web.Config
 	/extension
-		/Slashlook
+		/Slashview
 			-test.config
 </pre>
 
@@ -46,7 +46,7 @@
 
 <p>Step 4. 回到主要的Web.Config，把剛才搬出去的那段XML刪除，置換成下列這段，就大功告成了。</p>
 <pre>
-&lt;system.codedom configSource="extension\Slashlook\test.config" /&gt;
+&lt;system.codedom configSource="extension\Slashview\test.config" /&gt;
 </pre>
 
 <p>※ 其實所有的重點在於，你搬出去以及補上延伸指令的根（system.codedom）必須一致，且必須是ASP.NET承認的XML關鍵字集合，這是所有的文章都沒有談論到的事情。</p>

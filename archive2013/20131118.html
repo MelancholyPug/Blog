@@ -12,7 +12,7 @@
 <p>問題是，在沒有自製的資料庫元件的方案下，不可能在日後的所有的程式碼中，每一次都要記錄這些資料庫的足跡，因此，一個統一性的擴充性方法是必須的。以下就是這個擴充方法的程式碼。</p>
 
 <pre>
-namespace Slashlook
+namespace Slashview
 {
 	public static class SqlExtension
 	{
@@ -40,7 +40,7 @@ namespace Slashlook
 <p>日後的引用就變得很簡單了，只要在資料指令送出前，加入這行指令即可：</p>
 
 <pre>
-<%@ Import Namespace="Slashlook" %>
+<%@ Import Namespace="Slashview" %>
 System.Data.SqlClient.SqlCommand oCmd = new System.Data.SqlClient.SqlCommand();
 oCmd.CommandText = "select * from AAA";
 oCmd.AddTrackableInformation();	//這時候會被加入新的可追蹤資訊
