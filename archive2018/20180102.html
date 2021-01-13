@@ -42,7 +42,7 @@
 
 <h3>將以上問題的解決方式，綜合成下列的類別程式碼：</h3>
 <pre>
-namespace Slashlook.Bundle
+namespace Slashview.Bundle
 {
 	/* -----
 	 * 本類別用來實作保留Javascript、Css之重要註解（Important Comments）
@@ -180,8 +180,8 @@ namespace Slashlook.Bundle
 <pre>
 public static void Register(System.Web.Optimization.BundleCollection oBundles)
 {
-	Slashlook.Bundle.CommentScriptBundle oJsBundle = new Slashlook.CommentScriptBundle("cKey");
-	oJsBundle.Orderer = new Slashlook.Bundle.CommentBundleOrder();
+	Slashview.Bundle.CommentScriptBundle oJsBundle = new Slashview.Bundle.CommentScriptBundle("cKey");
+	oJsBundle.Orderer = new Slashview.Bundle.CommentBundleOrder();
 	oJsBundle.Include(
 		"~/include/jquery.js",
 		"~/include/bootstrap.js"

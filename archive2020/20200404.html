@@ -35,7 +35,7 @@
   <h3>台灣全民健保卡顯性資料汲取程式</h3>
   <p>有了上面的觀念與前輩的類別後，操作PCSC協定簡直易如反掌，以下是我所撰寫的範例程式碼，想要少寫一些namespace的人記得using一下PCSC跟PCSC.Iso7816喔。</p>
 
-<pre>
+  <pre>
 using System;
 using System.Linq;
 
@@ -58,7 +58,7 @@ namespace Console_Simply
         else
         {
           Console.Clear();
-          Console.WriteLine($"# 歡迎使用台灣全民健保卡檢視程式 / by slashlook.com");
+          Console.WriteLine($"# 歡迎使用台灣全民健保卡檢視程式 / by slashview.com");
           Console.WriteLine($"# 共找到「{oReaders.GetReaders().Count()} 部設備」並使用「{cReader}」讀卡機，程式運行期間請勿任意移除設備。");
         }
       }

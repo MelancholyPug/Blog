@@ -22,7 +22,7 @@ Important: OAuth 1.0 is no longer supported and will be disabled on May 5, 2015.
 <h3>* 使用前聲明：</h3>
 <p>由於Google的說明文件寫的是出名的爛（最近介面有大改，好了一些，但是內容還是爛），跟MSDN完全無法比擬，所以請詳細閱讀以下的聲明，否則你會陷在它的鳥文件裡面打轉數個小時而無法脫身。</p>
 <ol>
-	<li>本案假定的是你擁有Google Apps帳戶，簡單的說也就是你登入GMail的帳號是自帶網域的，例如：someone@slashlook.com。</li>
+	<li>本案假定的是你擁有Google Apps帳戶，簡單的說也就是你登入GMail的帳號是自帶網域的，例如：someone@slashview.com。</li>
 	<li>本案假定的是你擁有Google Apps帳戶的管理者權限，也就是你可以存取<a href="https://admin.google.com/" target="_blank">https://admin.google.com/</a>這個頁面下的安全性（security）功能。</li>
 	<li>本案假定的是你擁有某Spreadsheets檔案的完整存取權。</li>
 </ol>
@@ -88,12 +88,12 @@ SpreadsheetFeed oSF = oService.Query(new SpreadsheetQuery());
 </pre>
 
 <h3>Step 3. 歹誌絕對不是像憨人想的那麼簡單</h3>
-<p>程式碼跑了，Token拿到了，我已經可以用Big Query去查我要查的東西了吧！結果無論你怎麼在ServiceAccountCredential.Initializer去授權Scopes，無倫是存取整個https://docs.google.com/feeds或單一服務https://spreadsheets.google.com/feeds，你永遠得到的檔案數（feeds）都是為零（0）。原因是，你的Service Account並不能代表你自己（someone@slashlook.com），就算建立的這個Service Account的正是你（someone@slashlook.com）本人。更爛的是，Google官方開發者文件並不會跟你講這些事情。答案是，請在上面的程式碼中，加入User屬性。</p>
+<p>程式碼跑了，Token拿到了，我已經可以用Big Query去查我要查的東西了吧！結果無論你怎麼在ServiceAccountCredential.Initializer去授權Scopes，無倫是存取整個https://docs.google.com/feeds或單一服務https://spreadsheets.google.com/feeds，你永遠得到的檔案數（feeds）都是為零（0）。原因是，你的Service Account並不能代表你自己（someone@slashview.com），就算建立的這個Service Account的正是你（someone@slashlook.com）本人。更爛的是，Google官方開發者文件並不會跟你講這些事情。答案是，請在上面的程式碼中，加入User屬性。</p>
 <pre>
 new ServiceAccountCredential.Initializer(cEmail)
 {
 	Scopes = new[] { "https://spreadsheets.google.com/feeds" },
-	User = "someone@slashlook.com"
+	User = "someone@slashview.com"
 }.FromCertificate(oCert)
 </pre>
 <p>加了之後呢？更慘，程式直接吐出你的Client端沒有認證？！</p>
@@ -106,7 +106,7 @@ Error =
 	Uri: ""
 }
 </pre>
-<p>發生這個問題的原因，是因為我們沒有任何的方式，與要被扮演Impersonates、被模擬Simulation的（someone@slashlook.com）真正使用者，進行人機介面的溝通，所以被擋下來了。但是，一個Console介面的程式怎麼可能在自動執行的時候，還要去跟使用者每一次都取得授權呢？這樣也叫自動化豈不好笑？</p>
+<p>發生這個問題的原因，是因為我們沒有任何的方式，與要被扮演Impersonates、被模擬Simulation的（someone@slashview.com）真正使用者，進行人機介面的溝通，所以被擋下來了。但是，一個Console介面的程式怎麼可能在自動執行的時候，還要去跟使用者每一次都取得授權呢？這樣也叫自動化豈不好笑？</p>
 
 <h3>Step 4. 請到<a href="https://admin.google.com/" target="_blank">Google Admin Console</a>管理控制台</h3>
 <p>經過了在茫茫網海中的找尋，最終我們來到了這一頁的設定，如下列圖中所示，請隨之設定：</p>

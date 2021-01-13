@@ -23,7 +23,7 @@ test.cs(9,25): error CS1056: 未預期的字元 '$'
 </pre>
 
 <h3>將ASP.NET強制上C# 7.0（Roslyn）編譯器的方法</h3>
-<p>基本上跟這篇「<a href="http://slashlook.com/articles_20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</a>」差不了多少，依然是用「nuget install Microsoft.Net.Compilers」去安裝新的Roslyn編譯器，但有一些不一樣之處將在下方說明。</p>
+<p>基本上跟這篇「<a href="/archive2016/20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</a>」差不了多少，依然是用「nuget install Microsoft.Net.Compilers」去安裝新的Roslyn編譯器，但有一些不一樣之處將在下方說明。</p>
 
 <p>Step 1. 在下載完後，你的nuget.exe所在的目錄下會多出一個類似「Microsoft.Net.Compilers.2.3.1」的資料夾，你必須進入這個資料夾中的tools目錄，將所有的檔案複製起來，貼到你的ASP.NET伺服器下的「C:\Windows\Microsoft.NET\Framework64\v4.0.30319」。這些檔案列計如下：</p>
 <pre>
