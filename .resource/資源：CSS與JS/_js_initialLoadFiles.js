@@ -1,4 +1,4 @@
-﻿/* 因為Google也會去爬NeoCities的網站，這樣會造成我方網頁的內容被Google視為兩份一模一樣的網頁，在考量Google有可能會因此降低網頁排名的情況下，因此將偵測到NeoCities的網址全部導回slashlook.com */
+﻿/* 因為Google也會去爬NeoCities的網站，這樣會造成我方網頁的內容被Google視為兩份一模一樣的網頁，在考量Google有可能會因此降低網頁排名的情況下，因此將偵測到NeoCities的網址全部導回母站 */
 (function(){
 	var cFind = "slashlook.neocities.org";
 	if (window.location.hostname === cFind) {
