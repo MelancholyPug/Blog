@@ -6,69 +6,70 @@
 </head>
 <body>
 
-<h1>快速進行WSP網站進行C#（Roslyn）編譯器的檔案覆蓋作業</h1>
+	<h1>快速進行WSP網站之C#（Roslyn）編譯器相關檔案覆蓋作業</h1>
 
-<p>在之前討論到「<a href="/archive2017/20170817.html" target="_blank">在ASP.NET WSP模式中，啟用C# 7.0（Roslyn）編譯器</a>」的文章中有指出，微軟在.NET Framework的升版更新中，很多DLL檔案的擁有權限基於安全的理由，將其變更為「TrustedInstaller」。這樣的問題將會造成，當「Administrator」想要進入置換檔案的時候，就被系統基於權限不合、不夠的理由被踢出了。</p>
+	<p>在之前討論到「<a href="/archive2017/20170817.html" target="_blank">在ASP.NET WSP模式中，啟用C# 7.0（Roslyn）編譯器</a>」的文章中有指出，微軟在.NET Framework的升版更新中，很多DLL檔案的擁有權限基於安全的理由，將其變更為「TrustedInstaller」。這樣的問題將會造成，當「Administrator」想要進入置換檔案的時候，就被系統基於權限不合、不夠的理由被踢出了。</p>
 
-<p>更慘的是，要解決這個問題，得要手動的一個一個點選UI介面來完成，實在有夠惱人。</p>
+	<p>更慘的是，要解決這個問題，得要手動的一個一個點選UI介面來完成，實在有夠惱人。</p>
 
-<p>今天又有類似的工作需要進行，因此寫了一個小程式，讓使用者可以快速地進行檔案權限變更，以利將Roslyn編譯器所需要的檔案，快速的複製到對應的目錄下。</p>
+	<p>今天又有類似的工作需要進行，因此寫了一個小程式，讓使用者可以快速地進行檔案權限變更，以利將Roslyn編譯器所需要的檔案，快速的複製到對應的目錄下。</p>
 
-<h3>檔案擁有者、檔案讀寫權限指令快速產生器</h3>
+	<h3>檔案擁有者、檔案讀寫權限指令快速產生器</h3>
 
-<p>概念很簡單，就是利用「takeown」以及「icacls」這兩隻程式來幫我們處理。</p>
+	<p>概念很簡單，就是利用「takeown」以及「icacls」這兩隻程式來幫我們處理。</p>
 
-<ol>
-	<li>在文字框輸入要編碼的字串後，按下Enter會自動進行HTML Encode。</li>
-	<li>可以隨意的點選藍色、紅色按鈕，多次的編解碼您的HTML。</li>
-</ol>
+	<ol>
+		<li>在文字框輸入要編碼的字串後，按下Enter會自動進行HTML Encode。</li>
+		<li>可以隨意的點選藍色、紅色按鈕，多次的編解碼您的HTML。</li>
+	</ol>
 
-<p>請填入.NET Framework的運行目錄：</p>
-<input type="textbox" id="uDirectory" class="form-control" placeholder=".NET Framework Directory, e.g. [C:\Windows\Microsoft.NET\Framework64\v4.0.30319]" />
+	<p>請填入.NET Framework的運行目錄：</p>
+	<input type="text" id="uDirectory" class="form-control" placeholder=".NET Framework Directory, e.g. [C:\Windows\Microsoft.NET\Framework64\v4.0.30319]" />
 
-<p>請填入Roslyn編譯器的tools目錄下，所有的檔案名稱：</p>
+	<p>請填入Roslyn編譯器的tools目錄下，所有的檔案名稱：</p>
 <textarea id="uFiles" class="form-control" rows="20" placeholder="Paste all under directory:[Microsoft.Net.Compilers\tools] files name here."></textarea>
 
-<p>
-	<button id="uMakeScript" type="button" class="btn btn-primary btn-lg">Generate Script 產生指令</button>
-	<button id="uClear"  type="button" class="btn btn-default btn-lg">Clear 清除</button>
-</p>
+	<p>
+		<button id="uMakeScript" type="button" class="btn btn-primary btn-lg">Generate Script 產生指令</button>
+		<button id="uClear" type="button" class="btn btn-default btn-lg">Clear 清除</button>
+	</p>
 
-<p>※ 轉換後，記得要用最高管理權限開啟cmd console，然後把指令字串貼上去就解決了。</p>
+	<p>※ 轉換後，記得要用最高管理權限開啟cmd console，然後把指令字串貼上去就解決了。</p>
 
-<p>相關連結：</p>
-<p><a href="/archive2016/20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</p></a>
-<p><a href="/archive2017/20170817.html" target="_blank">在ASP.NET WSP模式中，啟用C# 7.0（Roslyn）編譯器</a></p>
+	<p>相關連結：</p>
+	<p><a href="/archive2021/20210114.html" target="_blank">在ASP.NET WSP模式中，啟用C# 8.0（Roslyn）編譯器</a></p>
+	<p><a href="/archive2017/20170817.html" target="_blank">在ASP.NET WSP模式中，啟用C# 7.0（Roslyn）編譯器</a></p>
+	<p><a href="/archive2016/20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</a></p>
+	<p><a href="/archive2017/20171211.html" target="_blank">在不使用nuget的情況下，讓WSP可以在VisualStudio中使用C#新語法</a></p>
 
-<script>
-	pushToExecuteList(function(){
-		$("#uDirectory").focus();
-		//Event Binding
-		$("#uMakeScript").click(function(){
-			var cDriectory = $("#uDirectory").val();
-			var cFiles = $("#uFiles").val().split("\n");
-			//建立暫存字串
-			var cTemp = "";
-			//跑迴圈
-			for(var i=0; i<cFiles.length; i++)
-			{
-				//更換擁有權限：takeown /F C:\Windows\explorer.exe /A
-				cTemp += "takeown /F " + cDriectory + "\\" + cFiles[i] + " /A" + "\n";
-				//更換讀寫權限：icacls file /grant Administrators:(GR,GW,GE)
-				cTemp += "icacls " + cDriectory + "\\" + cFiles[i] + " /grant Administrators:(GR,GW,GE)" + "\n";
-			}
-			//輸出
-			$("#uFiles").val(cTemp);
-			$("#uFiles").focus();
-		});
-		$("#uClear").click(function(){
-			$("#uFiles").val("");
-			$("#uFiles").focus();
-		});
-	}, 2);	//Priority:2
-</script>
+	<script>
+		pushToExecuteList(function () {
+			$("#uDirectory").focus();
+			//Event Binding
+			$("#uMakeScript").click(function () {
+				var cDriectory = $("#uDirectory").val();
+				var cFiles = $("#uFiles").val().split("\n");
+				//建立暫存字串
+				var cTemp = "";
+				//跑迴圈
+				for (var i = 0; i < cFiles.length; i++) {
+					//更換擁有權限：takeown /F C:\Windows\explorer.exe /A
+					cTemp += "takeown /F " + cDriectory + "\\" + cFiles[i] + " /A" + "\n";
+					//更換讀寫權限：icacls file /grant Administrators:(GR,GW,GE)
+					cTemp += "icacls " + cDriectory + "\\" + cFiles[i] + " /grant Administrators:(GR,GW,GE)" + "\n";
+				}
+				//輸出
+				$("#uFiles").val(cTemp);
+				$("#uFiles").focus();
+			});
+			$("#uClear").click(function () {
+				$("#uFiles").val("");
+				$("#uFiles").focus();
+			});
+		}, 2);	//Priority:2
+	</script>
 
-<small>Windows Explorer File Folder Permission Change Modify Script AutoBatch</small>
+	<small>Windows Explorer File Folder Permission Change Modify Script AutoBatch</small>
 
 </body>
 </html>

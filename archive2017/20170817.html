@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<h1>在ASP.NET WSP模式中，啟用C# 7.0（Roslyn）編譯器</h1>
+	<h1>在ASP.NET WSP模式中，啟用C# 7.0（Roslyn）編譯器</h1>
 
-<p>安裝好Windows Server 2016以及.NET Framework 4.7後，滿心期待預設的C#會因此變革成新的Roslyn編譯器，但是一套用到新的C#寫法，依舊破功。對此還存有幻想的人，勸你放棄這個念頭吧！</p>
+	<p>安裝好Windows Server 2016以及.NET Framework 4.7後，滿心期待預設的C#會因此變革成新的Roslyn編譯器，但是一套用到新的C#寫法，依舊破功。對此還存有幻想的人，勸你放棄這個念頭吧！</p>
 
-<p>以下是編譯器最後版本資訊（C# 5.0），以及測試編譯C#新語法糖時的錯誤資訊，看到讓大家死了這條心（which is no longer the latest version），基本上微軟就是叫你直接去參考Roslyn編譯器了：</p>
+	<p>以下是編譯器最後版本資訊（C# 5.0），以及測試編譯C#新語法糖時的錯誤資訊，看到讓大家死了這條心（which is no longer the latest version），基本上微軟就是叫你直接去參考Roslyn編譯器了：</p>
 <pre>
 C:\Windows\Microsoft.NET\Framework64\v4.0.30319>csc test.cs
 Microsoft (R) Visual C# Compiler version 4.7.2046.0
@@ -22,10 +22,10 @@ This compiler is provided as part of the Microsoft (R) .NET Framework, but only 
 test.cs(9,25): error CS1056: 未預期的字元 '$'
 </pre>
 
-<h3>將ASP.NET強制上C# 7.0（Roslyn）編譯器的方法</h3>
-<p>基本上跟這篇「<a href="/archive2016/20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</a>」差不了多少，依然是用「nuget install Microsoft.Net.Compilers」去安裝新的Roslyn編譯器，但有一些不一樣之處將在下方說明。</p>
+	<h3>將ASP.NET強制上C# 7.0（Roslyn）編譯器的方法</h3>
+	<p>基本上跟這篇「<a href="/archive2016/20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</a>」差不了多少，依然是用「nuget install Microsoft.Net.Compilers」去安裝新的Roslyn編譯器，但有一些不一樣之處將在下方說明。</p>
 
-<p>Step 1. 在下載完後，你的nuget.exe所在的目錄下會多出一個類似「Microsoft.Net.Compilers.2.3.1」的資料夾，你必須進入這個資料夾中的tools目錄，將所有的檔案複製起來，貼到你的ASP.NET伺服器下的「C:\Windows\Microsoft.NET\Framework64\v4.0.30319」。這些檔案列計如下：</p>
+	<p>Step 1. 在下載完後，你的nuget.exe所在的目錄下會多出一個類似「Microsoft.Net.Compilers.2.3.1」的資料夾，你必須進入這個資料夾中的tools目錄，將所有的檔案複製起來，貼到你的ASP.NET伺服器下的「C:\Windows\Microsoft.NET\Framework64\v4.0.30319」。這些檔案列計如下：</p>
 <pre>
 csc.exe
 csc.exe.config
@@ -77,38 +77,40 @@ VBCSCompiler.exe
 VBCSCompiler.exe.config
 </pre>
 
-<p>※ 請注意，這些我列舉出的檔案、數量，以及編譯器的版本號，都是我在撰寫文章當下的產出物，不代表你在日後看到並且當下實作之時的最‵終結果。</p>
+	<p>※ 請注意，這些我列舉出的檔案、數量，以及編譯器的版本號，都是我在撰寫文章當下的產出物，不代表你在日後看到並且當下實作之時的最‵終結果。</p>
 
-<p>Step 2. 在C# 7.0時代，當我們將上述的檔案放進去資料夾時，不若C# 6.0時代這麼簡單，應該是說，系統會出現無法取代檔案的問題。會發生這個問題是因為檔案權限被指派成TrustedInstaller而非Administrator（感覺是微軟的疏忽所致），因此必須進行權限的修正後，方能取代（覆蓋）之。</p>
+	<p>Step 2. 在C# 7.0時代，當我們將上述的檔案放進去資料夾時，不若C# 6.0時代這麼簡單，應該是說，系統會出現無法取代檔案的問題。會發生這個問題是因為檔案權限被指派成TrustedInstaller而非Administrator（感覺是微軟的疏忽所致），因此必須進行權限的修正後，方能取代（覆蓋）之。</p>
 
-<img src="/image/2017/20170817_01.jpg" />
+	<img src="/image/2017/20170817_01.jpg" />
 
-<p>下方以System.Xml.ReaderWriter.dll這個衝突檔案當作範例，請觀看圖片內的解法，親自且逐一實作，將所有的衝突檔案排除即可。</p>
+	<p>下方以System.Xml.ReaderWriter.dll這個衝突檔案當作範例，請觀看圖片內的解法，親自且逐一實作，將所有的衝突檔案排除即可。</p>
 
-<p>我們可以看到這個dll權限屬於TrustedInstaller，而非我們自己的Administrator，請點選變更。</p>
-<img src="/image/2017/20170817_02.jpg" />
+	<p>我們可以看到這個dll權限屬於TrustedInstaller，而非我們自己的Administrator，請點選變更。</p>
+	<img src="/image/2017/20170817_02.jpg" />
 
-<p>改回後，我們就可以發現這個dll屬於Administrator了。</p>
-<img src="/image/2017/20170817_03.jpg" />
+	<p>改回後，我們就可以發現這個dll屬於Administrator了。</p>
+	<img src="/image/2017/20170817_03.jpg" />
 
-<p>最後請在確認一下Administrators是否擁有這個檔案的存取權限，如果沒有存取權限的話，一定要賦予，否則依然無法覆寫檔案。</p>
-<img src="/image/2017/20170817_04.jpg" />
+	<p>最後請在確認一下Administrators是否擁有這個檔案的存取權限，如果沒有存取權限的話，一定要賦予，否則依然無法覆寫檔案。</p>
+	<img src="/image/2017/20170817_04.jpg" />
 
-<h3></h3>
-<p>一旦替換成功，到此資料夾下面輸入CSC，如果看到下方的資訊（沒有出現for C# 5.0），就代表你成功替換為Roslyn編譯器啦！</p>
+	<h3></h3>
+	<p>一旦替換成功，到此資料夾下面輸入CSC，如果看到下方的資訊（沒有出現for C# 5.0），就代表你成功替換為Roslyn編譯器啦！</p>
 
 <pre>
 Microsoft (R) Visual C# Compiler version 2.3.1.61919 (57c81319)
 Copyright (C) Microsoft Corporation. All rights reserved.
 </pre>
 
-<p>※ 最後在小小的補充說明，在StackOverflow中，有許多人認為csc.exe是depends upon the .NET Framework，我認為這種說法很模糊且無濟於事（Roslyn編譯器事實上並沒有隨著新的.Net安裝檔案推送出去），而對一般使用者來說，這種說法甚至可以視為是錯誤的。</p>
+	<p>※ 最後在小小的補充說明，在StackOverflow中，有許多人認為csc.exe是depends upon the .NET Framework，我認為這種說法很模糊且無濟於事（Roslyn編譯器事實上並沒有隨著新的.Net安裝檔案推送出去），而對一般使用者來說，這種說法甚至可以視為是錯誤的。</p>
 
-<p>相關連結：</p>
-<p><a href="/archive2016/20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</p></a>
-<p><a href="/archive2017/20171212.html" target="_blank">快速進行WSP網站進行C#（Roslyn）編譯器的檔案覆蓋作業</a></p>
+	<p>相關連結：</p>
+	<p><a href="/archive2021/20210114.html" target="_blank">在ASP.NET WSP模式中，啟用C# 8.0（Roslyn）編譯器</a></p>
+	<p><a href="/archive2016/20160617.html" target="_blank">在ASP.NET WSP模式中，啟用C# 6.0（Roslyn）編譯器</a></p>
+	<p><a href="/archive2017/20171212.html" target="_blank">快速進行WSP網站之C#（Roslyn）編譯器相關檔案覆蓋作業</a></p>
+	<p><a href="/archive2017/20171211.html" target="_blank">在不使用nuget的情況下，讓WSP可以在VisualStudio中使用C#新語法</a></p>
 
-<small>Enable Initial .NETCompiler ASP.NET C#7.0 Csc.exe System.CodeDom.Compiler</small>
+	<small>Enable Initial .NETCompiler ASP.NET C#7.0 Csc.exe System.CodeDom.Compiler</small>
 
 </body>
 </html>
