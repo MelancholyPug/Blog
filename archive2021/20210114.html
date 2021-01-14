@@ -12,7 +12,7 @@
 
   <h3>Step 1. 將Windows Server升級到.NET Framework 4.8</h3>
   <p>請用虔誠與哀悼的心情下載.NET Framework 4.8離線安裝檔案，包含<a href="https://support.microsoft.com/zh-tw/help/4503548/microsoft-net-framework-4-8-offline-installer-for-windows" target="_blank">主檔案</a>與<a href="https://support.microsoft.com/zh-tw/help/4497410/microsoft-net-framework-4-8-language-pack-offline-installer-for-window" target="_blank">繁體中文</a>語言包。</p>
-  <p>升級後若之前有搞過WSP直接支援C# 6.0之類的動作，基本上所有的網站都會爛掉，因為csc.exe與相關的DLL都被重新蓋掉了，回到C# 5.0時期的環境。對了，記得去調整一下web.config讓WSP網站真正的以.NET Framework 4.8環境運行，調整後重新啟動VS，諸如「cookieSameSite="Strict"」無法解析警告之類的蚯蚓線會消失。</p>
+  <p>升級後若之前有搞過WSP直接支援C# 6.0之類的動作，基本上所有的網站都會爛掉，因為csc.exe與相關的DLL都被重新蓋掉了，回到C# 5.0時期的環境。對了，記得去調整一下web.config讓WSP網站真正的以.NET Framework 4.8環境運行，調整後重新啟動VS，諸如「cookieSameSite="Strict"」無法解析警告之類的蚯蚓線（毛毛蟲）會消失。</p>
 <pre>
 &lt;compilation targetFramework="4.8" /&gt;
 &lt;httpRuntime targetFramework="4.8" /&gt;
@@ -34,9 +34,9 @@ nuget.exe install Microsoft.Net.Compilers.Toolset
 
 
   <h3>補充：VisualStudio 2019使用WSP與C# 8.0語法說明</h3>
-  <p>有執行環境後，編輯環境也是要兼顧，接下來這些做法其實做完後在VisualStudio 2017也可以編譯器正常運作，只是IDE環境下始終無法解析C# 8.0語法（VisualStudio 2017編輯器最極限只能支援到C# 7.x的寫法解析），因此如果不想看到語法下方出現蚯蚓線條的話，請安裝VisualStudio 2019。</p>
+  <p>有執行環境後，編輯環境也是要兼顧，接下來這些做法其實做完後在VisualStudio 2017也可以編譯器正常運作，只是IDE環境下始終無法解析C# 8.0語法（VisualStudio 2017編輯器最極限只能支援到C# 7.x的寫法解析），因此如果不想看到語法下方出現蚯蚓線（毛毛蟲）的話，請安裝VisualStudio 2019。</p>
 
-  <p>Step 1. 將Microsoft.Net.Compilers.Toolse的\tasks\net472下的檔案（資料夾不用）全部複製，貼到bin\Roslyn下。</p>
+  <p>Step 1. 將Microsoft.Net.Compilers.Toolse的\tasks\net472下的檔案（資料夾不用）全部複製，貼到bin\roslyn下。</p>
 
   <p>Step 2. 使用nuget去抓取最新的Microsoft.CodeDom.Providers.DotNetCompilerPlatform，撰寫文章當下的版本號是3.6.0版。抓下來後到\lib\net45目錄下把DLL複製，貼到\bin目錄即可。</p>
 
