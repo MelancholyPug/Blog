@@ -12,9 +12,9 @@
 
   <h3>SQL AutoIndex reset（歸零）</h3>
 
-<p>T-SQL指令很簡單：</p>
+<p>T-SQL指令很簡單，但注意要在「選取模式」下使用，如果在「編輯模式」下使用會無法動作：</p>
 <pre class="sql">
-DBCC CHECKIDENT('Your DataTable name', RESEED, 0);
+DBCC CHECKIDENT('Your DataTable name', RESEED, 0)
 </pre>
 
   <p>相關參考：</p>
