@@ -6,9 +6,9 @@
 </head>
 <body>
 
-  <h1>在ASP.NET WSP模式中，啟用C# 8.0（Roslyn）編譯器</h1>
+  <h1>在ASP.NET WSP模式中，啟用C# 9.0（Roslyn）編譯器</h1>
 
-  <p>轉眼間2020年末.NET Framework 4.8被微軟宣告為最後一版，之後要朝著.NET 5直奔而去，最新的C# 9.0也宣告只支援.NET 5，所以還在使用WSP（Web Site Project）與.NET Framework的老屁股們，這個大概是這一系列文章的終點了。若對於這一系列的文章沒有概念的人，建議從相關連結的文章開始看起會比較舒服一點，在這邊我僅僅列出如何實作讓WSP可以硬上C# 8.0（Roslyn 3.x）以及相關調整。</p>
+  <p>轉眼間2020年末.NET Framework 4.8被微軟宣告為最後一版，之後要朝著.NET 5直奔而去，最新的C# 9.0也宣告只支援.NET 5，所以還在使用WSP（Web Site Project）與.NET Framework的老屁股們，這個大概是這一系列文章的終點了。若對於這一系列的文章沒有概念的人，建議從相關連結的文章開始看起會比較舒服一點，在這邊我僅僅列出如何實作讓WSP可以硬上C# 9.0（Roslyn 3.x）以及相關調整。</p>
 
   <h3>Step 1. 將Windows Server升級到.NET Framework 4.8</h3>
   <p>請用虔誠與哀悼的心情下載.NET Framework 4.8離線安裝檔案，包含<a href="https://support.microsoft.com/zh-tw/help/4503548/microsoft-net-framework-4-8-offline-installer-for-windows" target="_blank">主檔案</a>與<a href="https://support.microsoft.com/zh-tw/help/4497410/microsoft-net-framework-4-8-language-pack-offline-installer-for-window" target="_blank">繁體中文</a>語言包。</p>
@@ -55,7 +55,10 @@ nuget.exe install Microsoft.Net.Compilers.Toolset
   <p><a href="/archive2017/20171212.html" target="_blank">快速進行WSP網站之C#（Roslyn）編譯器相關檔案覆蓋作業</a></p>
   <p><a href="/archive2017/20171211.html" target="_blank">在不使用nuget的情況下，讓WSP可以在VisualStudio中使用C#新語法</a></p>
 
-  <small>Enable Initial .NETCompiler ASP.NET Csc.exe Version System.CodeDom.Compiler VisualStudio WSP WebSiteProject C#6.0 C#7.0 C#7.1 C#7.2 C#7.3 C#8.0 Debug EnableWindows Explorer File Folder Permission Change Modify Script AutoBatch</small>
+  <h4>更新：</h4>
+  <p>依據Microsoft更新度越來越隨意的roslyn資訊表示，Version 3.8以上已經是C# 9.0的範疇了。詳見<a href="https://github.com/dotnet/roslyn/blob/master/docs/wiki/NuGet-packages.md#versioning" target="_blank">Roslyn NuGet-packages: Microsoft.Net.Compilers.Toolset</a></p>
+
+  <small>Enable Initial .NETCompiler ASP.NET Csc.exe Version System.CodeDom.Compiler VisualStudio WSP WebSiteProject C#6.0 C#7.0 C#7.1 C#7.2 C#7.3 C#8.0 C#9.0 Debug EnableWindows Explorer File Folder Permission Change Modify Script AutoBatch</small>
 
 </body>
 </html>
