@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>解決VisualStudio安裝完成後，編輯器無法讓ASHX檔案使用C#編輯器體驗</h1>
+
+  <p>每次重灌或升級Visual Studio後，都會遇到ASHX（泛型處理常式、Generic Handler）的編譯器無法理解問題，例如：無法收折、摺疊程式碼，按下換行後縮排錯誤等問題，每次都要重新爬文才會想起來，因此記錄在此備查。</p>
+
+  <h3>讓C#編輯器懂得處理ASHX程式碼格式編排</h3>
+  <p>Step 1. 工具＞選項＞文字編輯器＞副檔名</p>
+
+  <p>Step 2. 在副檔名處打入「ashx」後按下加入即可。</p>
+  <img src="/image/2021/20210217_01.jpg" />
+
+  <p>Step 3. 做完後關掉VisualStudio再重新開啟應該就可以看到效果了。</p>
+
+  <small>VisualStudio ASHX 泛型處理常式 GenericHandler</small>
+
+</body>
+</html>
