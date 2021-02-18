@@ -18,7 +18,11 @@
 
   <p>Step 3. 做完後關掉VisualStudio再重新開啟應該就可以看到效果了。</p>
 
-  <p>PS. 這個效果設定上去後，VisualStudio 2019在WSP模式下，所有的app_code自定義類別，在編輯器上面都會無法使用intellisense環境撰寫，但可以正確執行程式碼，若有意圖使用請小心。若要返回intellisense可以正常運作的模式，請把這個設定刪除後重新開啟VS，並利用新增檔案功能新增一次ASHX檔案，應該可以恢復正常運作。</p>
+  <h4>附註</h4>
+
+  <p>效果設定上去後，VisualStudio 2019在WSP模式下，所有的app_code自定義類別，在編輯器上面都會無法使用intellisense環境撰寫，有關於debug時期的DataTips也有問題（VisualStudio 2019），但可以正確執行程式碼，若有意圖使用請小心。</p>
+  
+  <p>要返回intellisense、DataTips均可以正常運作的模式，請把設定刪除後重新開啟VS，並利用新增檔案功能新增一次ASHX（泛型處理常式）檔案，再重新開一次VS，應該可以恢復正常運作。個人覺得VisualStudio在ASHX檔案的處理從2015之後就滿滿的放呼爛BUG（例如著名的Code Indent BUG到2019還是無解），應該是不用有太多的期待...</p>
 
   <small>VisualStudio ASHX 泛型處理常式 GenericHandler</small>
 
