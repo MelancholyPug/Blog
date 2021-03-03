@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>使用C# 9.0進行編譯時發生CS0518錯誤（IsExternalInit）</h1>
+
+  <p>當你在nuget下載Microsoft.Net.Compilers.Toolset（Microsoft.Net.Compilers），想要使用roslyn來進行C# 9.0版本語法來編譯時，你會遇到編譯器不斷的拋出一個詭異的錯誤：CS0518 未定義或匯入預先定義的類型，在撰寫這篇文章時，我的roslyn版本號是3.8.0，對應到C# 9.0 。</p>
+
+  <h3>CS0518 編譯錯誤資訊（IsExternalInit）</h3>
+  <p>編譯器拋出的錯誤資訊大致上如下描述：</p>
+<pre class="plaintext">
+錯誤 CS0518 未定義或匯入預先定義的類型 'System.Runtime.CompilerServices.IsExternalInit'
+錯誤 CS0518 Predefined type 'System.Runtime.CompilerServices.IsExternalInit' is not defined or imported
+</pre>
+
+  <h3>解決方式</h3>
+  <p>看到這個錯誤直覺就是roslyn附掛的dll出問題，直接上網搜尋果然有很多人都遇到這個狀況，我自己的解決方案是撰寫一個空的靜態類別來對應，建立一個名為「System.Runtime.CompilerServices.cs」空類別，並讓程式碼如下：</p>
+<pre class="csharp">
+using System.ComponentModel;
+namespace System.Runtime.CompilerServices
+{
+  [EditorBrowsable(EditorBrowsableState.Never)]
+  public static class IsExternalInit
+  { }
+}
+</pre>
+
+  <p>接下來就是編譯這個類別：</p>
+<pre class="plaintext">
+C:\Slashview>csc System.Runtime.CompilerServices.cs /target:library /out:System.Runtime.CompilerServices.dll
+</pre>
+
+  <p>編譯出來的類別檔案System.Runtime.CompilerServices.dll，將其放在csc.exe所屬的目錄下應該就解決了。</p>
+
+  <small>.NET .NetFramework .NetCore .NET5 .NET6 Roslyn C#Compiler CSharpCompiler Error IsExternalInit CS0518 VisualStudio</small>
+
+</body>
+</html>
