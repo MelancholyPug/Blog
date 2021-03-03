@@ -38,6 +38,18 @@ C:\slashview>csc System.Runtime.CompilerServices.cs /target:library /out:System.
 
   <p>懶得編譯DLL的人，可以直接點擊這個連結下載：<a href="/file/20210303/System.Runtime.CompilerServices.dll.zip" target="_blank">System.Runtime.CompilerServices.dll</a></p>
 
+  <h4>後記</h4>
+
+  <p>依據微軟官方對於這個IsExternalInit的說法（詳見下方語句），說這是C# 9.0的keyword init features所致，而官方有聲明C# 9.0只有支援.NET 5，要不就是請你SDK升級到.NET 5以上的版本，要不就去死吧。</p>
+
+<pre class="plaintext">
+Q: Dev nuget Package Microsoft.Net.Compilers.Toolset v 3.8.0-1.20325.3 when using `init` feature in c# 9 raise error: Predefined type 'System.Runtime.CompilerServices.IsExternalInit' is not defined or imported
+
+A: Thanks for reporting the issue. This is not a bug in the compiler. The IsExternalInit type is a new type added to .NET in the net5 time frame which is necessary to properly emit record types and init properties. That type was added but did not make it into the .NET 5 SDK you used. Once you upgrade to a version which has the type, believe Preview 7, this will go away.
+
+Source: https://github.com/dotnet/roslyn/issues/45510
+</pre>
+
   <small>.NET .NetFramework .NetCore .NET5 .NET6 Roslyn C#Compiler CSharpCompiler Error IsExternalInit CS0518 VisualStudio</small>
 
 </body>
