@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>SQL筆記：挑選日期區間、篩選數值範圍的語法</h1>
+
+  <p>這篇文章沒啥營養，純粹是自己老了，每次要撰寫這種SQL範圍內的語法都要想個10來秒來確認，有時候腦筋打結甚至還要去SSMS驗證一下才放心，將其筆記在這邊日後方便查詢。有些人可能會問為何不用BETWEEN？我的答案是BETWEEN無法解決剛好在那個點上（等於；等號）的問題，因此變相的你要反過來去調整範圍兩端的參數，並不會比較省力氣。</p>
+
+  <h3>挑選日期區間範圍內的SQL語法</h3>
+  <p>假設從前端傳過來兩個參數，分別為日期起日（dSearchStart）、日期迄日（dSearchEnd），假設我們要挑選目標是資料更新時間欄位（dUpdate），那麼在SQL WHERE的語法就要這樣撰寫：</p>
+<pre class="sql">
+SELECT
+  *
+FROM
+  YourTable
+WHERE
+  @dSearchStart <= dUpdate AND dUpdate <= @dSearchEnd
+</pre>
+
+  <p>再舉出一個數值範圍的例子，這個在舊版SQL Server的分頁需求裡面，這樣的語法可承擔切分頁面並取出資料的功能：</p>
+<pre class="sql">
+SELECT
+  *
+FROM
+  (
+    SELECT 
+      ROW_NUMBER() OVER (ORDER BY iAutoIndex DESC) AS [iRow],
+      *
+    FROM
+      YourTable
+  ) AS TEMPTABLE
+WHERE
+  @dSearchRow <= iRow AND iRow <= @dSearchRow
+</pre>
+
+  <small>SqlSyntax DateTimeRange DateRange ValueRange Between</small>
+
+</body>
+</html>
