@@ -34,7 +34,7 @@ FROM
       YourTable
   ) AS TEMPTABLE
 WHERE
-  @dSearchRow <= iRow AND iRow <= @dSearchRow
+  @iStartRow <= iRow AND iRow <= @iEndRow
 </pre>
 
   <small>SqlSyntax DateTimeRange DateRange ValueRange Between</small>
