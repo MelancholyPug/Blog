@@ -21,18 +21,17 @@
 namespace Slashview
 {
 	public class HttpRequestInitial : System.Web.IHttpModule
-	{ 
-		public void Init(System.Web.HttpApplication oContext)
-		{ oContext.BeginRequest += OnBeginRequest; }
+  { 
+    public void Init(System.Web.HttpApplication oContext)
+    { oContext.BeginRequest += OnBeginRequest; }
 
     public void Dispose()	{ }
 
     //每個HttpRequest都會跑一次
 		private void OnBeginRequest(object sender, System.EventArgs e)
-		{
-      //在ASPX頁面的Page_Load之前先執行你想要的程式碼
+		{ //在ASPX頁面的Page_Load之前先執行你想要的程式碼
     }
-	}
+  }
 }
 </pre>
 
