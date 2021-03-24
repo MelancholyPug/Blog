@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>Http Module無法存取Session的問題</h1>
+
+  <p>在某些情況下，要實作一個每次Http Request都會執行，且若為WebForm .aspx其運行優先權還要超越的Page_Load事件，更還要可支援Session的存取，這時候只有實作HTTP Module可以達成。</p>
+
+  <p>
+    通常要實作IHttpModule可以透過簡單的「global.asax」或是較複雜的「web.config之modules掛載」來達成，而這兩者其實都是殊途同歸的，只是ASP.NET留下一條客製化IHttpModule的道路讓程式設計師實作，官方文件於此：<a href="https://docs.microsoft.com/en-us/dotnet/api/system.web.httpapplication?view=netframework-4.8" target="_blank"></a>
+    <a href="" target="_blank">HttpApplication Class</a>
+  </p>
+
+  <h3>典型的IHttpModule之C#實作</h3>
+  <p>程式碼大致上如下：</p>
+<pre class="C#">
+namespace Slashview
+{
+	public class HttpRequestInitial : System.Web.IHttpModule
+	{ 
+		public void Init(System.Web.HttpApplication oContext)
+		{ oContext.BeginRequest += OnBeginRequest; }
+
+    public void Dispose()	{ }
+
+    //每個HttpRequest都會跑一次
+		private void OnBeginRequest(object sender, System.EventArgs e)
+		{
+      //在ASPX頁面的Page_Load之前先執行你想要的程式碼
+    }
+	}
+}
+</pre>
+
+  <p>有了上面的程式碼架構，我們再把它放到web.config中就可以進行啟動。</p>
+<pre class="xml">
+&lt;?xml version="1.0"?&gt;
+&lt;configuration&gt;
+  &lt;system.webServer&gt;
+    &lt;modules&gt;
+      &lt;add name="HttpRequestInitial" type="Slashview.HttpRequestInitial"/&gt;
+    &lt;/modules&gt;
+  &lt;/system.webServer&gt;
+&lt;/configuration&gt;
+</pre>
+
+  <p>以global.asax的觀點來說就更簡單了，按照上面的程式碼寫對應只要寫在Application_BeginRequest方法中即可。</p>
+<pre class="c#">
+private void Application_BeginRequest(object sender, EventArgs e)
+{ //在ASPX頁面的Page_Load之前先執行你想要的程式碼
+}
+</pre>
+
+  <p>大家可以觀察到在客製化的IHttpModule中，自定義的OnBeginRequest方法是掛載在BeginRequest委派下，而這個BeginRequest委派正是global.asax的Application_BeginRequest，兩者是等效的。</p>
+
+  <h3>存取Session永遠為null的問題</h3>
+  <p>然而當你試圖在上述的程式碼中存取Session（System.Web.HttpContext.Current.Session），卻發現ASP.NET會拋給你null（Nothing），這一切的原因是因為在這個事件觸發的時期Session根本還沒有準備好，所以你無法存取Session。</p>
+
+  <p>我們可以看一下官方文件：<a href="https://docs.microsoft.com/en-US/troubleshoot/aspnet/http-modules-handlers" target="_blank">ASP.NET HTTP modules and HTTP handlers</a></p>
+
+  <p>由上方的文件可得知HttpApplication（Http Module）觸發事件的順序（生命週期）分別如下：</p>
+
+  <ol>
+    <li>BeginRequest</li>
+    <li>AuthenticateRequest</li>
+    <li>AuthorizeRequest</li>
+    <li>ResolveRequestCache</li>
+    <li>AcquireRequestState</li>
+    <li>PreRequestHandlerExecute</li>
+    <li>PostRequestHandlerExecute</li>
+    <li>ReleaseRequestState</li>
+    <li>UpdateRequestCache</li>
+    <li>EndRequest</li>
+  </ol>
+
+  <p>大家可以在官方文件中看到AcquireRequestState事件的描述如下：</p>
+
+<pre>
+AcquireRequestState: Session state is retrieved from the state store. If you want to build your own state management module, synchronize this event to grab the session state from your state store.
+</pre>
+  
+  <p>換句話說，也就是Session到AcquireRequestState時期才開始被喚醒，為了更安全更不複雜的操控Session，建議在PreRequestHandlerExecute再來運行Session的操作是最安全的。</p>
+
+  <h4>結論：若要操作Session，建議綁定PreRequestHandlerExecute事件為佳。</h4>
+
+  <small>HttpModule IHttpModule Events EventDelegate LifeCycles 生命週期 Session Null Nothing Exception CanNotAccess</small>
+
+</body>
+</html>
