@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>瀏覽器之書籤小工具（Bookmarklets）的圖示變更</h1>
+
+  <p>自己常用的書籤小工具<a href="https://en.wikipedia.org/wiki/Bookmarklet" target="_blank">Bookmarklet</a>已經使用很多年了，也一直對於這個小工具無法更換ICON一直覺得彆扭（它的圖示會隨著不同瀏覽器的書籤預設圖案而改變），但因為也不影響作業所以也沒放在心上，最近在瀏覽網站時發現有人找到更換書籤小工具（Bookmarklets）圖示的方法，因此把它紀錄在此以供給日後利用。</p>
+
+  <h3>變更書籤小工具的圖示</h3>
+  <p>首先要注意，這個變更無法被時下的瀏覽器書籤同步功能所複製，也就是說跨越不同電腦的瀏覽器，你自己都要重來一次。</p>
+
+  <div class="form-group">
+    <label for="uBookmarkletLabel">書籤文字：</label>
+    <input type="text" class="form-control" id="uBookmarkletLabel" placeholder="請填入書籤文字">
+  </div>
+  <div class="form-group">
+    <label for="uBookmarkletUrl">書籤網址：</label>
+    <textarea class="form-control" rows="3" id="uBookmarkletUrl" placeholder="請填入書籤URL，在此應該輸入類似 javascript: 字眼的內容"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="uBookmarkletIcon">書籤圖示：</label>
+    <textarea class="form-control" rows="3" id="uBookmarkletIcon" placeholder="請填入BASE64格式的圖片"></textarea>
+  </div>
+
+  <p>
+    <button id="uGenerate" type="button" class="btn btn-primary btn-lg">產生</button>
+  </p>
+
+  <div class="form-group">
+    <label for="uBookmarkletHtml">可匯入我的最愛之HTML：（產生的標籤沒有對稱，請不要懷疑）</label>
+    <textarea class="form-control" rows="10" id="uBookmarkletHtml"></textarea>
+  </div>
+
+  <h4>完成後動作</h4>
+
+  <p>把上面的HTML圈選存成.html後，利用瀏覽器的匯入「我的最愛」功能讀取並匯入，就可以在書籤中找到。位置大概會被放在「其他我的最愛」之類的資料夾，自己找一下應該不難。</p>
+
+  <script>
+    pushToExecuteList(function () {
+      //Event Binding
+      $("#uGenerate").click(function () {
+        var cLabel, cUrl, cIcon;
+        cLabel = $("#uBookmarkletLabel").val();
+        cUrl = $("#uBookmarkletUrl").val();
+        cIcon = $("#uBookmarkletIcon").val();
+        //設定預設值
+        if (cLabel.length == 0) {
+          cLabel = "DefaultLabel";
+        }
+        if (cUrl.length == 0) {
+          cUrl = "javascript:alert('Hello World!');";
+        }
+        if (cIcon.length == 0) {
+          cIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB2UlEQVQ4T6XTS2sTURQH8P//JkvpSjIzIVoXRdBdNQupULoRNQ8rSheCurGZ+Fh04VYwH0EX0iaTTyDqpndaW3wsBFGM0KWCLsRmHghSVBQTM0cGbEjbtCl4l/ec8+OecznEfx72q69URFUqjHZjbwDOzvoH/iToAJgA8EFErrtl6/lOUBfI1b1h1VEvQHwDZRbCHIETAM7N26beDukCxVqgRTjSTrTGlqb3fY3beJMOawq4LArn9bQ53w/pAoVa8EOIW27JvBMnTs75h0cD813DCuskLkZg0bWNpc1IL/AaxCtdMmeKTjApgkeKPHWkmXraSIcPCBw76hmZzcPtAnnHO6QifPruW6096dADsKxLxiWQkq/6eZIanWRGX9vb7H3Flm887axmEpL8LCIFt2y5U/cl8XMtfEggm/WM/SvDa0Ot379GFq6mGzG0Bfg3vI+EvPfFLFoSjkPBFbDg2saTfC28R8iYts3RvkB8eaYeHo8iWQZk0RfzQko1jcVSZjWO5avhTVJua9sc2haIAwXHn4DQXUfeltk+Wf1iJdl5SbChbWNqR2AjghURPiblCoBW1FbjCzdSwUAgTsjNeVml1F0ABwV4Jm01s168K2DQQvXdxkFFvfG/GKPBEaSnB4QAAAAASUVORK5CYII=";
+        }
+        //製作書籤HTML
+        $("#uBookmarkletHtml").val('\
+<!DOCTYPE NETSCAPE-Bookmark-file-1>\n\
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">\n\
+<TITLE>Bookmarks</TITLE>\n\
+<H1>Bookmarks</H1>\n\
+<DL><p>\n\
+    <DT><A HREF="' + cUrl + '" ADD_DATE="" ICON="' + cIcon + '">' + cLabel + '</A>\n\
+</DL><p>');
+      });
+    }, 2);	//Priority:2
+  </script>
+
+  <small>Chrome Chromium Browser Bookmark Bookmarklet MyFavorite Favicon Image Picture Icon Change Replace</small>
+
+</body>
+</html>
