@@ -46,8 +46,23 @@ public static void Main()
 
 <p>如果是把System.Linq弄進來，使用他的語法來進行資料搜尋的話，語法變成一行就可以解決了。這樣的寫法還有一個好處，就是因為enum是實值型別（ValueType），所以就算找不到命中FirstOrDefault也不會傳回null，而是會傳回這個enum的預設值，也就是等於0的NoFriend。（如果列舉裡面沒有等於0的項次，則會回傳一個0，你對它.GetType()還是會回傳myFriend。）</p>
 
-<pre>
+<pre class="c#">
 myFriend eFind = System.Enum.GetValues(typeof(myFriend)).OfType&lt;myFriend&gt;().Where(x =&gt; (int)x == iFriend).FirstOrDefault();
+</pre>
+
+<h3>判斷是否某一自外部取入的列舉，其值是否符合列舉項次？</h3>
+<p>若列舉的來源是外部參數賦予（例如使用Newtonsoft.Json.JsonConvert.DeserializeObject綁定回物件），那麼極有可能這個賦予的值根本不存在於你的列舉表之中，舉例下列程式碼來說是不會有任何錯誤的，但你的列舉項次其實根本沒有這個項目：</p>
+<pre class="c#">
+var eTemp = (myFriend)99;	//這是合法的，儘管99根本不在myFriend裡面
+Console.WriteLine($"{(int)eTemp} / {eTemp}"); //將會輸出：99 / 99
+</pre>
+
+<p>多數時候我們可不想要這種外部來源來汙染我們的列舉值，或者是逼著我們採用預設值，此時可以用下列的方法來進行檢查：</p>
+<pre class="c#">
+if (System.Enum.GetValues(typeof(myFriend)).OfType&lt;myFriend&gt;().Where(x => (int)x == (int)eTemp).Count() != 0)
+{ Console.WriteLine("有在列舉項目裡"); }
+else
+{ Console.WriteLine("沒在列舉項目裡"); }
 </pre>
 
 <h3>利用列舉名稱（Enum Name；String）來取得列舉型別本身</h3>
