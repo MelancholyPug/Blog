@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <h1>Ubuntu架設VPN伺服器</h1>
+  <h1>Ubuntu架設VPN-PPTP伺服器</h1>
 
   <p>會寫這篇文章的原因，是因為自己看了Ubuntu官方VPN架設文件（<a href="https://help.ubuntu.com/community/PPTPServer" target="_blank">PPTP Server</a>），怎麼搞也搞不起來，只好裝回當前官網建議的最低版本Ubuntu 16.04 LTS再照著文件做一次，沒想到竟然就可以了，一步步追蹤後才發現rc.local根本沒有起來（某些網站還叫你去裝不需要重新安裝的ppp跟iptables...），只好基於Ubuntu 20.04 LTS再寫一篇記錄，以防日後失憶。</p>
 
@@ -110,7 +110,7 @@ sudo sysctl -p
 nano /etc/rc.local；記得將下列兩行插入在exit 0之前
 －－－－－
 iptables -t nat -A POSTROUTING -s 192.168.78.0/24 -o ens33 -j MASQUERADE
-iptables -A FORWARD -p tcp --syn -s 192.168.78.0/24 -j TCPMSS --set-mss 1356
+iptables -A FORWARD -p tcp --syn -s 192.168.78.0/24 -j TCPMSS --set-mss 13563
 </pre>
 
   <p>step 15. 開機自動啟用PPTP VPN服務</p>
@@ -122,6 +122,11 @@ systemctl start pptpd
   <p>step 16. reboot，大功告成。</p>
 
   <p>經過測試，使用Windows 10原生VPN連線程式，或者在Android手機原生VPN連線設定，都可以透過此VPN伺服器進行連線。</p>
+
+  <h4>相關連結：</h4>
+  <ul>
+    <li><a href="/archive2021/20210602.html" target="_blank">Ubuntu架設VPN-IPsec/L2TP伺服器</a></li>
+  </ul>
 
   <small>Ubuntu PPTP VPN 架設 Windows Windows10 連線</small>
 
