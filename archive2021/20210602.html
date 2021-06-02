@@ -22,7 +22,7 @@ wget https://git.io/vpnsetup -O vpn.sh
 
   <p>Step 3. 然後對這個腳本進行編輯。</p>
 <pre class="plaintext">
-nano -w vpn.sh
+nano vpn.sh
 </pre>
 
   <p>Step 4. 編輯之處為下列這三個變數，請自己輸入自己想要的參數並儲存。</p>
@@ -34,7 +34,7 @@ YOUR_PASSWORD='VPN密碼'
 
   <p>Step 5. 用最高權限跑這隻腳本進行IPsec安裝。</p>
 <pre class="plaintext">
-sudo vpn.sh
+sudo sh vpn.sh
 </pre>
 
   <p>Step 6. 一陣安裝運作結束後，接著進行IKEv2設定。</p>
@@ -42,7 +42,7 @@ sudo vpn.sh
 sudo ikev2.sh --auto
 </pre>
 
-  <p>Step 7. 就這樣安裝完成了，用人家寫好的腳本安裝就是爽（缺點就是啥也沒學到），接著就重新開機吧。</p>
+  <p>Step 7. 就這樣安裝完成了，用人家寫好的腳本安裝就是爽（速食時代缺點就是啥也沒學到），接著就重新開機吧。</p>
 
   <h4>以Windows 10 Client端進行連線測試</h4>
 
