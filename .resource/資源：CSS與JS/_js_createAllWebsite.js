@@ -42,15 +42,8 @@ pushToExecuteList(function () {
 
   /* Insert Blocks: Disqus & Ads */
   if (oSite.bArticles) {
-    $("<div class='container'><div class='row'><div class='col-md-8 col-sm-8'><button id='btnLoadGuestbook' class='btn btn-primary btn-lg btn-block' type='button'>訪客留言板 / Guestbook</button><div id='disqus_thread'></div></div><div class='col-md-4 col-sm-4'><div id='AdvertisementBottom'><div id='BloggerAdsBottom'></div></div></div></div></div>").appendTo("body");
+    $("<div class='container'><div class='row'><div class='col-md-8 col-sm-8'><button id='btnLoadGuestbook' class='btn btn-primary btn-lg btn-block' type='button'>訪客留言板 / Guestbook</button><div id='disqus_thread'></div></div><div class='col-md-4 col-sm-4'><div id='AdvertisementBottom'><div id='GoogleAdSenseBottom'></div></div></div></div></div>").appendTo("body");
   }
-
-  /* Insert Blocks: Disqus & Ads (backup for google) */
-	/*
-	if(oSite.bArticles){
-		$("<div class='container'><div class='row'><div class='col-md-7 col-sm-6'><button id='btnLoadGuestbook' class='btn btn-primary btn-lg btn-block' type='button'>點選此處開啟留言板 / Disqus Guestbook</button><div id='disqus_thread'></div></div><div class='col-md-5 col-sm-6'><div id='AdvertisementBottom'><div id='GoogleAdSenseBottom'><p>Google Ads</p></div><div id='BloggerAdsBottom'><p>BloggerAds Sticker</p></div></div></div></div></div>").appendTo("body");
-	}
-	*/
 
   /* Insert Blocks: Footer */
   $("<div class='container'><div class='row'><div class='col-md-12'><div class='footer'><p class='footer-color'>Copyright <span class='glyphicon glyphicon-copyright-mark'></span> 2013 by <a href='/_resource/html/aboutNcontact.html'><strong>SlashView</strong></a> Inc. All Rights Reserved.</p></div></div></div></div>").appendTo("body");
@@ -158,19 +151,19 @@ jQueryIsReady(function () {
 
       //Insert Advertisment Block
       //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline1' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline2' class='col-md-6 hidden-xs hidden-sm'></div></div>");
-      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
+      //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
       //Insert Advertisment Block
-      //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='GoogleAdSenseInline' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
+      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='GoogleAdSenseInline' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
 
 			/* Google Ads setup */
 			//Load Google JS
       //LoadFile("js", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
 			//Google AdSense Inline
-      //$("<ins class='adsbygoogle' style='display:inline-block;width:320px;height:100px' data-ad-client='ca-pub-7039045520564660' data-ad-slot='3733444786'></ins>").appendTo("#GoogleAdSenseInline");
+      $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleAdSenseInline");
 			//Google AdSense Bottom
-      //$("<ins class='adsbygoogle' style='display:inline-block;width:200px;height:200px' data-ad-client='ca-pub-7039045520564660' data-ad-slot='8964223188'></ins>").appendTo("#GoogleAdSenseBottom");
+      $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='3803798199' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleAdSenseBottom");
 			//Google AdSense launch
-			//for(i=0;i<2;i++){ (adsbygoogle=window.adsbygoogle||[]).push({}); }
+			for(i=0;i<2;i++){ (adsbygoogle=window.adsbygoogle||[]).push({}); }
 
       // BloggerAds Process（If not BloggerAds Administrator IP then show Ads in iFrame tag.）
       if (!oSite.bAdsAdministrator) {
