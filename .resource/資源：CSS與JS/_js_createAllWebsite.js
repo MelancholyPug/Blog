@@ -157,10 +157,10 @@ jQueryIsReady(function () {
       });
 
       //Insert Advertisment Block
-      //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline1' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline2' class='col-md-6 hidden-xs hidden-sm'></div><div>");
-
+      //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline1' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline2' class='col-md-6 hidden-xs hidden-sm'></div></div>");
+      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
       //Insert Advertisment Block
-      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='GoogleAdSenseInline' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div><div>");
+      //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='GoogleAdSenseInline' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
 
 			/* Google Ads setup */
 			//Load Google JS
@@ -182,7 +182,7 @@ jQueryIsReady(function () {
         //BloggerAds ButtonAds
         setTimeout(function () {
           $("<iframe src='/_resource/html/_bloggerAdsBottom.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:370px;width:100%;'></iframe>").appendTo("#BloggerAdsBottom");
-        }, 1000);
+        }, 2000);
       }
 
       // IP Logger  Bottom Initial
