@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+</head>
+<body>
+
+  <h1>jQuery document ready的各種寫法</h1>
+
+  <p>以前也沒有很在乎，反正寫習慣了就好，後來發現身邊的人越來越愛用簡式寫，那就把它紀錄在這邊，以後就從善如流嘍。</p>
+
+  <p>第一型：我愛用的型態，一目了然沒甚麼好講的</p>
+<pre class="javascript">
+$(document).ready(function() {
+  //...
+});
+</pre>
+
+  <p>第二型：簡式，好像熟悉jQuery的人後期大都這樣寫了</p>
+<pre class="javascript">
+$(function(){
+  //...
+});
+</pre>
+
+  <p>$符號與jQuery符號可以互換的寫法就不贅述了。</p>
+
+  <p>第三型：引入ES6的<a href="https://caniuse.com/?search=arrow%20functions" target="_blank">Arrow Functions</a>寫法，除了該死的IE之外好像都支援。</p>
+<pre class="javascript">
+$(() => {
+  //...
+});
+</pre>
+
+  <p>熟悉C# Lambda或expression對Arrow Functions應該都不陌生，目前先這樣，有新的寫法再回來更新。</p>
+
+  <small>jQuery DocumentReady MiniCode Javascript ES6 ArrowFunctions</small>
+
+</body>
+</html>
