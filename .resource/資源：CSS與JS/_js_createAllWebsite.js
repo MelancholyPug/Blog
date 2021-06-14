@@ -157,7 +157,7 @@ jQueryIsReady(function () {
 
 			/* Google Ads setup */
 			//Load Google JS
-      //LoadFile("js", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
+      LoadFile("js", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
 			//Google AdSense Inline
       $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleAdSenseInline");
 			//Google AdSense Bottom
@@ -171,11 +171,6 @@ jQueryIsReady(function () {
         setTimeout(function () {
           $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline");
         }, 1000);
-
-        //BloggerAds ButtonAds
-        setTimeout(function () {
-          $("<iframe src='/_resource/html/_bloggerAdsBottom.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:370px;width:100%;'></iframe>").appendTo("#BloggerAdsBottom");
-        }, 2000);
       }
 
       // IP Logger  Bottom Initial

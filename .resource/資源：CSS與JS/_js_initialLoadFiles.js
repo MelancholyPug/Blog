@@ -19,26 +19,6 @@ var LoadFile = function(cType, cUrl, fCallBack) {
 				oDom.onload = function(){	fCallBack(); };
 			}
 		}
-	} else if (cType === "googleAdsJs") {
-		oDom = document.createElement("script");
-		oDom.setAttribute("src", cUrl);
-		oDom.setAttribute("async", "");
-		oDom.setAttribute("data-ad-client", "ca-pub-7039045520564660");
-		//特別針對jQuery進行確定載入處理
-		if (cUrl.indexOf("jquery.min.js") !== -1) {
-			if (oDom.readyState) {
-				//Browser:IE
-				oDom.onreadystatechange = function () {
-					if (oDom.readyState === "loaded" || oDom.readyState === "complete") {
-						oDom.onreadystatechange = null;
-						fCallBack();
-					}
-				};
-			} else {
-				//Browser:Others
-				oDom.onload = function () { fCallBack(); };
-			}
-		}
 	} else if (cType === "css") {
 		oDom = document.createElement("link");
 		oDom.setAttribute("rel", "stylesheet");
@@ -90,6 +70,5 @@ var jQueryIsReady = function(fCallBack){
     LoadFile("js", "//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js");     //Bootstrap
     LoadFile("js", "/_resource/js/_js_highlight.js");                                    //程式碼高亮度
 		LoadFile("js", "/_resource/js/_js_createAllWebsite.min.js");                         //網站基底
-		LoadFile("googleAdsJs", "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"); //網站基底
 	});
 })();
