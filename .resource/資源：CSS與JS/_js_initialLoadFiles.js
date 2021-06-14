@@ -1,14 +1,4 @@
-﻿/* 因為Google也會去爬NeoCities的網站，這樣會造成我方網頁的內容被Google視為兩份一模一樣的網頁，在考量Google有可能會因此降低網頁排名的情況下，因此將偵測到NeoCities的網址全部導回母站 */
-(function(){
-	var cFind = "slashlook.neocities.org";
-	if (window.location.hostname === cFind) {
-		var cURL = window.location.href;
-		var cUrlFinal = cURL.substring(cURL.indexOf(cFind) + cFind.length);
-		window.location.href = "//slashview.com" + cUrlFinal;
-	}
-})(); 
-
-/* 動態載入 JavaScript, Css 涵式 */
+﻿/* 動態載入 JavaScript, Css 涵式 */
 var LoadFile = function(cType, cUrl, fCallBack) {
   var oDom;
   if (cType === "js") {
@@ -27,6 +17,26 @@ var LoadFile = function(cType, cUrl, fCallBack) {
 			}else{
 				//Browser:Others
 				oDom.onload = function(){	fCallBack(); };
+			}
+		}
+	} else if (cType === "googleAdsJs") {
+		oDom = document.createElement("script");
+		oDom.setAttribute("src", cUrl);
+		oDom.setAttribute("async", "");
+		oDom.setAttribute("data-ad-client", "ca-pub-7039045520564660");
+		//特別針對jQuery進行確定載入處理
+		if (cUrl.indexOf("jquery.min.js") !== -1) {
+			if (oDom.readyState) {
+				//Browser:IE
+				oDom.onreadystatechange = function () {
+					if (oDom.readyState === "loaded" || oDom.readyState === "complete") {
+						oDom.onreadystatechange = null;
+						fCallBack();
+					}
+				};
+			} else {
+				//Browser:Others
+				oDom.onload = function () { fCallBack(); };
 			}
 		}
 	} else if (cType === "css") {
@@ -77,8 +87,9 @@ var jQueryIsReady = function(fCallBack){
 	根本不認識誰是$,jQuery，因為jQuery的JavaScript有可能還在Load當中。因此需要jQueryIsReady涵式來進行把關。
 	*/
   LoadFile("js", "//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js", function () {
-    LoadFile("js", "//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"); //Bootstrap
-    LoadFile("js", "/_resource/js/_js_highlight.js");                                //程式碼高亮度
-    LoadFile("js", "/_resource/js/_js_createAllWebsite.min.js");                     //網站基底
+    LoadFile("js", "//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js");     //Bootstrap
+    LoadFile("js", "/_resource/js/_js_highlight.js");                                    //程式碼高亮度
+		LoadFile("js", "/_resource/js/_js_createAllWebsite.min.js");                         //網站基底
+		LoadFile("googleAdsJs", "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"); //網站基底
 	});
 })();
