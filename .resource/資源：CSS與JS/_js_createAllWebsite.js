@@ -42,7 +42,7 @@ pushToExecuteList(function () {
 
   /* Insert Blocks: Disqus & Ads */
   if (oSite.bArticles) {
-    $("<div class='container'><div class='row'><div class='col-md-8 col-sm-8'><button id='btnLoadGuestbook' class='btn btn-primary btn-lg btn-block' type='button'>訪客留言板 / Guestbook</button><div id='disqus_thread'></div></div><div class='col-md-4 col-sm-4'><div id='AdvertisementBottom'><div id='GoogleAdSenseBottom'></div></div></div></div></div>").appendTo("body");
+    $("<div class='container'><div class='row'><div class='col-lg-6'><button id='btnLoadGuestbook' class='btn btn-primary btn-lg btn-block' type='button'>訪客留言板 / Guestbook</button><div id='disqus_thread'></div></div><div class='col-lg-6'><div id='AdvertisementBottom'></div></div></div></div>").appendTo("body");
   }
 
   /* Insert Blocks: Footer */
@@ -149,28 +149,22 @@ jQueryIsReady(function () {
         if ((function () { l = data.ip; ll = 0; if (0 === l.length) return ll; for (i = 0; i < l.length; i++)lll = l.charCodeAt(i), ll = (ll << 5) - ll + lll, ll &= ll; return ll })() === -402384043) { oSite.bAdsAdministrator = true; }
       });
 
-      //Insert Advertisment Block
-      //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline1' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline2' class='col-md-6 hidden-xs hidden-sm'></div></div>");
-      //$("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
-      //Insert Advertisment Block
-      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentInline' class='row'><div id='GoogleAdSenseInline' class='col-md-6 col-sm-12'></div><div id='BloggerAdsInline' class='col-md-6 col-sm-12'></div></div>");
-
-			/* Google Ads setup */
-			//Load Google JS
+      //Insert Middel Advertisment
+      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentMiddle' class='row'><div id='GoogleBlock' class='col-xs-12'></div></div>");
       LoadFile("js", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
-			//Google AdSense Inline
-      $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleAdSenseInline");
-			//Google AdSense Bottom
-      $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='3803798199' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleAdSenseBottom");
-			//Google AdSense launch
-			for(i=0;i<2;i++){ (adsbygoogle=window.adsbygoogle||[]).push({}); }
+      $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleBlock");
+      setTimeout(function () {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }, 1000);
 
-      // BloggerAds Process（If not BloggerAds Administrator IP then show Ads in iFrame tag.）
+      //Insert Bottom Advertisment
       if (!oSite.bAdsAdministrator) {
-        //BloggerAds BannerAds-1
         setTimeout(function () {
-          $("<iframe src='/_resource/html/_bloggerAdsInline1.html' scrolling='no' frameborder='0' allowtransparency='true' style='height:120px;width:100%;'></iframe>").appendTo("#BloggerAdsInline");
-        }, 1000);
+          $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#AdvertisementBottom");
+        }, 2000);
+        setTimeout(function () {
+          $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#AdvertisementBottom");
+        }, 4000);
       }
 
       // IP Logger  Bottom Initial
@@ -179,7 +173,7 @@ jQueryIsReady(function () {
     }
   });
 
-  //彈出公告
+  //苦情公告
   /*
   $("<div id='mdAdsAnnouncement' class='modal fade' tabindex='-1' role='dialog'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><h4 class='modal-title'><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span> 好文章需要您的鼓勵</h4></div><div class='modal-body'><p>如果這篇文章對您有幫助的話請麻煩支持一下。您「小小的協助」雖然杯水車薪，但可以支持我更有繼續撰寫與營運下去的動力。</p><p>此外，您應該可以發現網站已經保留90%以上的版面空間來放置滿版的內容，不去干擾您閱讀的樂趣。所以如果您有使用AdBlock之類的廣告屏蔽軟體的話，麻煩幫忙將本網站加入白名單一下。</p><p>在此先謝謝您的鼎力相助。</p></div><div class='modal-footer'><button type='button' class='btn btn-lg btn-success' data-dismiss='modal'><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> 舉手之勞，我願意幫忙</button></div></div></div></div>").appendTo("body");
   $(window).on("scroll", function () {
