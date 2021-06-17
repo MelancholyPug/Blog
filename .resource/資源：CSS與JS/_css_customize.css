@@ -138,12 +138,15 @@ p {
 }
 
 #AdvertismentMiddle {
-	border: 1px solid #aaa;
 	border-radius: 6px;
 	background-color: #fff;
-	padding: 15px 15px 0px 15px;
+	padding: 10px;
 	margin: 0px 0px 10px 0px;
 }
+
+	#AdvertismentMiddle > #GoogleBlock {
+		padding: 0px;
+	}
 
 #AdvertisementBottom {
 	border: 1px solid #aaa;
