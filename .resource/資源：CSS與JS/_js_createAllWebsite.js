@@ -134,7 +134,7 @@ jQueryIsReady(function () {
       $("head > meta:eq(0)").after("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
     }
 
-    /* Initial: Disqus & Google AdSense */
+    /* Initial: Disqus & all site Advertisment */
     if (oSite.bArticles) {
       //為了解決低端裝置對於讀取Disqus留言板的延遲性，因此設計了動態按鈕來進行後顯示
       $('#btnLoadGuestbook').click(function () {
@@ -150,12 +150,10 @@ jQueryIsReady(function () {
       });
 
       //Insert Middel Advertisment
-      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentMiddle' class='row'><div id='GoogleBlock' class='col-xs-12'></div></div>");
       LoadFile("js", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
+      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentMiddle' class='row'><div id='GoogleBlock' class='col-xs-12'></div></div>");
       $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleBlock");
-      setTimeout(function () {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      }, 1000);
+      (adsbygoogle = window.adsbygoogle || []).push({});
 
       //Insert Bottom Advertisment
       if (!oSite.bAdsAdministrator) {
@@ -165,6 +163,10 @@ jQueryIsReady(function () {
         setTimeout(function () {
           $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#AdvertisementBottom");
         }, 4000);
+        setTimeout(function () {
+          $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='3803798199' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#AdvertisementBottom");
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        }, 6000);
       }
 
       // IP Logger  Bottom Initial
