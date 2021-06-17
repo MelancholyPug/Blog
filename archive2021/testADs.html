@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="jQuery, DocumentReady, MiniCode, Javascript, ES6, ArrowFunctions">
+  <meta name="theme-color" content="#719D06">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/_resource/css/_css_highlight.css">
+  <link rel="stylesheet" href="/_resource/css/_css_customize.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script data-ad-client="ca-pub-7039045520564660" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <style type="text/css">
+    * {
+      text-shadow: transparent 0px 0px 0px, rgba(0,0,0,1) 0px 0px 0px !important;
+    }
+  </style>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="/_resource/js/_js_highlight.js"></script>
+  <script src="/_resource/js/_js_createAllWebsite.min.js"></script>
+  <link rel="canonical" href="http://slashview.com/archive2021/20210614.html">
+  <link rel="shortcut icon" href="/_resource/image/_favicon.ico">
+  <title>jQuery document ready的各種寫法</title>
+
+</head>
+<body data-google-affiliate-annotated="1" style="">
+  <div class="navbar navbar-inverse navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="navbar-brand pull-left" style="margin-top:-1px"><img class="navbar-brand-logo" src="/_resource/image/_img_logo.png"></span><a class="navbar-brand" href="/index.html">SlashView</a></div><div class="collapse navbar-collapse"><ul id="nav-items" class="nav navbar-nav"><li><a href="/_resource/html/articles.html">articles</a></li><li><a href="/_resource/html/aboutNcontact.html">about &amp; contact</a></li><li><a href="/_resource/html/search.html">search</a></li></ul></div></div></div><div class="container">
+    <div class="row">
+      <div id="main-contents" class="col-md-12">
+
+        <div class="title title-color"><h1>jQuery document ready的各種寫法</h1></div><div class="date-time"><span class="glyphicon glyphicon-th-large"></span>&nbsp;2021/06/14</div>
+
+        <p>以前也沒有很在乎，反正寫習慣了就好，後來發現身邊的人越來越愛用簡式寫，那就把它紀錄在這邊，以後就從善如流嘍。</p>
+
+        <p>第一型：我愛用的型態，一目了然沒甚麼好講的</p>
+<pre class="javascript hljs pre-scrollable">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">//...</span>
+});
+</pre>
+
+        <p>第二型：簡式，好像熟悉jQuery的人後期大都這樣寫了</p>
+<pre class="javascript hljs pre-scrollable">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-comment">//...</span>
+});
+</pre>
+
+        <p>$符號與jQuery符號可以互換的寫法就不贅述了。</p>
+
+        <p>第三型：引入ES6的<a href="https://caniuse.com/?search=arrow%20functions" target="_blank">Arrow Functions</a>寫法，除了該死的IE之外好像都支援。</p>
+<pre class="javascript hljs pre-scrollable">$(() =&gt; {
+        <span class="hljs-comment">//...</span>
+});
+</pre>
+
+        <p>熟悉C# Lambda或expression對Arrow Functions應該都不陌生，目前先這樣，有新的寫法再回來更新。</p>
+
+        <div class="keywords"><span class="label label-success">#jQuery</span> <span class="label label-success">#DocumentReady</span> <span class="label label-success">#MiniCode</span> <span class="label label-success">#Javascript</span> <span class="label label-success">#ES6</span> <span class="label label-success">#ArrowFunctions</span> </div>
+
+
+      </div>
+    </div>
+  </div><div class="container"><div class="row"><div class="col-md-8 col-sm-8"><button id="btnLoadGuestbook" class="btn btn-primary btn-lg btn-block" type="button">訪客留言板 / Guestbook</button><div id="disqus_thread"></div></div><div class="col-md-4 col-sm-4" style="height: auto !important; min-height: 0px !important; margin: 0px; padding: 0px; border-width: 0px;"><div id="AdvertisementBottom" style="height: auto !important;"></div></div></div></div><div class="container"><div class="row"><div class="col-md-12"><div class="footer"><p class="footer-color">Copyright <span class="glyphicon glyphicon-copyright-mark"></span> 2013 by <a href="/_resource/html/aboutNcontact.html"><strong>SlashView</strong></a> Inc. All Rights Reserved.</p></div></div></div></div><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_2_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-7039045520564660&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;lmt=1623840709&amp;plat=1%3A32776%2C2%3A16809992%2C9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1081344%2C32%3A32&amp;format=0x0&amp;url=http%3A%2F%2Fslashview.com%2Farchive2021%2F20210614.html&amp;ea=0&amp;flash=0&amp;pra=7&amp;wgl=1&amp;dt=1623911628647&amp;bpp=1&amp;bdt=219&amp;idt=92&amp;shv=r20210615&amp;cbv=%2Fr20190131&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3D10781aeb700b4e9c-22cae2b288c9004d%3AT%3D1623840107%3ART%3D1623840107%3AS%3DALNI_MbQXY6-z3EOgPQs87GE8bMTm0-Asw&amp;prev_fmts=524x280%2C318x250&amp;nras=1&amp;correlator=6307460065844&amp;frm=20&amp;pv=1&amp;ga_vid=915690096.1623911629&amp;ga_sid=1623911629&amp;ga_hid=307622050&amp;ga_fc=0&amp;u_tz=480&amp;u_his=3&amp;u_java=0&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_nplug=3&amp;u_nmime=4&amp;adx=-12245933&amp;ady=-12245933&amp;biw=1903&amp;bih=937&amp;scr_x=0&amp;scr_y=120&amp;eid=42530672%2C31060974&amp;oid=3&amp;pvsid=2923885907391498&amp;pem=161&amp;wsm=1&amp;ref=http%3A%2F%2Fslashview.com%2F_resource%2Fhtml%2Farticles.html&amp;eae=2&amp;fc=896&amp;brdim=1920%2C0%2C1920%2C0%2C1920%2C0%2C1920%2C1040%2C1920%2C937&amp;vis=2&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=32768&amp;bc=23&amp;ifi=3&amp;uci=a!3&amp;fsb=1&amp;dtd=106" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!3" data-load-complete="true"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_1846544215381" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe><iframe src="https://www.google.com/recaptcha/api2/aframe" width="0" height="0" style="display: none;"></iframe>
+</body>
+
+</html>
