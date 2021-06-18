@@ -46,7 +46,6 @@
             var cTitleSample2 = "# subgroup: ";
             if (oLine.indexOf(cTitleSample1) !== -1) {
               cTitleID = "Group_" + iIndex;
-              //uEmoji.append("<div class='btn btn-primary btn-lg btn-block'><strong>" + oLine.substring(cTitleSample1.length) + "</strong></div>");
               $("<div id='" + cTitleID + "' class='panel panel-primary'><div class='panel-heading'><strong>" + oLine.substring(cTitleSample1.length) + "</strong></div><div class='panel-body'></div></div>").appendTo("#uEmoji");
             } else if (oLine.indexOf(cTitleSample2) !== -1) {
               cTitleSubID = cTitleID + "_Sub_" + iIndex;
