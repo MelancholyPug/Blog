@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+  <meta charset="utf-8">
+  <script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
   <style>
     div[id*="_Sub_"] {
       font-size: 4rem;
@@ -20,6 +20,15 @@
 
   <h2>Emojis Icon Full List</h2>
   <div id="uEmoji"></div>
+
+  <h4>Reference:</h4>
+  <a href="https://unicode.org/Public/emoji/" target="_blank">unicode.org - emoji</a>
+
+  <p title="asdasd">asdasdaaaaa</p>
+
+  <small>Emoji Emojii Emojis Icon FullList 表情符號 列表 大全集</small>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script>
     pushToExecuteList(function () {
@@ -62,17 +71,28 @@
             $("#" + cTitleSubID).append("<span title='" + cDescription + "'>" + cEmoji + "</span>");
           };
         });
+      }).then(() => {
+        //Copy to clipboard
+        $("span[title]").click(function() {
+          //console.log($(this).text());
+          navigator.clipboard.writeText(
+            $(this).text()
+          ).then(function () {
+            swal("Copied!", "Emojis is copy to clipboard", "success");
+          }, function () {
+            swal("Error!", "Something wrong when copy emoji to clipboard.", "error");
+          });
+        });
       }).catch((cError) => {
         alert(cError);
       });
 
+      
+
+      //alert();//.css("background-color", "red");
+
     }, 2);	//Priority:2
   </script>
-
-  <h4>Reference:</h4>
-  <a href="https://unicode.org/Public/emoji/" target="_blank">unicode.org - emoji</a>
-
-  <small>Emoji Emojii Emojis Icon FullList 表情符號 列表 大全集</small>
 
 </body>
 </html>
