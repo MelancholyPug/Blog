@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="/_resource/js/_js_initialLoadFiles.min.js"></script>
+  <style>
+    div[id*="_Sub_"] {
+      font-size: 4rem;
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Emojis Icon Full List 表情符號全列表</h1>
+
+  <p>目前採用的是Emojis Version 14.0版本來進行列表，日後若unicode.org有更新版本會動態更新，若有表情符號無法出現，那是你現在的瀏覽器（或作業系統）還沒有支援到這個版本的Emojis。</p>
+
+  <p>此外，列表中有許多符號可能看起來不斷的重複，會有這樣的錯覺是因為你現在的瀏覽器（或作業系統）還沒有支援這個Emojis版本的<a href="https://zh.wikipedia.org/wiki/繪文字" target="_blank">菲茨派屈克修飾符（EMOJI MODIFIER FITZPATRICK）</a>，該修飾符一開始是針對人類膚色進行分類修飾，後來這個協作語法被用來作為語意上的合併成為一個新圖示，例如：人＋槌子＝法官。</p>
+
+  <h2>Emojis Icon Full List</h2>
+  <div id="uEmoji"></div>
+
+  <script>
+    pushToExecuteList(function () {
+      //Load Emoji data
+      var oPromise = new Promise((resolve, reject) => {
+        $.ajax({
+          url: "/_data/emoji.txt",
+          success: (stream) => {
+            resolve(stream);
+          },
+          error: (jqXHR, textStatus, errorThrown) => {
+            reject("讀取資料檔案異常，請稍後再試。");
+          }
+        });
+      });
+      //Process data
+      var cTitleID = "";
+      var cTitleSubID = "";
+      oPromise.then((cData) => {
+        cData.split("\n").forEach((oLine, iIndex) => {
+          if (oLine.startsWith("#")) {
+            //Title: # Level: Description
+            var cTitleSample1 = "# group: ";
+            var cTitleSample2 = "# subgroup: ";
+            if (oLine.indexOf(cTitleSample1) !== -1) {
+              cTitleID = "Group_" + iIndex;
+              //uEmoji.append("<div class='btn btn-primary btn-lg btn-block'><strong>" + oLine.substring(cTitleSample1.length) + "</strong></div>");
+              $("<div id='" + cTitleID + "' class='panel panel-primary'><div class='panel-heading'><strong>" + oLine.substring(cTitleSample1.length) + "</strong></div><div class='panel-body'></div></div>").appendTo("#uEmoji");
+            } else if (oLine.indexOf(cTitleSample2) !== -1) {
+              cTitleSubID = cTitleID + "_Sub_" + iIndex;
+              $("#" + cTitleID + " > div:eq(1)").append("<div class='alert alert-info'><strong>" + oLine.substring(cTitleSample2.length) + "</strong></div><div id='" + cTitleSubID + "'></div>");
+            }
+          } else {
+            //Body: Data; Description
+            var oData = oLine.split(";")[0];
+            var cDescription = oLine.split(";")[1];
+            var cEmoji = "";
+            oData.trim().split(" ").forEach((cTemp) => {
+              cEmoji = cEmoji + "&#x" + cTemp;
+            });
+            $("#" + cTitleSubID).append("<span title='" + cDescription + "'>" + cEmoji + "</span>");
+          };
+        });
+      }).catch((cError) => {
+        alert(cError);
+      });
+
+    }, 2);	//Priority:2
+  </script>
+
+  <h4>Reference:</h4>
+  <a href="https://unicode.org/Public/emoji/" target="_blank">unicode.org - emoji</a>
+
+  <small>Emoji Emojii Emojis Icon FullList 表情符號 列表 大全集</small>
+
+</body>
+</html>
