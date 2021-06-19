@@ -71,12 +71,12 @@
         });
       }).then(() => {
         //Copy to clipboard
-        $("span[title]").click(function() {
+        $("span[title]").on("click touchstart", function() {
           //console.log($(this).text());
           navigator.clipboard.writeText(
             $(this).text()
           ).then(function () {
-            swal("Copied!", "Emojis is copy to clipboard", "success");
+            swal("Copied!", "Emoji is copy to clipboard", "success");
           }, function () {
             swal("Error!", "Something wrong when copy emoji to clipboard.", "error");
           });
