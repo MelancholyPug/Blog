@@ -71,8 +71,10 @@
         });
       }).then(() => {
         //Copy to clipboard
-        $("span[title]").on("click touchstart", function() {
+        $("span[title]").on("touchend click", function(event) {
           //console.log($(this).text());
+          event.stopPropagation();
+          event.preventDefault();
           navigator.clipboard.writeText(
             $(this).text()
           ).then(function () {
