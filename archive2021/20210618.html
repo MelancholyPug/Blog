@@ -71,7 +71,7 @@
         });
       }).then(() => {
         //Copy to clipboard
-        $("span[title]").on("touchend click", function(event) {
+        $("span[title]").on("click", function(event) {
           //console.log($(this).text());
           event.stopPropagation();
           event.preventDefault();
