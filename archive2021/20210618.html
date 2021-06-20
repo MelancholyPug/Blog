@@ -73,10 +73,11 @@
         });
       }).then(() => {
         //Copy to clipboard
-        $("span[title]").on("click", function(event) {
-          //console.log($(this).text());
-          event.stopPropagation();
-          event.preventDefault();
+        $("span[title]").on("click", function (event) {
+          //瀏覽器限定只有https狀態下才可以使用剪貼簿API
+          if ((location.protocol !== "https:") && (location.hostname !== "localhost")) {
+            return;
+          }
           navigator.clipboard.writeText(
             $(this).text()
           ).then(function () {
