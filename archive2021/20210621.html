@@ -13,7 +13,6 @@
   <h3>jQuery的click事件</h3>
   <p>先說明，所有的問題都不關jQuery的click事件的事，程式碼如下：</p>
 <pre class="html">
-<!--HTML程式碼-->
 &lt;div&gt;
   &lt;span title="TestingTitle"&gt;SPAN With title&lt;/span&gt;
   &lt;span&gt;Pure SPAN&lt;/span&gt;
@@ -25,7 +24,7 @@
 $("span[title]").click(function(){
   alert("TitleSpan: " + $(this)[0].constructor);
 });
-//所有的span都抓
+//所有的span都select
 $("span").click(() => {
   alert("PureSpan: " + $(this)[0].constructor);
 });
