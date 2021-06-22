@@ -34,6 +34,10 @@
 
   <script>
     pushToExecuteList(function () {
+      //因為用到剪貼簿的API一定要HTTPS，所以強制轉址
+      if (window.location.protocol === "http") {
+        window.location.href = "https" + window.location.href.slice(4);
+      }
       //Load Emoji data
       var oPromise = new Promise((resolve, reject) => {
         $.ajax({
