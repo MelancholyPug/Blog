@@ -42,7 +42,7 @@ pushToExecuteList(function () {
 
   /* Insert Blocks: Disqus & Ads */
   if (oSite.bArticles) {
-    $("<div class='container'><div class='row'><div class='col-lg-6'><button id='btnLoadGuestbook' class='btn btn-primary btn-lg btn-block' type='button'>訪客留言板 / Guestbook</button><div id='disqus_thread'></div></div><div class='col-lg-6'><div id='AdvertisementBottom'></div></div></div></div>").appendTo("body");
+    $("<div class='container'><div class='row'><div class='col-lg-7'><button id='btnLoadGuestbook' class='btn btn-primary btn-lg btn-block' type='button'>訪客留言板 / Guestbook</button><div id='disqus_thread'></div></div><div class='col-lg-5'><div id='AdvertisementBottom'></div></div></div></div>").appendTo("body");
   }
 
   /* Insert Blocks: Footer */
