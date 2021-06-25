@@ -151,23 +151,19 @@ jQueryIsReady(function () {
 
       //Insert Middel Advertisment
       LoadFile("js", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
-      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentMiddle' class='row'><div id='GoogleBlock' class='col-xs-12'></div></div>");
+      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentMiddle' class='row'><div id='GoogleBlock' class='col-xs-12 col-md-6'></div><div id='BloggeradsBlock' class='col-xs-12 col-md-6'></div></div>");
+      //Google
       $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleBlock");
       (adsbygoogle = window.adsbygoogle || []).push({});
+      //Bloggerads
+      $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#BloggeradsBlock");
 
       //Insert Bottom Advertisment
-      if (!oSite.bAdsAdministrator) {
-        setTimeout(function () {
-          $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#AdvertisementBottom");
-        }, 2000);
-        setTimeout(function () {
-          $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#AdvertisementBottom");
-        }, 4000);
-        setTimeout(function () {
-          $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='3803798199' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#AdvertisementBottom");
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        }, 6000);
-      }
+      //if (!oSite.bAdsAdministrator) { }
+      setTimeout(function () {
+        $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='3803798199' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#AdvertisementBottom");
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }, 2000);
 
       // IP Logger  Bottom Initial
       var iRandomNumber = 10000000 + Math.floor(Math.random() * 90000000);
