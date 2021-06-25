@@ -145,12 +145,11 @@ p {
 }
 
 	#AdvertismentMiddle > #GoogleBlock {
-		padding: 0px;
-		margin: 0 .5em .5em 0
+		padding: 0 .5em .5em 0;
 	}
 
 	#AdvertismentMiddle > #BloggeradsBlock {
-		padding: 0px;
+		padding: 0;
 		height: 120px;
 	}
 
