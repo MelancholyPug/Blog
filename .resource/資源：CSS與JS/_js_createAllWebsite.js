@@ -149,21 +149,30 @@ jQueryIsReady(function () {
         if ((function () { l = data.ip; ll = 0; if (0 === l.length) return ll; for (i = 0; i < l.length; i++)lll = l.charCodeAt(i), ll = (ll << 5) - ll + lll, ll &= ll; return ll })() === -402384043) { oSite.bAdsAdministrator = true; }
       });
 
-      //Insert Middel Advertisment
+      /* ***** Insert Middel Advertisment ***** */
       LoadFile("js", "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js");
-      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentMiddle' class='row'><div id='GoogleBlock' class='col-xs-12 col-md-6'></div><div id='BloggeradsBlock' class='col-xs-12 col-md-6'></div></div>");
+      $("#main-contents").find("p:eq(0)").after("<div id='AdvertismentMiddle' class='row'><div id='MiddleBlock1' class='col-xs-12 col-md-6'></div><div id='MiddleBlock2' class='col-xs-12 col-md-6'></div></div>");
       //Google
-      $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#GoogleBlock");
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      //Bloggerads
-      $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#BloggeradsBlock");
+      setTimeout(function () {
+        $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#MiddleBlock1");
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }, 1000);
+      setTimeout(function () {
+        $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='6325664530' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#MiddleBlock2");
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }, 2000);
 
-      //Insert Bottom Advertisment
+      /* ***** Insert Bottom Advertisment ***** */
       //if (!oSite.bAdsAdministrator) { }
+      //Google
       setTimeout(function () {
         $("<ins class='adsbygoogle' style='display:block' data-ad-client='ca-pub-7039045520564660' data-ad-slot='3803798199' data-ad-format='auto' data-full-width-responsive='true'></ins>").appendTo("#AdvertisementBottom");
         (adsbygoogle = window.adsbygoogle || []).push({});
-      }, 2000);
+      }, 3000);
+      //Bloggerads
+      setTimeout(function () {
+        $("<iframe src='/_resource/html/_bloggerAdsHorizontal.html' scrolling='no' frameborder='0' allowtransparency='true' style='width:100%;'></iframe>").appendTo("#AdvertisementBottom");
+      }, 4000);
 
       // IP Logger  Bottom Initial
       var iRandomNumber = 10000000 + Math.floor(Math.random() * 90000000);
